@@ -1,6 +1,6 @@
 <template>
   <q-layout view="hHh lpr fFf">
-    <q-header elevated class="bg-primary text-white" height-hint="98">
+    <q-header elevated class="bg-secondary text-accent" height-hint="98">
       <q-toolbar>
         <q-toolbar-title>
           <q-avatar>
@@ -11,9 +11,9 @@
       </q-toolbar>
 
       <q-tabs align="left">
-        <q-route-tab to="/page1" label="Page One" />
-        <q-route-tab to="/page2" label="Page Two" />
-        <q-route-tab to="/page3" label="Page Three" />
+        <q-route-tab to="/page1" label="Puts på rut" />
+        <q-route-tab to="/page2" label="Prislista" />
+        <q-route-tab to="/page3" label="Företag" />
       </q-tabs>
     </q-header>
 
@@ -21,7 +21,7 @@
       <router-view />
     </q-page-container>
 
-    <q-footer elevated class="bg-grey-8 text-white">
+    <q-footer elevated class="bg-secondary text-accent">
       <q-toolbar>
         <q-toolbar-title>
           <q-avatar>

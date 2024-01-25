@@ -1,7 +1,7 @@
 <template>
   <q-page class="row items-center justify-evenly">
     <example-component
-      title="Example component"
+      title="DIN RUTPUTSARE I KATRINEHOLM OCH NORRKÖPING"
       active
       :todos="todos"
       :meta="meta"
@@ -17,7 +17,7 @@ import { defineComponent } from 'vue';
 export default defineComponent({
   name: 'IndexPage',
   components: { ExampleComponent },
-  data () {
+  data() {
     const todos: Todo[] = [
       {
         id: 1,

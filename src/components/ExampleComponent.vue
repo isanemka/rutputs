@@ -1,14 +1,7 @@
 <template>
-  <div>
-    <p>{{ title }}</p>
-    <ul>
-      <li v-for="todo in todos" :key="todo.id" @click="increment">
-        {{ todo.id }} - {{ todo.content }}
-      </li>
-    </ul>
-    <p>Count: {{ todoCount }} / {{ meta.totalCount }}</p>
-    <p>Active: {{ active ? 'yes' : 'no' }}</p>
-    <p>Clicks on todos: {{ clickCount }}</p>
+  <div class="bg-primary">
+    <img src="/icons/main_logo.png" alt="Company logo" />
+    <h1 class="text-accent">{{ title }}</h1>
   </div>
 </template>
 
@@ -41,12 +34,12 @@ export default defineComponent({
     };
   },
   methods: {
-    increment (): void {
+    increment(): void {
       this.clickCount += 1;
     }
   },
   computed: {
-    todoCount (): number {
+    todoCount(): number {
       return this.todos.length;
     }
   }
