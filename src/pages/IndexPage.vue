@@ -1,7 +1,7 @@
 <template>
   <q-page class="row items-center justify-evenly">
     <example-component
-      title="DIN RUTPUTSARE I KATRINEHOLM OCH NORRKÖPING"
+      title="PUTS"
       active
       :todos="todos"
       :meta="meta"
