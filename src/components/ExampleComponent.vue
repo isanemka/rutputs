@@ -1,6 +1,11 @@
 <template>
-  <div class="bg-primary">
-    <img src="/icons/main_logo.png" alt="Company logo" />
+  <div class="bg-primary text-center q-pa-md">
+    <img
+      class="fit q-px-xl"
+      style="max-width: 900px"
+      src="/icons/main_logo.png"
+      alt="Company logo"
+    />
     <h1 class="text-accent">{{ title }}</h1>
   </div>
 </template>
