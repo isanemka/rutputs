@@ -1,22 +1,17 @@
 <template>
   <q-page class="row items-center justify-evenly">
-    <example-component
-      title="PUTS"
-      active
-      :todos="todos"
-      :meta="meta"
-    ></example-component>
+    <landing-component active></landing-component>
   </q-page>
 </template>
 
 <script lang="ts">
 import { Todo, Meta } from 'components/models';
-import ExampleComponent from 'components/ExampleComponent.vue';
+import LandingComponent from 'src/components/LandingComponent.vue';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'IndexPage',
-  components: { ExampleComponent },
+  components: { LandingComponent },
   data() {
     const todos: Todo[] = [
       {
