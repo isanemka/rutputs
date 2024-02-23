@@ -1,10 +1,32 @@
 import { RouteRecordRaw } from 'vue-router';
+import LandingComponent from 'components/LandingComponent.vue';
+import PriceListComponent from 'components/PriceListComponent.vue';
+import CompanyComponent from 'components/CompanyComponent.vue';
 
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
-    children: [{ path: '', component: () => import('pages/IndexPage.vue') }],
+    children: [
+      {
+        path: '',
+        component: () => import('pages/IndexPage.vue'),
+        children: [
+          {
+            path: 'landing',
+            component: LandingComponent,
+          },
+          {
+            path: 'priceList',
+            component: PriceListComponent,
+          },
+          {
+            path: 'company',
+            component: CompanyComponent,
+          },
+        ],
+      },
+    ],
   },
 
   // Always leave this as last one,
