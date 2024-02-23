@@ -4,17 +4,18 @@
       <q-tabs align="left">
         <q-img
           src="/icons/favicon.png"
-          class="q-ml-md"
+          class="q-mx-md"
           style="height: 30px; max-width: 30px"
+          @click="goToLanding()"
         />
-        <q-route-tab to="/page1" label="Puts på rut" />
-        <q-route-tab to="/page2" label="Prislista" />
-        <q-route-tab to="/page3" label="Företag" />
+        <q-route-tab to="/landing" label="Puts på rut" @click="goToLanding()" />
+        <q-route-tab to="/priceList" label="Prislista" @click="goToPriceList()" />
+        <q-route-tab to="/company" label="Företag" @click="goToCompany()" />
       </q-tabs>
     </q-header>
 
     <q-page-container>
-      <router-view />
+      <component :is="currentComponent" :title="currentComponent" />
     </q-page-container>
 
     <q-footer elevated class="text-black footer-style">
@@ -32,6 +33,52 @@
     </q-footer>
   </q-layout>
 </template>
+
+<script lang="ts">
+import { defineComponent, computed } from 'vue';
+import { useRouter } from 'vue-router';
+import Landing from 'src/components/LandingComponent.vue';
+import PriceList from 'src/components/PriceListComponent.vue';
+import Company from 'src/components/CompanyComponent.vue';
+
+export default defineComponent({
+  name: 'App',
+  components: {
+    Landing,
+    PriceList,
+    Company,
+  },
+  setup() {
+    const router = useRouter();
+    const currentComponent = computed(() => {
+      switch (router.currentRoute.value.path) {
+        case '/':
+          return 'Landing';
+        case '/priceList':
+          return 'PriceList';
+        case '/company':
+          return 'Company';
+        default:
+          return 'Landing';
+      }
+    });
+
+    const goToLanding = () => {
+      router.push('/');
+    };
+
+    const goToPriceList = () => {
+      router.push('/priceList');
+    };
+
+    const goToCompany = () => {
+      router.push('/company');
+    };
+
+    return { currentComponent, goToLanding, goToPriceList, goToCompany };
+  },
+});
+</script>
 
 <style>
 .footer-style {

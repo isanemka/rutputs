@@ -1,44 +1,21 @@
 <template>
-  <q-page class="row items-center justify-evenly">
-    <landing-component active></landing-component>
-  </q-page>
+  <div class="bg-primary text-center q-pa-md">
+    <img
+      class="fit q-px-xl"
+      style="max-width: 900px"
+      src="/icons/main_logo.png"
+      alt="Company logo"
+    />
+    <q-page class="row items-center justify-evenly">
+    </q-page>
+  </div>
 </template>
 
 <script lang="ts">
-import { Todo, Meta } from 'components/models';
-import LandingComponent from 'src/components/LandingComponent.vue';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'IndexPage',
-  components: { LandingComponent },
-  data() {
-    const todos: Todo[] = [
-      {
-        id: 1,
-        content: 'ct1'
-      },
-      {
-        id: 2,
-        content: 'ct2'
-      },
-      {
-        id: 3,
-        content: 'ct3'
-      },
-      {
-        id: 4,
-        content: 'ct4'
-      },
-      {
-        id: 5,
-        content: 'ct5'
-      }
-    ];
-    const meta: Meta = {
-      totalCount: 1200
-    };
-    return { todos, meta };
-  }
+  components: {},
 });
 </script>
