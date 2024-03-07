@@ -1,6 +1,8 @@
 <template>
   <q-layout view="hHh lpr fff">
     <q-header elevated class="bg-secondary text-accent" height-hint="98">
+
+<!-- Navigation -->
       <q-tabs align="left">
         <q-img
           src="/icons/favicon.png"
@@ -14,22 +16,44 @@
       </q-tabs>
     </q-header>
 
+<!-- Page content -->
     <q-page-container>
-      <component :is="currentComponent" :title="currentComponent" />
+      <q-page class="q-pa-md">
+        <div class="q-flex column items-center">
+          <img
+            class="fit"
+            style="max-width: 900px;"
+            src="/icons/main_logo.png"
+            alt="Company logo"
+            @click="goToLanding()"
+          />
+        </div>
+        <component :is="currentComponent" :title="currentComponent" />
+      </q-page>
     </q-page-container>
 
     <q-footer elevated class="text-black footer-style">
-      <div class="q-mx-xl text-overline">
-        <p class="text-uppercase q-ma-xl text-subtitle1 text-center">
-          Telefon: 0734-64 46 04
-        </p>
+      <q-row class="text-overline">
+        <q-col>
+          <p class="text-uppercase q-ma-xl text-subtitle1 text-center">
+            Telefon: 0734-64 46 04
+          </p>
+        </q-col>
+      </q-row>
+      <q-separator color="white" />
+        <q-row class="text-overline">
+          <q-col>
+            <p class="text-uppercase q-ma-xl text-subtitle1 text-center">
+              E-Mail: kontakt (at) rutputs.nu
+            </p>
+          </q-col>
+        </q-row>
         <q-separator color="white" />
-        <p class="text-uppercase q-ma-xl text-subtitle1 text-center">
-          E-Mail: kontakt (at) rutputs.nu
-        </p>
-        <q-separator color="white" />
-        <p class="text-uppercase q-ma-md text-center">Copyright &copy;2024</p>
-      </div>
+        <q-row class="text-overline">
+          <q-col>
+            <p class="text-uppercase q-ma-md text-center">Copyright &copy;2024</p>
+          </q-col>
+        </q-row>
     </q-footer>
   </q-layout>
 </template>
@@ -52,7 +76,7 @@ export default defineComponent({
     const router = useRouter();
     const currentComponent = computed(() => {
       switch (router.currentRoute.value.path) {
-        case '/':
+        case '/landing':
           return 'Landing';
         case '/priceList':
           return 'PriceList';
@@ -64,7 +88,7 @@ export default defineComponent({
     });
 
     const goToLanding = () => {
-      router.push('/');
+      router.push('/landing');
     };
 
     const goToPriceList = () => {

@@ -1,11 +1,5 @@
 <template>
   <div class="bg-primary text-center q-pa-md">
-    <img
-      class="fit q-px-xl"
-      style="max-width: 900px"
-      src="/icons/main_logo.png"
-      alt="Company logo"
-    />
     <h1 class="text-h2 text-accent text-uppercase">
       Din rutputsare i Avesta med omnejd
     </h1>
@@ -22,6 +16,7 @@
       class="q-pa-md text-black"
       label="Se vad det kostar"
       color="accent"
+      @click="goToPriceList"
     />
   </div>
 </template>
@@ -37,6 +32,11 @@ export default defineComponent({
     },
     active: {
       type: Boolean
+    }
+  },
+  methods: {
+    goToPriceList() {
+      this.$router.push('/priceList');
     }
   }
 });
