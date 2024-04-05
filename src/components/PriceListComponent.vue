@@ -34,7 +34,12 @@
             />
           </q-td>
         </template>
-      </q-table>
+        <template v-slot:body-cell-addToCart="props">
+          <q-td :props="props">
+            <q-btn color="primary" @click="addToCart(props.row)">Lägg till i kundkorg</q-btn>
+          </q-td>
+        </template>
+    </q-table>
     </div>
   </q-row>
 </template>
@@ -50,6 +55,7 @@ export default defineComponent({
   data() {
     return {
       articles: [] as any[],
+      cart: [] as any[],
       columns: [
         {
           name: 'description',
@@ -76,11 +82,25 @@ export default defineComponent({
     };
   },
   setup() {
-    const $q = useQuasar();
     return {
       pagination: ref ({
         rowsPerPage: 50
       })
+    }
+  },
+  methods: {
+    addToCart(article: any) {
+      const cartItem = this.cart.find((item: any) => item.id === article.id);
+      if (cartItem) {
+        cartItem.quantity += article.quantity;
+      } else {
+        this.cart.push({ ...article });
+      }
+        useQuasar().notify({
+        message: 'Artikeln har lagts till i kundkorgen',
+        color: 'positive',
+        position: 'top'
+      });
     }
   },
   async mounted() {
@@ -94,7 +114,12 @@ export default defineComponent({
 });
 </script>
 
-<style>
+<style scoped>
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 .landing-body {
   line-height: 2rem;
 }
