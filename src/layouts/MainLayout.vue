@@ -1,6 +1,6 @@
 <template>
   <q-layout view="hHh lpr fff">
-    <q-header elevated class="bg-secondary text-accent" height-hint="98">
+    <q-header elevated class="bg-primary text-accent" height-hint="98">
 
 <!-- Navigation -->
       <q-tabs align="left">
@@ -17,43 +17,41 @@
     </q-header>
 
 <!-- Page content -->
-    <q-page-container>
-      <q-page class="q-pa-md">
-        <div class="q-flex column items-center">
-          <img
-            class="fit"
-            style="max-width: 900px;"
-            src="/icons/main_logo.png"
-            alt="Company logo"
-            @click="goToLanding()"
-          />
-        </div>
-        <component :is="currentComponent" :title="currentComponent" />
-      </q-page>
-    </q-page-container>
+      <q-page-container class="q-pa-md">
+          <div class="q-flex column items-center">
+            <img
+              class="fit"
+              style="max-width: 900px;"
+              src="/icons/main_logo.png"
+              alt="Company logo"
+              @click="goToLanding()"
+            />
+          </div>
+          <component :is="currentComponent" :title="currentComponent" />
+      </q-page-container>
 
-    <q-footer elevated class="text-black footer-style">
-      <q-row class="text-overline">
-        <q-col>
+    <q-footer elevated class="bg-secondary text-dark">
+      <div class="row justify-center text-overline">
+        <div class="col">
           <p class="text-uppercase q-ma-xl text-subtitle1 text-center">
             Telefon: 0734-64 46 04
           </p>
-        </q-col>
-      </q-row>
+        </div>
+      </div>
       <q-separator color="white" />
-        <q-row class="text-overline">
-          <q-col>
+        <div class="row justify-center text-overline">
+          <div class="col">
             <p class="text-uppercase q-ma-xl text-subtitle1 text-center">
               E-Mail: kontakt (at) rutputs.nu
             </p>
-          </q-col>
-        </q-row>
+          </div>
+        </div>
         <q-separator color="white" />
-        <q-row class="text-overline">
-          <q-col>
+        <div class="row justify-center text-overline">
+          <div class="col">
             <p class="text-uppercase q-ma-md text-center">Copyright &copy;2024</p>
-          </q-col>
-        </q-row>
+          </div>
+        </div>
     </q-footer>
   </q-layout>
 </template>
@@ -105,7 +103,4 @@ export default defineComponent({
 </script>
 
 <style>
-.footer-style {
-  background-color: #a3a3a3;
-}
 </style>
