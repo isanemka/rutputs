@@ -20,6 +20,10 @@ quasar dev
 
 To use the application please update the firebase config file named "firebase-template". Ask the code owner for correct config settings. Please also change the file name to: "firebase"
 
+### Access the nodemailer
+
+To use the application please update the .env-file with the appropriate e-mail settings.
+
 ### Lint the files
 
 ```bash
