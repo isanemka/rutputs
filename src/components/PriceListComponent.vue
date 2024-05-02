@@ -101,11 +101,11 @@
                     {{ item.description }} - {{ item.quantity }} st
                   </li>
                 </ol>
-                <h4>Totalpris: {{ calculateTotalPrice() }} kr*</h4>
+                <h4>Totalpris: {{ form.totalPrice }} kr*</h4>
                 <p>*inklusive moms och efter RUT-avdrag</p>
               </div>
               <div v-else>
-                <p>Du har inte lagt till några artiklar i varukorgen än.</p>
+                <p>Du har inte valt några tjänster än.</p>
               </div>
               <q-stepper-navigation>
                 <q-btn @click="step = 4" :disable="cart.length === 0" color="accent" label="Fortsätt" />
@@ -128,7 +128,6 @@
                     v-model="form.name"
                     filled
                     label="Ditt namn *"
-                    hint="För- och efternamn"
                     lazy-rules
                     :rules="[ val => val && val.length > 2 || 'Vänligen fyll i ditt namn']"
                   />
@@ -136,29 +135,24 @@
                     v-model="form.tel"
                     filled
                     type="tel"
-                    hint="Telefonnummer"
                     label="Telefonnummer *"
                     lazy-rules
                     :rules="[
                       val => val !== null && val !== '' || 'Vänligen fyll i ditt telefonnummer',
-                      val => val && val.length > 5 || 'Telefonnumret måste vara minst 6 siffror']"
+                      val => val && val.length > 5 || 'Telefonnumret måste vara minst 6 siffror',
+                      val => /^[\d+]*$/.test(val) || 'Vänligen fyll i ett korrekt telefonnummer']"
                   />
                   <q-input
                     v-model="form.address"
                     filled
-                    type="address"
+                    type="text"
                     hint="Adress"
-                    label="Adress *"
-                    lazy-rules
-                    :rules="[
-                      val => val !== null && val !== '' || 'Vänligen fyll i din adress',
-                      val => val && val.length > 5 || 'Adressen måste vara minst 6 tecken']"
+                    label="Adress"
                   />
                   <q-input
                     v-model="form.email"
                     filled
                     type="email"
-                    hint="E-post"
                     label="E-post *"
                     lazy-rules
                     :rules="[
@@ -167,6 +161,7 @@
                   />
                   <q-toggle
                     v-model="form.termsAccepted"
+                    @click="openTermsDialog()"
                     checked-icon="check"
                     color="green"
                     unchecked-icon="clear"
@@ -195,8 +190,8 @@
                   </q-dialog>
                   <q-stepper-navigation>
                     <q-btn type="submit" :disable="!form.termsAccepted" color="accent" label="Skicka offertförfrågan" class="q-ml-sm" />
-                    <q-btn label="Rensa formulär" color="negative" class="q-ml-sm" />
-                    <q-btn type="reset" @click="step = 3" color="primary" label="Tillbaka" class="q-ml-sm" />
+                    <q-btn type="reset" label="Rensa formulär" color="negative" class="q-ml-sm" />
+                    <q-btn @click="step = 3" color="primary" label="Tillbaka" class="q-ml-sm" />
                   </q-stepper-navigation>
                 </q-form>
               </div>
@@ -211,9 +206,9 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import { useQuasar, Notify } from 'quasar';
+import axios from 'axios';
 import { getFirestore, collection, getDocs } from 'firebase/firestore';
 import { app } from '../firebase'
-import { on } from 'events';
 
 export default defineComponent({
   name: 'PriceListComponent',
@@ -226,7 +221,8 @@ export default defineComponent({
         tel: '',
         address: '',
         email: '',
-        termsAccepted: false
+        termsAccepted: false,
+        totalPrice: 0
       },
       articles: [] as any[],
       cart: [] as any[],
@@ -291,7 +287,7 @@ export default defineComponent({
     calculateTotalPrice() {
       return this.cart.reduce((total, item) => {
         const article = this.articles.find(article => article.id === item.id);
-        return total + (article.price * item.quantity) + 25; ;
+        this.form.totalPrice = total + (article.price * item.quantity) + 25; ;
       }, 0);
     },
     addToCart() {
@@ -305,20 +301,23 @@ export default defineComponent({
           });
         }
       });
+      this.calculateTotalPrice();
     },
     emptyCart() {
-      // Clear the cart
       this.cart = [];
 
-      // Reset the quantity of all articles
       this.articles.forEach(article => {
         article.quantity = 0;
       });
     },
     openTermsDialog() {
       this.showTermsDialog = true;
+      if (!this.form.termsAccepted) {
+        this.showTermsDialog = false;
+      }
     },
     declineTerms() {
+      this.form.termsAccepted = false;
       this.showTermsDialog = false;
       this.quasar.notify({
         message: 'Du måste acceptera villkoren för att fortsätta',
@@ -327,13 +326,13 @@ export default defineComponent({
       });
     },
     acceptTerms() {
+      this.form.termsAccepted = true;
       this.showTermsDialog = false;
       this.quasar.notify({
         message: 'Tack för att du accepterade villkoren',
         color: 'positive',
         position: 'top'
       });
-      this.form.termsAccepted = true;
     },
     onSubmit() {
       this.quasar.notify({
@@ -341,15 +340,38 @@ export default defineComponent({
         color: 'positive',
         position: 'top'
       });
-      console.log(this.form);
+      axios.post('/submit-form', {
+        name: this.form.name,
+        email: this.form.email,
+        tel: this.form.tel,
+        address: this.form.address,
+        propertyType: this.form.propertyType,
+        cart: this.cart,
+        totalPrice: this.form.totalPrice
+      })
+      .then((response: unknown) => console.log(response))
+      .catch((error: unknown) => console.log(error));
     },
     onReset() {
+      this.form = {
+        propertyType: this.form.propertyType,
+        name: '',
+        tel: '',
+        address: '',
+        email: '',
+        termsAccepted: false,
+        totalPrice: this.form.totalPrice
+      };
+      console.log(this.form)
       this.quasar.notify({
         message: 'Formuläret har rensats',
         color: 'negative',
         position: 'top'
       });
     }
+  },
+  created() {
+    this.calculateTotalPrice();
   },
   async mounted() {
     const db = getFirestore(app);
