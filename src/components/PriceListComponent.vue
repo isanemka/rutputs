@@ -340,7 +340,7 @@ export default defineComponent({
         color: 'positive',
         position: 'top'
       });
-      axios.post('/submit-form', {
+      axios.post('http://localhost:8000/submit-form', {
         name: this.form.name,
         email: this.form.email,
         tel: this.form.tel,
