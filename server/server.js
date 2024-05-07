@@ -1,9 +1,11 @@
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
 const nodemailer = require('nodemailer');
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 
 app.post('/submit-form', (req, res) => {
   let transporter = nodemailer.createTransport({
@@ -45,4 +47,4 @@ app.post('/submit-form', (req, res) => {
   });
 });
 
-app.listen(9000, () => console.log('Server running on port 9001'));
+app.listen(8000, () => console.log('Server running on port 8000'));
