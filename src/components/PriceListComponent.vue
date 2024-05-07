@@ -287,18 +287,28 @@ export default defineComponent({
     calculateTotalPrice() {
       return this.cart.reduce((total, item) => {
         const article = this.articles.find(article => article.id === item.id);
-        this.form.totalPrice = total + (article.price * item.quantity) + 25; ;
+        this.form.totalPrice = total + (article.price * item.quantity) + 25;
+        return this.form.totalPrice;
       }, 0);
     },
     addToCart() {
       // Add all articles with a quantity greater than 0 to the cart
       this.articles.forEach(article => {
+        let cartItemIndex = this.cart.findIndex(item => item.id === article.id);
         if (article.quantity > 0) {
-          this.cart.push({
-            id: article.id,
-            quantity: article.quantity,
-            description: article.description
-          });
+          if (cartItemIndex !== -1) {
+            this.cart[cartItemIndex].quantity = article.quantity;
+          } else {
+            this.cart.push({
+              id: article.id,
+              quantity: article.quantity,
+              description: article.description
+            });
+          }
+        } else {
+          if (cartItemIndex !== -1) {
+            this.cart.splice(cartItemIndex, 1);
+          }
         }
       });
       this.calculateTotalPrice();
