@@ -1,6 +1,6 @@
 <template>
   <q-layout view="hHh lpr fff">
-    <q-header elevated class="bg-primary text-accent" height-hint="98">
+    <q-header elevated class="bg-primary text-secondary" height-hint="98">
 
 <!-- Navigation -->
       <q-tabs align="left">
@@ -20,7 +20,7 @@
       <q-page-container class="q-pa-md">
           <div class="q-flex column items-center">
             <img
-              class="fit"
+              class="fit q-mt-md"
               style="max-width: 900px;"
               src="/icons/main_logo.png"
               alt="Company logo"
@@ -30,26 +30,26 @@
           <component :is="currentComponent" :title="currentComponent" />
       </q-page-container>
 
-    <q-footer elevated class="bg-secondary text-dark">
+    <q-footer elevated class="bg-primary text-secondary">
       <div class="row justify-center text-overline">
         <div class="col">
-          <p class="text-uppercase q-ma-xl text-subtitle1 text-center">
+          <p class="q-ma-xl text-uppercase text-bold text-subtitle1 text-center">
             Telefon: 0734-64 46 04
           </p>
         </div>
       </div>
-      <q-separator color="white" />
+      <q-separator color="accent" />
         <div class="row justify-center text-overline">
           <div class="col">
-            <p class="text-uppercase q-ma-xl text-subtitle1 text-center">
+            <p class="q-ma-xl text-uppercase text-bold text-subtitle1 text-center">
               E-Mail: kontakt (at) rutputs.nu
             </p>
           </div>
         </div>
-        <q-separator color="white" />
+        <q-separator color="accent" />
         <div class="row justify-center text-overline">
           <div class="col">
-            <p class="text-uppercase q-ma-md text-center">Copyright &copy;2024</p>
+            <p class="q-ma-md text-uppercase text-bold  text-subtitle3 text-center">Copyright &copy;2024</p>
           </div>
         </div>
     </q-footer>

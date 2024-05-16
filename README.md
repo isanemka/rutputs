@@ -22,7 +22,7 @@ To use the application please update the firebase config file named "firebase-te
 
 ### Access the nodemailer
 
-To use the application please update the .env-file with the appropriate e-mail settings.
+To use the application please update the .env-file named ".env-template" with the appropriate e-mail settings. Ask the code owner for correct config settings. Please also change the file name to: ".env"
 
 ### Lint the files
 
