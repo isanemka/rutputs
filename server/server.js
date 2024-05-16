@@ -9,7 +9,7 @@ app.use(cors());
 
 app.post('/submit-form', (req, res) => {
   let transporter = nodemailer.createTransport({
-    host: 'smtp.simply.com',
+    host: process.env.SMTP_HOST,
     port: 587,
     secure: false,
     auth: {
@@ -21,8 +21,8 @@ app.post('/submit-form', (req, res) => {
   console.log('req.body: ', req.body);
 
   let mailOptions = {
-    from: 'form@rutputs.nu',
-    to: 'anton@rutputs.nu',
+    from: process.env.SMTP_USER,
+    to: process.env.EMAIL_TO,
     subject: 'Inskickat formulär',
     text: `Formuläret har skickats av: ${req.body.name}
   E-post: ${req.body.email}
@@ -30,11 +30,11 @@ app.post('/submit-form', (req, res) => {
   Adress: ${req.body.address}
   Fastighetstyp: ${req.body.propertyType}
 
-  Tjänster du valt:
+  Tjänster kunden valt:
   ${req.body.cart
-    .map((item) => `Antal: ${item.quantity}, Beskrivning: ${item.description}`)
+    .map((item) => `${item.quantity} : ${item.description}`)
     .join('\n  ')}
-  Totalt: ${req.body.totalPrice} kr`,
+  Offertens värde: ${req.body.totalPrice} kr`,
   };
 
   transporter.sendMail(mailOptions, (error, info) => {

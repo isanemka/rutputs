@@ -3,12 +3,11 @@
       <div class="row q-flex justify-center mb-2">
         <div class="col-12 col-md-8">
           <q-stepper
+            :vertical="$q.screen.gt.sm"
             v-model="step"
-            dark
-            vertical
             animated
             contracted
-            color="primary"
+            color="secondary"
             done-color="positive"
             active-color="accent"
             inactive-color="light-gray"
@@ -20,7 +19,8 @@
               icon="house"
               :done="step > 1"
               >
-              Välj om du bor i villa eller lägenhet.
+              Välj om du bor i villa eller lägenhet
+              <br>
               <q-radio keep-color v-model="form.propertyType" val="house" label="Villa" color="accent" />
               <q-radio keep-color v-model="form.propertyType" val="apartment" label="Lägenhet" color="accent" />
               <q-stepper-navigation>
@@ -33,21 +33,21 @@
               icon="window"
               :done="step > 2"
             >
-              <div class="row justify-center bg-dark q-pa-md">
+              <div class="row justify-center q-pa-md">
                 <div class="col-12">
                   <h1 class="text-body1 text-accent text-center q-pa-md">
                     Räkna snabbt ihop vad det kostar att få rena fönster
                   </h1>
                 </div>
-                <div class="col-12 col-md-10 q-flex justify-center">
+                <div class="col-12 col-md-10 col-lg-8 q-flex">
                   <q-table
                     v-model:pagination="pagination"
                     :rows="articles"
                     :columns="columns"
                     row-key="id"
-                    class="text-accent q-mx-lg bg-secondary "
                     hide-bottom
-                    dense
+                    hide-header
+                    flat
                   >
                     <template v-slot:body-cell-id="">
                       <q-td style="display: none;"></q-td>
@@ -60,9 +60,6 @@
                         {{ props.row.description }}
                       </q-td>
                     </template>
-                    <template v-slot:body-cell-price="props">
-                      <q-td :props="props">{{ props.row.price }}</q-td>
-                    </template>
                     <template v-slot:body-cell-quantity="props">
                       <q-td :props="props">
                         <q-input
@@ -72,20 +69,19 @@
                           min="0"
                           @input="handleQuantityInput(props.row)"
                           style="width: 70px;"
-                          class="text-accent text-right"
                         />
                       </q-td>
                     </template>
                     <template v-slot:body-cell-addToCart="props">
-                      <q-td :props="props"></q-td>
+                      <q-td style="display: none;" :props="props"></q-td>
                     </template>
                 </q-table>
                 </div>
               </div>
               <q-stepper-navigation>
+                <q-btn @click="step = 1" color="primary" label="Tillbaka" class="q-ml-sm" />
                 <q-btn @click="addToCart(); step = 3" color="accent" label="Fortsätt"  class="q-ml-sm"/>
-                <q-btn @click="step = 1" color="secondary" label="Tillbaka" class="q-ml-sm" />
-                <q-btn @click="emptyCart" color="light-gray" label="Rensa" class="q-ml-sm" />
+                <q-btn @click="emptyCart" color="secondary" label="Rensa" class="q-ml-sm text-black" />
               </q-stepper-navigation>
             </q-step>
             <q-step
@@ -96,11 +92,11 @@
             >
               <div v-if="cart.length > 0">
                 <h3>Dina val:</h3>
-                <ol>
+                <ul>
                   <li v-for="item in cart" :key="item.id">
-                    {{ item.description }} - {{ item.quantity }} st
+                    {{ item.quantity }} st {{ item.description }}
                   </li>
-                </ol>
+                </ul>
                 <h4>Totalpris: {{ form.totalPrice }} kr*</h4>
                 <p>*inklusive moms och efter RUT-avdrag</p>
               </div>
@@ -108,8 +104,8 @@
                 <p>Du har inte valt några tjänster än.</p>
               </div>
               <q-stepper-navigation>
-                <q-btn @click="step = 4" :disable="cart.length === 0" color="accent" label="Fortsätt" />
-                <q-btn @click="step = 2" color="secondary" label="Tillbaka" class="q-ml-sm" />
+                <q-btn @click="step = 2" color="primary" label="Tillbaka"/>
+                <q-btn @click="step = 4" :disable="cart.length === 0" color="accent" label="Fortsätt"  class="q-ml-sm" />
               </q-stepper-navigation>
             </q-step>
             <q-step
@@ -121,8 +117,7 @@
                 <q-form
                   @submit="onSubmit"
                   @reset="onReset"
-                  dark
-                  class="q-gutter-md text-accent bg-secondary q-pa-md"
+                  class="q-gutter-md q-pa-md"
                 >
                   <q-input
                     v-model="form.name"
@@ -189,9 +184,13 @@
                     </q-card>
                   </q-dialog>
                   <q-stepper-navigation>
-                    <q-btn type="submit" :disable="!form.termsAccepted" color="accent" label="Skicka offertförfrågan" class="q-ml-sm" />
-                    <q-btn type="reset" label="Rensa formulär" color="negative" class="q-ml-sm" />
-                    <q-btn @click="step = 3" color="primary" label="Tillbaka" class="q-ml-sm" />
+                    <div>
+                      <q-btn type="reset" label="Rensa formulär" color="secondary" class="q-ml-sm q-mb-sm text-black" />
+                    </div>
+                    <div>
+                      <q-btn @click="step = 3" color="primary" label="Tillbaka" class="q-ml-sm q-mt-sm" />
+                      <q-btn type="submit" :disable="!form.termsAccepted" color="accent" label="Skicka offertförfrågan" class="q-ml-sm q-mt-sm" />
+                    </div>
                   </q-stepper-navigation>
                 </q-form>
               </div>
@@ -393,9 +392,5 @@ export default defineComponent({
   },
 });
 </script>
-
 <style scoped>
-.landing-body {
-  line-height: 2rem;
-}
 </style>
