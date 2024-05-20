@@ -358,7 +358,10 @@ export default defineComponent({
         cart: this.cart,
         totalPrice: this.form.totalPrice
       })
-      .then((response: unknown) => console.log(response))
+      .then((response: unknown) => {
+        console.log(response);
+        this.goToConfirmation();
+      })
       .catch((error: unknown) => console.log(error));
     },
     onReset() {
@@ -377,6 +380,9 @@ export default defineComponent({
         color: 'negative',
         position: 'top'
       });
+    },
+    goToConfirmation() {
+      this.$router.push('/confirmation');
     }
   },
   created() {

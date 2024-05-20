@@ -2,6 +2,7 @@ import { RouteRecordRaw } from 'vue-router';
 import LandingComponent from 'components/LandingComponent.vue';
 import PriceListComponent from 'components/PriceListComponent.vue';
 import CompanyComponent from 'components/CompanyComponent.vue';
+import ConfirmationComponent from 'src/components/ConfirmationComponent.vue';
 
 const routes: RouteRecordRaw[] = [
   {
@@ -19,6 +20,10 @@ const routes: RouteRecordRaw[] = [
       {
         path: 'company',
         component: CompanyComponent,
+      },
+      {
+        path: 'confirmation',
+        component: ConfirmationComponent,
       },
     ],
   },
