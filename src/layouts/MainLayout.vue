@@ -62,6 +62,7 @@ import { useRouter } from 'vue-router';
 import Landing from 'src/components/LandingComponent.vue';
 import PriceList from 'src/components/PriceListComponent.vue';
 import Company from 'src/components/CompanyComponent.vue';
+import Confirmation from 'src/components/ConfirmationComponent.vue';
 
 export default defineComponent({
   name: 'App',
@@ -69,6 +70,7 @@ export default defineComponent({
     Landing,
     PriceList,
     Company,
+    Confirmation,
   },
   setup() {
     const router = useRouter();
@@ -80,6 +82,8 @@ export default defineComponent({
           return 'PriceList';
         case '/company':
           return 'Company';
+        case '/confirmation':
+          return 'Confirmation';
         default:
           return 'Landing';
       }
@@ -97,7 +101,11 @@ export default defineComponent({
       router.push('/company');
     };
 
-    return { currentComponent, goToLanding, goToPriceList, goToCompany };
+    const goToConfirmation = () => {
+      router.push('/confirmation');
+    };
+
+    return { currentComponent, goToLanding, goToPriceList, goToCompany, goToConfirmation };
   },
 });
 </script>

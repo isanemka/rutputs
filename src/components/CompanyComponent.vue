@@ -61,21 +61,3 @@ export default defineComponent({
 });
 </script>
 <style></style>
-
-
-
-
-
-
-
-<!--
-
-
-          Åt mina företagskunder utför jag alla typer av fönsterputsningar, helt
-          enligt företagets önskemål.
-          Med rena fönster på ditt företag så visar du att du tar både miljö och
-          arbetsmiljö på allvar för dina kunder och medarbetare.
-          Kanske vill ni ha rena skyltfönster, entréer, kontor, trapphus eller något annat?
-          Vi kan tillsammans skapa ett abonnemang skräddarsytt till just era behov
-          eller så kommer jag och putsar en gång, det är RUTPUTS på era villkor.
-         -->
