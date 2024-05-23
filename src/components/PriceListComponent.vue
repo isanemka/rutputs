@@ -393,7 +393,8 @@ export default defineComponent({
         color: 'positive',
         position: 'top'
       });
-      axios.post('http://localhost:8000/submit-form', {
+      const backendUrl = import.meta.env.VITE_BACKEND_URL;
+      axios.post(`${backendUrl}/submit-form`, {
         name: this.form.name,
         email: this.form.email,
         tel: this.form.tel,
