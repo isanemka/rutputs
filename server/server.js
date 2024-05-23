@@ -6,7 +6,7 @@ const app = express();
 
 // CORS-configuration
 const corsOptions = {
-  origin: ['http://localhost:9000', process.env.VITE_BACKEND_URL],
+  origin: ['*'],
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type'],
   credentials: true,
