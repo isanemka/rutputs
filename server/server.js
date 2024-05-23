@@ -4,8 +4,16 @@ const cors = require('cors');
 const nodemailer = require('nodemailer');
 const app = express();
 
+// CORS-configuration
+const corsOptions = {
+  origin: ['http://localhost:9000', import.meta.env.VITE_APP_URL],
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type'],
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
-app.use(cors());
 
 app.post('/submit-form', (req, res) => {
   let transporter = nodemailer.createTransport({
@@ -47,4 +55,5 @@ app.post('/submit-form', (req, res) => {
   });
 });
 
-app.listen(8000, () => console.log('Server running on port 8000'));
+const PORT = process.env.PORT || 8000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
