@@ -42,7 +42,7 @@ yarn-error.log*
 # Local environment variables
 .env
 .env.local*
-src/firebase.ts
+.env.development*
 
 # VS Code settings
 .vscode/
