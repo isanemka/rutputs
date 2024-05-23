@@ -2,19 +2,27 @@
   <q-page>
     <div class="row q-flex q-pa-md justify-center items-center text-center">
       <q-parallax>
+
+        <!-- Display image in landscape mode for larger screens -->
         <template v-if="$q.screen.gt.sm" v-slot:media>
           <img :src="randomLandscapeImage" style="opacity: 0.3;">
         </template>
+
+        <!-- Display image in portrait mode for smaller screens -->
         <template v-else v-slot:media>
           <img :src="randomPortraitImage" style="opacity: 0.3;">
         </template>
           <div class="col-lg-6 col-md-8 col-xs-10">
+
+          <!-- Layout changes depending on screen size -->
             <h1 v-if="$q.screen.lt.sm" class="text-h5 text-bold text-primary text-uppercase q-pt-xl">
             Din rutputsare i Avesta med omnejd
           </h1>
             <h1 v-else class="text-h2 text-bold text-primary text-uppercase">
             Din rutputsare i Avesta med omnejd
           </h1>
+
+          <!-- CTA button to navigate to price list -->
           <q-btn
             class="q-pa-md q-mt-md"
             label="Se vad det kostar"
@@ -23,14 +31,16 @@
           />
         </div>
       </q-parallax>
+
+        <!-- Card section -->
         <div class="row justify-center q-pt-md">
-          <div class="col-lg-6 col-md-8 col-xs-12">
+          <div class="col-xl-5 col-lg-6 col-md-8 col-xs-12">
             <q-card bordered class="text-container shadow">
               <q-card-section
-                class="custom-line-height text-body1 text-accent q-pa-xl"
+                class="custom-line-height text-body1 text-accent text-justify q-py-xl q-px-xl"
                 :style="textStyle"
                 >
-                <div class="text-h6">Välkommen till RUTPUTS</div>
+                <div class="text-h6 text-center text-primary">Välkommen till RUTPUTS</div>
                 <hr class="text-primary">
                 Jag är din lokala rutputsare som gärna ger ditt hem den glans det förtjänar.
                 Med passion för perfektion och dedikation till kundnöjdhet står jag redo att
@@ -68,6 +78,7 @@ export default defineComponent({
     }
   },
   setup() {
+    // Array of landscape images for parallax effect on larger screens
     const landscapeImages = [
       '/src/assets/img/25050.webp',
       '/src/assets/img/25051.webp',
@@ -76,14 +87,17 @@ export default defineComponent({
       '/src/assets/img/25054.webp',
       '/src/assets/img/25055.webp'
     ];
+    // Array of portrait images for parallax effect on smaller screens
     const portraitImages = [
       '/src/assets/img/15050.webp',
       '/src/assets/img/15051.webp',
       '/src/assets/img/15052.webp',
       '/src/assets/img/15053.webp'
     ];
+    // Reactive references for random images
     const randomLandscapeImage = ref('');
     const randomPortraitImage = ref('');
+    // Select random images on component mount
     onMounted(() => {
       randomLandscapeImage.value = landscapeImages[Math.floor(Math.random() * landscapeImages.length)];
       randomPortraitImage.value = portraitImages[Math.floor(Math.random() * portraitImages.length)];}
@@ -93,11 +107,13 @@ export default defineComponent({
     };
   },
   methods: {
+    // Method to navigate to price list page
     goToPriceList() {
       this.$router.push('/priceList');
     }
   },
   computed: {
+    // Computed property to dynamically adjust text style based on screen size
     textStyle() {
       if (this.$q.screen.lt.sm) {
         return {

@@ -2,6 +2,7 @@
     <q-page>
       <div class="row q-flex justify-center mb-2">
         <div class="col-12 col-md-8">
+          <!-- Stepper component for multiple steps -->
           <q-stepper
             :vertical="$q.screen.gt.sm"
             v-model="step"
@@ -13,12 +14,15 @@
             inactive-color="light-gray"
             class="text-light justify-center"
           >
-              <q-step
+
+            <!-- Step 1: Select property type -->
+            <q-step
               :name="1"
               title="Villa eller lägenhet?"
               icon="house"
               :done="step > 1"
-              >
+            >
+              <!-- Prompt user to select type of property -->
               Välj om du bor i villa eller lägenhet
               <br>
               <q-radio keep-color v-model="form.propertyType" val="house" label="Villa" color="accent" />
@@ -27,6 +31,8 @@
                 <q-btn @click="validatePropertyType" color="accent" label="Fortsätt" />
               </q-stepper-navigation>
             </q-step>
+
+            <!-- Step 2: Select services -->
             <q-step
               :name="2"
               title="Välj tjänster"
@@ -49,9 +55,13 @@
                     hide-header
                     flat
                   >
+
+                    <!-- Hide ID column -->
                     <template v-slot:body-cell-id="">
                       <q-td style="display: none;"></q-td>
                     </template>
+
+                    <!-- Description column -->
                     <template v-slot:body-cell-description="props">
                       <q-td
                         :props="props"
@@ -60,6 +70,8 @@
                         {{ props.row.description }}
                       </q-td>
                     </template>
+
+                    <!-- Quantity column with input field -->
                     <template v-slot:body-cell-quantity="props">
                       <q-td :props="props">
                         <q-input
@@ -72,6 +84,8 @@
                         />
                       </q-td>
                     </template>
+
+                    <!-- Hide addToCart column -->
                     <template v-slot:body-cell-addToCart="props">
                       <q-td style="display: none;" :props="props"></q-td>
                     </template>
@@ -84,13 +98,17 @@
                 <q-btn @click="emptyCart" color="secondary" label="Rensa" class="q-ml-sm text-black" />
               </q-stepper-navigation>
             </q-step>
+
+            <!-- Step 3: Review selected services and total price -->
             <q-step
               :name="3"
               title="Se ditt pris"
               icon="shopping_cart"
               :done="step > 4"
             >
-              <div v-if="cart.length > 0">
+
+              <!-- Display selected services and total price if minimum order value is met -->
+              <div v-if="cart.length > 0 && form.totalPrice >= minimumOrderValue">
                 <h3>Dina val:</h3>
                 <ul>
                   <li v-for="item in cart" :key="item.id">
@@ -100,14 +118,18 @@
                 <h4>Totalpris: {{ form.totalPrice }} kr*</h4>
                 <p>*inklusive moms och efter RUT-avdrag</p>
               </div>
+
+              <!-- Inform user about minimum order value if not met -->
               <div v-else>
-                <p>Du har inte valt några tjänster än.</p>
+                <p class="text-body1">Du har valt tjänster till ett värde av <strong>{{ form.totalPrice }}kr</strong>. Lägsta ordervärde är 350 kr</p>
               </div>
               <q-stepper-navigation>
                 <q-btn @click="step = 2" color="primary" label="Tillbaka"/>
-                <q-btn @click="step = 4" :disable="cart.length === 0" color="accent" label="Fortsätt"  class="q-ml-sm" />
+                <q-btn @click="step = 4" :disable="cart.length === 0 || form.totalPrice < 350" color="accent" label="Fortsätt"  class="q-ml-sm" />
               </q-stepper-navigation>
             </q-step>
+
+            <!-- Step 4: Contact form -->
             <q-step
               :name="4"
               title="Fyll i dina uppgifter"
@@ -119,6 +141,8 @@
                   @reset="onReset"
                   class="q-gutter-md q-pa-md"
                 >
+
+                  <!-- Contact form fields -->
                   <q-input
                     v-model="form.name"
                     filled
@@ -154,6 +178,8 @@
                       val => val !== null && val !== '' || 'Vänligen fyll i din e-postadress',
                       val => /.+@.+\..+/.test(val) || 'Ogiltig e-postadress']"
                   />
+
+                  <!-- Terms and conditions toggle -->
                   <q-toggle
                     v-model="form.termsAccepted"
                     @click="openTermsDialog()"
@@ -162,6 +188,8 @@
                     unchecked-icon="clear"
                     label="Jag accepterar villkoren"
                   />
+
+                  <!-- Terms and conditions dialog -->
                   <q-dialog v-model="showTermsDialog">
                     <q-card>
                       <q-card-section>
@@ -204,7 +232,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import { useQuasar, Notify } from 'quasar';
+import { useQuasar } from 'quasar';
 import axios from 'axios';
 import { getFirestore, collection, getDocs } from 'firebase/firestore';
 import { app } from '../firebase'
@@ -223,8 +251,11 @@ export default defineComponent({
         termsAccepted: false,
         totalPrice: 0
       },
+      minimumOrderValue: 350,
+      /* eslint-disable @typescript-eslint/no-explicit-any */
       articles: [] as any[],
       cart: [] as any[],
+      /* eslint-enable @typescript-eslint/no-explicit-any */
       columns: [
         {
           name: 'id',
@@ -269,6 +300,7 @@ export default defineComponent({
     }
   },
   methods: {
+    // Validate property type selection before proceeding to next step
     validatePropertyType() {
       if (this.form.propertyType) {
         this.step = 2;
@@ -280,9 +312,12 @@ export default defineComponent({
         });
       }
     },
+    // Handle quantity input for each article
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     handleQuantityInput(article: any) {
       article.quantity = Number(article.quantity);
     },
+    // Calculate total price based on selected services
     calculateTotalPrice() {
       return this.cart.reduce((total, item) => {
         const article = this.articles.find(article => article.id === item.id);
@@ -290,8 +325,8 @@ export default defineComponent({
         return this.form.totalPrice;
       }, 0);
     },
+    // Add selected services to cart and calculate total price
     addToCart() {
-      // Add all articles with a quantity greater than 0 to the cart
       this.articles.forEach(article => {
         let cartItemIndex = this.cart.findIndex(item => item.id === article.id);
         if (article.quantity > 0) {
@@ -311,20 +346,27 @@ export default defineComponent({
         }
       });
       this.calculateTotalPrice();
+      if (this.cart.length === 0) {
+        this.emptyCart();
+      }
     },
+    // Empty cart and reset quantity for each article
     emptyCart() {
       this.cart = [];
+      this.form.totalPrice = 0;
 
       this.articles.forEach(article => {
         article.quantity = 0;
       });
     },
+    // Open terms and conditions dialog
     openTermsDialog() {
       this.showTermsDialog = true;
       if (!this.form.termsAccepted) {
         this.showTermsDialog = false;
       }
     },
+    // If user declines terms, prevent form submission
     declineTerms() {
       this.form.termsAccepted = false;
       this.showTermsDialog = false;
@@ -334,6 +376,7 @@ export default defineComponent({
         position: 'top'
       });
     },
+    // If user accepts terms, proceed to next step
     acceptTerms() {
       this.form.termsAccepted = true;
       this.showTermsDialog = false;
@@ -343,6 +386,7 @@ export default defineComponent({
         position: 'top'
       });
     },
+    // Submit form data to backend
     onSubmit() {
       this.quasar.notify({
         message: 'Din offertförfrågan har skickats',
@@ -364,6 +408,7 @@ export default defineComponent({
       })
       .catch((error: unknown) => console.log(error));
     },
+    // Reset form data
     onReset() {
       this.form = {
         propertyType: this.form.propertyType,
@@ -381,13 +426,16 @@ export default defineComponent({
         position: 'top'
       });
     },
+    // Redirect user to confirmation page after form submission
     goToConfirmation() {
       this.$router.push('/confirmation');
     }
   },
+  // Calculate total price when component is created
   created() {
     this.calculateTotalPrice();
   },
+  // Fetch articles from Firestore when component is mounted
   async mounted() {
     const db = getFirestore(app);
     const articlesCollection = collection(db, 'articles');

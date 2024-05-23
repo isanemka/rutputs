@@ -2,14 +2,18 @@
   <q-page>
     <div class="row q-flex q-pa-sm justify-center items-center">
       <div class="col-lg-6 col-md-8 col-xs-11 text-center">
+        <!-- Layout changes depending on screen size -->
         <h1 v-if="$q.screen.lt.sm" class="text-h4 text-bold text-primary text-uppercase">Professionell fönsterputs för ditt företag</h1>
         <h1 v-else class="text-h3 text-bold text-primary text-uppercase">Professionell fönsterputs för ditt företag</h1>
       </div>
+
+      <!-- Cards section -->
       <div class="row justify-center q-pt-md">
         <div class="col-md-6 col-sm-10 col-xs-12">
           <q-card bordered class="text-container shadow q-ma-sm">
             <q-card-section class="custom-line-height text-body1 text-accent q-pa-lg">
-              <div class="text-h6">Varför väljer man RUTPUTS?</div>
+              <div class="text-h6 text-primary">Varför väljer man RUTPUTS?</div>
+              <hr>
               <ul>
                 <li>
                   Kvalitet och noggrannhet
@@ -33,7 +37,8 @@
         <div class="col-md-6 col-sm-10 col-xs-12">
           <q-card bordered class="text-container shadow q-ma-sm">
             <q-card-section class="custom-line-height text-body1 text-accent q-pa-lg">
-              <div class="text-h6">Företagsfördelar</div>
+              <div class="text-h6 text-primary">Företagsfördelar</div>
+              <hr>
               <ul>
                 <li>
                   Skapa en välkomnande och professionell atmosfär för dina kunder och anställda.
