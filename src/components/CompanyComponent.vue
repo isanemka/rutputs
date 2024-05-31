@@ -11,8 +11,8 @@
       <div class="row justify-center q-pt-md">
         <div class="col-md-6 col-sm-10 col-xs-12">
           <q-card bordered class="text-container shadow q-ma-sm">
-            <q-card-section class="custom-line-height text-body1 text-accent q-pa-lg">
-              <div class="text-h6 text-primary">Varför väljer man RUTPUTS?</div>
+            <q-card-section class="custom-line-height text-body1 text-primary q-pa-lg">
+              <div class="text-h6 text-accent">Varför väljer man RUTPUTS?</div>
               <hr>
               <ul>
                 <li>
@@ -36,8 +36,8 @@
         </div>
         <div class="col-md-6 col-sm-10 col-xs-12">
           <q-card bordered class="text-container shadow q-ma-sm">
-            <q-card-section class="custom-line-height text-body1 text-accent q-pa-lg">
-              <div class="text-h6 text-primary">Företagsfördelar</div>
+            <q-card-section class="custom-line-height text-body1 text-primary q-pa-lg">
+              <div class="text-h6 text-accent">Företagsfördelar</div>
               <hr>
               <ul>
                 <li>

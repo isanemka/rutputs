@@ -5,12 +5,12 @@
 
         <!-- Display image in landscape mode for larger screens -->
         <template v-if="$q.screen.gt.sm" v-slot:media>
-          <img :src="randomLandscapeImage" style="opacity: 0.3;">
+          <img :src="randomLandscapeImage" alt="A man cleaning windows" style="opacity: 0.3;">
         </template>
 
         <!-- Display image in portrait mode for smaller screens -->
         <template v-else v-slot:media>
-          <img :src="randomPortraitImage" style="opacity: 0.3;">
+          <img :src="randomPortraitImage" alt="A man cleaning windows" style="opacity: 0.3;">
         </template>
           <div class="col-lg-6 col-md-8 col-xs-10">
 
@@ -24,7 +24,7 @@
 
           <!-- CTA button to navigate to price list -->
           <q-btn
-            class="q-pa-md q-mt-md"
+            class="q-pa-md q-mt-md text-black"
             label="Se vad det kostar"
             color="accent"
             @click="goToPriceList"
@@ -37,10 +37,10 @@
           <div class="col-xl-5 col-lg-6 col-md-8 col-xs-12">
             <q-card bordered class="text-container shadow">
               <q-card-section
-                class="custom-line-height text-body1 text-accent text-justify q-py-xl q-px-xl"
+                class="custom-line-height text-body1 text-primary text-justify q-py-xl q-px-xl"
                 :style="textStyle"
                 >
-                <div class="text-h6 text-center text-primary">Välkommen till RUTPUTS</div>
+                <div class="text-h6 text-center text-accent">Välkommen till RUTPUTS</div>
                 <hr class="text-primary">
                 Jag är din lokala rutputsare som gärna ger ditt hem den glans det förtjänar.
                 Med passion för perfektion och dedikation till kundnöjdhet står jag redo att

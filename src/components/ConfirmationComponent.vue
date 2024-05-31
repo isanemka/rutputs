@@ -9,17 +9,17 @@
           class="custom-line-height text-body1 text-primary text-justify q-pa-xl"
           :style="textStyle"
         >
-        <div class="text-h6 text-center">Vad roligt att du skickat in formuläret!</div>
-        <hr class="text-primary q-my-md">
+        <div class="text-h6 text-center text-accent">Vad roligt att du skickat in formuläret!</div>
+        <hr class="q-my-md">
         Nu är du ett steg närmare att få dina fönster skinande rena.
         Jag kommer att titta på din offertförfrågan och återkomma till dig inom ett par dagar och
         om har du några frågor, tveka inte att kontakta mig.
-        Kontaktuppgifterna finns längst ner på sidan
+        Kontaktuppgifterna finns längst ner på sidan.
         </q-card-section>
         <q-card-section>
           <q-btn
             @click="goToLanding" label="Tillbaka till startsidan"
-            class="q-pa-md q-mb-md"
+            class="q-pa-md q-mb-md text-black"
             color="accent"
           />
         </q-card-section>

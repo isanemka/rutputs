@@ -3,9 +3,11 @@
     <q-header elevated class="bg-primary text-secondary" height-hint="98">
 
 <!-- Navigation -->
-      <q-tabs align="left">
+      <q-tabs align="left" role="tablist">
         <q-img
           src="/icons/favicon.png"
+          aria-label="Company logo without text"
+          role="img"
           class="q-mx-md"
           style="height: 30px; max-width: 30px"
           @click="goToLanding()"
@@ -21,9 +23,9 @@
           <div class="q-flex column items-center">
             <img
               class="fit q-mt-md"
+              aria-label="Company logo with text"
               style="max-width: 900px;"
               src="/icons/main_logo.png"
-              alt="Company logo"
               @click="goToLanding()"
             />
           </div>
