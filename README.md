@@ -12,17 +12,19 @@ npm install
 
 ### Start the app in development mode (hot-code reloading, error reporting, etc.)
 
+The following command will start the Quasar app for frontend and also Node.js for the backend
+
 ```bash
 npm run dev
 ```
 
 ### Access the database
 
-To use the application please update the firebase config file named "firebase-template". Ask the code owner for correct config settings. Please also change the file name to: "firebase"
+To use the application please update the .env file named ".env-template". Ask the code owner for correct config settings. Please also change the file name to: ".env"
 
 ### Access the nodemailer
 
-To use the application please update the .env-file named ".env-template" with the appropriate e-mail settings. Ask the code owner for correct config settings. Please also change the file name to: ".env"
+To use the application please update the .env-file with the appropriate e-mail settings. Ask the code owner for correct config settings.
 
 ### Lint the files
 

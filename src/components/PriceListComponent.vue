@@ -28,7 +28,7 @@
               <q-radio keep-color v-model="form.propertyType" val="house" label="Villa" color="accent" />
               <q-radio keep-color v-model="form.propertyType" val="apartment" label="Lägenhet" color="accent" />
               <q-stepper-navigation>
-                <q-btn @click="validatePropertyType" color="accent" label="Fortsätt" />
+                <q-btn @click="validatePropertyType" color="accent" label="Fortsätt" class="text-black" />
               </q-stepper-navigation>
             </q-step>
 
@@ -93,9 +93,9 @@
                 </div>
               </div>
               <q-stepper-navigation>
-                <q-btn @click="step = 1" color="primary" label="Tillbaka" class="q-ml-sm" />
-                <q-btn @click="addToCart(); step = 3" color="accent" label="Fortsätt"  class="q-ml-sm"/>
-                <q-btn @click="emptyCart" color="secondary" label="Rensa" class="q-ml-sm text-black" />
+                <q-btn @click="addToCart(); step = 3" color="accent" label="Fortsätt"  class="q-ml-sm q-mb-sm text-black"/>
+                <q-btn @click="step = 1" color="primary" label="Tillbaka" class="q-ml-sm q-mb-sm" />
+                <q-btn @click="emptyCart" color="secondary" label="Rensa" class="q-ml-sm q-mb-sm text-black" />
               </q-stepper-navigation>
             </q-step>
 
@@ -109,7 +109,7 @@
 
               <!-- Display selected services and total price if minimum order value is met -->
               <div v-if="cart.length > 0 && form.totalPrice >= minimumOrderValue">
-                <h3>Dina val:</h3>
+                <h4>Dina val:</h4>
                 <ul>
                   <li v-for="item in cart" :key="item.id">
                     {{ item.quantity }} st {{ item.description }}
@@ -124,8 +124,8 @@
                 <p class="text-body1">Du har valt tjänster till ett värde av <strong>{{ form.totalPrice }}kr</strong>. Lägsta ordervärde är 350 kr</p>
               </div>
               <q-stepper-navigation>
-                <q-btn @click="step = 2" color="primary" label="Tillbaka"/>
-                <q-btn @click="step = 4" :disable="cart.length === 0 || form.totalPrice < 350" color="accent" label="Fortsätt"  class="q-ml-sm" />
+                <q-btn @click="step = 4" :disable="cart.length === 0 || form.totalPrice < 350" color="accent" label="Fortsätt"  class="text-black q-ml-sm q-mb-sm" />
+                <q-btn @click="step = 2" color="primary" label="Tillbaka" class="q-ml-sm q-mb-sm"/>
               </q-stepper-navigation>
             </q-step>
 
@@ -213,11 +213,11 @@
                   </q-dialog>
                   <q-stepper-navigation>
                     <div>
-                      <q-btn type="reset" label="Rensa formulär" color="secondary" class="q-ml-sm q-mb-sm text-black" />
+                      <q-btn type="submit" :disable="!form.termsAccepted" color="accent" label="Skicka offertförfrågan" class="q-ml-sm q-mb-sm text-black" />
+                      <q-btn @click="step = 3" color="primary" label="Tillbaka" class="q-ml-sm q-mb-sm" />
                     </div>
                     <div>
-                      <q-btn @click="step = 3" color="primary" label="Tillbaka" class="q-ml-sm q-mt-sm" />
-                      <q-btn type="submit" :disable="!form.termsAccepted" color="accent" label="Skicka offertförfrågan" class="q-ml-sm q-mt-sm" />
+                      <q-btn type="reset" label="Rensa formulär" color="secondary" class="q-ml-sm q-mb-sm text-black" />
                     </div>
                   </q-stepper-navigation>
                 </q-form>
