@@ -51,7 +51,7 @@
         <q-separator color="accent" />
         <div class="row justify-center text-overline">
           <div class="col">
-            <p class="q-ma-md text-uppercase text-bold  text-subtitle3 text-center">Copyright &copy;2024</p>
+            <p class="q-ma-md text-uppercase text-bold  text-subtitle3 text-center">Copyright &copy;{{ currentYear }}</p>
           </div>
         </div>
     </q-footer>
@@ -91,6 +91,8 @@ export default defineComponent({
       }
     });
 
+    const currentYear = computed(() => new Date().getFullYear());
+
     const goToLanding = () => {
       router.push('/landing');
     };
@@ -107,7 +109,7 @@ export default defineComponent({
       router.push('/confirmation');
     };
 
-    return { currentComponent, goToLanding, goToPriceList, goToCompany, goToConfirmation };
+    return { currentComponent, currentYear, goToLanding, goToPriceList, goToCompany, goToConfirmation };
   },
 });
 </script>
