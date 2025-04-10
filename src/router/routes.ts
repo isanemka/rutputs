@@ -3,6 +3,7 @@ import LandingComponent from 'components/LandingComponent.vue';
 import PriceListComponent from 'components/PriceListComponent.vue';
 import CompanyComponent from 'components/CompanyComponent.vue';
 import ConfirmationComponent from 'src/components/ConfirmationComponent.vue';
+import FormFailComponent from 'src/components/FormFailComponent.vue';
 
 const routes: RouteRecordRaw[] = [
   {
@@ -24,6 +25,10 @@ const routes: RouteRecordRaw[] = [
       {
         path: 'confirmation',
         component: ConfirmationComponent,
+      },
+      {
+        path: 'formFail',
+        component: FormFailComponent,
       },
     ],
   },

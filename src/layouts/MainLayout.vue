@@ -65,6 +65,7 @@ import Landing from 'src/components/LandingComponent.vue';
 import PriceList from 'src/components/PriceListComponent.vue';
 import Company from 'src/components/CompanyComponent.vue';
 import Confirmation from 'src/components/ConfirmationComponent.vue';
+import FormFail from 'src/components/FormFailComponent.vue';
 
 export default defineComponent({
   name: 'App',
@@ -73,6 +74,7 @@ export default defineComponent({
     PriceList,
     Company,
     Confirmation,
+    FormFail,
   },
   setup() {
     const router = useRouter();
@@ -86,6 +88,8 @@ export default defineComponent({
           return 'Company';
         case '/confirmation':
           return 'Confirmation';
+        case '/formFail':
+          return 'FormFail';
         default:
           return 'Landing';
       }
@@ -109,7 +113,11 @@ export default defineComponent({
       router.push('/confirmation');
     };
 
-    return { currentComponent, currentYear, goToLanding, goToPriceList, goToCompany, goToConfirmation };
+    const goToFormFail = () => {
+      router.push('/formFail');
+    };
+
+    return { currentComponent, currentYear, goToLanding, goToPriceList, goToCompany, goToConfirmation, goToFormFail };
   },
 });
 </script>

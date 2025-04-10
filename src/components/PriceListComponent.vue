@@ -389,11 +389,6 @@ export default defineComponent({
     },
     // Submit form data to backend
     onSubmit() {
-      this.quasar.notify({
-        message: 'Din offertförfrågan har skickats',
-        color: 'positive',
-        position: 'top'
-      });
       axios.post('http://localhost:8000/submit-form', {
         name: this.form.name,
         email: this.form.email,
@@ -402,12 +397,25 @@ export default defineComponent({
         propertyType: this.form.propertyType,
         cart: this.cart,
         totalPrice: this.form.totalPrice
+      }, {
+        timeout: 5000
       })
       .then((response: unknown) => {
-        console.log(response);
+        this.quasar.notify({
+          message: 'Din offertförfrågan har skickats',
+          color: 'positive',
+          position: 'top'
+        });
         this.goToConfirmation();
       })
-      .catch((error: unknown) => console.log(error));
+      .catch((error: unknown) => {
+        this.quasar.notify({
+          message: 'Något gick fel',
+          color: 'negative',
+          position: 'top'
+        });
+        this.goToFormFail();
+      });
     },
     // Reset form data
     onReset() {
@@ -420,7 +428,6 @@ export default defineComponent({
         termsAccepted: false,
         totalPrice: this.form.totalPrice
       };
-      console.log(this.form)
       this.quasar.notify({
         message: 'Formuläret har rensats',
         color: 'negative',
@@ -430,6 +437,10 @@ export default defineComponent({
     // Redirect user to confirmation page after form submission
     goToConfirmation() {
       this.$router.push('/confirmation');
+    },
+    // Redirect user to confirmation fail page if form submission fails
+    goToFormFail() {
+      this.$router.push('formFail');
     },
     // Change total price to minimum order value
     changeTotalPrice() {
