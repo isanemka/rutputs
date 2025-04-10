@@ -10,7 +10,5 @@
 # test:      Adding or updating tests
 # chore:     Changes to build process, tooling, dependencies, etc.
 
-<type>(optional:scope): short, imperative summary
-
 # If needed, write a more detailed description below.
 # Use the imperative mood: "add", "fix", "update", not "added", "fixed", "updated".
