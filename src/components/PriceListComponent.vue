@@ -124,7 +124,8 @@
                 <p class="text-body1">Du har valt tjänster till ett värde av <strong>{{ form.totalPrice }}kr</strong>. Lägsta ordervärde är 350 kr</p>
               </div>
               <q-stepper-navigation>
-                <q-btn @click="step = 4" :disable="cart.length === 0 || form.totalPrice < 350" color="accent" label="Fortsätt"  class="text-black q-ml-sm q-mb-sm" />
+                <q-btn v-if="form.totalPrice < 350" @click="changeTotalPrice();step = 4 " :disable="cart.length === 0" color="accent" label="Fortsätt med ordervärde på 350 kr"  class="text-black q-ml-sm q-mb-sm" />
+                <q-btn v-else @click="step = 4" :disable="cart.length === 0" color="accent" label="Fortsätt"  class="text-black q-ml-sm q-mb-sm" />
                 <q-btn @click="step = 2" color="primary" label="Tillbaka" class="q-ml-sm q-mb-sm"/>
               </q-stepper-navigation>
             </q-step>
@@ -429,6 +430,15 @@ export default defineComponent({
     // Redirect user to confirmation page after form submission
     goToConfirmation() {
       this.$router.push('/confirmation');
+    },
+    // Change total price to minimum order value
+    changeTotalPrice() {
+      this.form.totalPrice = this.minimumOrderValue;
+      this.quasar.notify({
+        message: 'Ditt ordervärde har justerats till 350 kr',
+        color: 'positive',
+        position: 'top'
+      });
     }
   },
   // Calculate total price when component is created
