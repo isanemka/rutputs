@@ -389,7 +389,7 @@ export default defineComponent({
     },
     // Submit form data to backend
     onSubmit() {
-      axios.post('http://localhost:8000/submit-form', {
+      axios.post('/api/submit-form', {
         name: this.form.name,
         email: this.form.email,
         tel: this.form.tel,
@@ -398,7 +398,7 @@ export default defineComponent({
         cart: this.cart,
         totalPrice: this.form.totalPrice
       }, {
-        timeout: 5000
+        timeout: 7000
       })
       .then((response: unknown) => {
         this.quasar.notify({
