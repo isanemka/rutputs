@@ -80,19 +80,19 @@ export default defineComponent({
   setup() {
     // Array of landscape images for parallax effect on larger screens
     const landscapeImages = [
-      '/src/assets/img/25050.webp',
-      '/src/assets/img/25051.webp',
-      '/src/assets/img/25052.webp',
-      '/src/assets/img/25053.webp',
-      '/src/assets/img/25054.webp',
-      '/src/assets/img/25055.webp'
+      new URL('@/assets/img/25050.webp', import.meta.url).href,
+      new URL('@/assets/img/25051.webp', import.meta.url).href,
+      new URL('@/assets/img/25052.webp', import.meta.url).href,
+      new URL('@/assets/img/25053.webp', import.meta.url).href,
+      new URL('@/assets/img/25054.webp', import.meta.url).href,
+      new URL('@/assets/img/25055.webp', import.meta.url).href
     ];
     // Array of portrait images for parallax effect on smaller screens
     const portraitImages = [
-      '/src/assets/img/15050.webp',
-      '/src/assets/img/15051.webp',
-      '/src/assets/img/15052.webp',
-      '/src/assets/img/15053.webp'
+      new URL('@/assets/img/15050.webp', import.meta.url).href,
+      new URL('@/assets/img/15051.webp', import.meta.url).href,
+      new URL('@/assets/img/15052.webp', import.meta.url).href,
+      new URL('@/assets/img/15053.webp', import.meta.url).href
     ];
     // Reactive references for random images
     const randomLandscapeImage = ref('');
