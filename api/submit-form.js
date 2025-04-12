@@ -9,6 +9,10 @@ export default async function handler(req, res) {
 
   const { name, email, tel, address, propertyType, cart, totalPrice } = req.body;
 
+  if (!name || !email || !cart || !totalPrice) {
+    return res.status(400).json({ error: 'Missing required fields' });
+  }
+
   const message = `Formuläret har skickats av: ${name}
 E-post: ${email}
 Telefon: ${tel}
@@ -29,7 +33,7 @@ Offertens värde: ${totalPrice} kr`;
 
     res.status(200).json({ success: true, data });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ success: false, error });
+    console.error('Resend error:', error?.message || error);
+    res.status(500).json({ success: false, error: error?.message || 'Unknown error' });
   }
 }
