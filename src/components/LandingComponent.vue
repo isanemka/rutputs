@@ -68,6 +68,27 @@
 import { defineComponent, onMounted, ref } from 'vue';
 export default defineComponent({
   name: 'LandingComponent',
+  meta: {
+    title: 'Rutputs – Fönsterputsning med RUT-avdrag i Avesta med omnejd',
+    meta: {
+      description: {
+        name: 'description',
+        content: 'Boka professionell fönsterputs i Avesta med omnejd. Snabbt, enkelt och prisvärt!'
+      },
+      ogTitle: {
+        property: 'og:title',
+        content: 'Rutputs – Puts på RUT'
+      },
+      ogDescription: {
+        property: 'og:description',
+        content: 'Vi putsar dina fönster skinande rena – hemma eller på jobbet. Se ditt pris direkt!'
+      },
+      ogImage: {
+        property: 'og:image',
+        content: '/og-image.png'
+      }
+    }
+  },
   props: {
     title: {
       type: String,
