@@ -21,7 +21,7 @@ Offertens värde: ${totalPrice} kr`;
 
   try {
     const data = await resend.emails.send({
-      from: 'Rutputs <noreply@rutputs.nu>',
+      from: 'Rutputs <form@rutputs.nu>',
       to: process.env.EMAIL_TO,
       subject: 'Inskickat formulär',
       text: message,
