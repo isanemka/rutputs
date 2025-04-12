@@ -81,7 +81,7 @@ export default defineComponent({
       },
       ogDescription: {
         property: 'og:description',
-        content: 'Vi putsar dina fönster skinande rena – hemma eller på jobbet. Se ditt pris direkt!'
+        content: 'Få dina fönster skinande rena – hemma eller på jobbet. Se ditt pris direkt!'
       },
       ogImage: {
         property: 'og:image',
