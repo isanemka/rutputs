@@ -53,7 +53,7 @@
                 <br>
                 <br>
                 Med RUT-avdraget kan du få dina fönster skinande rena från 350 kronor!
-                Jag utgår från Järfälla men åker gladeligen till Spånga, Bromma, Sollentuna, Solna, Kista, Sundbyberg, Täby och övriga delar av norra Stockholm.
+                Jag utgår från Järfälla men åker gärna till Spånga, Bromma, Sollentuna, Solna, Kista, Sundbyberg, Täby och övriga delar av norra Stockholm.
                 <br>
                 Fyll i det enkla formuläret för att se DITT pris.
               </q-card-section>
