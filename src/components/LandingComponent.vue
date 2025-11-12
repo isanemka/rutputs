@@ -16,10 +16,10 @@
 
           <!-- Layout changes depending on screen size -->
             <h1 v-if="$q.screen.lt.sm" class="text-h5 text-bold text-primary text-uppercase q-pt-xl">
-            Din rutputsare i Avesta med omnejd
+            Din rutputsare i norra Stockholm
           </h1>
             <h1 v-else class="text-h2 text-bold text-primary text-uppercase">
-            Din rutputsare i Avesta med omnejd
+            Din rutputsare i norra Stockholm
           </h1>
 
           <!-- CTA button to navigate to price list -->
@@ -42,20 +42,20 @@
                 >
                 <div class="text-h6 text-center text-accent">Välkommen till RUTPUTS</div>
                 <hr class="text-primary">
-                Jag är din lokala rutputsare som gärna ger ditt hem den glans det förtjänar.
-                Med passion för perfektion och dedikation till kundnöjdhet står jag redo att
-                göra dina fönster skinande rena, oavsett om det är för ditt hem eller din arbetsplats.
-                <br>
-                Med många års erfarenhet och professionell noggrannhet kan du lita på
-                att du kommer att se bättre ut efter ett besök av mig.
+                Jag är din lokala rutputsare i norra Stockholm som gärna ger ditt hem den glans det förtjänar.
+                Med många års erfarenhet och professionell noggrannhet kan du lita på att du
+                kommer att se bättre ut efter ett besök av mig.
                 <br>
                 <br>
                 Varje kund är unik, och därför anpassar jag mig efter dina behov och önskemål.
                 Oavsett om det handlar om en bostad, en hel lägenhetsbyggnad eller ett företagskontor,
                 är inget jobb för stort eller för litet.
                 <br>
-                Med RUT-avdraget kan du få dina fönster skinande rena för endast 350 kronor!
-                Fyll i det enkla formuläret för att se ditt pris.
+                <br>
+                Med RUT-avdraget kan du få dina fönster skinande rena från 350 kronor!
+                Jag utgår från Järfälla men åker gärna till Spånga, Bromma, Sollentuna, Solna, Kista, Sundbyberg, Täby och övriga delar av norra Stockholm.
+                <br>
+                Fyll i det enkla formuläret för att se DITT pris.
               </q-card-section>
             </q-card>
           </div>
@@ -69,11 +69,11 @@ import { defineComponent, onMounted, ref } from 'vue';
 export default defineComponent({
   name: 'LandingComponent',
   meta: {
-    title: 'Rutputs – Fönsterputsning med RUT-avdrag i Avesta med omnejd',
+    title: 'Rutputs – Fönsterputsning med RUT-avdrag i norra Stockholm',
     meta: {
       description: {
         name: 'description',
-        content: 'Boka professionell fönsterputs i Avesta med omnejd. Snabbt, enkelt och prisvärt!'
+        content: 'Boka professionell fönsterputs i norra Stockholm. Snabbt, enkelt och prisvärt!'
       },
       ogTitle: {
         property: 'og:title',
