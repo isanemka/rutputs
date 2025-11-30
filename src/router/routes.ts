@@ -4,6 +4,7 @@ import PriceListComponent from 'components/PriceListComponent.vue';
 import CompanyComponent from 'components/CompanyComponent.vue';
 import ConfirmationComponent from 'src/components/ConfirmationComponent.vue';
 import FormFailComponent from 'src/components/FormFailComponent.vue';
+import PrivacyPolicyComponent from 'src/components/PrivacyPolicyComponent.vue';
 
 const routes: RouteRecordRaw[] = [
   {
@@ -29,6 +30,10 @@ const routes: RouteRecordRaw[] = [
       {
         path: 'fel',
         component: FormFailComponent,
+      },
+      {
+        path: 'integritetspolicy',
+        component: PrivacyPolicyComponent,
       },
     ],
   },
