@@ -51,7 +51,10 @@
         <q-separator color="accent" />
         <div class="row justify-center text-overline">
           <div class="col">
-            <p class="q-ma-md text-uppercase text-bold  text-subtitle3 text-center">Copyright &copy;{{ currentYear }}</p>
+            <p class="q-ma-md text-uppercase text-bold  text-subtitle3 text-center">
+              Copyright &copy;{{ currentYear }} | Webbplats av
+              <a href="https://pixelpioneer.se" target="_blank" rel="noopener" class="text-accent">PixelPioneer</a>
+            </p>
           </div>
         </div>
         <q-separator color="accent" />

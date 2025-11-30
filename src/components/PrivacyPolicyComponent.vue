@@ -25,24 +25,45 @@
               <h2 class="text-h6 text-accent q-mb-sm">
                 Vilken information samlar vi in?
               </h2>
+
+              <h3 class="text-subtitle1 text-primary q-mt-md q-mb-sm">1. Kontaktformulär</h3>
               <p class="text-body1 q-mb-sm">
-                Om du accepterar cookies använder vi Vercel Analytics som samlar
-                in följande anonyma data:
+                När du fyller i vårt offertformulär samlar vi in:
+              </p>
+              <ul class="text-body1">
+                <li>Namn</li>
+                <li>E-postadress</li>
+                <li>Telefonnummer</li>
+                <li>Adress (frivilligt)</li>
+                <li>Typ av bostad och valda tjänster</li>
+              </ul>
+              <p class="text-body1 q-mt-sm">
+                <strong>Syfte:</strong> För att kunna kontakta dig och ge dig en offert på fönsterputsning.
+                <br>
+                <strong>Lagring:</strong> Dina uppgifter sparas så länge det behövs för att hantera din förfrågan, därefter raderas de.
+                <br>
+                <strong>Rättslig grund:</strong> Samtycke (du väljer aktivt att skicka formuläret).
+              </p>
+
+              <h3 class="text-subtitle1 text-primary q-mt-md q-mb-sm">2. Webbanalys (cookies)</h3>
+              <p class="text-body1 q-mb-sm">
+                Om du accepterar cookies använder vi Google Analytics och Vercel Analytics som samlar in följande anonyma data:
               </p>
               <ul class="text-body1">
                 <li>Vilka sidor du besöker på webbplatsen</li>
                 <li>Hur länge du stannar på varje sida</li>
                 <li>Varifrån du kom till webbplatsen (t.ex. sökmotorer)</li>
-                <li>
-                  Teknisk information om din enhet (webbläsare, operativsystem,
-                  skärmstorlek)
-                </li>
+                <li>Teknisk information om din enhet (webbläsare, operativsystem, skärmstorlek)</li>
                 <li>Ditt ungefärliga geografiska område (land/region)</li>
               </ul>
               <p class="text-body1 q-mt-sm">
-                <strong>Viktigt:</strong> Vi samlar inte in namn, e-postadresser
-                eller annan personlig kontaktinformation via analytics. Vi
-                använder inga reklamcookies.
+                <strong>Syfte:</strong> För att förbättra webbplatsens innehåll och användarupplevelse.
+              </p>
+
+              <h3 class="text-subtitle1 text-primary q-mt-md q-mb-sm">3. Marknadsföring (Google Ads)</h3>
+              <p class="text-body1">
+                Om du accepterar cookies kan vi använda Google Ads för att visa relevanta annonser.
+                Google kan då placera cookies för att mäta annonseffektivitet och visa anpassade annonser baserat på ditt besök.
               </p>
             </section>
 
@@ -66,10 +87,11 @@
 
             <section class="q-mb-lg">
               <h2 class="text-h6 text-accent q-mb-sm">Hur länge sparas data?</h2>
-              <p class="text-body1">
-                Vercel Analytics behåller aggregerad analysdata i upp till 12
-                månader. Ingen personidentifierbar information lagras.
-              </p>
+              <ul class="text-body1">
+                <li><strong>Kontaktformulär:</strong> Dina uppgifter raderas när din förfrågan är hanterad, eller senast efter 12 månader.</li>
+                <li><strong>Analysdata:</strong> Google Analytics och Vercel Analytics behåller aggregerad data i upp till 14 respektive 12 månader.</li>
+                <li><strong>Cookies:</strong> Ditt samtycke sparas i 12 månader, därefter ombeds du välja igen.</li>
+              </ul>
             </section>
 
             <q-separator class="q-my-md" />
@@ -78,11 +100,19 @@
               <h2 class="text-h6 text-accent q-mb-sm">
                 Delas data med tredje part?
               </h2>
+              <p class="text-body1 q-mb-sm">
+                Dina personuppgifter från kontaktformuläret delas inte med externa parter.
+              </p>
               <p class="text-body1">
-                Nej. Analysdata delas inte med externa parter i marknadsförings-
-                eller reklamsyfte. Vercel (vår värdtjänst) behandlar data i
-                enlighet med sin integritetspolicy, men din data säljs inte
-                vidare.
+                För webbanalys och marknadsföring används följande tjänster som kan behandla data:
+              </p>
+              <ul class="text-body1">
+                <li><strong>Vercel Analytics</strong> – vår värdtjänst (USA, Privacy Shield-certifierad)</li>
+                <li><strong>Google Analytics</strong> – webbanalys (USA, standardavtalsklausuler)</li>
+                <li><strong>Google Ads</strong> – marknadsföring (USA, standardavtalsklausuler)</li>
+              </ul>
+              <p class="text-body1 q-mt-sm">
+                Din data säljs aldrig vidare till tredje part.
               </p>
             </section>
 

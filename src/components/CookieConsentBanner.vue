@@ -5,18 +5,15 @@
     position="bottom"
     seamless
     :maximized="$q.screen.lt.sm"
+    full-width
+    class="cookie-dialog"
   >
     <q-card class="cookie-consent-card bg-white text-dark">
       <q-card-section>
-        <div class="text-h6 text-primary">Cookieinställningar</div>
+        <div class="text-h6 text-primary">Cookies</div>
         <p class="q-mt-sm text-body2">
-          Vi använder Vercel Analytics för att förbättra vår webbplats. Detta
-          verktyg samlar in anonym information om hur du använder webbplatsen,
-          till exempel vilka sidor du besöker och vilken enhet du använder.
-          Ingen personlig information delas med tredje part.
-        </p>
-        <p class="text-body2">
-          Du kan läsa mer om hur vi hanterar din data i vår
+          Vi använder cookies för att förbättra din upplevelse på vår webbplats.
+          Läs mer i vår
           <router-link to="/integritetspolicy" class="text-accent">
             integritetspolicy</router-link
           >.
@@ -25,13 +22,13 @@
 
       <q-separator />
 
-      <q-card-actions align="center" class="q-pa-md">
+      <q-card-actions align="center" class="q-pa-md" :vertical="$q.screen.lt.sm">
         <q-btn
-          flat
+          outline
           label="Avvisa"
           color="grey-7"
           @click="handleReject"
-          class="q-mr-sm"
+          :class="$q.screen.lt.sm ? 'q-mb-sm full-width' : 'q-mr-sm'"
           aria-label="Avvisa cookies"
         />
         <q-btn
@@ -40,6 +37,7 @@
           color="accent"
           text-color="black"
           @click="handleAccept"
+          :class="$q.screen.lt.sm ? 'full-width' : ''"
           aria-label="Acceptera cookies"
         />
       </q-card-actions>
@@ -102,15 +100,16 @@ export default defineComponent({
 
 <style scoped>
 .cookie-consent-card {
-  max-width: 600px;
   width: 100%;
-  margin: 0 auto;
+  max-width: 100%;
+  border-radius: 0;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.15);
 }
+</style>
 
-@media (max-width: 599px) {
-  .cookie-consent-card {
-    max-width: 100%;
-    border-radius: 16px 16px 0 0;
-  }
+<style>
+/* Override Quasar dialog padding */
+.cookie-dialog .q-dialog__inner {
+  padding: 0 !important;
 }
 </style>
