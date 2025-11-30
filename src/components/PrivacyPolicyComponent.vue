@@ -162,8 +162,12 @@ import { useConsent } from 'src/composables/useConsent';
 export default defineComponent({
   name: 'PrivacyPolicyComponent',
   setup() {
-    const { consentStatus, acceptConsent, rejectConsent, resetConsent } =
-      useConsent();
+    const {
+      consentStatus,
+      acceptConsent,
+      rejectConsent,
+      triggerShowBanner,
+    } = useConsent();
 
     const statusColor = computed(() => {
       switch (consentStatus.value) {
@@ -200,10 +204,8 @@ export default defineComponent({
       } else if (consentStatus.value === 'rejected') {
         acceptConsent();
       } else {
-        // If pending, show the banner by resetting (it will trigger the banner to show)
-        resetConsent();
-        // Force page reload to show the banner again
-        window.location.reload();
+        // If pending, trigger showing the banner
+        triggerShowBanner();
       }
     };
 

@@ -96,7 +96,7 @@ export default defineComponent({
   },
   setup() {
     const router = useRouter();
-    const { resetConsent } = useConsent();
+    const { triggerShowBanner } = useConsent();
     const cookieConsentRef = ref<InstanceType<typeof CookieConsentBanner> | null>(null);
 
     const currentComponent = computed(() => {
@@ -141,9 +141,8 @@ export default defineComponent({
     };
 
     const openCookieSettings = () => {
-      resetConsent();
-      // Force page reload to show the banner
-      window.location.reload();
+      // Trigger showing the cookie consent banner
+      triggerShowBanner();
     };
 
     return {

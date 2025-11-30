@@ -7,6 +7,9 @@ export type ConsentStatus = 'pending' | 'accepted' | 'rejected';
 // Reactive state stored at module level so it persists across the app
 const consentStatus = ref<ConsentStatus>(getStoredConsent());
 
+// Flag to trigger showing the banner programmatically
+const showBannerTrigger = ref(0);
+
 function getStoredConsent(): ConsentStatus {
   if (typeof window === 'undefined') {
     return 'pending';
@@ -37,6 +40,12 @@ export function useConsent() {
     consentStatus.value = 'pending';
   };
 
+  const triggerShowBanner = () => {
+    resetConsent();
+    // Increment trigger to signal banner should show
+    showBannerTrigger.value++;
+  };
+
   const hasUserDecided = () => {
     return consentStatus.value !== 'pending';
   };
@@ -47,9 +56,11 @@ export function useConsent() {
 
   return {
     consentStatus: readonly(consentStatus),
+    showBannerTrigger: readonly(showBannerTrigger),
     acceptConsent,
     rejectConsent,
     resetConsent,
+    triggerShowBanner,
     hasUserDecided,
     hasAccepted,
   };

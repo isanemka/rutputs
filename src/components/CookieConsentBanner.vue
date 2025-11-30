@@ -48,14 +48,19 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted } from 'vue';
+import { defineComponent, ref, onMounted, watch } from 'vue';
 import { useConsent } from 'src/composables/useConsent';
 
 export default defineComponent({
   name: 'CookieConsentBanner',
   setup() {
-    const { consentStatus, acceptConsent, rejectConsent, hasUserDecided } =
-      useConsent();
+    const {
+      consentStatus,
+      showBannerTrigger,
+      acceptConsent,
+      rejectConsent,
+      hasUserDecided,
+    } = useConsent();
     const showBanner = ref(false);
 
     onMounted(() => {
@@ -63,6 +68,11 @@ export default defineComponent({
       if (!hasUserDecided()) {
         showBanner.value = true;
       }
+    });
+
+    // Watch for external trigger to show banner
+    watch(showBannerTrigger, () => {
+      showBanner.value = true;
     });
 
     const handleAccept = () => {
@@ -75,11 +85,16 @@ export default defineComponent({
       showBanner.value = false;
     };
 
+    const show = () => {
+      showBanner.value = true;
+    };
+
     return {
       showBanner,
       consentStatus,
       handleAccept,
       handleReject,
+      show,
     };
   },
 });
