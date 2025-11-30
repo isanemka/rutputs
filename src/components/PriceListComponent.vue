@@ -436,11 +436,11 @@ export default defineComponent({
     },
     // Redirect user to confirmation page after form submission
     goToConfirmation() {
-      this.$router.push('/confirmation');
+      this.$router.push('/bekraftelse');
     },
     // Redirect user to confirmation fail page if form submission fails
     goToFormFail() {
-      this.$router.push('formFail');
+      this.$router.push('/fel');
     },
     // Change total price to minimum order value
     changeTotalPrice() {

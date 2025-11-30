@@ -12,9 +12,9 @@
           style="height: 30px; max-width: 30px"
           @click="goToLanding()"
         />
-        <q-route-tab to="/landing" label="Puts på rut" @click="goToLanding()" />
-        <q-route-tab to="/priceList" label="Prislista" @click="goToPriceList()" />
-        <q-route-tab to="/company" label="Företag" @click="goToCompany()" />
+        <q-route-tab to="/" label="Puts på rut" @click="goToLanding()" />
+        <q-route-tab to="/pris" label="Prislista" @click="goToPriceList()" />
+        <q-route-tab to="/foretag" label="Företag" @click="goToCompany()" />
       </q-tabs>
     </q-header>
 
@@ -80,15 +80,15 @@ export default defineComponent({
     const router = useRouter();
     const currentComponent = computed(() => {
       switch (router.currentRoute.value.path) {
-        case '/landing':
+        case '/':
           return 'Landing';
-        case '/priceList':
+        case '/pris':
           return 'PriceList';
-        case '/company':
+        case '/foretag':
           return 'Company';
-        case '/confirmation':
+        case '/bekraftelse':
           return 'Confirmation';
-        case '/formFail':
+        case '/fel':
           return 'FormFail';
         default:
           return 'Landing';
@@ -98,23 +98,23 @@ export default defineComponent({
     const currentYear = computed(() => new Date().getFullYear());
 
     const goToLanding = () => {
-      router.push('/landing');
+      router.push('/');
     };
 
     const goToPriceList = () => {
-      router.push('/priceList');
+      router.push('/pris');
     };
 
     const goToCompany = () => {
-      router.push('/company');
+      router.push('/foretag');
     };
 
     const goToConfirmation = () => {
-      router.push('/confirmation');
+      router.push('/bekraftelse');
     };
 
     const goToFormFail = () => {
-      router.push('/formFail');
+      router.push('/fel');
     };
 
     return { currentComponent, currentYear, goToLanding, goToPriceList, goToCompany, goToConfirmation, goToFormFail };

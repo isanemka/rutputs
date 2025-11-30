@@ -130,7 +130,7 @@ export default defineComponent({
   methods: {
     // Method to navigate to price list page
     goToPriceList() {
-      this.$router.push('/priceList');
+      this.$router.push('/pris');
     }
   },
   computed: {

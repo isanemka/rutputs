@@ -11,23 +11,23 @@ const routes: RouteRecordRaw[] = [
     component: () => import('layouts/MainLayout.vue'),
     children: [
       {
-        path: 'landing',
+        path: '',
         component: LandingComponent,
       },
       {
-        path: 'priceList',
+        path: 'pris',
         component: PriceListComponent,
       },
       {
-        path: 'company',
+        path: 'foretag',
         component: CompanyComponent,
       },
       {
-        path: 'confirmation',
+        path: 'bekraftelse',
         component: ConfirmationComponent,
       },
       {
-        path: 'formFail',
+        path: 'fel',
         component: FormFailComponent,
       },
     ],

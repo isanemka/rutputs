@@ -43,7 +43,7 @@ export default defineComponent({
   methods: {
     // Method to navigate back to landing page
     goToLanding() {
-      this.$router.push('/landing');
+      this.$router.push('/');
     }
   },
   computed: {
