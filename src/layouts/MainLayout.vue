@@ -54,18 +54,34 @@
             <p class="q-ma-md text-uppercase text-bold  text-subtitle3 text-center">Copyright &copy;{{ currentYear }}</p>
           </div>
         </div>
+        <q-separator color="accent" />
+        <div class="row justify-center text-overline">
+          <div class="col">
+            <p class="q-ma-md text-subtitle2 text-center">
+              <router-link to="/integritetspolicy" class="text-secondary">Integritetspolicy</router-link>
+              <span class="q-mx-sm">|</span>
+              <a href="#" class="text-secondary" @click.prevent="openCookieSettings">Cookieinställningar</a>
+            </p>
+          </div>
+        </div>
     </q-footer>
+
+    <!-- Cookie Consent Banner -->
+    <CookieConsentBanner ref="cookieConsentRef" />
   </q-layout>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue';
+import { defineComponent, computed, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import Landing from 'src/components/LandingComponent.vue';
 import PriceList from 'src/components/PriceListComponent.vue';
 import Company from 'src/components/CompanyComponent.vue';
 import Confirmation from 'src/components/ConfirmationComponent.vue';
 import FormFail from 'src/components/FormFailComponent.vue';
+import PrivacyPolicy from 'src/components/PrivacyPolicyComponent.vue';
+import CookieConsentBanner from 'src/components/CookieConsentBanner.vue';
+import { useConsent } from 'src/composables/useConsent';
 
 export default defineComponent({
   name: 'App',
@@ -75,9 +91,14 @@ export default defineComponent({
     Company,
     Confirmation,
     FormFail,
+    PrivacyPolicy,
+    CookieConsentBanner,
   },
   setup() {
     const router = useRouter();
+    const { resetConsent } = useConsent();
+    const cookieConsentRef = ref<InstanceType<typeof CookieConsentBanner> | null>(null);
+
     const currentComponent = computed(() => {
       switch (router.currentRoute.value.path) {
         case '/':
@@ -90,6 +111,8 @@ export default defineComponent({
           return 'Confirmation';
         case '/fel':
           return 'FormFail';
+        case '/integritetspolicy':
+          return 'PrivacyPolicy';
         default:
           return 'Landing';
       }
@@ -117,7 +140,23 @@ export default defineComponent({
       router.push('/fel');
     };
 
-    return { currentComponent, currentYear, goToLanding, goToPriceList, goToCompany, goToConfirmation, goToFormFail };
+    const openCookieSettings = () => {
+      resetConsent();
+      // Force page reload to show the banner
+      window.location.reload();
+    };
+
+    return {
+      currentComponent,
+      currentYear,
+      goToLanding,
+      goToPriceList,
+      goToCompany,
+      goToConfirmation,
+      goToFormFail,
+      openCookieSettings,
+      cookieConsentRef,
+    };
   },
 });
 </script>
