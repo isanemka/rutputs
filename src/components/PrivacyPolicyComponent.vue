@@ -229,14 +229,7 @@ export default defineComponent({
     });
 
     const handleConsentChange = () => {
-      if (consentStatus.value === 'accepted') {
-        rejectConsent();
-      } else if (consentStatus.value === 'rejected') {
-        acceptConsent();
-      } else {
-        // If pending, trigger showing the banner
-        triggerShowBanner();
-      }
+      triggerShowBanner();
     };
 
     return {
