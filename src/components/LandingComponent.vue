@@ -5,12 +5,12 @@
 
         <!-- Display image in landscape mode for larger screens -->
         <template v-if="$q.screen.gt.sm" v-slot:media>
-          <img :src="randomLandscapeImage" alt="A man cleaning windows" style="opacity: 0.3;">
+          <img :src="randomLandscapeImage" alt="Professionell fönsterputsning i norra Stockholm" style="opacity: 0.3;">
         </template>
 
         <!-- Display image in portrait mode for smaller screens -->
         <template v-else v-slot:media>
-          <img :src="randomPortraitImage" alt="A man cleaning windows" style="opacity: 0.3;">
+          <img :src="randomPortraitImage" alt="Fönsterputsare i Järfälla och norra Stockholm" style="opacity: 0.3;">
         </template>
           <div class="col-lg-6 col-md-8 col-xs-10">
 
