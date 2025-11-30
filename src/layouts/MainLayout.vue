@@ -70,12 +70,12 @@
     </q-footer>
 
     <!-- Cookie Consent Banner -->
-    <CookieConsentBanner ref="cookieConsentRef" />
+    <CookieConsentBanner />
   </q-layout>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, ref } from 'vue';
+import { defineComponent, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import Landing from 'src/components/LandingComponent.vue';
 import PriceList from 'src/components/PriceListComponent.vue';
@@ -100,7 +100,6 @@ export default defineComponent({
   setup() {
     const router = useRouter();
     const { triggerShowBanner } = useConsent();
-    const cookieConsentRef = ref<InstanceType<typeof CookieConsentBanner> | null>(null);
 
     const currentComponent = computed(() => {
       switch (router.currentRoute.value.path) {
@@ -157,7 +156,6 @@ export default defineComponent({
       goToConfirmation,
       goToFormFail,
       openCookieSettings,
-      cookieConsentRef,
     };
   },
 });
