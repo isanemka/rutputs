@@ -62,6 +62,15 @@
 import { defineComponent } from 'vue';
 export default defineComponent({
   name: 'CompanyComponent',
+  meta: {
+    title: 'Företagskunder – Fönsterputsning för kontor i Stockholm | Rutputs',
+    meta: {
+      description: {
+        name: 'description',
+        content: 'Professionell fönsterputsning för företag i norra Stockholm. Regelbunden service, flexibla avtal och skinande rena fönster för ditt kontor.'
+      }
+    }
+  },
   props: {}
 });
 </script>
