@@ -90,7 +90,7 @@
               <ul class="text-body1">
                 <li><strong>Kontaktformulär:</strong> Dina uppgifter raderas när din förfrågan är hanterad, eller senast efter 12 månader.</li>
                 <li><strong>Analysdata:</strong> Google Analytics och Vercel Analytics behåller aggregerad data i upp till 14 respektive 12 månader.</li>
-                <li><strong>Cookies:</strong> Ditt samtycke sparas i 12 månader, därefter ombeds du välja igen.</li>
+                <li><strong>Cookies:</strong> Ditt samtycke sparas tills du raderar cookies eller lokal lagring i din webbläsare.</li>
               </ul>
             </section>
 
