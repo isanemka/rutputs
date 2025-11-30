@@ -107,7 +107,7 @@
                 För webbanalys och marknadsföring används följande tjänster som kan behandla data:
               </p>
               <ul class="text-body1">
-                <li><strong>Vercel Analytics</strong> – vår värdtjänst (USA, Privacy Shield-certifierad)</li>
+                <li><strong>Vercel Analytics</strong> – vår värdtjänst (USA, standardavtalsklausuler)</li>
                 <li><strong>Google Analytics</strong> – webbanalys (USA, standardavtalsklausuler)</li>
                 <li><strong>Google Ads</strong> – marknadsföring (USA, standardavtalsklausuler)</li>
               </ul>
