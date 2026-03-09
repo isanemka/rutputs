@@ -29,7 +29,7 @@
       property="og:description"
       content="Få dina fönster skinande rena – hemma eller på jobbet. Se ditt pris direkt!"
     />
-    <meta property="og:image" content="/og-image.png" />
+    <meta property="og:image" content="https://www.rutputs.nu/og-image.png" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.rutputs.nu" />
     <meta name="twitter:card" content="summary_large_image" />
@@ -38,13 +38,13 @@
       name="twitter:description"
       content="Skinande fönster från 350 kr – Boka online direkt."
     />
-    <meta name="twitter:image" content="/og-image.png" />
+    <meta name="twitter:image" content="https://www.rutputs.nu/og-image.png" />
     <meta charset="utf-8" />
     <meta name="format-detection" content="telephone=no" />
     <meta name="msapplication-tap-highlight" content="no" />
     <meta
       name="viewport"
-      content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width<% if (ctx.mode.cordova || ctx.mode.capacitor) { %>, viewport-fit=cover<% } %>"
+      content="initial-scale=1, width=device-width<% if (ctx.mode.cordova || ctx.mode.capacitor) { %>, viewport-fit=cover<% } %>"
     />
 
     <link rel="icon" type="image/png" href="icons/favicon.png" />
@@ -55,30 +55,82 @@
         "name": "Rutputs",
         "url": "https://www.rutputs.nu",
         "logo": "https://www.rutputs.nu/icons/main_logo.png",
+        "image": "https://www.rutputs.nu/og-image.png",
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "Järfälla",
           "addressRegion": "Stockholm",
           "addressCountry": "SE"
         },
-        "description": "Professionell fönsterputs i norra Stockholm. Snabbt, enkelt och prisvärt!",
+        "description": "Professionell fönsterputsning i norra Stockholm. Från 350 kr med RUT-avdrag. Järfälla, Bromma, Kista, Solna, Sundbyberg, Sollentuna, Täby.",
         "telephone": "+46734644604",
+        "email": "kontakt@rutputs.nu",
         "priceRange": "från 350 SEK",
         "openingHours": "Mo-Fr 08:00-18:00",
         "areaServed": [
-          "Järfälla",
-          "Barkarby",
-          "Jakobsberg",
-          "Kallhäll",
-          "Kungsängen",
-          "Bromma",
-          "Kista",
-          "Solna",
-          "Sundbyberg",
-          "Spånga",
-          "Sollentuna",
-          "Täby"
-        ]
+          {
+            "@type": "City",
+            "name": "Järfälla"
+          },
+          {
+            "@type": "City",
+            "name": "Bromma"
+          },
+          {
+            "@type": "City",
+            "name": "Kista"
+          },
+          {
+            "@type": "City",
+            "name": "Solna"
+          },
+          {
+            "@type": "City",
+            "name": "Sundbyberg"
+          },
+          {
+            "@type": "City",
+            "name": "Spånga"
+          },
+          {
+            "@type": "City",
+            "name": "Sollentuna"
+          },
+          {
+            "@type": "City",
+            "name": "Täby"
+          }
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Fönsterputsningstjänster",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Fönsterputsning för privatpersoner",
+                "description": "Professionell fönsterputsning för villor och lägenheter med RUT-avdrag"
+              },
+              "priceCurrency": "SEK",
+              "price": "350",
+              "priceSpecification": {
+                "@type": "PriceSpecification",
+                "priceCurrency": "SEK",
+                "price": "350",
+                "description": "Från-pris efter RUT-avdrag"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Fönsterputsning för företag",
+                "description": "Professionell fönsterputsning för kontor och företagslokaler i norra Stockholm"
+              }
+            }
+          ]
+        }
       }
     </script>
   </head>

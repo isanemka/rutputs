@@ -34,6 +34,15 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'ConfirmationComponent',
+  meta: {
+    title: 'Bekräftelse – Rutputs',
+    meta: {
+      robots: {
+        name: 'robots',
+        content: 'noindex, nofollow'
+      }
+    }
+  },
   props: {
     title: {
       type: String,

@@ -14,11 +14,7 @@
         </template>
           <div class="col-lg-6 col-md-8 col-xs-10">
 
-          <!-- Layout changes depending on screen size -->
-            <h1 v-if="$q.screen.lt.sm" class="text-h5 text-bold text-primary text-uppercase q-pt-xl">
-            Din rutputsare i norra Stockholm
-          </h1>
-            <h1 v-else class="text-h2 text-bold text-primary text-uppercase">
+          <h1 :class="[$q.screen.lt.sm ? 'text-h5 q-pt-xl' : 'text-h2', 'text-bold text-primary text-uppercase']">
             Din rutputsare i norra Stockholm
           </h1>
 
@@ -85,7 +81,7 @@ export default defineComponent({
       },
       ogImage: {
         property: 'og:image',
-        content: '/og-image.png'
+        content: 'https://www.rutputs.nu/og-image.png'
       }
     }
   },

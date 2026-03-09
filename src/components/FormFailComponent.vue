@@ -33,6 +33,15 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'FormFailComponent',
+  meta: {
+    title: 'Något gick fel – Rutputs',
+    meta: {
+      robots: {
+        name: 'robots',
+        content: 'noindex, nofollow'
+      }
+    }
+  },
   props: {
     title: {
       type: String,

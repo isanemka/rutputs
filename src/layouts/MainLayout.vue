@@ -6,7 +6,7 @@
       <q-tabs align="left" role="tablist">
         <q-img
           src="/icons/favicon.png"
-          aria-label="Company logo without text"
+          alt="Rutputs logotyp"
           role="img"
           class="q-mx-md"
           style="height: 30px; max-width: 30px"
@@ -21,13 +21,15 @@
 <!-- Page content -->
       <q-page-container class="q-pa-md">
           <div class="q-flex column items-center">
-            <img
-              class="fit q-mt-md"
-              aria-label="Company logo with text"
-              style="max-width: 900px;"
-              src="/icons/main_logo.png"
-              @click="goToLanding()"
-            />
+            <a href="/" @click.prevent="goToLanding()" style="max-width: 900px; display: block;">
+              <img
+                class="fit q-mt-md"
+                alt="Rutputs – Fönsterputsning i norra Stockholm"
+                style="max-width: 900px;"
+                src="/icons/main_logo.png"
+                fetchpriority="high"
+              />
+            </a>
           </div>
           <component :is="currentComponent" :title="currentComponent" />
       </q-page-container>
@@ -36,7 +38,7 @@
       <div class="row justify-center text-overline">
         <div class="col">
           <p class="q-ma-xl text-uppercase text-bold text-subtitle1 text-center">
-            Telefon: 0734-64 46 04
+            Telefon: <a href="tel:+46734644604" class="text-secondary">0734-64 46 04</a>
           </p>
         </div>
       </div>
@@ -44,7 +46,7 @@
         <div class="row justify-center text-overline">
           <div class="col">
             <p class="q-ma-xl text-uppercase text-bold text-subtitle1 text-center">
-              E-Mail: kontakt (at) rutputs.nu
+              E-post: <a href="mailto:kontakt@rutputs.nu" class="text-secondary">kontakt@rutputs.nu</a>
             </p>
           </div>
         </div>

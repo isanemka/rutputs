@@ -41,9 +41,9 @@
             >
               <div class="row justify-center q-pa-md">
                 <div class="col-12">
-                  <h1 class="text-body1 text-accent text-center q-pa-md">
+                  <h2 class="text-body1 text-accent text-center q-pa-md">
                     Räkna snabbt ihop vad det kostar att få rena fönster
-                  </h1>
+                  </h2>
                 </div>
                 <div class="col-12 col-md-10 col-lg-8 q-flex">
                   <q-table
@@ -240,6 +240,15 @@ import { app } from '../firebase'
 
 export default defineComponent({
   name: 'PriceListComponent',
+  meta: {
+    title: 'Prislista – Fönsterputsning med RUT-avdrag | Rutputs',
+    meta: {
+      description: {
+        name: 'description',
+        content: 'Se priser för fönsterputsning i norra Stockholm. Räkna ut ditt pris direkt – från 350 kr med RUT-avdrag. Enkel offertförfrågan online.'
+      }
+    }
+  },
   data() {
     return {
       showTermsDialog: false,
