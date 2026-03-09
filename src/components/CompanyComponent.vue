@@ -2,9 +2,7 @@
   <q-page>
     <div class="row q-flex q-pa-sm justify-center items-center">
       <div class="col-lg-6 col-md-8 col-xs-11 text-center">
-        <!-- Layout changes depending on screen size -->
-        <h1 v-if="$q.screen.lt.sm" class="text-h4 text-bold text-primary text-uppercase">Professionell fönsterputs för ditt företag</h1>
-        <h1 v-else class="text-h3 text-bold text-primary text-uppercase">Professionell fönsterputs för ditt företag</h1>
+        <h1 :class="[$q.screen.lt.sm ? 'text-h4' : 'text-h3', 'text-bold text-primary text-uppercase']">Professionell fönsterputs för ditt företag</h1>
       </div>
 
       <!-- Cards section -->
@@ -29,9 +27,15 @@
                 </li>
               </ul>
               Ta kontakt för att diskutera dina behov och få en offert.
-              <br>
-              Kontaktuppgifter hittar du längst ner på sidan.
             </q-card-section>
+            <q-card-actions align="center" class="q-pb-md">
+              <q-btn
+                label="Begär offert"
+                color="accent"
+                class="text-black q-pa-sm"
+                to="/pris"
+              />
+            </q-card-actions>
           </q-card>
         </div>
         <div class="col-md-6 col-sm-10 col-xs-12">
