@@ -21,14 +21,15 @@
 <!-- Page content -->
       <q-page-container class="q-pa-md">
           <div class="q-flex column items-center">
-            <img
-              class="fit q-mt-md"
-              alt="Rutputs – Fönsterputsning i norra Stockholm"
-              style="max-width: 900px;"
-              src="/icons/main_logo.png"
-              loading="lazy"
-              @click="goToLanding()"
-            />
+            <a href="/" @click.prevent="goToLanding()" style="max-width: 900px; display: block;">
+              <img
+                class="fit q-mt-md"
+                alt="Rutputs – Fönsterputsning i norra Stockholm"
+                style="max-width: 900px;"
+                src="/icons/main_logo.png"
+                fetchpriority="high"
+              />
+            </a>
           </div>
           <component :is="currentComponent" :title="currentComponent" />
       </q-page-container>
