@@ -65,7 +65,7 @@
             <p class="text-subtitle2 text-uppercase text-bold q-mb-xs">Områden</p>
             <p class="text-caption">
               <router-link v-for="(a, i) in areaLinks" :key="a.slug" :to="'/omrade/' + a.slug" class="text-secondary">
-                {{ a.name }}</router-link><span v-if="i < areaLinks.length - 1" class="q-mx-xs">|</span>
+                {{ a.name + ' '}}</router-link><span v-if="i < areaLinks.length - 1" class="q-mx-xs">|</span>
             </p>
           </div>
         </div>
