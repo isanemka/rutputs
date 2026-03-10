@@ -213,6 +213,22 @@ export default defineComponent({
       ogUrl: {
         property: 'og:url',
         content: 'https://www.rutputs.nu/integritetspolicy'
+      },
+      twitterCard: {
+        name: 'twitter:card',
+        content: 'summary_large_image'
+      },
+      twitterTitle: {
+        name: 'twitter:title',
+        content: 'Integritetspolicy – Rutputs'
+      },
+      twitterDescription: {
+        name: 'twitter:description',
+        content: 'Läs om hur Rutputs hanterar dina personuppgifter i enlighet med GDPR.'
+      },
+      twitterImage: {
+        name: 'twitter:image',
+        content: 'https://www.rutputs.nu/og-image.png'
       }
     },
     link: {

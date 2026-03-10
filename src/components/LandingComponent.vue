@@ -91,7 +91,7 @@ export default defineComponent({
       },
       ogUrl: {
         property: 'og:url',
-        content: 'https://www.rutputs.nu/'
+        content: 'https://www.rutputs.nu'
       },
       twitterCard: {
         name: 'twitter:card',
@@ -113,7 +113,7 @@ export default defineComponent({
     link: {
       canonical: {
         rel: 'canonical',
-        href: 'https://www.rutputs.nu/'
+        href: 'https://www.rutputs.nu'
       }
     },
     script: {
