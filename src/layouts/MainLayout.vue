@@ -34,7 +34,7 @@
           <component :is="currentComponent" :title="currentComponent" />
       </q-page-container>
 
-    <q-footer elevated class="bg-primary text-secondary">
+    <q-footer id="kontakt" elevated class="bg-primary text-secondary">
       <div class="row justify-center text-overline">
         <div class="col">
           <p class="q-ma-xl text-uppercase text-bold text-subtitle1 text-center">
