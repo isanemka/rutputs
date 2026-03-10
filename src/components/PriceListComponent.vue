@@ -25,8 +25,10 @@
               <!-- Prompt user to select type of property -->
               Välj om du bor i villa eller lägenhet
               <br>
-              <q-radio keep-color v-model="form.propertyType" val="house" label="Villa" color="accent" />
-              <q-radio keep-color v-model="form.propertyType" val="apartment" label="Lägenhet" color="accent" />
+              <div role="radiogroup" aria-label="Välj bostadstyp">
+                <q-radio keep-color v-model="form.propertyType" val="house" label="Villa" color="accent" />
+                <q-radio keep-color v-model="form.propertyType" val="apartment" label="Lägenhet" color="accent" />
+              </div>
               <q-stepper-navigation>
                 <q-btn @click="validatePropertyType" color="accent" label="Fortsätt" class="text-black" />
               </q-stepper-navigation>
@@ -79,6 +81,7 @@
                           outlined
                           type="number"
                           min="0"
+                          :aria-label="'Antal ' + props.row.description"
                           @input="handleQuantityInput(props.row)"
                           style="width: 70px;"
                         />
@@ -109,13 +112,13 @@
 
               <!-- Display selected services and total price if minimum order value is met -->
               <div v-if="cart.length > 0 && form.totalPrice >= minimumOrderValue">
-                <h4>Dina val:</h4>
+                <h3>Dina val:</h3>
                 <ul>
                   <li v-for="item in cart" :key="item.id">
                     {{ item.quantity }} st {{ item.description }}
                   </li>
                 </ul>
-                <h4>Totalpris: {{ form.totalPrice }} kr*</h4>
+                <h3>Totalpris: {{ form.totalPrice }} kr*</h3>
                 <p>*inklusive moms och efter RUT-avdrag</p>
               </div>
 
@@ -194,7 +197,7 @@
                   <q-dialog v-model="showTermsDialog">
                     <q-card>
                       <q-card-section>
-                        <h4 class="text-center">Personuppgifter</h4>
+                        <h4 class="text-center">Personuppgifter</h3>
                         <p>
                           När du fyller i vårt kontaktformulär på denna webbplats samlar vi
                           in dina personuppgifter, inklusive namn, adress, telefonnummer och
@@ -257,7 +260,7 @@ export default defineComponent({
       },
       ogImage: {
         property: 'og:image',
-        content: 'https://www.rutputs.nu/og-image.png'
+        content: 'https://www.rutputs.nu/og-image.jpg'
       },
       ogUrl: {
         property: 'og:url',
@@ -277,7 +280,7 @@ export default defineComponent({
       },
       twitterImage: {
         name: 'twitter:image',
-        content: 'https://www.rutputs.nu/og-image.png'
+        content: 'https://www.rutputs.nu/og-image.jpg'
       }
     },
     link: {
