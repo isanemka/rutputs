@@ -128,6 +128,26 @@ export default defineComponent({
         ogImage: {
           property: 'og:image',
           content: 'https://www.rutputs.nu/og-image.png'
+        },
+        ogUrl: {
+          property: 'og:url',
+          content: `https://www.rutputs.nu/omrade/${area.slug}`
+        },
+        twitterCard: {
+          name: 'twitter:card',
+          content: 'summary_large_image'
+        },
+        twitterTitle: {
+          name: 'twitter:title',
+          content: area.title
+        },
+        twitterDescription: {
+          name: 'twitter:description',
+          content: area.description
+        },
+        twitterImage: {
+          name: 'twitter:image',
+          content: 'https://www.rutputs.nu/og-image.png'
         }
       },
       link: {

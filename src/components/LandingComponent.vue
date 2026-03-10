@@ -79,15 +79,84 @@ export default defineComponent({
       },
       ogTitle: {
         property: 'og:title',
-        content: 'Rutputs – Puts på RUT'
+        content: 'Rutputs – Fönsterputsning med RUT-avdrag i norra Stockholm'
       },
       ogDescription: {
         property: 'og:description',
-        content: 'Få dina fönster skinande rena – hemma eller på jobbet. Se ditt pris direkt!'
+        content: 'Boka professionell fönsterputs i norra Stockholm. Snabbt, enkelt och prisvärt!'
       },
       ogImage: {
         property: 'og:image',
         content: 'https://www.rutputs.nu/og-image.png'
+      },
+      ogUrl: {
+        property: 'og:url',
+        content: 'https://www.rutputs.nu'
+      },
+      twitterCard: {
+        name: 'twitter:card',
+        content: 'summary_large_image'
+      },
+      twitterTitle: {
+        name: 'twitter:title',
+        content: 'Rutputs – Fönsterputsning med RUT-avdrag i norra Stockholm'
+      },
+      twitterDescription: {
+        name: 'twitter:description',
+        content: 'Boka professionell fönsterputs i norra Stockholm. Snabbt, enkelt och prisvärt!'
+      },
+      twitterImage: {
+        name: 'twitter:image',
+        content: 'https://www.rutputs.nu/og-image.png'
+      }
+    },
+    link: {
+      canonical: {
+        rel: 'canonical',
+        href: 'https://www.rutputs.nu'
+      }
+    },
+    script: {
+      faqSchema: {
+        type: 'application/ld+json',
+        innerHTML: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          'mainEntity': [
+            {
+              '@type': 'Question',
+              'name': 'Vad kostar fönsterputsning med RUT-avdrag?',
+              'acceptedAnswer': {
+                '@type': 'Answer',
+                'text': 'Fönsterputsning med RUT-avdrag börjar från 350 kr. Det exakta priset beror på antal fönster och typ av bostad. Använd vår priskalkylator för att se ditt pris direkt.'
+              }
+            },
+            {
+              '@type': 'Question',
+              'name': 'Vilka områden täcker Rutputs?',
+              'acceptedAnswer': {
+                '@type': 'Answer',
+                'text': 'Rutputs täcker norra Stockholm: Järfälla, Bromma, Kista, Solna, Sundbyberg, Spånga, Sollentuna och Täby.'
+              }
+            },
+            {
+              '@type': 'Question',
+              'name': 'Hur bokar jag fönsterputsning?',
+              'acceptedAnswer': {
+                '@type': 'Answer',
+                'text': 'Fyll i formuläret på vår prissida så räknas ditt pris ut direkt. Vi kontaktar dig sedan för att boka en tid som passar.'
+              }
+            },
+            {
+              '@type': 'Question',
+              'name': 'Putsar ni även företagsfönster?',
+              'acceptedAnswer': {
+                '@type': 'Answer',
+                'text': 'Ja, vi erbjuder professionell fönsterputsning för kontor och företagslokaler i norra Stockholm. Kontakta oss för en offert.'
+              }
+            }
+          ]
+        })
       }
     }
   },

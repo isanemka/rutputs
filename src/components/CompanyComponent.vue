@@ -79,6 +79,44 @@ export default defineComponent({
       description: {
         name: 'description',
         content: 'Professionell fönsterputsning för företag i norra Stockholm. Regelbunden service, flexibla avtal och skinande rena fönster för ditt kontor.'
+      },
+      ogTitle: {
+        property: 'og:title',
+        content: 'Företagskunder – Fönsterputsning för kontor i Stockholm | Rutputs'
+      },
+      ogDescription: {
+        property: 'og:description',
+        content: 'Professionell fönsterputsning för företag i norra Stockholm. Regelbunden service, flexibla avtal och skinande rena fönster.'
+      },
+      ogImage: {
+        property: 'og:image',
+        content: 'https://www.rutputs.nu/og-image.png'
+      },
+      ogUrl: {
+        property: 'og:url',
+        content: 'https://www.rutputs.nu/foretag'
+      },
+      twitterCard: {
+        name: 'twitter:card',
+        content: 'summary_large_image'
+      },
+      twitterTitle: {
+        name: 'twitter:title',
+        content: 'Företagskunder – Fönsterputsning för kontor i Stockholm | Rutputs'
+      },
+      twitterDescription: {
+        name: 'twitter:description',
+        content: 'Professionell fönsterputsning för företag i norra Stockholm.'
+      },
+      twitterImage: {
+        name: 'twitter:image',
+        content: 'https://www.rutputs.nu/og-image.png'
+      }
+    },
+    link: {
+      canonical: {
+        rel: 'canonical',
+        href: 'https://www.rutputs.nu/foretag'
       }
     }
   },

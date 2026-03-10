@@ -191,6 +191,53 @@ import { useConsent } from 'src/composables/useConsent';
 
 export default defineComponent({
   name: 'PrivacyPolicyComponent',
+  meta: {
+    title: 'Integritetspolicy – Rutputs',
+    meta: {
+      description: {
+        name: 'description',
+        content: 'Läs om hur Rutputs hanterar dina personuppgifter, cookies och webbanalys i enlighet med GDPR.'
+      },
+      ogTitle: {
+        property: 'og:title',
+        content: 'Integritetspolicy – Rutputs'
+      },
+      ogDescription: {
+        property: 'og:description',
+        content: 'Läs om hur Rutputs hanterar dina personuppgifter, cookies och webbanalys i enlighet med GDPR.'
+      },
+      ogImage: {
+        property: 'og:image',
+        content: 'https://www.rutputs.nu/og-image.png'
+      },
+      ogUrl: {
+        property: 'og:url',
+        content: 'https://www.rutputs.nu/integritetspolicy'
+      },
+      twitterCard: {
+        name: 'twitter:card',
+        content: 'summary_large_image'
+      },
+      twitterTitle: {
+        name: 'twitter:title',
+        content: 'Integritetspolicy – Rutputs'
+      },
+      twitterDescription: {
+        name: 'twitter:description',
+        content: 'Läs om hur Rutputs hanterar dina personuppgifter i enlighet med GDPR.'
+      },
+      twitterImage: {
+        name: 'twitter:image',
+        content: 'https://www.rutputs.nu/og-image.png'
+      }
+    },
+    link: {
+      canonical: {
+        rel: 'canonical',
+        href: 'https://www.rutputs.nu/integritetspolicy'
+      }
+    }
+  },
   setup() {
     const {
       consentStatus,

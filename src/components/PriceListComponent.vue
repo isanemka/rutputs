@@ -246,6 +246,44 @@ export default defineComponent({
       description: {
         name: 'description',
         content: 'Se priser för fönsterputsning i norra Stockholm. Räkna ut ditt pris direkt – från 350 kr med RUT-avdrag. Enkel offertförfrågan online.'
+      },
+      ogTitle: {
+        property: 'og:title',
+        content: 'Prislista – Fönsterputsning med RUT-avdrag | Rutputs'
+      },
+      ogDescription: {
+        property: 'og:description',
+        content: 'Se priser för fönsterputsning i norra Stockholm. Räkna ut ditt pris direkt – från 350 kr med RUT-avdrag.'
+      },
+      ogImage: {
+        property: 'og:image',
+        content: 'https://www.rutputs.nu/og-image.png'
+      },
+      ogUrl: {
+        property: 'og:url',
+        content: 'https://www.rutputs.nu/pris'
+      },
+      twitterCard: {
+        name: 'twitter:card',
+        content: 'summary_large_image'
+      },
+      twitterTitle: {
+        name: 'twitter:title',
+        content: 'Prislista – Fönsterputsning med RUT-avdrag | Rutputs'
+      },
+      twitterDescription: {
+        name: 'twitter:description',
+        content: 'Se priser för fönsterputsning i norra Stockholm. Från 350 kr med RUT-avdrag.'
+      },
+      twitterImage: {
+        name: 'twitter:image',
+        content: 'https://www.rutputs.nu/og-image.png'
+      }
+    },
+    link: {
+      canonical: {
+        rel: 'canonical',
+        href: 'https://www.rutputs.nu/pris'
       }
     }
   },
