@@ -3,7 +3,7 @@
     <q-header elevated class="bg-primary text-secondary" height-hint="98">
 
 <!-- Navigation -->
-      <q-tabs align="left" role="tablist">
+      <q-tabs align="left" role="navigation" aria-label="Huvudnavigering">
         <q-img
           src="/icons/favicon.png"
           alt="Rutputs logotyp"
@@ -27,6 +27,8 @@
                 alt="Rutputs – Fönsterputsning i norra Stockholm"
                 style="max-width: 900px;"
                 src="/icons/main_logo.png"
+                width="900"
+                height="200"
                 fetchpriority="high"
               />
             </a>
@@ -34,7 +36,7 @@
           <component :is="currentComponent" :title="currentComponent" />
       </q-page-container>
 
-    <q-footer id="kontakt" elevated class="bg-primary text-secondary">
+    <q-footer id="kontakt" elevated class="bg-primary text-secondary" role="contentinfo">
       <div class="row justify-center text-overline">
         <div class="col">
           <p class="q-ma-xl text-uppercase text-bold text-subtitle1 text-center">
