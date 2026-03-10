@@ -60,7 +60,7 @@
           />
         </div>
         <div class="row justify-center q-pb-lg">
-          <a href="#kontakt" class="scroll-arrow text-primary">
+          <a href="#kontakt" class="scroll-arrow text-primary" aria-label="Scrolla till kontaktsektionen">
             <q-icon name="keyboard_arrow_down" size="2.5rem" />
           </a>
         </div>
@@ -88,12 +88,18 @@ export default defineComponent({
 <style scoped>
 .scroll-arrow {
   display: inline-block;
-  animation: bounce 1.5s infinite;
+  animation: scroll-arrow-bounce 1.5s infinite;
   text-decoration: none;
 }
 
-@keyframes bounce {
+@keyframes scroll-arrow-bounce {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(8px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-arrow {
+    animation: none;
+  }
 }
 </style>
