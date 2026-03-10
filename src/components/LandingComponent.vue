@@ -49,9 +49,14 @@
                 <br>
                 <br>
                 Med RUT-avdraget kan du få dina fönster skinande rena från 350 kronor!
-                Jag utgår från Järfälla men åker gärna till Spånga, Bromma, Sollentuna, Solna, Kista, Sundbyberg, Täby och övriga delar av norra Stockholm.
-                <br>
+                Jag utgår från Järfälla men åker gärna till övriga delar av norra Stockholm.
                 Fyll i det enkla formuläret för att se DITT pris.
+                <br>
+                <br>
+                <strong>Områden jag täcker:</strong>
+                <span v-for="(a, i) in areaLinks" :key="a.slug">
+                  <router-link :to="'/omrade/' + a.slug" class="text-accent">{{ a.name }}</router-link><span v-if="i < areaLinks.length - 1">, </span>
+                </span>
               </q-card-section>
             </q-card>
           </div>
@@ -62,6 +67,7 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue';
+import { areas } from 'src/data/areas';
 export default defineComponent({
   name: 'LandingComponent',
   meta: {
@@ -119,8 +125,9 @@ export default defineComponent({
       randomLandscapeImage.value = landscapeImages[Math.floor(Math.random() * landscapeImages.length)];
       randomPortraitImage.value = portraitImages[Math.floor(Math.random() * portraitImages.length)];}
     );
+    const areaLinks = areas;
     return {
-      randomLandscapeImage, randomPortraitImage
+      areaLinks, randomLandscapeImage, randomPortraitImage
     };
   },
   methods: {
