@@ -60,6 +60,16 @@
           </div>
         </div>
         <q-separator color="accent" />
+        <div class="row justify-center q-pa-sm">
+          <div class="col text-center">
+            <p class="text-subtitle2 text-uppercase text-bold q-mb-xs">Områden</p>
+            <p class="text-caption">
+              <router-link v-for="(a, i) in areaLinks" :key="a.slug" :to="'/omrade/' + a.slug" class="text-secondary">
+                {{ a.name }}</router-link><span v-if="i < areaLinks.length - 1" class="q-mx-xs">|</span>
+            </p>
+          </div>
+        </div>
+        <q-separator color="accent" />
         <div class="row justify-center text-overline">
           <div class="col">
             <p class="q-ma-md text-subtitle2 text-center">
@@ -85,8 +95,10 @@ import Company from 'src/components/CompanyComponent.vue';
 import Confirmation from 'src/components/ConfirmationComponent.vue';
 import FormFail from 'src/components/FormFailComponent.vue';
 import PrivacyPolicy from 'src/components/PrivacyPolicyComponent.vue';
+import Area from 'src/components/AreaComponent.vue';
 import CookieConsentBanner from 'src/components/CookieConsentBanner.vue';
 import { useConsent } from 'src/composables/useConsent';
+import { areas } from 'src/data/areas';
 
 export default defineComponent({
   name: 'App',
@@ -97,6 +109,7 @@ export default defineComponent({
     Confirmation,
     FormFail,
     PrivacyPolicy,
+    Area,
     CookieConsentBanner,
   },
   setup() {
@@ -104,7 +117,8 @@ export default defineComponent({
     const { triggerShowBanner } = useConsent();
 
     const currentComponent = computed(() => {
-      switch (router.currentRoute.value.path) {
+      const path = router.currentRoute.value.path;
+      switch (path) {
         case '/':
           return 'Landing';
         case '/pris':
@@ -118,6 +132,9 @@ export default defineComponent({
         case '/integritetspolicy':
           return 'PrivacyPolicy';
         default:
+          if (path.startsWith('/omrade/')) {
+            return 'Area';
+          }
           return 'Landing';
       }
     });
@@ -149,9 +166,12 @@ export default defineComponent({
       triggerShowBanner();
     };
 
+    const areaLinks = areas;
+
     return {
       currentComponent,
       currentYear,
+      areaLinks,
       goToLanding,
       goToPriceList,
       goToCompany,

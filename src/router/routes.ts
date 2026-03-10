@@ -5,6 +5,7 @@ import CompanyComponent from 'components/CompanyComponent.vue';
 import ConfirmationComponent from 'src/components/ConfirmationComponent.vue';
 import FormFailComponent from 'src/components/FormFailComponent.vue';
 import PrivacyPolicyComponent from 'src/components/PrivacyPolicyComponent.vue';
+import AreaComponent from 'src/components/AreaComponent.vue';
 
 const routes: RouteRecordRaw[] = [
   {
@@ -34,6 +35,10 @@ const routes: RouteRecordRaw[] = [
       {
         path: 'integritetspolicy',
         component: PrivacyPolicyComponent,
+      },
+      {
+        path: 'omrade/:area',
+        component: AreaComponent,
       },
     ],
   },
