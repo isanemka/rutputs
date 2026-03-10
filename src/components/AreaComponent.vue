@@ -93,16 +93,10 @@ export default defineComponent({
       randomPortraitImage.value = portraitImages[Math.floor(Math.random() * portraitImages.length)];
     });
 
-    const textStyle = computed(() => {
-      // Will be checked at runtime via useQuasar
-      return {};
-    });
-
     return {
       area,
       randomLandscapeImage,
       randomPortraitImage,
-      textStyle,
     };
   },
   meta() {
