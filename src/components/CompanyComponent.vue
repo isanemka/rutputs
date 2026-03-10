@@ -30,10 +30,10 @@
             </q-card-section>
             <q-card-actions align="center" class="q-pb-md">
               <q-btn
-                label="Begär offert"
+                label="Ta kontakt"
                 color="accent"
                 class="text-black q-pa-sm"
-                to="/pris"
+                @click="scrollToFooter"
               />
             </q-card-actions>
           </q-card>
@@ -66,6 +66,14 @@
 import { defineComponent } from 'vue';
 export default defineComponent({
   name: 'CompanyComponent',
+  methods: {
+    scrollToFooter() {
+      const footer = document.querySelector('.q-footer');
+      if (footer) {
+        footer.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  },
   meta: {
     title: 'Företagskunder – Fönsterputsning för kontor i Stockholm | Rutputs',
     meta: {
