@@ -197,7 +197,7 @@
                   <q-dialog v-model="showTermsDialog">
                     <q-card>
                       <q-card-section>
-                        <h4 class="text-center">Personuppgifter</h3>
+                        <h3 class="text-center">Personuppgifter</h3>
                         <p>
                           När du fyller i vårt kontaktformulär på denna webbplats samlar vi
                           in dina personuppgifter, inklusive namn, adress, telefonnummer och
