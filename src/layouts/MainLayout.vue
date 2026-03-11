@@ -3,7 +3,7 @@
     <q-header elevated class="bg-primary text-secondary" height-hint="98">
 
 <!-- Navigation -->
-      <q-tabs align="left" role="tablist">
+      <nav aria-label="Huvudnavigering" class="row items-center no-wrap">
         <q-img
           src="/icons/favicon.png"
           alt="Rutputs logotyp"
@@ -12,10 +12,12 @@
           style="height: 30px; max-width: 30px"
           @click="goToLanding()"
         />
-        <q-route-tab to="/" label="Puts på rut" @click="goToLanding()" />
-        <q-route-tab to="/pris" label="Prislista" @click="goToPriceList()" />
-        <q-route-tab to="/foretag" label="Företag" @click="goToCompany()" />
-      </q-tabs>
+        <q-tabs align="left">
+          <q-route-tab to="/" label="Puts på rut" @click="goToLanding()" />
+          <q-route-tab to="/pris" label="Prislista" @click="goToPriceList()" />
+          <q-route-tab to="/foretag" label="Företag" @click="goToCompany()" />
+        </q-tabs>
+      </nav>
     </q-header>
 
 <!-- Page content -->
@@ -27,6 +29,8 @@
                 alt="Rutputs – Fönsterputsning i norra Stockholm"
                 style="max-width: 900px;"
                 src="/icons/main_logo.png"
+                width="900"
+                height="200"
                 fetchpriority="high"
               />
             </a>
@@ -34,7 +38,7 @@
           <component :is="currentComponent" :title="currentComponent" />
       </q-page-container>
 
-    <q-footer id="kontakt" elevated class="bg-primary text-secondary">
+    <q-footer id="kontakt" elevated class="bg-primary text-secondary" role="contentinfo">
       <div class="row justify-center text-overline">
         <div class="col">
           <p class="q-ma-xl text-uppercase text-bold text-subtitle1 text-center">

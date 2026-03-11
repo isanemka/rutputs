@@ -87,7 +87,7 @@ export default defineComponent({
       },
       ogImage: {
         property: 'og:image',
-        content: 'https://www.rutputs.nu/og-image.png'
+        content: 'https://www.rutputs.nu/og-image.jpg'
       },
       ogUrl: {
         property: 'og:url',
@@ -107,7 +107,7 @@ export default defineComponent({
       },
       twitterImage: {
         name: 'twitter:image',
-        content: 'https://www.rutputs.nu/og-image.png'
+        content: 'https://www.rutputs.nu/og-image.jpg'
       }
     },
     link: {
