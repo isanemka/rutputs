@@ -3,7 +3,7 @@ import { inject } from '@vercel/analytics';
 import { useConsent } from 'src/composables/useConsent';
 import { watch } from 'vue';
 
-const GA_MEASUREMENT_ID = 'G-5SEKFW68XH';
+const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID || 'G-5SEKFW68XH';
 
 // Flag to prevent multiple analytics injections
 let analyticsInitialized = false;

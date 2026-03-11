@@ -159,15 +159,6 @@ export default defineComponent({
       }
     }
   },
-  props: {
-    title: {
-      type: String,
-      required: true
-    },
-    active: {
-      type: Boolean
-    }
-  },
   setup() {
     const areaLinks = areas;
     return {
