@@ -1,24 +1,23 @@
 <template>
   <q-page>
     <div class="row q-flex q-pa-md justify-center items-center text-center">
-      <q-parallax>
+      <section class="hero-section col-12">
+        <picture class="hero-media">
+          <source media="(min-width: 600px)" srcset="/img/25050.webp" type="image/webp">
+          <img
+            class="hero-image"
+            src="/img/15050.webp"
+            alt="Professionell fönsterputsning i norra Stockholm"
+            fetchpriority="high"
+            decoding="async"
+          >
+        </picture>
 
-        <!-- Display image in landscape mode for larger screens -->
-        <template v-if="$q.screen.gt.sm" v-slot:media>
-          <img :src="randomLandscapeImage" alt="Professionell fönsterputsning i norra Stockholm" style="opacity: 0.3;">
-        </template>
-
-        <!-- Display image in portrait mode for smaller screens -->
-        <template v-else v-slot:media>
-          <img :src="randomPortraitImage" alt="Fönsterputsare i Järfälla och norra Stockholm" style="opacity: 0.3;">
-        </template>
-          <div class="col-lg-6 col-md-8 col-xs-10">
-
+        <div class="hero-content col-lg-6 col-md-8 col-xs-10">
           <h1 :class="[$q.screen.lt.sm ? 'text-h5 q-pt-xl' : 'text-h2', 'text-bold text-primary text-uppercase']">
             Din rutputsare i norra Stockholm
           </h1>
 
-          <!-- CTA button to navigate to price list -->
           <q-btn
             class="q-pa-md q-mt-md text-black"
             label="Se vad det kostar"
@@ -26,7 +25,7 @@
             @click="goToPriceList"
           />
         </div>
-      </q-parallax>
+      </section>
 
         <!-- Card section -->
         <div class="row justify-center q-pt-md">
@@ -66,7 +65,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref } from 'vue';
+import { defineComponent } from 'vue';
 import { areas } from 'src/data/areas';
 export default defineComponent({
   name: 'LandingComponent',
@@ -160,43 +159,10 @@ export default defineComponent({
       }
     }
   },
-  props: {
-    title: {
-      type: String,
-      required: true
-    },
-    active: {
-      type: Boolean
-    }
-  },
   setup() {
-    // Array of landscape images for parallax effect on larger screens
-    const landscapeImages = [
-      '/img/25050.webp',
-      '/img/25051.webp',
-      '/img/25052.webp',
-      '/img/25053.webp',
-      '/img/25054.webp',
-      '/img/25055.webp'
-    ];
-    // Array of portrait images for parallax effect on smaller screens
-    const portraitImages = [
-      '/img/15050.webp',
-      '/img/15051.webp',
-      '/img/15052.webp',
-      '/img/15053.webp'
-    ];
-    // Reactive references for random images
-    const randomLandscapeImage = ref('');
-    const randomPortraitImage = ref('');
-    // Select random images on component mount
-    onMounted(() => {
-      randomLandscapeImage.value = landscapeImages[Math.floor(Math.random() * landscapeImages.length)];
-      randomPortraitImage.value = portraitImages[Math.floor(Math.random() * portraitImages.length)];}
-    );
     const areaLinks = areas;
     return {
-      areaLinks, randomLandscapeImage, randomPortraitImage
+      areaLinks
     };
   },
   methods: {
@@ -224,4 +190,36 @@ export default defineComponent({
 });
 </script>
 <style>
+.hero-section {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  min-height: clamp(360px, 62vw, 540px);
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.hero-media {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.3;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  min-height: clamp(360px, 62vw, 540px);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+}
 </style>

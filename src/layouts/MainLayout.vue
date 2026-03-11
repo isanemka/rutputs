@@ -35,7 +35,7 @@
               />
             </a>
           </div>
-          <component :is="currentComponent" :title="currentComponent" />
+          <router-view />
       </q-page-container>
 
     <q-footer id="kontakt" elevated class="bg-primary text-secondary" role="contentinfo">
@@ -93,13 +93,6 @@
 <script lang="ts">
 import { defineComponent, computed } from 'vue';
 import { useRouter } from 'vue-router';
-import Landing from 'src/components/LandingComponent.vue';
-import PriceList from 'src/components/PriceListComponent.vue';
-import Company from 'src/components/CompanyComponent.vue';
-import Confirmation from 'src/components/ConfirmationComponent.vue';
-import FormFail from 'src/components/FormFailComponent.vue';
-import PrivacyPolicy from 'src/components/PrivacyPolicyComponent.vue';
-import Area from 'src/components/AreaComponent.vue';
 import CookieConsentBanner from 'src/components/CookieConsentBanner.vue';
 import { useConsent } from 'src/composables/useConsent';
 import { areas } from 'src/data/areas';
@@ -107,41 +100,11 @@ import { areas } from 'src/data/areas';
 export default defineComponent({
   name: 'App',
   components: {
-    Landing,
-    PriceList,
-    Company,
-    Confirmation,
-    FormFail,
-    PrivacyPolicy,
-    Area,
     CookieConsentBanner,
   },
   setup() {
     const router = useRouter();
     const { triggerShowBanner } = useConsent();
-
-    const currentComponent = computed(() => {
-      const path = router.currentRoute.value.path;
-      switch (path) {
-        case '/':
-          return 'Landing';
-        case '/pris':
-          return 'PriceList';
-        case '/foretag':
-          return 'Company';
-        case '/bekraftelse':
-          return 'Confirmation';
-        case '/fel':
-          return 'FormFail';
-        case '/integritetspolicy':
-          return 'PrivacyPolicy';
-        default:
-          if (path.startsWith('/omrade/')) {
-            return 'Area';
-          }
-          return 'Landing';
-      }
-    });
 
     const currentYear = computed(() => new Date().getFullYear());
 
@@ -173,7 +136,6 @@ export default defineComponent({
     const areaLinks = areas;
 
     return {
-      currentComponent,
       currentYear,
       areaLinks,
       goToLanding,

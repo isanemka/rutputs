@@ -43,12 +43,6 @@ export default defineComponent({
       }
     }
   },
-  props: {
-    title: {
-      type: String,
-      required: true
-    },
-  },
   methods: {
     // Method to navigate back to landing page
     goToLanding() {

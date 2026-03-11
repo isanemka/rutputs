@@ -1,11 +1,4 @@
 import { RouteRecordRaw } from 'vue-router';
-import LandingComponent from 'components/LandingComponent.vue';
-import PriceListComponent from 'components/PriceListComponent.vue';
-import CompanyComponent from 'components/CompanyComponent.vue';
-import ConfirmationComponent from 'src/components/ConfirmationComponent.vue';
-import FormFailComponent from 'src/components/FormFailComponent.vue';
-import PrivacyPolicyComponent from 'src/components/PrivacyPolicyComponent.vue';
-import AreaComponent from 'src/components/AreaComponent.vue';
 
 const routes: RouteRecordRaw[] = [
   {
@@ -14,31 +7,31 @@ const routes: RouteRecordRaw[] = [
     children: [
       {
         path: '',
-        component: LandingComponent,
+        component: () => import('components/LandingComponent.vue'),
       },
       {
         path: 'pris',
-        component: PriceListComponent,
+        component: () => import('components/PriceListComponent.vue'),
       },
       {
         path: 'foretag',
-        component: CompanyComponent,
+        component: () => import('components/CompanyComponent.vue'),
       },
       {
         path: 'bekraftelse',
-        component: ConfirmationComponent,
+        component: () => import('src/components/ConfirmationComponent.vue'),
       },
       {
         path: 'fel',
-        component: FormFailComponent,
+        component: () => import('src/components/FormFailComponent.vue'),
       },
       {
         path: 'integritetspolicy',
-        component: PrivacyPolicyComponent,
+        component: () => import('src/components/PrivacyPolicyComponent.vue'),
       },
       {
         path: 'omrade/:area',
-        component: AreaComponent,
+        component: () => import('src/components/AreaComponent.vue'),
       },
     ],
   },
