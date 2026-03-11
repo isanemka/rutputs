@@ -3,7 +3,7 @@
     <q-header elevated class="bg-primary text-secondary" height-hint="98">
 
 <!-- Navigation -->
-      <q-tabs align="left" role="navigation" aria-label="Huvudnavigering">
+      <nav aria-label="Huvudnavigering" class="row items-center no-wrap">
         <q-img
           src="/icons/favicon.png"
           alt="Rutputs logotyp"
@@ -12,10 +12,12 @@
           style="height: 30px; max-width: 30px"
           @click="goToLanding()"
         />
-        <q-route-tab to="/" label="Puts på rut" @click="goToLanding()" />
-        <q-route-tab to="/pris" label="Prislista" @click="goToPriceList()" />
-        <q-route-tab to="/foretag" label="Företag" @click="goToCompany()" />
-      </q-tabs>
+        <q-tabs align="left">
+          <q-route-tab to="/" label="Puts på rut" @click="goToLanding()" />
+          <q-route-tab to="/pris" label="Prislista" @click="goToPriceList()" />
+          <q-route-tab to="/foretag" label="Företag" @click="goToCompany()" />
+        </q-tabs>
+      </nav>
     </q-header>
 
 <!-- Page content -->
