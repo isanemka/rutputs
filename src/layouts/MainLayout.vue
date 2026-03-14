@@ -43,23 +43,16 @@
         <div class="col">
           <p class="q-ma-xl text-uppercase text-bold text-subtitle1 text-center">
             Telefon: <a href="tel:+46734644604" class="text-secondary">0734-64 46 04</a>
+            <span class="q-mx-sm">|</span>
+            E-post: <a href="mailto:kontakt@rutputs.nu" class="text-secondary">kontakt@rutputs.nu</a>
           </p>
         </div>
       </div>
       <q-separator color="accent" />
         <div class="row justify-center text-overline">
           <div class="col">
-            <p class="q-ma-xl text-uppercase text-bold text-subtitle1 text-center">
-              E-post: <a href="mailto:kontakt@rutputs.nu" class="text-secondary">kontakt@rutputs.nu</a>
-            </p>
-          </div>
-        </div>
-        <q-separator color="accent" />
-        <div class="row justify-center text-overline">
-          <div class="col">
-            <p class="q-ma-md text-uppercase text-bold  text-subtitle3 text-center">
-              Copyright &copy;{{ currentYear }} | Webbplats av
-              <a href="https://pixelpioneer.se" target="_blank" rel="noopener" class="text-accent">PixelPioneer</a>
+            <p class="q-ma-md text-uppercase text-bold text-subtitle2 text-center">
+              Godkänd för F-skatt
             </p>
           </div>
         </div>
@@ -68,15 +61,22 @@
           <div class="col text-center">
             <p class="text-subtitle2 text-uppercase text-bold q-mb-xs">Områden</p>
             <p class="text-caption">
-              <router-link v-for="(a, i) in areaLinks" :key="a.slug" :to="'/omrade/' + a.slug" class="text-secondary">
-                {{ a.name + ' '}}</router-link><span v-if="i < areaLinks.length - 1" class="q-mx-xs">|</span>
+              <template v-for="(a, i) in areaLinks" :key="a.slug">
+                <router-link :to="'/omrade/' + a.slug" class="text-secondary">
+                  {{ a.name + ' '}}
+                </router-link>
+                <span v-if="i < areaLinks.length - 1" class="q-mx-xs">|</span>
+              </template>
             </p>
           </div>
         </div>
         <q-separator color="accent" />
         <div class="row justify-center text-overline">
           <div class="col">
-            <p class="q-ma-md text-subtitle2 text-center">
+            <p class="q-ma-md text-uppercase text-bold  text-subtitle3 text-center">
+              Copyright &copy;{{ currentYear }} | Webbplats av en
+              <a href="https://pixelpioneer.se" target="_blank" rel="noopener" class="text-accent">PixelPioneer</a>
+              <span class="q-mx-sm">|</span>
               <router-link to="/integritetspolicy" class="text-secondary">Integritetspolicy</router-link>
               <span class="q-mx-sm">|</span>
               <a href="#" class="text-secondary" @click.prevent="openCookieSettings">Cookieinställningar</a>
