@@ -43,7 +43,7 @@
         <div class="col">
           <p class="q-ma-xl text-uppercase text-bold text-subtitle1 text-center">
             Telefon: <a href="tel:+46734644604" class="text-secondary">0734-64 46 04</a>
-            <span class="q-mx-sm">|</span>
+            <span class="q-mx-sm" aria-hidden="true">|</span>
             E-post: <a href="mailto:kontakt@rutputs.nu" class="text-secondary">kontakt@rutputs.nu</a>
           </p>
         </div>
@@ -65,7 +65,7 @@
                 <router-link :to="'/omrade/' + a.slug" class="text-secondary">
                   {{ a.name + ' '}}
                 </router-link>
-                <span v-if="i < areaLinks.length - 1" class="q-mx-xs">|</span>
+                <span v-if="i < areaLinks.length - 1" class="q-mx-xs" aria-hidden="true">|</span>
               </template>
             </p>
           </div>
@@ -76,9 +76,9 @@
             <p class="q-ma-md text-uppercase text-bold  text-subtitle3 text-center">
               Copyright &copy;{{ currentYear }} | Webbplats av
               <a href="https://pixelpioneer.se" target="_blank" rel="noopener" class="text-accent">PixelPioneer</a>
-              <span class="q-mx-sm">|</span>
+              <span class="q-mx-sm" aria-hidden="true">|</span>
               <router-link to="/integritetspolicy" class="text-secondary">Integritetspolicy</router-link>
-              <span class="q-mx-sm">|</span>
+              <span class="q-mx-sm" aria-hidden="true">|</span>
               <a href="#" class="text-secondary" @click.prevent="openCookieSettings">Cookieinställningar</a>
             </p>
           </div>
