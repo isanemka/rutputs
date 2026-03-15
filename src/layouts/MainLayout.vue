@@ -43,14 +43,30 @@
         <div class="col">
           <p class="q-ma-xl text-uppercase text-bold text-subtitle1 text-center">
             Telefon: <a href="tel:+46734644604" class="text-secondary">0734-64 46 04</a>
+            <span class="q-mx-sm" aria-hidden="true">|</span>
+            E-post: <a href="mailto:kontakt@rutputs.nu" class="text-secondary">kontakt@rutputs.nu</a>
           </p>
         </div>
       </div>
       <q-separator color="accent" />
         <div class="row justify-center text-overline">
           <div class="col">
-            <p class="q-ma-xl text-uppercase text-bold text-subtitle1 text-center">
-              E-post: <a href="mailto:kontakt@rutputs.nu" class="text-secondary">kontakt@rutputs.nu</a>
+            <p class="q-ma-md text-uppercase text-bold text-subtitle2 text-center">
+              Godkänd för F-skatt
+            </p>
+          </div>
+        </div>
+        <q-separator color="accent" />
+        <div class="row justify-center q-pa-sm">
+          <div class="col text-center">
+            <p class="text-subtitle2 text-uppercase text-bold q-mb-xs">Områden</p>
+            <p class="text-caption">
+              <template v-for="(a, i) in areaLinks" :key="a.slug">
+                <router-link :to="'/omrade/' + a.slug" class="text-secondary">
+                  {{ a.name + ' '}}
+                </router-link>
+                <span v-if="i < areaLinks.length - 1" class="q-mx-xs" aria-hidden="true">|</span>
+              </template>
             </p>
           </div>
         </div>
@@ -60,25 +76,9 @@
             <p class="q-ma-md text-uppercase text-bold  text-subtitle3 text-center">
               Copyright &copy;{{ currentYear }} | Webbplats av
               <a href="https://pixelpioneer.se" target="_blank" rel="noopener" class="text-accent">PixelPioneer</a>
-            </p>
-          </div>
-        </div>
-        <q-separator color="accent" />
-        <div class="row justify-center q-pa-sm">
-          <div class="col text-center">
-            <p class="text-subtitle2 text-uppercase text-bold q-mb-xs">Områden</p>
-            <p class="text-caption">
-              <router-link v-for="(a, i) in areaLinks" :key="a.slug" :to="'/omrade/' + a.slug" class="text-secondary">
-                {{ a.name + ' '}}</router-link><span v-if="i < areaLinks.length - 1" class="q-mx-xs">|</span>
-            </p>
-          </div>
-        </div>
-        <q-separator color="accent" />
-        <div class="row justify-center text-overline">
-          <div class="col">
-            <p class="q-ma-md text-subtitle2 text-center">
+              <span class="q-mx-sm" aria-hidden="true">|</span>
               <router-link to="/integritetspolicy" class="text-secondary">Integritetspolicy</router-link>
-              <span class="q-mx-sm">|</span>
+              <span class="q-mx-sm" aria-hidden="true">|</span>
               <a href="#" class="text-secondary" @click.prevent="openCookieSettings">Cookieinställningar</a>
             </p>
           </div>

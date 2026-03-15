@@ -1,12 +1,12 @@
 <template>
   <q-page>
     <div class="row q-flex q-pa-md justify-center items-center text-center">
-      <section class="hero-section col-12">
-        <picture class="hero-media">
-          <source media="(min-width: 600px)" srcset="/img/25050.webp" type="image/webp">
+      <section ref="heroSection" class="hero-section col-12">
+        <picture class="hero-media" :style="heroMediaStyle">
+          <source media="(min-width: 600px)" :srcset="randomLandscapeImage" type="image/webp">
           <img
             class="hero-image"
-            src="/img/15050.webp"
+            :src="randomPortraitImage"
             alt="Professionell fönsterputsning i norra Stockholm"
             fetchpriority="high"
             decoding="async"
@@ -52,7 +52,7 @@
                 Fyll i det enkla formuläret för att se DITT pris.
                 <br>
                 <br>
-                <strong>Områden jag täcker:</strong>
+                <strong>Några av områdena jag täcker: </strong>
                 <span v-for="(a, i) in areaLinks" :key="a.slug">
                   <router-link :to="'/omrade/' + a.slug" class="text-accent">{{ a.name }}</router-link><span v-if="i < areaLinks.length - 1">, </span>
                 </span>
@@ -65,8 +65,25 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { computed, defineComponent, onBeforeUnmount, onMounted, ref } from 'vue';
 import { areas } from 'src/data/areas';
+
+const landscapeImages = [
+  '/img/25050.webp',
+  '/img/25051.webp',
+  '/img/25052.webp',
+  '/img/25053.webp',
+  '/img/25054.webp',
+  '/img/25055.webp'
+];
+
+const portraitImages = [
+  '/img/15050.webp',
+  '/img/15051.webp',
+  '/img/15052.webp',
+  '/img/15053.webp'
+];
+
 export default defineComponent({
   name: 'LandingComponent',
   meta: {
@@ -160,9 +177,72 @@ export default defineComponent({
     }
   },
   setup() {
+    const heroSection = ref<HTMLElement | null>(null);
+    const parallaxOffset = ref(0);
+    const randomLandscapeImage = ref(landscapeImages[0]);
+    const randomPortraitImage = ref(portraitImages[0]);
+    let animationFrameId = 0;
+
+    const pickRandomImage = (images: string[]) => images[Math.floor(Math.random() * images.length)];
+
+    const updateParallax = () => {
+      if (typeof window === 'undefined' || !heroSection.value) {
+        return;
+      }
+
+      const rect = heroSection.value.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+
+      if (rect.bottom <= 0 || rect.top >= viewportHeight) {
+        return;
+      }
+
+      const scrollProgress = Math.min(Math.max(-rect.top, 0), 200);
+      parallaxOffset.value = Math.min(scrollProgress * 0.12, 24);
+    };
+
+    const scheduleParallaxUpdate = () => {
+      if (animationFrameId) {
+        return;
+      }
+
+      animationFrameId = window.requestAnimationFrame(() => {
+        animationFrameId = 0;
+        updateParallax();
+      });
+    };
+
+    onMounted(() => {
+      randomLandscapeImage.value = pickRandomImage(landscapeImages);
+      randomPortraitImage.value = pickRandomImage(portraitImages);
+      updateParallax();
+
+      window.addEventListener('scroll', scheduleParallaxUpdate, { passive: true });
+      window.addEventListener('resize', scheduleParallaxUpdate, { passive: true });
+    });
+
+    onBeforeUnmount(() => {
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('scroll', scheduleParallaxUpdate);
+        window.removeEventListener('resize', scheduleParallaxUpdate);
+      }
+
+      if (animationFrameId) {
+        window.cancelAnimationFrame(animationFrameId);
+      }
+    });
+
+    const heroMediaStyle = computed(() => ({
+      transform: `translate3d(0, ${parallaxOffset.value}px, 0) scale(1.08)`,
+    }));
+
     const areaLinks = areas;
     return {
-      areaLinks
+      areaLinks,
+      heroMediaStyle,
+      heroSection,
+      randomLandscapeImage,
+      randomPortraitImage
     };
   },
   methods: {
@@ -202,6 +282,7 @@ export default defineComponent({
 .hero-media {
   position: absolute;
   inset: 0;
+  will-change: transform;
 }
 
 .hero-image {
@@ -209,6 +290,7 @@ export default defineComponent({
   height: 100%;
   object-fit: cover;
   opacity: 0.3;
+  transform: scale(1.01);
 }
 
 .hero-content {

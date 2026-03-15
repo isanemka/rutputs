@@ -3,19 +3,25 @@ import { inject } from '@vercel/analytics';
 import { useConsent } from 'src/composables/useConsent';
 import { watch } from 'vue';
 
-const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID || 'G-5SEKFW68XH';
+const GA_MEASUREMENT_ID =
+  import.meta.env.VITE_GA_MEASUREMENT_ID || 'G-5SEKFW68XH';
 
 // Flag to prevent multiple analytics injections
 let analyticsInitialized = false;
 let googleAnalyticsInitialized = false;
 
 function runWhenIdle(callback: () => void) {
-  if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+  if (typeof window === 'undefined') {
+    setTimeout(callback, 1);
+    return;
+  }
+
+  if ('requestIdleCallback' in window) {
     window.requestIdleCallback(callback, { timeout: 2000 });
     return;
   }
 
-  window.setTimeout(callback, 1);
+  setTimeout(callback, 1);
 }
 
 function initializeAnalytics() {
@@ -57,10 +63,6 @@ declare global {
   interface Window {
     dataLayer: unknown[][];
     gtag: (...args: unknown[]) => void;
-    requestIdleCallback?: (
-      callback: IdleRequestCallback,
-      options?: IdleRequestOptions
-    ) => number;
   }
 }
 
