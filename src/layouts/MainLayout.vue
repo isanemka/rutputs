@@ -4,18 +4,19 @@
 
 <!-- Navigation -->
       <nav aria-label="Huvudnavigering" class="row items-center no-wrap top-nav">
-        <q-img
-          src="/icons/favicon.png"
-          alt="Rutputs logotyp"
-          role="img"
-          class="q-mx-md top-nav__logo"
-          style="height: 30px; max-width: 30px"
-          @click="goToLanding()"
-        />
+        <router-link to="/" aria-label="Gå till startsidan" class="top-nav__logo-link q-mx-md">
+          <q-img
+            src="/icons/favicon.png"
+            alt="Rutputs logotyp"
+            role="img"
+            class="top-nav__logo"
+            style="height: 30px; max-width: 30px"
+          />
+        </router-link>
         <q-tabs align="left" class="top-nav__tabs">
-          <q-route-tab to="/" label="Puts på rut" class="top-nav__tab" @click="goToLanding()" />
-          <q-route-tab to="/pris" label="Prislista" class="top-nav__tab" @click="goToPriceList()" />
-          <q-route-tab to="/foretag" label="Företag" class="top-nav__tab" @click="goToCompany()" />
+          <q-route-tab to="/" label="Puts på rut" class="top-nav__tab" />
+          <q-route-tab to="/pris" label="Prislista" class="top-nav__tab" />
+          <q-route-tab to="/foretag" label="Företag" class="top-nav__tab" />
         </q-tabs>
       </nav>
     </q-header>
@@ -113,14 +114,6 @@ export default defineComponent({
       router.push('/');
     };
 
-    const goToPriceList = () => {
-      router.push('/pris');
-    };
-
-    const goToCompany = () => {
-      router.push('/foretag');
-    };
-
     const goToConfirmation = () => {
       router.push('/bekraftelse');
     };
@@ -140,8 +133,6 @@ export default defineComponent({
       currentYear,
       areaLinks,
       goToLanding,
-      goToPriceList,
-      goToCompany,
       goToConfirmation,
       goToFormFail,
       openCookieSettings,
@@ -160,6 +151,10 @@ export default defineComponent({
 .top-nav__tabs {
   flex: 1 1 auto;
   min-width: 0;
+}
+
+.top-nav__logo-link {
+  display: inline-flex;
 }
 
 .top-nav__tab {
