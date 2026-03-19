@@ -1,6 +1,6 @@
 import { ref, readonly } from 'vue';
 
-const CONSENT_KEY = 'analytics-consent';
+export const CONSENT_KEY = 'analytics-consent';
 
 export type ConsentStatus = 'pending' | 'accepted' | 'rejected';
 

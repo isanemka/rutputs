@@ -1,12 +1,11 @@
 import { boot } from 'quasar/wrappers';
 import { inject } from '@vercel/analytics';
-import { useConsent } from 'src/composables/useConsent';
+import { CONSENT_KEY, useConsent } from 'src/composables/useConsent';
 import { watch } from 'vue';
 
 const GA_MEASUREMENT_ID =
   import.meta.env.VITE_GA_MEASUREMENT_ID || 'G-5SEKFW68XH';
 const GTM_ID = import.meta.env.VITE_GTM_ID;
-const CONSENT_KEY = 'analytics-consent';
 
 // Flag to prevent multiple analytics injections
 let analyticsInitialized = false;
@@ -136,8 +135,8 @@ function initializeAllowedAnalytics() {
 
 declare global {
   interface Window {
-    dataLayer: Array<Record<string, unknown> | unknown[]>;
-    gtag: (...args: unknown[]) => void;
+    dataLayer?: Array<Record<string, unknown> | unknown[]>;
+    gtag?: (...args: unknown[]) => void;
   }
 }
 
