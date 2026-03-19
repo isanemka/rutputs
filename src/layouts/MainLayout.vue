@@ -361,7 +361,7 @@ export default defineComponent({
   }
 
   .top-nav {
-    width: min(100% - 0.75rem, 1180px);
+    width: min(1180px, calc(100% - 0.75rem));
     padding: 0.45rem 0;
     gap: 0.45rem;
   }
@@ -428,7 +428,7 @@ export default defineComponent({
   }
 
   .site-footer__inner {
-    width: min(100% - 0.75rem, 1180px);
+    width: min(1180px, calc(100% - 0.75rem));
     padding: 1rem 0 1.5rem;
   }
 

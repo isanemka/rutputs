@@ -306,11 +306,6 @@ export default defineComponent({
     goToPriceList() {
       this.$router.push('/pris');
     }
-  },
-  computed: {
-    textStyle() {
-      return {};
-    }
   }
 });
 </script>

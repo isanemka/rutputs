@@ -253,11 +253,6 @@ export default defineComponent({
         }
       }
     };
-  },
-  computed: {
-    textStyle() {
-      return {};
-    }
   }
 });
 </script>
