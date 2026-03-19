@@ -188,23 +188,24 @@
 <script lang="ts">
 import { defineComponent, computed } from 'vue';
 import { useConsent } from 'src/composables/useConsent';
+import { privacySeo } from 'src/data/seo';
 
 export default defineComponent({
   name: 'PrivacyPolicyComponent',
   meta: {
-    title: 'Integritetspolicy – Rutputs',
+    title: privacySeo.title,
     meta: {
       description: {
         name: 'description',
-        content: 'Läs om hur Rutputs hanterar dina personuppgifter, cookies och webbanalys i enlighet med GDPR.'
+        content: privacySeo.description
       },
       ogTitle: {
         property: 'og:title',
-        content: 'Integritetspolicy – Rutputs'
+        content: privacySeo.title
       },
       ogDescription: {
         property: 'og:description',
-        content: 'Läs om hur Rutputs hanterar dina personuppgifter, cookies och webbanalys i enlighet med GDPR.'
+        content: privacySeo.description
       },
       ogImage: {
         property: 'og:image',
@@ -220,11 +221,11 @@ export default defineComponent({
       },
       twitterTitle: {
         name: 'twitter:title',
-        content: 'Integritetspolicy – Rutputs'
+        content: privacySeo.title
       },
       twitterDescription: {
         name: 'twitter:description',
-        content: 'Läs om hur Rutputs hanterar dina personuppgifter i enlighet med GDPR.'
+        content: privacySeo.description
       },
       twitterImage: {
         name: 'twitter:image',

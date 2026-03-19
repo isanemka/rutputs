@@ -1,5 +1,20 @@
 <template>
     <q-page>
+      <div class="row justify-center q-pt-md q-px-md">
+        <div class="col-12 col-md-8 col-lg-7 text-primary">
+          <h1 class="text-h4 text-md-h3 text-primary text-center text-bold q-mb-md">
+            Pris på fönsterputsning med RUT-avdrag
+          </h1>
+          <p class="text-body1 text-center q-mb-md">
+            Här kan du räkna ut priset för fönsterputsning i norra Stockholm direkt online.
+            Priset börjar från 350 kr efter RUT-avdrag och du ser snabbt vad som gäller för din bostad.
+          </p>
+          <p class="text-body1 text-center q-mb-lg">
+            Formuläret är byggt för att göra bokningen enkel: välj bostadstyp, ange antal fönster
+            och skicka sedan in din förfrågan när priset känns rätt.
+          </p>
+        </div>
+      </div>
       <div class="row q-flex justify-center mb-2">
         <div class="col-12 col-md-8">
           <!-- Stepper component for multiple steps -->
@@ -231,6 +246,32 @@
         </div>
       </div>
 
+      <div class="row justify-center q-px-md q-pb-xl">
+        <div class="col-12 col-md-8 col-lg-7">
+          <q-card bordered class="text-container shadow">
+            <q-card-section class="text-primary q-pa-lg">
+              <h2 class="text-h6 text-accent q-my-none">Vanliga frågor om pris och bokning</h2>
+              <hr>
+              <q-list bordered separator>
+                <q-expansion-item
+                  v-for="item in priceFaqs"
+                  :key="item.question"
+                  :label="item.question"
+                  expand-separator
+                  header-class="text-primary text-weight-medium"
+                >
+                  <q-card flat>
+                    <q-card-section class="text-body2 text-primary">
+                      {{ item.answer }}
+                    </q-card-section>
+                  </q-card>
+                </q-expansion-item>
+              </q-list>
+            </q-card-section>
+          </q-card>
+        </div>
+      </div>
+
     </q-page>
 </template>
 
@@ -240,23 +281,28 @@ import { useQuasar } from 'quasar';
 import axios from 'axios';
 import { getFirestore, collection, getDocs } from 'firebase/firestore';
 import { app } from '../firebase'
+import { priceSeo } from 'src/data/seo';
+
+const columnAlign = 'left' as const;
+
+const priceFaqs = priceSeo.faq ?? [];
 
 export default defineComponent({
   name: 'PriceListComponent',
   meta: {
-    title: 'Prislista – Fönsterputsning med RUT-avdrag | Rutputs',
+    title: priceSeo.title,
     meta: {
       description: {
         name: 'description',
-        content: 'Se priser för fönsterputsning i norra Stockholm. Räkna ut ditt pris direkt – från 350 kr med RUT-avdrag. Enkel offertförfrågan online.'
+        content: priceSeo.description
       },
       ogTitle: {
         property: 'og:title',
-        content: 'Prislista – Fönsterputsning med RUT-avdrag | Rutputs'
+        content: priceSeo.title
       },
       ogDescription: {
         property: 'og:description',
-        content: 'Se priser för fönsterputsning i norra Stockholm. Räkna ut ditt pris direkt – från 350 kr med RUT-avdrag.'
+        content: priceSeo.description
       },
       ogImage: {
         property: 'og:image',
@@ -272,11 +318,11 @@ export default defineComponent({
       },
       twitterTitle: {
         name: 'twitter:title',
-        content: 'Prislista – Fönsterputsning med RUT-avdrag | Rutputs'
+        content: priceSeo.title
       },
       twitterDescription: {
         name: 'twitter:description',
-        content: 'Se priser för fönsterputsning i norra Stockholm. Från 350 kr med RUT-avdrag.'
+        content: priceSeo.description
       },
       twitterImage: {
         name: 'twitter:image',
@@ -287,6 +333,23 @@ export default defineComponent({
       canonical: {
         rel: 'canonical',
         href: 'https://www.rutputs.nu/pris'
+      }
+    },
+    script: {
+      faqSchema: {
+        type: 'application/ld+json',
+        innerHTML: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: priceFaqs.map((item) => ({
+            '@type': 'Question',
+            name: item.question,
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: item.answer
+            }
+          }))
+        })
       }
     }
   },
@@ -312,7 +375,7 @@ export default defineComponent({
           name: 'id',
           required: true,
           label: '',
-          align: 'left',
+          align: columnAlign,
           field: 'id',
           visible: false
         },
@@ -320,14 +383,14 @@ export default defineComponent({
           name: 'description',
           required: true,
           label: '',
-          align: 'left',
+          align: columnAlign,
           field: 'description'
         },
         {
           name: 'quantity',
           required: true,
           label: '',
-          align: 'left',
+          align: columnAlign,
           field: 'quantity'
         },
       ]
@@ -345,6 +408,7 @@ export default defineComponent({
 
     return {
       pagination,
+      priceFaqs,
       quasar,
       step: ref(1),
       color: ref('accent')
@@ -450,7 +514,7 @@ export default defineComponent({
       }, {
         timeout: 7000
       })
-      .then((response: unknown) => {
+      .then(() => {
         this.quasar.notify({
           message: 'Din offertförfrågan har skickats',
           color: 'positive',
@@ -458,7 +522,7 @@ export default defineComponent({
         });
         this.goToConfirmation();
       })
-      .catch((error: unknown) => {
+      .catch(() => {
         this.quasar.notify({
           message: 'Något gick fel',
           color: 'negative',

@@ -48,6 +48,16 @@ npm run format
 quasar build
 ```
 
+Production build now also generates prerendered HTML files for the key SEO routes in `dist/spa`, including the home page, company page, pricing page and all area pages.
+
+### SEO and deploy notes
+
+- The build command generates route-specific static HTML files with page-specific `title`, `description`, `canonical`, Open Graph tags and structured data.
+- Vercel should serve `dist/spa` as the output directory.
+- Keep `www.rutputs.nu` as the canonical domain.
+- Configure the apex domain `rutputs.nu` to redirect permanently to `www.rutputs.nu` in the Vercel Domains dashboard, since domain-level redirects are managed there.
+- After deploy, request reindexing in Google Search Console for `/`, `/foretag`, `/pris` and the updated `/omrade/*` pages.
+
 ### Customize the configuration
 
 See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-vite/quasar-config-js).
