@@ -282,6 +282,7 @@ import axios from 'axios';
 import { getFirestore, collection, getDocs } from 'firebase/firestore';
 import { app } from '../firebase'
 import { priceSeo } from 'src/data/seo';
+import { trackEvent } from 'src/boot/analytics';
 
 const columnAlign = 'left' as const;
 
@@ -515,6 +516,13 @@ export default defineComponent({
         timeout: 7000
       })
       .then(() => {
+        trackEvent('lead_form_submit', {
+          form_name: 'price_request',
+          property_type: this.form.propertyType,
+          total_price: this.form.totalPrice,
+          currency: 'SEK',
+        });
+
         this.quasar.notify({
           message: 'Din offertförfrågan har skickats',
           color: 'positive',

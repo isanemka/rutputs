@@ -56,6 +56,14 @@ Production build now also generates prerendered HTML files for the key SEO route
 - Vercel should serve `dist/spa` as the output directory.
 - Keep `www.rutputs.nu` as the canonical domain.
 - Configure the apex domain `rutputs.nu` to redirect permanently to `www.rutputs.nu` in the Vercel Domains dashboard, since domain-level redirects are managed there.
+
+## Ads tracking
+
+- `VITE_GTM_ID` can be set to a Google Tag Manager container ID if you want to manage Google Ads and GA4 conversion tags through GTM.
+- If `VITE_GTM_ID` is not set, the site falls back to direct GA4 loading via `VITE_GA_MEASUREMENT_ID`.
+- After cookie consent, the site emits:
+  - `lead_form_submit` when the quote form is submitted successfully
+  - `phone_click` when a visitor clicks a `tel:` link
 - After deploy, request reindexing in Google Search Console for `/`, `/foretag`, `/pris` and the updated `/omrade/*` pages.
 
 ### Customize the configuration
