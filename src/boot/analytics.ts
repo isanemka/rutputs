@@ -45,7 +45,8 @@ function handleDocumentClick(event: MouseEvent) {
     return;
   }
 
-  const phoneNumber = phoneLink.getAttribute('href')?.replace(/^tel:/, '') || '';
+  const phoneNumber =
+    phoneLink.getAttribute('href')?.replace(/^tel:/, '') || '';
 
   trackEvent('phone_click', {
     phone_number: phoneNumber,
