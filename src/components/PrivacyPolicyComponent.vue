@@ -47,7 +47,7 @@
 
               <h3 class="text-subtitle1 text-primary q-mt-md q-mb-sm">2. Webbanalys (cookies)</h3>
               <p class="text-body1 q-mb-sm">
-                Om du accepterar cookies använder vi Google Analytics och Vercel Analytics som samlar in följande anonyma data:
+                Om du accepterar cookies använder vi Google Analytics, Google Tag Manager och Vercel Analytics som samlar in följande anonyma data:
               </p>
               <ul class="text-body1">
                 <li>Vilka sidor du besöker på webbplatsen</li>
@@ -63,6 +63,7 @@
               <h3 class="text-subtitle1 text-primary q-mt-md q-mb-sm">3. Marknadsföring (Google Ads)</h3>
               <p class="text-body1">
                 Om du accepterar cookies kan vi använda Google Ads för att visa relevanta annonser.
+                Vi kan även mäta formulärskick och klick på telefonnummer för att förstå vilka kampanjer som leder till kontakt.
                 Google kan då placera cookies för att mäta annonseffektivitet och visa anpassade annonser baserat på ditt besök.
               </p>
             </section>
@@ -108,6 +109,7 @@
               </p>
               <ul class="text-body1">
                 <li><strong>Vercel Analytics</strong> – vår värdtjänst (USA, standardavtalsklausuler)</li>
+                <li><strong>Google Tag Manager</strong> – hantering av mät- och annonstaggar (USA, standardavtalsklausuler)</li>
                 <li><strong>Google Analytics</strong> – webbanalys (USA, standardavtalsklausuler)</li>
                 <li><strong>Google Ads</strong> – marknadsföring (USA, standardavtalsklausuler)</li>
               </ul>
