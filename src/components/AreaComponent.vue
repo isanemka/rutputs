@@ -131,7 +131,7 @@
 <script lang="ts">
 import { defineComponent, ref, computed, onMounted, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import { getAreaBySlug } from 'src/data/areas';
+import { getAreaBySlug } from 'src/data/seo';
 
 export default defineComponent({
   name: 'AreaComponent',

@@ -1,258 +1,58 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
+import siteSeoContent from '../src/data/seo-content.js';
 
 const baseUrl = 'https://www.rutputs.nu';
 const distDir = path.resolve('dist/spa');
 const templatePath = path.join(distDir, 'index.html');
 
-const homeFaqs = [
-  {
-    question: 'Vad kostar fönsterputsning med RUT-avdrag?',
-    answer:
-      'Fönsterputsning med RUT-avdrag börjar från 350 kr. Det exakta priset beror på antal fönster och typ av bostad. Använd vår priskalkylator för att se ditt pris direkt.',
-  },
-  {
-    question: 'Vilka områden täcker Rutputs?',
-    answer:
-      'Rutputs täcker norra Stockholm: Järfälla, Bromma, Kista, Solna, Sundbyberg, Spånga, Sollentuna och Täby.',
-  },
-  {
-    question: 'Hur bokar jag fönsterputsning?',
-    answer:
-      'Fyll i formuläret på vår prissida så räknas ditt pris ut direkt. Vi kontaktar dig sedan för att boka en tid som passar.',
-  },
-  {
-    question: 'Putsar ni även företagsfönster?',
-    answer:
-      'Ja, vi erbjuder professionell fönsterputsning för kontor och företagslokaler i norra Stockholm. Kontakta oss för en offert.',
-  },
-];
+const { home, company, price, privacy, areas } = siteSeoContent;
 
-const areaPages = [
-  {
-    slug: 'jarfalla',
-    name: 'Järfälla',
-    title: 'Fönsterputs Järfälla – Från 350 kr med RUT-avdrag | Rutputs',
-    description:
-      'Professionell fönsterputs i Järfälla med RUT-avdrag. Från 350 kr. Vi täcker Jakobsberg, Viksjö, Barkarby och Kallhäll. Boka enkelt online!',
-    intro:
-      'Rutputs hjälper privatkunder i Järfälla med professionell fönsterputsning för villa, radhus och lägenhet. Vi arbetar löpande i området och gör det enkelt att boka en tid som passar.',
-    districts: ['Jakobsberg', 'Viksjö', 'Barkarby', 'Kallhäll'],
-    faq: [
-      {
-        question: 'Vad kostar fönsterputs i Järfälla?',
-        answer:
-          'Priset börjar från 350 kr efter RUT-avdrag. Det exakta priset beror på hur många fönster du har och vilken typ av bostad du bor i.',
-      },
-      {
-        question: 'Täcker ni hela Järfälla?',
-        answer:
-          'Ja, vi hjälper kunder i bland annat Jakobsberg, Viksjö, Barkarby och Kallhäll samt övriga delar av Järfälla.',
-      },
-    ],
-  },
-  {
-    slug: 'bromma',
-    name: 'Bromma',
-    title: 'Fönsterputs Bromma – Från 350 kr med RUT-avdrag | Rutputs',
-    description:
-      'Fönsterputsning i Bromma med RUT-avdrag från 350 kr. Vi täcker Abrahamsberg, Ulvsunda, Nockeby och hela Bromma. Boka enkelt online!',
-    intro:
-      'Rutputs erbjuder fönsterputs i Bromma för dig som vill ha rena fönster utan krångel. Tjänsten passar både villor, radhus och lägenheter i hela området.',
-    districts: ['Abrahamsberg', 'Ulvsunda', 'Nockeby', 'Ålsten'],
-    faq: [
-      {
-        question: 'Arbetar ni i villaområden i Bromma?',
-        answer:
-          'Ja, Bromma är ett vanligt område för villa- och radhuskunder, men vi hjälper också kunder i lägenhet och mindre fastigheter.',
-      },
-      {
-        question: 'Vilka delar av Bromma täcker ni?',
-        answer:
-          'Vi arbetar bland annat i Abrahamsberg, Ulvsunda, Nockeby och Ålsten samt i övriga delar av Bromma.',
-      },
-    ],
-  },
-  {
-    slug: 'kista',
-    name: 'Kista',
-    title: 'Fönsterputs Kista – Från 350 kr med RUT-avdrag | Rutputs',
-    description:
-      'Fönsterputs i Kista med RUT-avdrag från 350 kr. Professionell service för bostäder och kontor i Kista, Husby och Akalla. Boka idag!',
-    intro:
-      'Rutputs erbjuder fönsterputs i Kista för både privatpersoner och företag. Det passar dig som vill boka en smidig tjänst med tydlig prissättning och snabb återkoppling.',
-    districts: ['Kista', 'Husby', 'Akalla', 'Ärvinge'],
-    faq: [
-      {
-        question: 'Erbjuder ni fönsterputs för företag i Kista?',
-        answer:
-          'Ja, vi hjälper både privatkunder och företag i Kista med professionell fönsterputsning och flexibla upplägg.',
-      },
-      {
-        question: 'Vilka delar av Kista täcker ni?',
-        answer:
-          'Vi arbetar i Kista, Husby, Akalla och Ärvinge samt närliggande områden i norra Stockholm.',
-      },
-    ],
-  },
-  {
-    slug: 'solna',
-    name: 'Solna',
-    title: 'Fönsterputs Solna – Från 350 kr med RUT-avdrag | Rutputs',
-    description:
-      'Fönsterputs i Solna med RUT-avdrag från 350 kr. Vi täcker Bergshamra, Råsunda, Huvudsta och Hagalund. Boka enkelt online!',
-    intro:
-      'Rutputs hjälper kunder i Solna som vill ha rena fönster året runt eller inför särskilda tillfällen. Vi arbetar i hela området och gör bokningen enkel.',
-    districts: ['Bergshamra', 'Råsunda', 'Huvudsta', 'Hagalund'],
-    faq: [
-      {
-        question: 'Vilka områden i Solna täcker ni?',
-        answer:
-          'Vi hjälper kunder i bland annat Bergshamra, Råsunda, Huvudsta och Hagalund samt i övriga delar av Solna.',
-      },
-      {
-        question: 'Passar tjänsten även lägenheter i Solna?',
-        answer:
-          'Ja, vi arbetar med både lägenheter, radhus och villor. Upplägget anpassas efter bostadens storlek och antal fönster.',
-      },
-    ],
-  },
-  {
-    slug: 'sundbyberg',
-    name: 'Sundbyberg',
-    title: 'Fönsterputs Sundbyberg – Från 350 kr med RUT-avdrag | Rutputs',
-    description:
-      'Boka fönsterputs i Sundbyberg med RUT-avdrag från 350 kr. Vi täcker Lilla Alby, Ursvik, Rissne och hela Sundbyberg. Fyll i formuläret för ditt pris!',
-    intro:
-      'Rutputs hjälper kunder i Sundbyberg som vill boka snabb och smidig fönsterputsning med tydlig prissättning. Vi arbetar regelbundet i kommunen och närliggande områden.',
-    districts: ['Lilla Alby', 'Ursvik', 'Rissne', 'Duvbo'],
-    faq: [
-      {
-        question: 'Täcker ni hela Sundbyberg?',
-        answer:
-          'Ja, vi arbetar i hela Sundbyberg och hjälper kunder i bland annat Lilla Alby, Ursvik, Rissne och Duvbo.',
-      },
-      {
-        question: 'Hur fungerar RUT-avdrag för fönsterputs?',
-        answer:
-          'RUT-avdraget dras direkt på priset för privatkunder som uppfyller villkoren, vilket gör att priset kan börja från 350 kr.',
-      },
-    ],
-  },
-  {
-    slug: 'spanga',
-    name: 'Spånga',
-    title: 'Fönsterputs Spånga – Från 350 kr med RUT-avdrag | Rutputs',
-    description:
-      'Fönsterputs i Spånga-Tensta med RUT-avdrag från 350 kr. Snabb och pålitlig service i hela Spånga. Fyll i formuläret för ditt pris!',
-    intro:
-      'Rutputs erbjuder fönsterputs i Spånga för villa, radhus och lägenhet. Tjänsten är byggd för att vara enkel att boka och ge ett noggrant resultat varje gång.',
-    districts: ['Spånga', 'Tensta', 'Bromsten', 'Solhem'],
-    faq: [
-      {
-        question: 'Arbetar ni i hela Spånga-Tensta?',
-        answer:
-          'Ja, vi hjälper kunder i Spånga, Tensta, Bromsten, Solhem och närliggande områden i västra och norra Stockholm.',
-      },
-      {
-        question: 'Passar tjänsten villa och radhus i Spånga?',
-        answer:
-          'Absolut. Spånga är ett vanligt område för villa- och radhuskunder, men vi arbetar även med lägenheter och mindre fastigheter.',
-      },
-    ],
-  },
-  {
-    slug: 'sollentuna',
-    name: 'Sollentuna',
-    title: 'Fönsterputs Sollentuna – Från 350 kr med RUT-avdrag | Rutputs',
-    description:
-      'Fönsterputsning i Sollentuna med RUT-avdrag från 350 kr. Vi täcker Tureberg, Edsberg, Häggvik och hela Sollentuna kommun. Boka online!',
-    intro:
-      'Rutputs erbjuder fönsterputsning i Sollentuna med tydlig prissättning och smidig bokning. Närheten till Järfälla gör det lätt att planera in tider snabbt.',
-    districts: ['Tureberg', 'Edsberg', 'Häggvik', 'Helenelund'],
-    faq: [
-      {
-        question: 'Vilka områden i Sollentuna täcker ni?',
-        answer:
-          'Vi arbetar bland annat i Tureberg, Edsberg, Häggvik och Helenelund samt i övriga delar av Sollentuna kommun.',
-      },
-      {
-        question: 'Kan jag boka som återkommande kund i Sollentuna?',
-        answer:
-          'Ja, det går bra att boka både enstaka putsningar och återkommande intervaller beroende på behov och säsong.',
-      },
-    ],
-  },
-  {
-    slug: 'taby',
-    name: 'Täby',
-    title: 'Fönsterputs Täby – Från 350 kr med RUT-avdrag | Rutputs',
-    description:
-      'Professionell fönsterputsning i Täby med RUT-avdrag. Villor, radhus och lägenheter. Boka online från 350 kr!',
-    intro:
-      'Rutputs hjälper kunder i Täby som vill ha rena fönster med tydlig prissättning och enkel bokning. Tjänsten passar både större villor, radhus och lägenheter.',
-    districts: ['Täby Centrum', 'Näsbypark', 'Gribbylund', 'Arninge'],
-    faq: [
-      {
-        question: 'Vilka områden i Täby täcker ni?',
-        answer:
-          'Vi hjälper kunder i bland annat Täby Centrum, Näsbypark, Gribbylund och Arninge samt i övriga delar av Täby.',
-      },
-      {
-        question: 'Passar fönsterputs i Täby större villor och radhus?',
-        answer:
-          'Ja, tjänsten är anpassad för både större villor, radhus, lägenheter och mindre fastigheter beroende på antal fönster och behov.',
-      },
-    ],
-  },
-];
+const buildFaqHtml = (faq = []) =>
+  `<ul>${faq.map((item) => `<li><strong>${item.question}</strong><br>${item.answer}</li>`).join('')}</ul>`;
+
+const buildFaqSchema = (faq = []) => ({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.answer,
+    },
+  })),
+});
 
 const pages = [
   {
     route: '/',
-    title: 'Fönsterputs norra Stockholm – Från 350 kr med RUT | Rutputs',
-    description:
-      'Rutputs erbjuder professionell fönsterputsning i norra Stockholm med RUT-avdrag. Från 350 kr. Vi täcker Järfälla, Sundbyberg, Solna, Spånga med flera områden. Boka online!',
-    bodyTitle: 'Fönsterputs i norra Stockholm',
-    bodyIntro:
-      'Rutputs erbjuder professionell fönsterputsning i norra Stockholm för privatpersoner och företag. Med RUT-avdrag börjar priset från 350 kr och du kan se ditt pris direkt online.',
+    title: home.title,
+    description: home.description,
+    bodyTitle: home.bodyTitle,
+    bodyIntro: home.bodyIntro,
     sections: [
       {
         heading: 'Områden vi täcker',
-        html: `<p>${areaPages.map((page) => `<a href="/omrade/${page.slug}">${page.name}</a>`).join(', ')}</p>`,
+        html: `<p>${areas.map((page) => `<a href="/omrade/${page.slug}">${page.name}</a>`).join(', ')}</p>`,
       },
       {
         heading: 'Vanliga frågor',
-        html: `<ul>${homeFaqs.map((item) => `<li><strong>${item.question}</strong><br>${item.answer}</li>`).join('')}</ul>`,
+        html: buildFaqHtml(home.faq),
       },
     ],
-    extraSchemas: [
-      {
-        '@context': 'https://schema.org',
-        '@type': 'FAQPage',
-        mainEntity: homeFaqs.map((item) => ({
-          '@type': 'Question',
-          name: item.question,
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: item.answer,
-          },
-        })),
-      },
-    ],
+    extraSchemas: [buildFaqSchema(home.faq)],
   },
   {
     route: '/pris',
-    title: 'Prislista – Fönsterputsning med RUT-avdrag | Rutputs',
-    description:
-      'Se priser för fönsterputsning i norra Stockholm. Räkna ut ditt pris direkt från 350 kr med RUT-avdrag och skicka din offertförfrågan online.',
-    bodyTitle: 'Prislista för fönsterputsning',
-    bodyIntro:
-      'På prissidan kan du räkna ut vad fönsterputsningen kostar utifrån din bostad och antal fönster. Priset börjar från 350 kr efter RUT-avdrag.',
+    title: price.title,
+    description: price.description,
+    bodyTitle: price.bodyTitle,
+    bodyIntro: price.bodyIntro,
     sections: [
       {
         heading: 'Så fungerar prisberäkningen',
-        html: '<ol><li>Välj bostadstyp.</li><li>Fyll i antal fönster och tjänster.</li><li>Se ditt pris direkt och skicka in förfrågan.</li></ol>',
+        html: `<ol>${(price.steps ?? []).map((step) => `<li>${step}</li>`).join('')}</ol>`,
       },
     ],
     extraSchemas: [
@@ -273,39 +73,56 @@ const pages = [
           description: 'Från-pris efter RUT-avdrag',
         },
       },
+      buildFaqSchema(price.faq),
     ],
   },
   {
     route: '/foretag',
-    title: 'Fönsterputs för företag i Stockholm | Rutputs',
-    description:
-      'Professionell fönsterputs för företag i Stockholm och norra Stockholm. Flexibla avtal, regelbunden service och rena fönster för kontor och lokaler.',
-    bodyTitle: 'Fönsterputs för företag',
-    bodyIntro:
-      'Rutputs hjälper företag, kontor och mindre fastigheter i Stockholm med professionell fönsterputsning. Tjänsten kan anpassas för återkommande intervaller och tydliga serviceupplägg.',
+    title: company.title,
+    description: company.description,
+    bodyTitle: company.bodyTitle,
+    bodyIntro: company.bodyIntro,
     sections: [
       {
         heading: 'Fördelar för företag',
-        html: '<ul><li>Regelbunden service och flexibla avtal.</li><li>Rena fönster som förbättrar intrycket för kunder och personal.</li><li>Smidig kontakt och tydliga offerter.</li></ul>',
+        html: `<ul>${(company.benefits ?? []).map((benefit) => `<li>${benefit}</li>`).join('')}</ul>`,
       },
+      {
+        heading: 'Vanliga frågor från företag',
+        html: buildFaqHtml(company.faq),
+      },
+    ],
+    extraSchemas: [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Service',
+        name: 'Fönsterputs för företag i Stockholm',
+        serviceType: 'Fönsterputsning för företag',
+        provider: {
+          '@type': 'LocalBusiness',
+          name: 'Rutputs',
+          url: `${baseUrl}/`,
+        },
+        areaServed: 'Stockholm',
+        url: `${baseUrl}/foretag`,
+      },
+      buildFaqSchema(company.faq),
     ],
   },
   {
     route: '/integritetspolicy',
-    title: 'Integritetspolicy – Rutputs',
-    description:
-      'Läs om hur Rutputs hanterar dina personuppgifter, cookies och webbanalys i enlighet med GDPR.',
-    bodyTitle: 'Integritetspolicy',
-    bodyIntro:
-      'Här kan du läsa hur Rutputs hanterar personuppgifter, cookies och webbanalys i enlighet med GDPR.',
+    title: privacy.title,
+    description: privacy.description,
+    bodyTitle: privacy.bodyTitle,
+    bodyIntro: privacy.bodyIntro,
     sections: [],
   },
-  ...areaPages.map((page) => ({
+  ...areas.map((page) => ({
     route: `/omrade/${page.slug}`,
     title: page.title,
     description: page.description,
     bodyTitle: `Fönsterputs i ${page.name}`,
-    bodyIntro: page.intro,
+    bodyIntro: page.content,
     sections: [
       {
         heading: `Områden vi täcker i ${page.name}`,
@@ -313,7 +130,7 @@ const pages = [
       },
       {
         heading: `Vanliga frågor om fönsterputs i ${page.name}`,
-        html: `<ul>${page.faq.map((item) => `<li><strong>${item.question}</strong><br>${item.answer}</li>`).join('')}</ul>`,
+        html: buildFaqHtml(page.faq),
       },
     ],
     extraSchemas: [
@@ -340,18 +157,7 @@ const pages = [
           description: 'Från-pris efter RUT-avdrag',
         },
       },
-      {
-        '@context': 'https://schema.org',
-        '@type': 'FAQPage',
-        mainEntity: page.faq.map((item) => ({
-          '@type': 'Question',
-          name: item.question,
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: item.answer,
-          },
-        })),
-      },
+      buildFaqSchema(page.faq),
     ],
   })),
 ];

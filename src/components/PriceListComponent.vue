@@ -281,40 +281,28 @@ import { useQuasar } from 'quasar';
 import axios from 'axios';
 import { getFirestore, collection, getDocs } from 'firebase/firestore';
 import { app } from '../firebase'
+import { priceSeo } from 'src/data/seo';
 
 const columnAlign = 'left' as const;
 
-const priceFaqs = [
-  {
-    question: 'Vad kostar fönsterputsning med RUT-avdrag?',
-    answer: 'Fönsterputsning börjar från 350 kr efter RUT-avdrag. Det exakta priset beror på bostadstyp, antal fönster och vilka tjänster du väljer.'
-  },
-  {
-    question: 'Ser jag priset direkt i formuläret?',
-    answer: 'Ja, prissidan räknar ut ditt pris direkt utifrån de val du gör innan du skickar in offertförfrågan.'
-  },
-  {
-    question: 'Kan jag skicka förfrågan direkt efter prisberäkningen?',
-    answer: 'Ja, när du har gått igenom stegen kan du fylla i dina kontaktuppgifter och skicka in din förfrågan direkt på sidan.'
-  }
-];
+const priceFaqs = priceSeo.faq ?? [];
 
 export default defineComponent({
   name: 'PriceListComponent',
   meta: {
-    title: 'Prislista – Fönsterputsning med RUT-avdrag | Rutputs',
+    title: priceSeo.title,
     meta: {
       description: {
         name: 'description',
-        content: 'Se priser för fönsterputsning i norra Stockholm. Räkna ut ditt pris direkt – från 350 kr med RUT-avdrag. Enkel offertförfrågan online.'
+        content: priceSeo.description
       },
       ogTitle: {
         property: 'og:title',
-        content: 'Prislista – Fönsterputsning med RUT-avdrag | Rutputs'
+        content: priceSeo.title
       },
       ogDescription: {
         property: 'og:description',
-        content: 'Se priser för fönsterputsning i norra Stockholm. Räkna ut ditt pris direkt – från 350 kr med RUT-avdrag.'
+        content: priceSeo.description
       },
       ogImage: {
         property: 'og:image',
@@ -330,11 +318,11 @@ export default defineComponent({
       },
       twitterTitle: {
         name: 'twitter:title',
-        content: 'Prislista – Fönsterputsning med RUT-avdrag | Rutputs'
+        content: priceSeo.title
       },
       twitterDescription: {
         name: 'twitter:description',
-        content: 'Se priser för fönsterputsning i norra Stockholm. Från 350 kr med RUT-avdrag.'
+        content: priceSeo.description
       },
       twitterImage: {
         name: 'twitter:image',

@@ -124,38 +124,26 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { companySeo } from 'src/data/seo';
 
-const companyFaqs = [
-  {
-    question: 'Erbjuder ni återkommande fönsterputs för företag?',
-    answer: 'Ja, Rutputs kan hjälpa företag med både enstaka uppdrag och återkommande upplägg beroende på lokal, behov och önskat intervall.'
-  },
-  {
-    question: 'Arbetar ni bara i norra Stockholm?',
-    answer: 'Fokus ligger på Stockholm och norra Stockholm, där Rutputs redan arbetar löpande och därför kan erbjuda ett smidigare upplägg.'
-  },
-  {
-    question: 'Hur får vi en offert?',
-    answer: 'Kontakta Rutputs via formuläret eller kontaktuppgifterna på sidan så går vi igenom lokal, omfattning och önskat upplägg innan offert lämnas.'
-  }
-];
+const companyFaqs = companySeo.faq ?? [];
 
 export default defineComponent({
   name: 'CompanyComponent',
   meta: {
-    title: 'Fönsterputs för företag i Stockholm | Rutputs',
+    title: companySeo.title,
     meta: {
       description: {
         name: 'description',
-        content: 'Professionell fönsterputs för företag i Stockholm och norra Stockholm. Flexibla avtal, regelbunden service och rena fönster för kontor och lokaler.'
+        content: companySeo.description
       },
       ogTitle: {
         property: 'og:title',
-        content: 'Fönsterputs för företag i Stockholm | Rutputs'
+        content: companySeo.title
       },
       ogDescription: {
         property: 'og:description',
-        content: 'Professionell fönsterputs för företag i Stockholm och norra Stockholm. Regelbunden service, flexibla avtal och skinande rena fönster.'
+        content: companySeo.description
       },
       ogImage: {
         property: 'og:image',
@@ -171,11 +159,11 @@ export default defineComponent({
       },
       twitterTitle: {
         name: 'twitter:title',
-        content: 'Fönsterputs för företag i Stockholm | Rutputs'
+        content: companySeo.title
       },
       twitterDescription: {
         name: 'twitter:description',
-        content: 'Professionell fönsterputs för företag i Stockholm och norra Stockholm.'
+        content: companySeo.description
       },
       twitterImage: {
         name: 'twitter:image',

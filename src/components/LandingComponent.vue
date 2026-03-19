@@ -148,25 +148,9 @@
 <script lang="ts">
 import { computed, defineComponent, onBeforeUnmount, onMounted, ref } from 'vue';
 import { areas } from 'src/data/areas';
+import { homeSeo } from 'src/data/seo';
 
-const homeFaqs = [
-  {
-    question: 'Vad kostar fönsterputsning med RUT-avdrag?',
-    answer: 'Fönsterputsning med RUT-avdrag börjar från 350 kr. Det exakta priset beror på antal fönster och typ av bostad. Använd vår priskalkylator för att se ditt pris direkt.'
-  },
-  {
-    question: 'Vilka områden täcker Rutputs?',
-    answer: 'Rutputs täcker norra Stockholm: Järfälla, Bromma, Kista, Solna, Sundbyberg, Spånga, Sollentuna och Täby.'
-  },
-  {
-    question: 'Hur bokar jag fönsterputsning?',
-    answer: 'Fyll i formuläret på vår prissida så räknas ditt pris ut direkt. Vi kontaktar dig sedan för att boka en tid som passar.'
-  },
-  {
-    question: 'Putsar ni även företagsfönster?',
-    answer: 'Ja, vi erbjuder professionell fönsterputsning för kontor och företagslokaler i norra Stockholm. Kontakta oss för en offert.'
-  }
-];
+const homeFaqs = homeSeo.faq ?? [];
 
 const landscapeImages = [
   '/img/25050.webp',
@@ -187,19 +171,19 @@ const portraitImages = [
 export default defineComponent({
   name: 'LandingComponent',
   meta: {
-    title: 'Fönsterputs norra Stockholm – Från 350 kr med RUT | Rutputs',
+    title: homeSeo.title,
     meta: {
       description: {
         name: 'description',
-        content: 'Rutputs erbjuder professionell fönsterputsning i norra Stockholm med RUT-avdrag. Från 350 kr. Vi täcker Järfälla, Sundbyberg, Solna, Spånga med flera områden. Boka online!'
+        content: homeSeo.description
       },
       ogTitle: {
         property: 'og:title',
-        content: 'Fönsterputs norra Stockholm – Från 350 kr med RUT | Rutputs'
+        content: homeSeo.title
       },
       ogDescription: {
         property: 'og:description',
-        content: 'Rutputs erbjuder professionell fönsterputsning i norra Stockholm med RUT-avdrag. Från 350 kr. Boka online och se ditt pris direkt.'
+        content: homeSeo.description
       },
       ogImage: {
         property: 'og:image',
@@ -215,11 +199,11 @@ export default defineComponent({
       },
       twitterTitle: {
         name: 'twitter:title',
-        content: 'Fönsterputs norra Stockholm – Från 350 kr med RUT | Rutputs'
+        content: homeSeo.title
       },
       twitterDescription: {
         name: 'twitter:description',
-        content: 'Rutputs erbjuder professionell fönsterputsning i norra Stockholm med RUT-avdrag från 350 kr. Se ditt pris direkt online.'
+        content: homeSeo.description
       },
       twitterImage: {
         name: 'twitter:image',
