@@ -8,8 +8,39 @@ const templatePath = path.join(distDir, 'index.html');
 
 const { home, company, price, privacy, areas } = siteSeoContent;
 
+function escapeHtml(value = '') {
+  return String(value)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;');
+}
+
+function escapeJsonForScript(value) {
+  return JSON.stringify(value)
+    .replaceAll('<', '\\u003C')
+    .replaceAll('>', '\\u003E')
+    .replaceAll('&', '\\u0026');
+}
+
 const buildFaqHtml = (faq = []) =>
-  `<ul>${faq.map((item) => `<li><strong>${item.question}</strong><br>${item.answer}</li>`).join('')}</ul>`;
+  `<ul>${faq
+    .map(
+      (item) =>
+        `<li><strong>${escapeHtml(item.question)}</strong><br>${escapeHtml(item.answer)}</li>`,
+    )
+    .join('')}</ul>`;
+
+const buildLinkListHtml = (items = []) =>
+  `<p>${items
+    .map((item) => `<a href="/omrade/${encodeURIComponent(item.slug)}">${escapeHtml(item.name)}</a>`)
+    .join(', ')}</p>`;
+
+const buildTextListHtml = (items = [], tagName = 'ul') =>
+  `<${tagName}>${items.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</${tagName}>`;
+
+const buildDistrictsHtml = (districts = []) => `<p>${districts.map((district) => escapeHtml(district)).join(', ')}</p>`;
 
 const buildFaqSchema = (faq = []) => ({
   '@context': 'https://schema.org',
@@ -34,7 +65,7 @@ const pages = [
     sections: [
       {
         heading: 'Områden vi täcker',
-        html: `<p>${areas.map((page) => `<a href="/omrade/${page.slug}">${page.name}</a>`).join(', ')}</p>`,
+        html: buildLinkListHtml(areas),
       },
       {
         heading: 'Vanliga frågor',
@@ -52,7 +83,7 @@ const pages = [
     sections: [
       {
         heading: 'Så fungerar prisberäkningen',
-        html: `<ol>${(price.steps ?? []).map((step) => `<li>${step}</li>`).join('')}</ol>`,
+        html: buildTextListHtml(price.steps, 'ol'),
       },
     ],
     extraSchemas: [
@@ -85,7 +116,7 @@ const pages = [
     sections: [
       {
         heading: 'Fördelar för företag',
-        html: `<ul>${(company.benefits ?? []).map((benefit) => `<li>${benefit}</li>`).join('')}</ul>`,
+        html: buildTextListHtml(company.benefits),
       },
       {
         heading: 'Vanliga frågor från företag',
@@ -126,7 +157,7 @@ const pages = [
     sections: [
       {
         heading: `Områden vi täcker i ${page.name}`,
-        html: `<p>${page.districts.join(', ')}</p>`,
+        html: buildDistrictsHtml(page.districts),
       },
       {
         heading: `Vanliga frågor om fönsterputs i ${page.name}`,
@@ -178,7 +209,7 @@ function buildNoscript(page) {
   const sectionsHtml = page.sections
     .map(
       (section) => `
-        <h2>${section.heading}</h2>
+        <h2>${escapeHtml(section.heading)}</h2>
         ${section.html}`,
     )
     .join('');
@@ -186,8 +217,8 @@ function buildNoscript(page) {
   return `
     <noscript>
       <div style="max-width:800px;margin:0 auto;padding:2rem;font-family:sans-serif">
-        <h1>${page.bodyTitle}</h1>
-        <p>${page.bodyIntro}</p>
+        <h1>${escapeHtml(page.bodyTitle)}</h1>
+        <p>${escapeHtml(page.bodyIntro)}</p>
         ${sectionsHtml}
         <h2>Kontakt</h2>
         <p>Telefon: <a href="tel:+46734644604">0734-64 46 04</a></p>
@@ -202,50 +233,53 @@ function buildSchemaTags(page) {
   return (page.extraSchemas || [])
     .map(
       (schema, index) =>
-        `<script type="application/ld+json" data-prerender-schema="${index}">${JSON.stringify(schema)}</script>`,
+        `<script type="application/ld+json" data-prerender-schema="${index}">${escapeJsonForScript(schema)}</script>`,
     )
     .join('\n    ');
 }
 
 function applyPageSeo(template, page) {
   const canonical = `${baseUrl}${page.route === '/' ? '/' : page.route}`;
+  const escapedTitle = escapeHtml(page.title);
+  const escapedDescription = escapeHtml(page.description);
+  const escapedCanonical = escapeHtml(canonical);
   let html = template;
 
-  html = replaceContent(html, /<title>[\s\S]*?<\/title>/, `<title>${page.title}</title>`);
+  html = replaceContent(html, /<title>[\s\S]*?<\/title>/, `<title>${escapedTitle}</title>`);
   html = setMetaTag(
     html,
     /<meta\s+name=(?:"description"|description)\s+content=(?:"[^"]*"|[^\s>]+)\s*\/?>/,
-    `<meta name="description" content="${page.description}" />`,
+    `<meta name="description" content="${escapedDescription}" />`,
   );
   html = setMetaTag(
     html,
     /<link\s+rel=(?:"canonical"|canonical)\s+href=(?:"[^"]*"|[^\s>]+)\s*\/?>/,
-    `<link rel="canonical" href="${canonical}" />`,
+    `<link rel="canonical" href="${escapedCanonical}" />`,
   );
   html = setMetaTag(
     html,
     /<meta\s+property=(?:"og:title"|og:title)\s+content=(?:"[^"]*"|[^\s>]+)\s*\/?>/,
-    `<meta property="og:title" content="${page.title}" />`,
+    `<meta property="og:title" content="${escapedTitle}" />`,
   );
   html = setMetaTag(
     html,
     /<meta\s+property=(?:"og:description"|og:description)\s+content=(?:"[^"]*"|[^\s>]+)\s*\/?>/,
-    `<meta property="og:description" content="${page.description}" />`,
+    `<meta property="og:description" content="${escapedDescription}" />`,
   );
   html = setMetaTag(
     html,
     /<meta\s+property=(?:"og:url"|og:url)\s+content=(?:"[^"]*"|[^\s>]+)\s*\/?>/,
-    `<meta property="og:url" content="${canonical}" />`,
+    `<meta property="og:url" content="${escapedCanonical}" />`,
   );
   html = setMetaTag(
     html,
     /<meta\s+name=(?:"twitter:title"|twitter:title)\s+content=(?:"[^"]*"|[^\s>]+)\s*\/?>/,
-    `<meta name="twitter:title" content="${page.title}" />`,
+    `<meta name="twitter:title" content="${escapedTitle}" />`,
   );
   html = setMetaTag(
     html,
     /<meta\s+name=(?:"twitter:description"|twitter:description)\s+content=(?:"[^"]*"|[^\s>]+)\s*\/?>/,
-    `<meta name="twitter:description" content="${page.description}" />`,
+    `<meta name="twitter:description" content="${escapedDescription}" />`,
   );
   html = replaceContent(html, /<noscript>[\s\S]*?<\/noscript>/, buildNoscript(page));
   html = replaceContent(
