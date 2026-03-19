@@ -3,6 +3,8 @@ import rawSiteSeoContent from './seo-content.js';
 export interface SeoFaq {
   question: string;
   answer: string;
+  linkLabel?: string;
+  linkTo?: string;
 }
 
 export interface SeoPage {

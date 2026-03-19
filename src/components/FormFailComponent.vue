@@ -1,31 +1,25 @@
 <template>
-  <div class="row q-flex q-pb-md justify-center items-center text-center">
-    <div class="col-lg-6 col-md-8 col-xs-10">
-      <h2 class="text-h2 text-bold text-primary text-uppercase">Hoppla!</h2>
-
-      <!-- Card section -->
-      <q-card>
-        <q-card-section
-          class="custom-line-height text-body1 text-primary text-justify q-pa-xl"
-          :style="textStyle"
-        >
-        <div class="text-h6 text-center text-accent">Något gick fel med din offertförfrågan!</div>
-        <hr class="q-my-md">
-        Testa gärna att fylla i formuläret igen.
-        Annars är du välkommen att kontakta mig direkt via telefon eller e-post.
-        Kontaktuppgifterna finns längst ner på sidan.
-        </q-card-section>
-        <q-card-section>
-          <q-btn
-            @click="goToLanding" label="Tillbaka till startsidan"
-            class="q-pa-md q-mb-md text-black"
-            color="accent"
-          />
-        </q-card-section>
-
-      </q-card>
+  <q-page class="page-shell status-page">
+    <div class="page-stack">
+      <section class="editorial-panel editorial-panel--solid status-page__panel">
+        <span class="section-kicker">Skicka igen</span>
+        <h1 class="section-title text-center">Hoppla!</h1>
+        <p class="section-text text-center q-mx-auto status-page__lead">
+          Något gick fel med din offertförfrågan. Testa gärna att fylla i formuläret igen.
+        </p>
+        <p class="section-text text-center q-mx-auto status-page__lead">
+          Om det fortfarande strular går det bra att kontakta mig direkt via telefon eller e-post. Kontaktuppgifterna finns längst ner på sidan.
+        </p>
+        <q-btn
+          @click="goToLanding"
+          label="Tillbaka till startsidan"
+          class="status-page__button text-black"
+          color="accent"
+          unelevated
+        />
+      </section>
     </div>
-  </div>
+  </q-page>
 </template>
 
 <script lang="ts">
@@ -43,26 +37,31 @@ export default defineComponent({
     }
   },
   methods: {
-    // Method to navigate back to landing page
     goToLanding() {
       this.$router.push('/');
-    }
-  },
-  computed: {
-    // Computed property to dynamically adjust text style based on screen size
-    textStyle() {
-      if (this.$q.screen.lt.sm) {
-        return {
-          'font-size': '1rem',
-          'line-height': '1.6',
-          'padding': '1rem'
-        };
-      } else {
-        return {
-          'font-size': '1.2rem'
-        };
-      }
     }
   }
 });
 </script>
+
+<style scoped>
+.status-page__panel {
+  justify-items: center;
+  text-align: center;
+  padding-block: clamp(1.5rem, 5vw, 2.5rem);
+}
+
+.status-page__lead {
+  max-width: 40rem;
+}
+
+.status-page__button {
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 599px) {
+  .status-page__button {
+    width: 100%;
+  }
+}
+</style>

@@ -1,32 +1,25 @@
 <template>
-  <div class="row q-flex q-pb-md justify-center items-center text-center">
-    <div class="col-lg-6 col-md-8 col-xs-10">
-      <h2 class="text-h2 text-bold text-primary text-uppercase">Tack!</h2>
-
-      <!-- Card section -->
-      <q-card>
-        <q-card-section
-          class="custom-line-height text-body1 text-primary text-justify q-pa-xl"
-          :style="textStyle"
-        >
-        <div class="text-h6 text-center text-accent">Vad roligt att du skickat in formuläret!</div>
-        <hr class="q-my-md">
-        Nu är du ett steg närmare att få dina fönster skinande rena.
-        Jag kommer att titta på din offertförfrågan och återkomma till dig inom ett par dagar och
-        om har du några frågor, tveka inte att kontakta mig.
-        Kontaktuppgifterna finns längst ner på sidan.
-        </q-card-section>
-        <q-card-section>
-          <q-btn
-            @click="goToLanding" label="Tillbaka till startsidan"
-            class="q-pa-md q-mb-md text-black"
-            color="accent"
-          />
-        </q-card-section>
-
-      </q-card>
+  <q-page class="page-shell status-page">
+    <div class="page-stack">
+      <section class="editorial-panel editorial-panel--solid status-page__panel">
+        <span class="section-kicker">Offertförfrågan skickad</span>
+        <h1 class="section-title text-center">Tack!</h1>
+        <p class="section-text text-center q-mx-auto status-page__lead">
+          Vad roligt att du skickat in formuläret. Nu är du ett steg närmare att få dina fönster skinande rena.
+        </p>
+        <p class="section-text text-center q-mx-auto status-page__lead">
+          Jag tittar på din offertförfrågan och återkommer inom ett par dagar. Har du frågor innan dess finns kontaktuppgifterna längst ner på sidan.
+        </p>
+        <q-btn
+          @click="goToLanding"
+          label="Tillbaka till startsidan"
+          class="status-page__button text-black"
+          color="accent"
+          unelevated
+        />
+      </section>
     </div>
-  </div>
+  </q-page>
 </template>
 
 <script lang="ts">
@@ -44,26 +37,31 @@ export default defineComponent({
     }
   },
   methods: {
-    // Method to navigate back to landing page
     goToLanding() {
       this.$router.push('/');
-    }
-  },
-  computed: {
-    // Computed property to dynamically adjust text style based on screen size
-    textStyle() {
-      if (this.$q.screen.lt.sm) {
-        return {
-          'font-size': '1rem',
-          'line-height': '1.6',
-          'padding': '1rem'
-        };
-      } else {
-        return {
-          'font-size': '1.2rem'
-        };
-      }
     }
   }
 });
 </script>
+
+<style scoped>
+.status-page__panel {
+  justify-items: center;
+  text-align: center;
+  padding-block: clamp(1.5rem, 5vw, 2.5rem);
+}
+
+.status-page__lead {
+  max-width: 40rem;
+}
+
+.status-page__button {
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 599px) {
+  .status-page__button {
+    width: 100%;
+  }
+}
+</style>
