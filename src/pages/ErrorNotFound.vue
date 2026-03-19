@@ -26,15 +26,6 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'ErrorNotFound',
-  meta: {
-    title: 'Sidan kunde inte hittas – Rutputs',
-    meta: {
-      robots: {
-        name: 'robots',
-        content: 'noindex, nofollow'
-      }
-    }
-  }
+  name: 'ErrorNotFound'
 });
 </script>

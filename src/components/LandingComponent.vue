@@ -50,7 +50,7 @@
             ringa runt eller vänta på otydliga offerter. Du ser priset direkt, skickar din förfrågan och får snabb återkoppling.
           </p>
           <p class="section-text">
-            Vi utgår från Järfälla och arbetar löpande i flera närliggande områden. Det gör det lättare att planera in tider som passar,
+            Jag utgår från Järfälla och arbetar löpande i flera närliggande områden. Det gör det lättare att planera in tider som passar,
             hålla kvaliteten jämn och ge ett mer lokalt och personligt upplägg än många större aktörer.
           </p>
         </div>

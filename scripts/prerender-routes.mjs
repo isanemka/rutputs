@@ -26,14 +26,10 @@ function escapeJsonForScript(value) {
 
 const buildFaqHtml = (faq = []) =>
   `<ul>${faq
-    .map((item) => {
-      const linkHtml =
-        item.linkLabel && item.linkTo
-          ? `<br><a href="${escapeHtml(item.linkTo)}">${escapeHtml(item.linkLabel)}</a>`
-          : '';
-
-      return `<li><strong>${escapeHtml(item.question)}</strong><br>${escapeHtml(item.answer)}${linkHtml}</li>`;
-    })
+    .map(
+      (item) =>
+        `<li><strong>${escapeHtml(item.question)}</strong><br>${escapeHtml(item.answer)}</li>`,
+    )
     .join('')}</ul>`;
 
 const buildLinkListHtml = (items = []) =>
