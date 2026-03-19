@@ -8,7 +8,7 @@
           Vad roligt att du skickat in formuläret. Nu är du ett steg närmare att få dina fönster skinande rena.
         </p>
         <p class="section-text text-center q-mx-auto status-page__lead">
-          Jag tittar på din offertförfrågan och återkommer inom ett par dagar. Har du frågor innan dess finns kontaktuppgifterna längst ner på sidan.
+          Vi tittar på din offertförfrågan och återkommer inom ett par dagar. Har du frågor innan dess finns kontaktuppgifterna längst ner på sidan.
         </p>
         <q-btn
           @click="goToLanding"

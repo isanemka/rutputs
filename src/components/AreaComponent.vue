@@ -27,7 +27,7 @@
             gör stor skillnad för ljusinsläpp och helhetsintryck. När du bokar hos Rutputs får du hjälp av någon som redan arbetar i området.
           </p>
           <p class="section-text">
-            Jag hjälper kunder i {{ districtSummary }} och närliggande delar av området. Med RUT-avdraget kan du få ett tydligt pris
+            Vi hjälper kunder i {{ districtSummary }} och närliggande delar av området. Med RUT-avdraget kan du få ett tydligt pris
             från 350 kronor och skicka en offertförfrågan när det passar dig.
           </p>
         </div>
