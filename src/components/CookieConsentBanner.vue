@@ -7,11 +7,13 @@
     :maximized="$q.screen.lt.sm"
     full-width
     class="cookie-dialog"
+    aria-labelledby="cookie-consent-title"
+    aria-describedby="cookie-consent-description"
   >
     <q-card class="cookie-consent-card bg-white text-dark">
       <q-card-section>
-        <div class="text-h6 text-primary">Cookies</div>
-        <p class="q-mt-sm text-body2">
+        <div id="cookie-consent-title" class="text-h6 text-primary">Cookies</div>
+        <p id="cookie-consent-description" class="q-mt-sm text-body2">
           Vi använder cookies för att förbättra din upplevelse på vår webbplats.
           Läs mer i vår
           <router-link to="/integritetspolicy" class="text-accent">

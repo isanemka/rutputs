@@ -39,12 +39,11 @@
               :done="step > 1"
             >
               <!-- Prompt user to select type of property -->
-              Välj om du bor i villa eller lägenhet
-              <br>
-              <div role="radiogroup" aria-label="Välj bostadstyp">
+              <fieldset class="property-type-group">
+                <legend>Välj om du bor i villa eller lägenhet</legend>
                 <q-radio keep-color v-model="form.propertyType" val="house" label="Villa" color="accent" />
                 <q-radio keep-color v-model="form.propertyType" val="apartment" label="Lägenhet" color="accent" />
-              </div>
+              </fieldset>
               <q-stepper-navigation>
                 <q-btn @click="validatePropertyType" color="accent" label="Fortsätt" class="text-black" />
               </q-stepper-navigation>
@@ -210,11 +209,15 @@
                   />
 
                   <!-- Terms and conditions dialog -->
-                  <q-dialog v-model="showTermsDialog">
+                  <q-dialog
+                    v-model="showTermsDialog"
+                    aria-labelledby="terms-dialog-title"
+                    aria-describedby="terms-dialog-description"
+                  >
                     <q-card>
                       <q-card-section>
-                        <h3 class="text-center">Personuppgifter</h3>
-                        <p>
+                        <h3 id="terms-dialog-title" class="text-center">Personuppgifter</h3>
+                        <p id="terms-dialog-description">
                           När du fyller i vårt kontaktformulär på denna webbplats samlar vi
                           in dina personuppgifter, inklusive namn, adress, telefonnummer och
                           e-postadress. Dessa uppgifter används endast för att kontakta dig
@@ -593,6 +596,17 @@ export default defineComponent({
 <style scoped>
 .faq-link-row {
   margin-top: 0.65rem;
+}
+
+.property-type-group {
+  margin: 1rem 0 0;
+  padding: 0;
+  border: 0;
+}
+
+.property-type-group legend {
+  margin-bottom: 0.6rem;
+  font-weight: 600;
 }
 
 .price-intro-panel {
