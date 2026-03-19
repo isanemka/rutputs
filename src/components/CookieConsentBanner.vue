@@ -101,9 +101,15 @@ export default defineComponent({
 <style scoped>
 .cookie-consent-card {
   width: 100%;
-  max-width: 100%;
-  border-radius: 0;
+  max-width: min(100%, 860px);
+  border-radius: 22px 22px 0 0;
   box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 599px) {
+  .cookie-consent-card {
+    border-radius: 18px 18px 0 0;
+  }
 }
 </style>
 

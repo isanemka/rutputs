@@ -1,10 +1,375 @@
 @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap')
 
+:root
+  --surface-soft: rgba(255, 255, 255, 0.82)
+  --surface-strong: rgba(255, 255, 255, 0.94)
+  --surface-outline: rgba(69, 90, 100, 0.12)
+  --surface-shadow: 0 24px 70px rgba(33, 41, 49, 0.12)
+  --hero-shadow: 0 28px 90px rgba(33, 41, 49, 0.18)
+  --radius-xl: 28px
+  --radius-lg: 22px
+  --radius-md: 16px
+
 body
-  background-color : $body-color
+  background: radial-gradient(circle at top left, rgba(156, 211, 255, 0.32), transparent 32%), linear-gradient(180deg, #f7fbfd 0%, #f3f5f6 42%, #eef2f3 100%)
   font-family : "Chakra Petch"
+  color: $primary
 
 .custom-line-height
   line-height : 2rem
+
+a
+  text-decoration: none
+
+.page-shell
+  width: min(1180px, calc(100% - 1.5rem))
+  margin: 0 auto
+
+.page-stack
+  display: grid
+  gap: 1.5rem
+  padding: 0 0 3rem
+
+.hero-shell
+  position: relative
+  overflow: hidden
+  border-radius: var(--radius-xl)
+  min-height: clamp(380px, 62vw, 620px)
+  box-shadow: var(--hero-shadow)
+  background: linear-gradient(135deg, rgba(69, 90, 100, 0.92), rgba(69, 90, 100, 0.68))
+
+.hero-shell::after
+  content: ''
+  position: absolute
+  inset: 0
+  background: linear-gradient(135deg, rgba(255, 97, 1, 0.18), transparent 42%), linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.16))
+  pointer-events: none
+
+.hero-shell__media
+  position: absolute
+  inset: 0
+
+.hero-shell__image
+  width: 100%
+  height: 100%
+  object-fit: cover
+  opacity: 0.28
+
+.hero-shell__content
+  position: relative
+  z-index: 1
+  display: grid
+  align-content: end
+  gap: 1rem
+  min-height: inherit
+  padding: clamp(1.5rem, 4vw, 3rem)
+  color: white
+
+.hero-kicker
+  display: inline-flex
+  align-items: center
+  gap: 0.5rem
+  padding: 0.4rem 0.8rem
+  width: fit-content
+  border-radius: 999px
+  background: rgba(255, 255, 255, 0.14)
+  border: 1px solid rgba(255, 255, 255, 0.18)
+  font-size: 0.78rem
+  font-weight: 600
+  letter-spacing: 0.12em
+  text-transform: uppercase
+
+.hero-title
+  max-width: 12ch
+  margin: 0
+  font-size: clamp(2.2rem, 6vw, 4.9rem)
+  line-height: 0.95
+  text-transform: uppercase
+
+.hero-lead
+  max-width: 42rem
+  margin: 0
+  font-size: clamp(1rem, 2vw, 1.18rem)
+  line-height: 1.7
+  color: rgba(255, 255, 255, 0.88)
+
+.hero-actions
+  display: flex
+  flex-wrap: wrap
+  gap: 0.9rem
+  padding-top: 0.5rem
+
+.hero-metrics
+  display: flex
+  flex-wrap: wrap
+  gap: 0.75rem
+  padding-top: 0.5rem
+
+.hero-metric
+  min-width: 140px
+  padding: 0.9rem 1rem
+  border-radius: var(--radius-md)
+  background: rgba(255, 255, 255, 0.12)
+  border: 1px solid rgba(255, 255, 255, 0.16)
+
+.hero-metric__value
+  display: block
+  font-size: 1.1rem
+  font-weight: 700
+
+.hero-metric__label
+  display: block
+  margin-top: 0.2rem
+  font-size: 0.82rem
+  color: rgba(255, 255, 255, 0.74)
+  text-transform: uppercase
+  letter-spacing: 0.08em
+
+.section-grid
+  display: grid
+  gap: 1.25rem
+
+.section-grid--two
+  grid-template-columns: repeat(2, minmax(0, 1fr))
+
+.editorial-panel
+  border-radius: var(--radius-lg)
+  padding: clamp(1.25rem, 2.5vw, 2rem)
+  background: var(--surface-soft)
+  border: 1px solid var(--surface-outline)
+  box-shadow: var(--surface-shadow)
+  backdrop-filter: blur(12px)
+
+.editorial-panel--solid
+  background: var(--surface-strong)
+
+.section-kicker
+  display: inline-block
+  margin-bottom: 0.85rem
+  color: $accent
+  font-size: 0.8rem
+  font-weight: 700
+  text-transform: uppercase
+  letter-spacing: 0.14em
+
+.section-title
+  margin: 0 0 0.8rem
+  font-size: clamp(1.6rem, 3vw, 2.4rem)
+  line-height: 1.05
+  color: $primary
+
+.section-text
+  margin: 0
+  font-size: 1rem
+  line-height: 1.8
+  color: rgba(69, 90, 100, 0.92)
+
+.section-text + .section-text
+  margin-top: 1rem
+
+.feature-list
+  display: grid
+  gap: 0.9rem
+  padding: 0
+  margin: 1.2rem 0 0
+  list-style: none
+
+.feature-list li
+  position: relative
+  padding-left: 1.4rem
+  line-height: 1.7
+
+.feature-list li::before
+  content: ''
+  position: absolute
+  left: 0
+  top: 0.7rem
+  width: 0.55rem
+  height: 0.55rem
+  border-radius: 50%
+  background: $accent
+  box-shadow: 0 0 0 4px rgba(255, 97, 1, 0.14)
+
+.mini-card-grid
+  display: grid
+  grid-template-columns: repeat(4, minmax(0, 1fr))
+  gap: 1rem
+
+.mini-card
+  border-radius: var(--radius-md)
+  padding: 1rem
+  background: rgba(255, 255, 255, 0.66)
+  border: 1px solid rgba(69, 90, 100, 0.1)
+
+.mini-card__title
+  margin: 0 0 0.35rem
+  font-size: 1rem
+  font-weight: 700
+
+.mini-card__text
+  margin: 0
+  font-size: 0.95rem
+  line-height: 1.65
+
+.cta-band
+  display: flex
+  flex-wrap: wrap
+  align-items: center
+  justify-content: space-between
+  gap: 1rem
+  padding: 1.3rem 1.4rem
+  border-radius: var(--radius-lg)
+  background: linear-gradient(135deg, rgba(69, 90, 100, 0.96), rgba(69, 90, 100, 0.84))
+  color: white
+  box-shadow: var(--surface-shadow)
+
+.cta-band__text
+  max-width: 44rem
+
+.cta-band__title
+  margin: 0 0 0.35rem
+  font-size: 1.2rem
+  font-weight: 700
+  line-height: 1.12
+
+.cta-band__lead
+  margin: 0
+  color: rgba(255, 255, 255, 0.78)
+  line-height: 1.7
+
+.faq-shell .q-list
+  border-radius: var(--radius-md)
+  overflow: hidden
+  border-color: rgba(69, 90, 100, 0.12)
+
+.faq-shell .q-expansion-item__container
+  background: rgba(255, 255, 255, 0.64)
+
+.faq-shell .q-card
+  background: rgba(255, 255, 255, 0.85)
+
+@media (max-width: 1023px)
+  .section-grid--two
+    grid-template-columns: 1fr
+
+  .mini-card-grid
+    grid-template-columns: repeat(2, minmax(0, 1fr))
+
+@media (max-width: 599px)
+  .page-shell
+    width: min(100% - 0.75rem, 1180px)
+
+  .page-stack
+    gap: 0.85rem
+    padding-bottom: 1.5rem
+
+  .hero-shell
+    min-height: 360px
+
+  .hero-kicker
+    padding: 0.35rem 0.7rem
+    font-size: 0.7rem
+    letter-spacing: 0.1em
+
+  .hero-shell__content
+    gap: 0.8rem
+    padding: 1rem
+
+  .hero-title
+    max-width: none
+    font-size: clamp(1.9rem, 8vw, 2.35rem)
+    line-height: 1
+
+  .hero-lead
+    max-width: none
+    font-size: 0.95rem
+    line-height: 1.6
+
+  .hero-actions
+    flex-direction: column
+    align-items: stretch
+    gap: 0.7rem
+
+  .hero-actions .q-btn
+    min-height: 44px
+
+  .hero-metrics
+    display: grid
+    grid-template-columns: repeat(2, minmax(0, 1fr))
+    gap: 0.6rem
+
+  .hero-metric
+    min-width: 0
+    padding: 0.8rem
+
+  .hero-metric__value
+    font-size: 1rem
+
+  .hero-metric__label
+    font-size: 0.74rem
+
+  .mini-card-grid
+    grid-template-columns: 1fr
+
+  .editorial-panel
+    padding: 1rem
+
+  .section-kicker
+    margin-bottom: 0.65rem
+    font-size: 0.72rem
+    letter-spacing: 0.12em
+
+  .section-title
+    margin-bottom: 0.65rem
+    font-size: 1.45rem
+    line-height: 1.08
+
+  .section-text
+    font-size: 0.96rem
+    line-height: 1.65
+
+  .feature-list
+    gap: 0.7rem
+    margin-top: 0.95rem
+
+  .feature-list li
+    line-height: 1.6
+
+  .mini-card
+    padding: 0.9rem
+
+  .mini-card__text
+    font-size: 0.92rem
+    line-height: 1.55
+
+  .cta-band
+    align-items: stretch
+    gap: 0.85rem
+    padding: 1rem
+
+  .cta-band__text
+    display: grid
+    gap: 0.55rem
+
+  .cta-band__title
+    margin-bottom: 0
+    font-size: 1.05rem
+    line-height: 1.08
+
+  .cta-band__lead
+    line-height: 1.55
+
+  .cta-band .q-btn
+    width: 100%
+
+@media (max-width: 380px)
+  .hero-metrics
+    grid-template-columns: 1fr
+
+  .hero-title
+    font-size: 1.72rem
+
+  .section-title
+    font-size: 1.32rem
 
 

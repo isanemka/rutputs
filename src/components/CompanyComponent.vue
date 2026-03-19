@@ -1,123 +1,105 @@
 <template>
-  <q-page>
-    <div class="row q-flex q-pa-sm justify-center items-center">
-      <div class="col-lg-6 col-md-8 col-xs-11 text-center">
-        <h1 :class="[$q.screen.lt.sm ? 'text-h4' : 'text-h3', 'text-bold text-primary text-uppercase']">Professionell fönsterputs för ditt företag</h1>
-      </div>
+  <q-page class="page-shell">
+    <div class="page-stack">
+      <section class="hero-shell company-hero">
+        <div class="hero-shell__content">
+          <span class="hero-kicker">Företag & lokaler</span>
+          <h1 class="hero-title company-hero__title">Fönsterputs som stärker helhetsintrycket för din verksamhet</h1>
+          <p class="hero-lead">
+            Rutputs hjälper företag i Stockholm med återkommande eller punktvisa upplägg
+            för kontor, lokaler och skyltfönster där tydlighet, flexibilitet och ett bra resultat är viktigast.
+          </p>
+          <div class="hero-actions">
+            <q-btn unelevated color="accent" text-color="black" label="Ta kontakt" href="#kontakt" />
+            <q-btn outline color="white" label="Läs vanliga frågor" href="#company-faq" />
+          </div>
+        </div>
+      </section>
 
-      <!-- Cards section -->
-      <div class="col-12">
-        <div class="row justify-center items-stretch q-pt-md">
-          <div class="col-md-6 col-sm-10 col-xs-12">
-            <q-card bordered class="text-container shadow q-ma-sm full-height">
-              <q-card-section class="custom-line-height text-body1 text-primary q-pa-lg">
-                <h2 class="text-h6 text-accent q-my-none">Varför väljer företag Rutputs?</h2>
-                <hr>
-                <p>
-                  Rutputs hjälper företag i Stockholm och norra Stockholm som vill hålla entréer,
-                  kontor och lokaler välkomnande med rena fönster. Tjänsten passar både mindre verksamheter
-                  och företag som behöver ett mer återkommande upplägg med tydliga intervaller.
-                </p>
-                <ul>
-                  <li>
-                    Kvalitet och noggrannhet
-                  </li>
-                  <li>
-                    Anpassade lösningar
-                  </li>
-                  <li>
-                    Effektivitet och pålitlighet
-                  </li>
-                  <li>
-                    Tillgänglighet och flexibilitet
-                  </li>
-                </ul>
-                Ta kontakt för att diskutera dina behov och få en offert.
+      <section class="section-grid section-grid--two">
+        <div class="editorial-panel editorial-panel--solid">
+          <span class="section-kicker">Företagsfokus</span>
+          <h2 class="section-title">För verksamheter som vill att lokalen ska kännas välskött</h2>
+          <p class="section-text">
+            Rena fönster är en del av hur en verksamhet uppfattas redan innan någon kliver in genom dörren.
+            För kontor, butiker, skyltfönster och mindre fastigheter blir det en synlig kvalitetssignal både för kunder och personal.
+          </p>
+          <ul class="feature-list">
+            <li>Kvalitet och noggrannhet i varje återkommande besök.</li>
+            <li>Anpassade upplägg efter lokaltyp, intervall och tillgänglighet.</li>
+            <li>Snabb återkoppling och enkel kontaktväg.</li>
+            <li>Möjlighet att börja smått och skala upp över tid.</li>
+          </ul>
+        </div>
+
+        <div class="editorial-panel">
+          <span class="section-kicker">Vad du får</span>
+          <h2 class="section-title">En enklare driftspartner, inte bara en engångsinsats</h2>
+          <p class="section-text">
+            Upplägget anpassas efter hur din verksamhet fungerar i praktiken. Vissa vill ha fasta intervaller,
+            andra behöver puts inför visningar, event, säsongsskiften eller för att skyltfönster ska hålla ett jämnt och välskött intryck. Målet är samma: ett enkelt och pålitligt flöde.
+          </p>
+          <p class="section-text">
+            När arbetsplatsen ser välhållen ut förbättras både helhetsintrycket och miljön för dem som vistas där varje dag.
+          </p>
+        </div>
+      </section>
+
+      <section class="editorial-panel editorial-panel--solid">
+        <span class="section-kicker">Så fungerar det</span>
+        <h2 class="section-title">Ett upplägg som går att förstå direkt</h2>
+        <div class="mini-card-grid company-grid">
+          <article class="mini-card">
+            <h3 class="mini-card__title">Inventering</h3>
+            <p class="mini-card__text">Vi går igenom lokaltyp, omfattning och vilka tider som passar verksamheten bäst.</p>
+          </article>
+          <article class="mini-card">
+            <h3 class="mini-card__title">Förslag</h3>
+            <p class="mini-card__text">Du får ett tydligt upplägg för intervall, utförande och hur tjänsten kan utvecklas över tid.</p>
+          </article>
+          <article class="mini-card">
+            <h3 class="mini-card__title">Genomförande</h3>
+            <p class="mini-card__text">Arbetet planeras med hänsyn till er drift så att resultatet blir bra utan onödigt störmoment.</p>
+          </article>
+          <article class="mini-card">
+            <h3 class="mini-card__title">Uppföljning</h3>
+            <p class="mini-card__text">Behoven kan justeras över tid om lokalen förändras eller om ni vill utöka upplägget.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="company-faq" class="editorial-panel faq-shell">
+        <span class="section-kicker">Vanliga frågor</span>
+        <h2 class="section-title">Det här frågar företag oftast om först</h2>
+        <q-list bordered separator>
+          <q-expansion-item
+            v-for="item in companyFaqs"
+            :key="item.question"
+            :label="item.question"
+            expand-separator
+            header-class="text-primary text-weight-medium"
+          >
+            <q-card flat>
+              <q-card-section class="text-body2 text-primary">
+                {{ item.answer }}
+                <div v-if="item.linkTo && item.linkLabel" class="faq-link-row">
+                  <router-link :to="item.linkTo" class="text-accent text-weight-bold">
+                    {{ item.linkLabel }}
+                  </router-link>
+                </div>
               </q-card-section>
             </q-card>
-          </div>
-          <div class="col-md-6 col-sm-10 col-xs-12">
-            <q-card bordered class="text-container shadow q-ma-sm full-height">
-              <q-card-section class="custom-line-height text-body1 text-primary q-pa-lg">
-                <h2 class="text-h6 text-accent q-my-none">Företagsfördelar</h2>
-                <hr>
-                <p>
-                  Rena fönster gör skillnad för helhetsintrycket och kan bidra till en ljusare arbetsmiljö.
-                  För verksamheter med kundkontakt blir det också en tydlig del av hur lokalen upplevs utifrån.
-                </p>
-                <ul>
-                  <li>
-                    Skapa en välkomnande och professionell atmosfär för dina kunder och anställda.
-                  </li>
-                  <li>
-                    Förbättra arbetsmiljön genom att öka ljusinsläppet och utsikten med skinande rena fönster.
-                  </li>
-                  <li>
-                    Öka värdet på din fastighet med regelbunden fönsterputsning och underhåll.
-                  </li>
-                </ul>
-              </q-card-section>
-            </q-card>
-          </div>
+          </q-expansion-item>
+        </q-list>
+      </section>
+
+      <section class="cta-band">
+        <div class="cta-band__text">
+          <h2 class="cta-band__title">Vill du diskutera ett företagsupplägg?</h2>
+          <p class="cta-band__lead">Ta kontakt så går vi igenom lokal, intervall och hur ett fungerande upplägg kan se ut för just er verksamhet.</p>
         </div>
-        <div class="row justify-center q-pt-md">
-          <div class="col-lg-10 col-md-10 col-sm-11 col-xs-12">
-            <q-card bordered class="text-container shadow q-ma-sm">
-              <q-card-section class="custom-line-height text-body1 text-primary q-pa-lg">
-                <h2 class="text-h6 text-accent q-my-none">Så fungerar företagsupplägget</h2>
-                <hr>
-                <p>
-                  När du kontaktar Rutputs går vi igenom lokaltyp, önskat intervall och vad som är viktigast för er verksamhet.
-                  Det kan handla om allt från regelbunden fönsterputs för kontor till punktinsatser inför visningar,
-                  kundevent eller säsongsstart.
-                </p>
-                <p class="q-mb-none">
-                  Målet är att ge ett tydligt och enkelt upplägg med snabb återkoppling, så att du vet vad som ingår,
-                  när arbetet utförs och hur lösningen kan skalas över tid om behoven förändras.
-                </p>
-              </q-card-section>
-            </q-card>
-          </div>
-        </div>
-        <div class="row justify-center q-pt-md q-pb-md">
-          <div class="col-lg-10 col-md-10 col-sm-11 col-xs-12">
-            <q-card bordered class="text-container shadow q-ma-sm">
-              <q-card-section class="text-primary q-pa-lg">
-                <h2 class="text-h6 text-accent q-my-none">Vanliga frågor från företag</h2>
-                <hr>
-                <q-list bordered separator>
-                  <q-expansion-item
-                    v-for="item in companyFaqs"
-                    :key="item.question"
-                    :label="item.question"
-                    expand-separator
-                    header-class="text-primary text-weight-medium"
-                  >
-                    <q-card flat>
-                      <q-card-section class="text-body2 text-primary">
-                        {{ item.answer }}
-                      </q-card-section>
-                    </q-card>
-                  </q-expansion-item>
-                </q-list>
-              </q-card-section>
-            </q-card>
-          </div>
-        </div>
-        <div class="row justify-center items-center q-pt-lg q-pb-md" style="gap: 12px">
-          <q-btn
-            label="Ta kontakt"
-            color="accent"
-            class="text-black q-pa-sm"
-            href="#kontakt"
-          />
-        </div>
-        <div class="row justify-center q-pb-lg">
-          <a href="#kontakt" class="scroll-arrow text-primary" aria-label="Scrolla till kontaktsektionen">
-            <q-icon name="keyboard_arrow_down" size="2.5rem" />
-          </a>
-        </div>
-      </div>
+        <q-btn unelevated color="accent" text-color="black" label="Kontakta Rutputs" href="#kontakt" />
+      </section>
     </div>
   </q-page>
 </template>
@@ -218,10 +200,64 @@ export default defineComponent({
 });
 </script>
 <style scoped>
+.company-hero {
+  background: linear-gradient(135deg, rgba(69, 90, 100, 0.94), rgba(46, 68, 78, 0.8));
+}
+
+.faq-link-row {
+  margin-top: 0.65rem;
+}
+
+.company-hero__title {
+  max-width: 14ch;
+  overflow-wrap: anywhere;
+}
+
+.company-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
 .scroll-arrow {
   display: inline-block;
   animation: scroll-arrow-bounce 1.5s infinite;
   text-decoration: none;
+}
+
+@media (max-width: 1023px) {
+  .company-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 599px) {
+  .company-hero {
+    min-height: auto;
+  }
+
+  .company-hero :deep(.hero-shell__content) {
+    gap: 0.75rem;
+    padding: 1rem;
+  }
+
+  .company-hero__title {
+    max-width: none;
+    font-size: clamp(1.8rem, 8vw, 2.35rem);
+    line-height: 1.02;
+    text-transform: none;
+  }
+
+  .company-hero :deep(.hero-lead) {
+    font-size: 0.98rem;
+    line-height: 1.65;
+  }
+
+  .company-hero :deep(.hero-actions) {
+    gap: 0.7rem;
+  }
+
+  .company-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @keyframes scroll-arrow-bounce {

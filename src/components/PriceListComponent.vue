@@ -1,22 +1,23 @@
 <template>
-    <q-page>
-      <div class="row justify-center q-pt-md q-px-md">
-        <div class="col-12 col-md-8 col-lg-7 text-primary">
-          <h1 class="text-h4 text-md-h3 text-primary text-center text-bold q-mb-md">
-            Pris på fönsterputsning med RUT-avdrag
-          </h1>
-          <p class="text-body1 text-center q-mb-md">
-            Här kan du räkna ut priset för fönsterputsning i norra Stockholm direkt online.
-            Priset börjar från 350 kr efter RUT-avdrag och du ser snabbt vad som gäller för din bostad.
-          </p>
-          <p class="text-body1 text-center q-mb-lg">
-            Formuläret är byggt för att göra bokningen enkel: välj bostadstyp, ange antal fönster
-            och skicka sedan in din förfrågan när priset känns rätt.
-          </p>
-        </div>
-      </div>
+    <q-page class="page-shell">
+      <div class="page-stack">
+      <section class="editorial-panel editorial-panel--solid price-intro-panel">
+        <span class="section-kicker price-intro-panel__kicker">Pris direkt online</span>
+        <h1 class="section-title text-center">
+          Pris på fönsterputsning med RUT-avdrag
+        </h1>
+        <p class="section-text text-center q-mx-auto price-intro-panel__text">
+          Här kan du räkna ut priset för fönsterputsning i norra Stockholm direkt online.
+          Priset börjar från 350 kr efter RUT-avdrag och du ser snabbt vad som gäller för din bostad.
+        </p>
+        <p class="section-text text-center q-mx-auto price-intro-panel__text">
+          Formuläret är byggt för att göra bokningen enkel: välj bostadstyp, ange antal fönster
+          och skicka sedan in din förfrågan när priset känns rätt.
+        </p>
+      </section>
       <div class="row q-flex justify-center mb-2">
-        <div class="col-12 col-md-8">
+        <div class="col-12">
+          <div class="editorial-panel price-stepper-shell">
           <!-- Stepper component for multiple steps -->
           <q-stepper
             :vertical="$q.screen.gt.sm"
@@ -243,35 +244,35 @@
               </div>
             </q-step>
           </q-stepper>
+          </div>
         </div>
       </div>
 
-      <div class="row justify-center q-px-md q-pb-xl">
-        <div class="col-12 col-md-8 col-lg-7">
-          <q-card bordered class="text-container shadow">
-            <q-card-section class="text-primary q-pa-lg">
-              <h2 class="text-h6 text-accent q-my-none">Vanliga frågor om pris och bokning</h2>
-              <hr>
-              <q-list bordered separator>
-                <q-expansion-item
-                  v-for="item in priceFaqs"
-                  :key="item.question"
-                  :label="item.question"
-                  expand-separator
-                  header-class="text-primary text-weight-medium"
-                >
-                  <q-card flat>
-                    <q-card-section class="text-body2 text-primary">
-                      {{ item.answer }}
-                    </q-card-section>
-                  </q-card>
-                </q-expansion-item>
-              </q-list>
-            </q-card-section>
-          </q-card>
-        </div>
+      <section class="editorial-panel faq-shell q-pb-xl">
+        <span class="section-kicker">Vanliga frågor</span>
+        <h2 class="section-title">Pris och bokning</h2>
+        <q-list bordered separator>
+          <q-expansion-item
+            v-for="item in priceFaqs"
+            :key="item.question"
+            :label="item.question"
+            expand-separator
+            header-class="text-primary text-weight-medium"
+          >
+            <q-card flat>
+              <q-card-section class="text-body2 text-primary">
+                {{ item.answer }}
+                <div v-if="item.linkTo && item.linkLabel" class="faq-link-row">
+                  <router-link :to="item.linkTo" class="text-accent text-weight-bold">
+                    {{ item.linkLabel }}
+                  </router-link>
+                </div>
+              </q-card-section>
+            </q-card>
+          </q-expansion-item>
+        </q-list>
+      </section>
       </div>
-
     </q-page>
 </template>
 
@@ -590,4 +591,88 @@ export default defineComponent({
 });
 </script>
 <style scoped>
+.faq-link-row {
+  margin-top: 0.65rem;
+}
+
+.price-intro-panel {
+  display: grid;
+  justify-items: center;
+  padding-block: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.price-intro-panel__kicker {
+  margin-bottom: 1rem;
+}
+
+.price-intro-panel__text {
+  max-width: 48rem;
+}
+
+.price-stepper-shell {
+  padding: 1rem;
+}
+
+.price-stepper-shell :deep(.q-stepper) {
+  background: transparent;
+  box-shadow: none;
+}
+
+@media (max-width: 599px) {
+  .price-intro-panel {
+    padding-block: 1.1rem;
+  }
+
+  .price-intro-panel__text {
+    max-width: none;
+  }
+
+  .price-stepper-shell {
+    padding: 0.2rem;
+  }
+
+  .price-stepper-shell :deep(.q-stepper__title) {
+    font-size: 0.92rem;
+    line-height: 1.2;
+  }
+
+  .price-stepper-shell :deep(.q-stepper__caption) {
+    font-size: 0.8rem;
+  }
+
+  .price-stepper-shell :deep(.q-stepper__nav) {
+    gap: 0.55rem;
+  }
+
+  .price-stepper-shell :deep(.q-stepper__nav .q-btn) {
+    width: 100%;
+    min-height: 44px;
+    margin-left: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  .price-stepper-shell :deep(.q-stepper__step-inner) {
+    padding-top: 0.75rem;
+  }
+
+  .price-stepper-shell :deep(.q-form) {
+    width: 100%;
+    padding: 0.25rem 0 !important;
+  }
+
+  .price-stepper-shell :deep(.q-field__native),
+  .price-stepper-shell :deep(.q-field__input) {
+    font-size: 16px;
+  }
+
+  .price-stepper-shell :deep(.q-table td),
+  .price-stepper-shell :deep(.q-table th) {
+    padding: 0.5rem 0.35rem;
+    font-size: 0.9rem;
+  }
+
+  .price-stepper-shell :deep(.q-dialog__inner > div) {
+    width: min(100vw - 1rem, 420px);
+  }
+}
 </style>

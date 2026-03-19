@@ -1,129 +1,95 @@
 <template>
-  <q-page>
-    <div v-if="area" class="row q-flex q-pa-md justify-center items-center text-center">
-      <q-parallax>
-        <template v-if="$q.screen.gt.sm" v-slot:media>
-          <img :src="randomLandscapeImage" :alt="'Fönsterputsning i ' + area.name" style="opacity: 0.3;">
-        </template>
-        <template v-else v-slot:media>
-          <img :src="randomPortraitImage" :alt="'Fönsterputsare i ' + area.name" style="opacity: 0.3;">
-        </template>
-        <div class="col-lg-6 col-md-8 col-xs-10">
-          <h1 :class="[$q.screen.lt.sm ? 'text-h5 q-pt-xl' : 'text-h2', 'text-bold text-primary text-uppercase']">
-            Fönsterputsning i {{ area.name }}
-          </h1>
-          <q-btn
-            class="q-pa-md q-mt-md text-black"
-            label="Se vad det kostar"
-            color="accent"
-            to="/pris"
-          />
+  <q-page class="page-shell">
+    <div v-if="area" class="page-stack">
+      <section class="hero-shell area-hero">
+        <picture class="hero-shell__media area-hero__media">
+          <source media="(min-width: 600px)" :srcset="randomLandscapeImage" type="image/webp">
+          <img class="hero-shell__image" :src="randomPortraitImage" :alt="'Fönsterputsning i ' + area.name">
+        </picture>
+        <div class="hero-shell__content">
+          <span class="hero-kicker">{{ area.name }}</span>
+          <h1 class="hero-title area-hero__title">Fönsterputsning i {{ area.name }} med lokalt fokus</h1>
+          <p class="hero-lead">
+            {{ area.content }}
+          </p>
+          <div class="hero-actions">
+            <q-btn unelevated color="accent" text-color="black" label="Se vad det kostar" to="/pris" />
+          </div>
         </div>
-      </q-parallax>
+      </section>
 
-      <div class="row justify-center q-pt-md">
-        <div class="col-xl-5 col-lg-6 col-md-8 col-xs-12">
-          <q-card bordered class="text-container shadow">
-            <q-card-section
-              class="custom-line-height text-body1 text-primary text-justify q-py-xl q-px-xl"
-              :style="textStyle"
-            >
-              <h2 class="text-h6 text-center text-accent q-mb-sm">Fönsterputs i {{ area.name }} med RUT-avdrag</h2>
-              <hr class="text-primary">
-              <p class="q-mb-md">{{ area.content }}</p>
-              <p class="q-mb-md">
-                Fönsterputsning i {{ area.name }} passar både villor, radhus, lägenheter och mindre fastigheter.
-                När du bokar hos Rutputs får du hjälp av en lokal aktör som arbetar i norra Stockholm varje vecka,
-                vilket gör det enklare att hitta tider som passar och att få ett noggrant resultat utan onödiga väntetider.
-              </p>
-              <p class="q-mb-none">
-                Jag hjälper kunder i {{ districtSummary }} och närliggande områden. Med RUT-avdraget kan du få dina
-                fönster skinande rena från 350 kronor. Fyll i det enkla formuläret för att se ditt pris direkt och
-                skicka en offertförfrågan när det passar dig.
-              </p>
-            </q-card-section>
-            <q-card-actions align="center" class="q-pb-lg">
-              <q-btn
-                label="Se vad det kostar"
-                color="accent"
-                class="text-black q-pa-sm"
-                to="/pris"
-              />
-            </q-card-actions>
-          </q-card>
+      <section class="section-grid section-grid--two">
+        <div class="editorial-panel editorial-panel--solid">
+          <span class="section-kicker">Lokalt upplägg</span>
+          <h2 class="section-title">En smidigare bokning när arbetet redan sker i området</h2>
+          <p class="section-text">
+            Fönsterputsning i {{ area.name }} passar villor, radhus, lägenheter och mindre fastigheter där rena fönster
+            gör stor skillnad för ljusinsläpp och helhetsintryck. När du bokar hos Rutputs får du hjälp av någon som redan arbetar i området.
+          </p>
+          <p class="section-text">
+            Jag hjälper kunder i {{ districtSummary }} och närliggande delar av området. Med RUT-avdraget kan du få ett tydligt pris
+            från 350 kronor och skicka en offertförfrågan när det passar dig.
+          </p>
         </div>
-      </div>
 
-      <div class="row justify-center q-pt-md q-gutter-md full-width">
-        <div class="col-xl-5 col-lg-6 col-md-8 col-xs-12">
-          <q-card bordered class="text-container shadow">
-            <q-card-section class="q-px-xl q-py-lg text-primary">
-              <h2 class="text-h6 text-accent q-mb-md">Områden vi täcker i {{ area.name }}</h2>
-              <p class="text-body1 q-mb-lg" :style="textStyle">
-                Vi arbetar återkommande i flera delar av {{ area.name }}, vilket gör det enkelt att boka både enstaka
-                putsningar och mer återkommande hjälp. Det är särskilt uppskattat av kunder som vill ha rena fönster
-                inför vår, höst, försäljning eller när hemmet behöver släppa in mer ljus.
-              </p>
-              <div class="row q-col-gutter-md">
-                <div v-for="district in area.districts" :key="district" class="col-sm-6 col-xs-12">
-                  <q-card flat bordered class="district-card full-height">
-                    <q-card-section>
-                      <h3 class="text-subtitle1 text-bold text-primary q-my-none">{{ district }}</h3>
-                      <p class="q-mt-sm q-mb-none text-body2 text-primary">
-                        Fönsterputsning för bostäder och mindre fastigheter i {{ district }} med smidig bokning och
-                        tydlig prissättning.
-                      </p>
-                    </q-card-section>
-                  </q-card>
+        <div class="editorial-panel">
+          <span class="section-kicker">Så går det till</span>
+          <h2 class="section-title">Från prisförfrågan till färdigt resultat</h2>
+          <ul class="feature-list">
+            <li>Fyll i uppgifterna på prissidan och se priset direkt.</li>
+            <li>Skicka in förfrågan när upplägget känns rätt.</li>
+            <li>Få återkoppling om bokning, tid och eventuella detaljer.</li>
+            <li>Få arbetet utfört av någon som redan är verksam i {{ area.name }}.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="editorial-panel">
+        <span class="section-kicker">Delområden</span>
+        <h2 class="section-title">Områden vi täcker i {{ area.name }}</h2>
+        <p class="section-text">
+          Vi arbetar återkommande i flera delar av {{ area.name }}, vilket gör det enkelt att boka både enstaka putsningar och återkommande hjälp.
+        </p>
+        <div class="mini-card-grid q-mt-lg area-districts">
+          <article v-for="district in area.districts" :key="district" class="mini-card">
+            <h3 class="mini-card__title">{{ district }}</h3>
+            <p class="mini-card__text">Fönsterputsning för bostäder och mindre fastigheter i {{ district }} med tydlig prissättning och smidig bokning.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="cta-band">
+        <div class="cta-band__text">
+          <h2 class="cta-band__title">Vill du se priset för {{ area.name }} direkt?</h2>
+          <p class="cta-band__lead">Prissidan ger dig en snabb väg vidare utan att du först behöver invänta manuell offert.</p>
+        </div>
+        <q-btn unelevated color="accent" text-color="black" label="Gå till prislistan" to="/pris" />
+      </section>
+
+      <section class="editorial-panel faq-shell">
+        <span class="section-kicker">Vanliga frågor</span>
+        <h2 class="section-title">Det här undrar kunder i {{ area.name }} oftast</h2>
+        <q-list bordered separator>
+          <q-expansion-item
+            v-for="item in area.faq"
+            :key="item.question"
+            :label="item.question"
+            expand-separator
+            header-class="text-primary text-weight-medium"
+          >
+            <q-card flat>
+              <q-card-section class="text-body2 text-primary">
+                {{ item.answer }}
+                <div v-if="item.linkTo && item.linkLabel" class="faq-link-row">
+                  <router-link :to="item.linkTo" class="text-accent text-weight-bold">
+                    {{ item.linkLabel }}
+                  </router-link>
                 </div>
-              </div>
-            </q-card-section>
-          </q-card>
-        </div>
-
-        <div class="col-xl-5 col-lg-6 col-md-8 col-xs-12">
-          <q-card bordered class="text-container shadow">
-            <q-card-section class="q-px-xl q-py-lg text-primary">
-              <h2 class="text-h6 text-accent q-mb-md">Så fungerar bokningen i {{ area.name }}</h2>
-              <p class="text-body1 q-mb-md" :style="textStyle">
-                Börja med att gå till prissidan och fylla i de uppgifter som behövs för att räkna ut priset.
-                När du skickat din förfrågan går jag igenom informationen och återkommer för att bekräfta bokning,
-                tid och eventuella detaljer kring bostaden.
-              </p>
-              <p class="text-body1 q-mb-none" :style="textStyle">
-                För många kunder i {{ area.name }} är enkelheten avgörande: du får ett tydligt upplägg, ett pris som
-                börjar från 350 kr efter RUT-avdrag och hjälp av någon som redan arbetar i området. Det minskar
-                administrationen och gör processen snabbare från första kontakt till färdigt resultat.
-              </p>
-            </q-card-section>
-          </q-card>
-        </div>
-      </div>
-
-      <div class="row justify-center q-pt-md q-pb-xl full-width">
-        <div class="col-xl-10 col-lg-10 col-md-10 col-xs-12">
-          <q-card bordered class="text-container shadow">
-            <q-card-section class="q-px-xl q-py-lg text-primary">
-              <h2 class="text-h6 text-accent q-mb-md">Vanliga frågor om fönsterputs i {{ area.name }}</h2>
-              <q-list bordered separator>
-                <q-expansion-item
-                  v-for="item in area.faq"
-                  :key="item.question"
-                  :label="item.question"
-                  expand-separator
-                  header-class="text-primary text-weight-medium"
-                >
-                  <q-card flat>
-                    <q-card-section class="text-body2 text-primary">
-                      {{ item.answer }}
-                    </q-card-section>
-                  </q-card>
-                </q-expansion-item>
-              </q-list>
-            </q-card-section>
-          </q-card>
-        </div>
-      </div>
+              </q-card-section>
+            </q-card>
+          </q-expansion-item>
+        </q-list>
+      </section>
     </div>
   </q-page>
 </template>
@@ -290,23 +256,64 @@ export default defineComponent({
   },
   computed: {
     textStyle() {
-      if (this.$q.screen.lt.sm) {
-        return {
-          'font-size': '1rem',
-          'line-height': '1.6',
-          'padding': '1rem'
-        };
-      }
-      return {
-        'font-size': '1.2rem'
-      };
+      return {};
     }
   }
 });
 </script>
 
 <style scoped>
-.district-card {
-  border-radius: 12px;
+.faq-link-row {
+  margin-top: 0.65rem;
+}
+
+.area-hero__media {
+  position: absolute;
+  inset: 0;
+}
+
+.area-hero__title {
+  max-width: 14ch;
+}
+
+.area-districts {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+@media (max-width: 1023px) {
+  .area-districts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 599px) {
+  .area-hero {
+    min-height: auto;
+  }
+
+  .area-hero :deep(.hero-shell__content) {
+    gap: 0.75rem;
+    padding: 1rem;
+  }
+
+  .area-hero__title {
+    max-width: none;
+    font-size: clamp(1.8rem, 8vw, 2.25rem);
+    line-height: 1.02;
+    text-transform: none;
+  }
+
+  .area-hero :deep(.hero-lead) {
+    font-size: 0.96rem;
+    line-height: 1.6;
+  }
+
+  .area-hero :deep(.hero-actions) {
+    gap: 0.65rem;
+  }
+
+  .area-districts {
+    grid-template-columns: 1fr;
+  }
 }
 </style>

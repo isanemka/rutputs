@@ -15,27 +15,31 @@ const siteSeoContent = {
       {
         question: 'Vilka områden täcker Rutputs?',
         answer:
-          'Rutputs täcker norra Stockholm: Järfälla, Bromma, Kista, Solna, Sundbyberg, Spånga, Sollentuna och Täby.',
+          'Rutputs täcker norra Stockholm: Järfälla, Bromma, Kista, Solna, Sundbyberg, Spånga, Sollentuna och Täby. Men vi hjälper även kunder i närliggande områden. Fyll i formuläret för att se om vi kan hjälpa dig!',
       },
       {
         question: 'Hur bokar jag fönsterputsning?',
         answer:
           'Fyll i formuläret på vår prissida så räknas ditt pris ut direkt. Vi kontaktar dig sedan för att boka en tid som passar.',
+        linkLabel: 'Gå till formuläret',
+        linkTo: '/pris',
       },
       {
         question: 'Putsar ni även företagsfönster?',
         answer:
           'Ja, vi erbjuder professionell fönsterputsning för kontor och företagslokaler i norra Stockholm. Kontakta oss för en offert.',
+        linkLabel: 'Läs mer om fönsterputs för företag',
+        linkTo: '/foretag',
       },
     ],
   },
   company: {
     title: 'Fönsterputs för företag i Stockholm | Rutputs',
     description:
-      'Professionell fönsterputs för företag i Stockholm och norra Stockholm. Flexibla avtal, regelbunden service och rena fönster för kontor och lokaler.',
+      'Professionell fönsterputs för företag i Stockholm och norra Stockholm. Flexibla avtal, regelbunden service och rena fönster för kontor, lokaler och skyltfönster.',
     bodyTitle: 'Fönsterputs för företag',
     bodyIntro:
-      'Rutputs hjälper företag, kontor och mindre fastigheter i Stockholm med professionell fönsterputsning. Tjänsten kan anpassas för återkommande intervaller och tydliga serviceupplägg.',
+      'Rutputs hjälper företag, kontor, butiker och mindre fastigheter i Stockholm med professionell fönsterputsning. Tjänsten kan anpassas för återkommande intervaller, skyltfönster och tydliga serviceupplägg.',
     benefits: [
       'Regelbunden service och flexibla avtal.',
       'Rena fönster som förbättrar intrycket för kunder och personal.',
@@ -50,12 +54,17 @@ const siteSeoContent = {
       {
         question: 'Arbetar ni bara i norra Stockholm?',
         answer:
-          'Fokus ligger på Stockholm och norra Stockholm, där Rutputs redan arbetar löpande och därför kan erbjuda ett smidigare upplägg.',
+          'Fokus ligger på norra Stockholm, där Rutputs redan arbetar löpande men vi är inte omöjliga. Fyll i formuläret så ser vi om vi kan hjälpa dig oavsett var du befinner dig.',
       },
       {
         question: 'Hur får vi en offert?',
         answer:
-          'Kontakta Rutputs via formuläret eller kontaktuppgifterna på sidan så går vi igenom lokal, omfattning och önskat upplägg innan offert lämnas.',
+          'Kontakta Rutputs via kontaktuppgifterna på sidan så går vi igenom lokal, omfattning och önskat upplägg innan offert lämnas.',
+      },
+      {
+        question: 'Putsar ni även skyltfönster för butiker och verksamheter?',
+        answer:
+          'Ja, Rutputs hjälper även butiker och verksamheter med putsning av skyltfönster. Det passar bra både som återkommande upplägg och inför perioder när du vill att entré och skyltläge ska ge ett extra välskött intryck.',
       },
     ],
   },

@@ -1,11 +1,11 @@
 <template>
-  <q-page>
-    <div class="row q-flex q-pa-md justify-center items-center text-center">
-      <section ref="heroSection" class="hero-section col-12">
-        <picture class="hero-media" :style="heroMediaStyle">
+  <q-page class="page-shell">
+    <div class="page-stack">
+      <section ref="heroSection" class="hero-shell">
+        <picture class="hero-shell__media" :style="heroMediaStyle">
           <source media="(min-width: 600px)" :srcset="randomLandscapeImage" type="image/webp">
           <img
-            class="hero-image"
+            class="hero-shell__image"
             :src="randomPortraitImage"
             alt="Professionell fönsterputsning i norra Stockholm"
             fetchpriority="high"
@@ -13,135 +13,132 @@
           >
         </picture>
 
-        <div class="hero-content col-lg-6 col-md-8 col-xs-10">
-          <h1 :class="[$q.screen.lt.sm ? 'text-h5 q-pt-xl' : 'text-h2', 'text-bold text-primary text-uppercase']">
-            Din rutputsare i norra Stockholm
-          </h1>
-
-          <q-btn
-            class="q-pa-md q-mt-md text-black"
-            label="Se vad det kostar"
-            color="accent"
-            @click="goToPriceList"
-          />
+        <div class="hero-shell__content">
+          <span class="hero-kicker">Lokal fönsterputsare</span>
+          <h1 class="hero-title">Rena fönster. Tydligt pris. Snabb bokning.</h1>
+          <p class="hero-lead">
+            Rutputs hjälper hushåll i norra Stockholm med fönsterputsning som känns enkel att boka,
+            enkel att förstå och genomförd med jämn kvalitet från första kontakt till färdigt resultat.
+          </p>
+          <div class="hero-actions">
+            <q-btn class="text-black" label="Se vad det kostar" color="accent" unelevated @click="goToPriceList" />
+            <q-btn outline color="white" label="Se områden vi täcker" href="#areas" />
+          </div>
+          <div class="hero-metrics">
+            <div class="hero-metric">
+              <span class="hero-metric__value">Från 350 kr</span>
+              <span class="hero-metric__label">Efter RUT-avdrag</span>
+            </div>
+            <div class="hero-metric">
+              <span class="hero-metric__value">8 områden</span>
+              <span class="hero-metric__label">I norra Stockholm</span>
+            </div>
+            <div class="hero-metric">
+              <span class="hero-metric__value">Direkt pris</span>
+              <span class="hero-metric__label">Via formuläret</span>
+            </div>
+          </div>
         </div>
       </section>
 
-        <!-- Card section -->
-        <div class="row justify-center q-pt-md">
-          <div class="col-xl-5 col-lg-6 col-md-8 col-xs-12">
-            <q-card bordered class="text-container shadow">
-              <q-card-section
-                class="custom-line-height text-body1 text-primary text-justify q-py-xl q-px-xl"
-                :style="textStyle"
-                >
-                <h2 class="text-h6 text-center text-accent q-mb-sm">Fönsterputs i norra Stockholm med tydligt pris</h2>
-                <hr class="text-primary">
-                <p class="q-mb-md">
-                  Rutputs erbjuder professionell fönsterputsning i norra Stockholm för dig som vill ha rena fönster
-                  utan krångel. Med RUT-avdrag börjar priset från 350 kr, och via vår prissida kan du snabbt se vad
-                  jobbet kostar innan du skickar din förfrågan.
-                </p>
-                <p class="q-mb-md">
-                  Jag utgår från Järfälla och arbetar löpande i flera närliggande områden, vilket gör det enklare att
-                  boka tider som passar och att hålla en jämn kvalitet i varje uppdrag. Tjänsten passar både villor,
-                  radhus, lägenheter och mindre fastigheter där rena fönster förbättrar både ljusinsläpp och helhetsintryck.
-                </p>
-                <p class="q-mb-none">
-                  Oavsett om du behöver hjälp inför våren, hösten, en försäljning eller bara vill ha återkommande
-                  fönsterputsning får du ett tydligt upplägg med snabb återkoppling. Några av områdena jag täcker är
-                  <span v-for="(a, i) in areaLinks" :key="a.slug">
-                    <router-link :to="'/omrade/' + a.slug" class="text-accent">{{ a.name }}</router-link><span v-if="i < areaLinks.length - 1">, </span>
-                  </span>.
-                </p>
-              </q-card-section>
-            </q-card>
-          </div>
+      <section class="section-grid section-grid--two">
+        <div class="editorial-panel editorial-panel--solid">
+          <span class="section-kicker">Tydligt upplägg</span>
+          <h2 class="section-title">Fönsterputs i norra Stockholm utan onödigt krångel</h2>
+          <p class="section-text">
+            Rutputs erbjuder professionell fönsterputsning för dig som vill ha rena fönster utan att jaga priser,
+            ringa runt eller vänta på otydliga offerter. Du ser priset direkt, skickar din förfrågan och får snabb återkoppling.
+          </p>
+          <p class="section-text">
+            Jag utgår från Järfälla och arbetar löpande i flera närliggande områden. Det gör det lättare att planera in tider som passar,
+            hålla kvaliteten jämn och ge ett mer lokalt och personligt upplägg än många större aktörer.
+          </p>
         </div>
 
-        <div class="row justify-center q-pt-md q-gutter-md full-width">
-          <div class="col-xl-5 col-lg-6 col-md-8 col-xs-12">
-            <q-card bordered class="text-container shadow full-height">
-              <q-card-section class="q-px-xl q-py-lg text-primary">
-                <h2 class="text-h6 text-accent q-mb-md">Varför välja Rutputs?</h2>
-                <p class="text-body1 q-mb-md" :style="textStyle">
-                  För många hushåll handlar fönsterputs inte bara om utseende utan om att få mer ljus in i hemmet och
-                  slippa lägga tid på ett tidskrävande arbete. Med Rutputs får du hjälp av en lokal fönsterputsare som
-                  arbetar i norra Stockholm och som anpassar upplägget efter bostadens storlek och dina önskemål.
-                </p>
-                <p class="text-body1 q-mb-none" :style="textStyle">
-                  Det gör tjänsten till ett bra val för både enstaka bokningar och återkommande hjälp. Priset är tydligt,
-                  RUT-avdraget gör stor skillnad för privatpersoner och hela bokningsflödet är byggt för att vara enkelt
-                  från första klick till bekräftad tid.
-                </p>
-              </q-card-section>
-            </q-card>
-          </div>
-
-          <div class="col-xl-5 col-lg-6 col-md-8 col-xs-12">
-            <q-card bordered class="text-container shadow full-height">
-              <q-card-section class="q-px-xl q-py-lg text-primary">
-                <h2 class="text-h6 text-accent q-mb-md">Så fungerar det</h2>
-                <ol class="text-body1 q-pl-lg q-mb-none" :style="textStyle">
-                  <li class="q-mb-sm">Gå till prissidan och fyll i uppgifterna om din bostad och dina fönster.</li>
-                  <li class="q-mb-sm">Se ditt pris direkt och skicka in din offertförfrågan online.</li>
-                  <li>Få återkoppling för att bekräfta tid, detaljer och nästa steg för bokningen.</li>
-                </ol>
-              </q-card-section>
-            </q-card>
-          </div>
+        <div class="editorial-panel">
+          <span class="section-kicker">Därför fungerar det</span>
+          <h2 class="section-title">Byggt för riktiga hem och riktiga bokningar</h2>
+          <ul class="feature-list">
+            <li>Tydligt från-pris och direkt prisindikation online.</li>
+            <li>Passar villor, radhus, lägenheter och mindre fastigheter.</li>
+            <li>Lokal närvaro i områden där bokningarna faktiskt sker.</li>
+            <li>Smidig väg från första klick till bekräftad tid.</li>
+          </ul>
         </div>
+      </section>
 
-        <div class="row justify-center q-pt-md full-width">
-          <div class="col-xl-10 col-lg-10 col-md-10 col-xs-12">
-            <q-card bordered class="text-container shadow">
-              <q-card-section class="q-px-xl q-py-lg text-primary">
-                <h2 class="text-h6 text-accent q-mb-md">Områden vi täcker</h2>
-                <p class="text-body1 q-mb-lg" :style="textStyle">
-                  Rutputs fokuserar på norra Stockholm och närliggande områden där efterfrågan på lokal och pålitlig
-                  fönsterputsning är hög. Genom att ha tydliga områdessidor blir det också enklare för dig att se om vi
-                  arbetar i just ditt område och hur tjänsten passar där du bor.
-                </p>
-                <div class="row q-col-gutter-md">
-                  <div v-for="item in areaLinks" :key="item.slug" class="col-md-3 col-sm-4 col-xs-6">
-                    <q-card flat bordered class="area-link-card full-height">
-                      <q-card-section class="text-center">
-                        <h3 class="text-subtitle1 text-bold text-primary q-my-none">{{ item.name }}</h3>
-                        <router-link :to="'/omrade/' + item.slug" class="text-accent">Läs om fönsterputs i {{ item.name }}</router-link>
-                      </q-card-section>
-                    </q-card>
-                  </div>
+      <section class="editorial-panel editorial-panel--solid">
+        <span class="section-kicker">Så går det till</span>
+        <h2 class="section-title">Tre enkla steg till skinande rena fönster</h2>
+        <div class="mini-card-grid">
+          <article class="mini-card">
+            <h3 class="mini-card__title">1. Välj bostad</h3>
+            <p class="mini-card__text">Fyll i vad du bor i och vilka typer av fönster som ska putsas.</p>
+          </article>
+          <article class="mini-card">
+            <h3 class="mini-card__title">2. Se priset</h3>
+            <p class="mini-card__text">Du får en tydlig prisbild direkt, inklusive hur RUT-avdraget påverkar kostnaden.</p>
+          </article>
+          <article class="mini-card">
+            <h3 class="mini-card__title">3. Skicka förfrågan</h3>
+            <p class="mini-card__text">Skicka in uppgifterna och få återkoppling för att bekräfta tid och detaljer.</p>
+          </article>
+          <article class="mini-card">
+            <h3 class="mini-card__title">4. Få jobbet gjort</h3>
+            <p class="mini-card__text">Ett lokalt genomfört jobb med fokus på resultat, ljusinsläpp och ett rent helhetsintryck.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="areas" class="editorial-panel">
+        <span class="section-kicker">Områden</span>
+        <h2 class="section-title">Vi täcker områden där närhet faktiskt gör skillnad</h2>
+        <p class="section-text">
+          Rutputs fokuserar på norra Stockholm och närliggande områden där en lokal aktör ger snabbare bokning,
+          bättre planering och ett enklare upplägg för återkommande kunder. Välj din ort för att läsa mer om hur tjänsten passar där du bor.
+        </p>
+        <div class="mini-card-grid q-mt-lg">
+          <article v-for="item in areaLinks" :key="item.slug" class="mini-card">
+            <h3 class="mini-card__title">{{ item.name }}</h3>
+            <p class="mini-card__text q-mb-sm">Lokal fönsterputsning med tydligt pris och bokning online.</p>
+            <router-link :to="'/omrade/' + item.slug" class="text-accent text-weight-bold">Läs om {{ item.name }}</router-link>
+          </article>
+        </div>
+      </section>
+
+      <section class="cta-band">
+        <div class="cta-band__text">
+          <h2 class="cta-band__title">Vill du se priset direkt?</h2>
+          <p class="cta-band__lead">Prislistan är byggd för att vara snabb, begriplig och enkel att fylla i oavsett om du sitter på mobil eller dator.</p>
+        </div>
+        <q-btn unelevated color="accent" text-color="black" label="Gå till prislistan" @click="goToPriceList" />
+      </section>
+
+      <section class="editorial-panel faq-shell">
+        <span class="section-kicker">Vanliga frågor</span>
+        <h2 class="section-title">Det här brukar kunder vilja veta först</h2>
+        <q-list bordered separator>
+          <q-expansion-item
+            v-for="item in homeFaqs"
+            :key="item.question"
+            :label="item.question"
+            expand-separator
+            header-class="text-primary text-weight-medium"
+          >
+            <q-card flat>
+              <q-card-section class="text-body2 text-primary">
+                {{ item.answer }}
+                <div v-if="item.linkTo && item.linkLabel" class="faq-link-row">
+                  <router-link :to="item.linkTo" class="text-accent text-weight-bold">
+                    {{ item.linkLabel }}
+                  </router-link>
                 </div>
               </q-card-section>
             </q-card>
-          </div>
-        </div>
-
-        <div class="row justify-center q-pt-md q-pb-xl full-width">
-          <div class="col-xl-10 col-lg-10 col-md-10 col-xs-12">
-            <q-card bordered class="text-container shadow">
-              <q-card-section class="q-px-xl q-py-lg text-primary">
-                <h2 class="text-h6 text-accent q-mb-md">Vanliga frågor</h2>
-                <q-list bordered separator>
-                  <q-expansion-item
-                    v-for="item in homeFaqs"
-                    :key="item.question"
-                    :label="item.question"
-                    expand-separator
-                    header-class="text-primary text-weight-medium"
-                  >
-                    <q-card flat>
-                      <q-card-section class="text-body2 text-primary">
-                        {{ item.answer }}
-                      </q-card-section>
-                    </q-card>
-                  </q-expansion-item>
-                </q-list>
-              </q-card-section>
-            </q-card>
-          </div>
-        </div>
-      </div>
+          </q-expansion-item>
+        </q-list>
+      </section>
+    </div>
   </q-page>
 </template>
 
@@ -311,60 +308,18 @@ export default defineComponent({
     }
   },
   computed: {
-    // Computed property to dynamically adjust text style based on screen size
     textStyle() {
-      if (this.$q.screen.lt.sm) {
-        return {
-          'font-size': '1rem',
-          'line-height': '1.6',
-          'padding': '1rem'
-        };
-      } else {
-        return {
-          'font-size': '1.2rem'
-        };
-      }
+      return {};
     }
   }
 });
 </script>
 <style>
-.hero-section {
-  position: relative;
-  width: 100%;
-  max-width: 1200px;
-  min-height: clamp(360px, 62vw, 540px);
-  overflow: hidden;
-  border-radius: 16px;
-}
-
-.hero-media {
-  position: absolute;
-  inset: 0;
+.hero-shell__media {
   will-change: transform;
 }
 
-.hero-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.3;
-  transform: scale(1.01);
-}
-
-.hero-content {
-  position: relative;
-  z-index: 1;
-  min-height: clamp(360px, 62vw, 540px);
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem 1.5rem;
-}
-
-.area-link-card {
-  border-radius: 12px;
+.faq-link-row {
+  margin-top: 0.65rem;
 }
 </style>

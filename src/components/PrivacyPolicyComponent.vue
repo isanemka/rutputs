@@ -1,188 +1,189 @@
 <template>
-  <q-page class="q-pa-md">
-    <div class="row justify-center">
-      <div class="col-xl-6 col-lg-8 col-md-10 col-xs-12">
-        <q-card bordered class="shadow">
-          <q-card-section class="q-pa-lg">
-            <h1 class="text-h4 text-primary text-center q-mb-lg">
-              Integritetspolicy
-            </h1>
+  <q-page class="page-shell privacy-page">
+    <div class="page-stack">
+      <section class="editorial-panel editorial-panel--solid privacy-page__hero">
+        <span class="section-kicker">Integritet & cookies</span>
+        <h1 class="section-title text-center">Integritetspolicy</h1>
+        <p class="section-text text-center q-mx-auto privacy-page__lead">
+          Här beskriver Rutputs hur personuppgifter, cookies och webbanalys hanteras när du använder webbplatsen.
+        </p>
+      </section>
 
-            <section class="q-mb-lg">
-              <h2 class="text-h6 text-accent q-mb-sm">
-                Om denna integritetspolicy
-              </h2>
-              <p class="text-body1">
+      <section class="editorial-panel privacy-page__content">
+        <section class="privacy-page__section">
+          <h2 class="text-h6 text-accent q-mb-sm">
+            Om denna integritetspolicy
+          </h2>
+          <p class="text-body1">
                 Denna policy beskriver hur RUTPUTS samlar in och hanterar
                 information när du besöker vår webbplats. Vi värnar om din
                 integritet och följer GDPR (Dataskyddsförordningen).
-              </p>
-            </section>
+          </p>
+        </section>
 
-            <q-separator class="q-my-md" />
+        <q-separator class="q-my-md" />
 
-            <section class="q-mb-lg">
-              <h2 class="text-h6 text-accent q-mb-sm">
-                Vilken information samlar vi in?
-              </h2>
+        <section class="privacy-page__section">
+          <h2 class="text-h6 text-accent q-mb-sm">
+            Vilken information samlar vi in?
+          </h2>
 
-              <h3 class="text-subtitle1 text-primary q-mt-md q-mb-sm">1. Kontaktformulär</h3>
-              <p class="text-body1 q-mb-sm">
-                När du fyller i vårt offertformulär samlar vi in:
-              </p>
-              <ul class="text-body1">
-                <li>Namn</li>
-                <li>E-postadress</li>
-                <li>Telefonnummer</li>
-                <li>Adress (frivilligt)</li>
-                <li>Typ av bostad och valda tjänster</li>
-              </ul>
-              <p class="text-body1 q-mt-sm">
-                <strong>Syfte:</strong> För att kunna kontakta dig och ge dig en offert på fönsterputsning.
-                <br>
-                <strong>Lagring:</strong> Dina uppgifter sparas så länge det behövs för att hantera din förfrågan, därefter raderas de.
-                <br>
-                <strong>Rättslig grund:</strong> Samtycke (du väljer aktivt att skicka formuläret).
-              </p>
+          <h3 class="text-subtitle1 text-primary q-mt-md q-mb-sm">1. Kontaktformulär</h3>
+          <p class="text-body1 q-mb-sm">
+            När du fyller i vårt offertformulär samlar vi in:
+          </p>
+          <ul class="text-body1 privacy-page__list">
+            <li>Namn</li>
+            <li>E-postadress</li>
+            <li>Telefonnummer</li>
+            <li>Adress (frivilligt)</li>
+            <li>Typ av bostad och valda tjänster</li>
+          </ul>
+          <p class="text-body1 q-mt-sm">
+            <strong>Syfte:</strong> För att kunna kontakta dig och ge dig en offert på fönsterputsning.
+            <br>
+            <strong>Lagring:</strong> Dina uppgifter sparas så länge det behövs för att hantera din förfrågan, därefter raderas de.
+            <br>
+            <strong>Rättslig grund:</strong> Samtycke (du väljer aktivt att skicka formuläret).
+          </p>
 
-              <h3 class="text-subtitle1 text-primary q-mt-md q-mb-sm">2. Webbanalys (cookies)</h3>
-              <p class="text-body1 q-mb-sm">
-                Om du accepterar cookies använder vi Google Analytics, Google Tag Manager och Vercel Analytics som samlar in följande anonyma data:
-              </p>
-              <ul class="text-body1">
-                <li>Vilka sidor du besöker på webbplatsen</li>
-                <li>Hur länge du stannar på varje sida</li>
-                <li>Varifrån du kom till webbplatsen (t.ex. sökmotorer)</li>
-                <li>Teknisk information om din enhet (webbläsare, operativsystem, skärmstorlek)</li>
-                <li>Ditt ungefärliga geografiska område (land/region)</li>
-              </ul>
-              <p class="text-body1 q-mt-sm">
-                <strong>Syfte:</strong> För att förbättra webbplatsens innehåll och användarupplevelse.
-              </p>
+          <h3 class="text-subtitle1 text-primary q-mt-md q-mb-sm">2. Webbanalys (cookies)</h3>
+          <p class="text-body1 q-mb-sm">
+            Om du accepterar cookies använder vi Google Analytics, Google Tag Manager och Vercel Analytics som samlar in följande anonyma data:
+          </p>
+          <ul class="text-body1 privacy-page__list">
+            <li>Vilka sidor du besöker på webbplatsen</li>
+            <li>Hur länge du stannar på varje sida</li>
+            <li>Varifrån du kom till webbplatsen (t.ex. sökmotorer)</li>
+            <li>Teknisk information om din enhet (webbläsare, operativsystem, skärmstorlek)</li>
+            <li>Ditt ungefärliga geografiska område (land/region)</li>
+          </ul>
+          <p class="text-body1 q-mt-sm">
+            <strong>Syfte:</strong> För att förbättra webbplatsens innehåll och användarupplevelse.
+          </p>
 
-              <h3 class="text-subtitle1 text-primary q-mt-md q-mb-sm">3. Marknadsföring (Google Ads)</h3>
-              <p class="text-body1">
-                Om du accepterar cookies kan vi använda Google Ads för att visa relevanta annonser.
-                Vi kan även mäta formulärskick och klick på telefonnummer för att förstå vilka kampanjer som leder till kontakt.
-                Google kan då placera cookies för att mäta annonseffektivitet och visa anpassade annonser baserat på ditt besök.
-              </p>
-            </section>
+          <h3 class="text-subtitle1 text-primary q-mt-md q-mb-sm">3. Marknadsföring (Google Ads)</h3>
+          <p class="text-body1">
+            Om du accepterar cookies kan vi använda Google Ads för att visa relevanta annonser.
+            Vi kan även mäta formulärskick och klick på telefonnummer för att förstå vilka kampanjer som leder till kontakt.
+            Google kan då placera cookies för att mäta annonseffektivitet och visa anpassade annonser baserat på ditt besök.
+          </p>
+        </section>
 
-            <q-separator class="q-my-md" />
+        <q-separator class="q-my-md" />
 
-            <section class="q-mb-lg">
-              <h2 class="text-h6 text-accent q-mb-sm">
-                Varför samlar vi in denna information?
-              </h2>
-              <p class="text-body1">
-                Vi använder den insamlade informationen för att:
-              </p>
-              <ul class="text-body1">
-                <li>Förstå hur besökare använder vår webbplats</li>
-                <li>Förbättra webbplatsens innehåll och navigation</li>
-                <li>Identifiera tekniska problem</li>
-              </ul>
-            </section>
+        <section class="privacy-page__section">
+          <h2 class="text-h6 text-accent q-mb-sm">
+            Varför samlar vi in denna information?
+          </h2>
+          <p class="text-body1">
+            Vi använder den insamlade informationen för att:
+          </p>
+          <ul class="text-body1 privacy-page__list">
+            <li>Förstå hur besökare använder vår webbplats</li>
+            <li>Förbättra webbplatsens innehåll och navigation</li>
+            <li>Identifiera tekniska problem</li>
+          </ul>
+        </section>
 
-            <q-separator class="q-my-md" />
+        <q-separator class="q-my-md" />
 
-            <section class="q-mb-lg">
-              <h2 class="text-h6 text-accent q-mb-sm">Hur länge sparas data?</h2>
-              <ul class="text-body1">
-                <li><strong>Kontaktformulär:</strong> Dina uppgifter raderas när din förfrågan är hanterad, eller senast efter 12 månader.</li>
-                <li><strong>Analysdata:</strong> Google Analytics och Vercel Analytics behåller aggregerad data i upp till 14 respektive 12 månader.</li>
-                <li><strong>Cookies:</strong> Ditt samtycke sparas tills du raderar cookies eller lokal lagring i din webbläsare.</li>
-              </ul>
-            </section>
+        <section class="privacy-page__section">
+          <h2 class="text-h6 text-accent q-mb-sm">Hur länge sparas data?</h2>
+          <ul class="text-body1 privacy-page__list">
+            <li><strong>Kontaktformulär:</strong> Dina uppgifter raderas när din förfrågan är hanterad, eller senast efter 12 månader.</li>
+            <li><strong>Analysdata:</strong> Google Analytics och Vercel Analytics behåller aggregerad data i upp till 14 respektive 12 månader.</li>
+            <li><strong>Cookies:</strong> Ditt samtycke sparas tills du raderar cookies eller lokal lagring i din webbläsare.</li>
+          </ul>
+        </section>
 
-            <q-separator class="q-my-md" />
+        <q-separator class="q-my-md" />
 
-            <section class="q-mb-lg">
-              <h2 class="text-h6 text-accent q-mb-sm">
-                Delas data med tredje part?
-              </h2>
-              <p class="text-body1 q-mb-sm">
-                Dina personuppgifter från kontaktformuläret delas inte med externa parter.
-              </p>
-              <p class="text-body1">
-                För webbanalys och marknadsföring används följande tjänster som kan behandla data:
-              </p>
-              <ul class="text-body1">
-                <li><strong>Vercel Analytics</strong> – vår värdtjänst (USA, standardavtalsklausuler)</li>
-                <li><strong>Google Tag Manager</strong> – hantering av mät- och annonstaggar (USA, standardavtalsklausuler)</li>
-                <li><strong>Google Analytics</strong> – webbanalys (USA, standardavtalsklausuler)</li>
-                <li><strong>Google Ads</strong> – marknadsföring (USA, standardavtalsklausuler)</li>
-              </ul>
-              <p class="text-body1 q-mt-sm">
-                Din data säljs aldrig vidare till tredje part.
-              </p>
-            </section>
+        <section class="privacy-page__section">
+          <h2 class="text-h6 text-accent q-mb-sm">
+            Delas data med tredje part?
+          </h2>
+          <p class="text-body1 q-mb-sm">
+            Dina personuppgifter från kontaktformuläret delas inte med externa parter.
+          </p>
+          <p class="text-body1">
+            För webbanalys och marknadsföring används följande tjänster som kan behandla data:
+          </p>
+          <ul class="text-body1 privacy-page__list">
+            <li><strong>Vercel Analytics</strong> – vår värdtjänst (USA, standardavtalsklausuler)</li>
+            <li><strong>Google Tag Manager</strong> – hantering av mät- och annonstaggar (USA, standardavtalsklausuler)</li>
+            <li><strong>Google Analytics</strong> – webbanalys (USA, standardavtalsklausuler)</li>
+            <li><strong>Google Ads</strong> – marknadsföring (USA, standardavtalsklausuler)</li>
+          </ul>
+          <p class="text-body1 q-mt-sm">
+            Din data säljs aldrig vidare till tredje part.
+          </p>
+        </section>
 
-            <q-separator class="q-my-md" />
+        <q-separator class="q-my-md" />
 
-            <section class="q-mb-lg">
-              <h2 class="text-h6 text-accent q-mb-sm">Dina rättigheter</h2>
-              <p class="text-body1">Enligt GDPR har du rätt att:</p>
-              <ul class="text-body1">
-                <li>
-                  <strong>Neka spårning:</strong> Du kan välja att avvisa
-                  cookies när bannern visas
-                </li>
-                <li>
-                  <strong>Ändra ditt val:</strong> Du kan när som helst ändra
-                  dina cookieinställningar via länken i sidfoten
-                </li>
-                <li>
-                  <strong>Begära information:</strong> Du kan kontakta oss för
-                  att få information om vilken data som har samlats in
-                </li>
-                <li>
-                  <strong>Begära radering:</strong> Du kan begära att din data
-                  raderas
-                </li>
-              </ul>
-            </section>
+        <section class="privacy-page__section">
+          <h2 class="text-h6 text-accent q-mb-sm">Dina rättigheter</h2>
+          <p class="text-body1">Enligt GDPR har du rätt att:</p>
+          <ul class="text-body1 privacy-page__list">
+            <li>
+              <strong>Neka spårning:</strong> Du kan välja att avvisa
+              cookies när bannern visas
+            </li>
+            <li>
+              <strong>Ändra ditt val:</strong> Du kan när som helst ändra
+              dina cookieinställningar via länken i sidfoten
+            </li>
+            <li>
+              <strong>Begära information:</strong> Du kan kontakta oss för
+              att få information om vilken data som har samlats in
+            </li>
+            <li>
+              <strong>Begära radering:</strong> Du kan begära att din data
+              raderas
+            </li>
+          </ul>
+        </section>
 
-            <q-separator class="q-my-md" />
+        <q-separator class="q-my-md" />
 
-            <section class="q-mb-lg">
-              <h2 class="text-h6 text-accent q-mb-sm">Kontakt</h2>
-              <p class="text-body1">
-                Har du frågor om hur vi hanterar din data? Kontakta oss:
-              </p>
-              <ul class="text-body1">
-                <li>E-post: kontakt (at) rutputs.nu</li>
-                <li>Telefon: 0734-64 46 04</li>
-              </ul>
-            </section>
+        <section class="privacy-page__section">
+          <h2 class="text-h6 text-accent q-mb-sm">Kontakt</h2>
+          <p class="text-body1">
+            Har du frågor om hur vi hanterar din data? Kontakta oss:
+          </p>
+          <ul class="text-body1 privacy-page__list">
+            <li>E-post: kontakt (at) rutputs.nu</li>
+            <li>Telefon: 0734-64 46 04</li>
+          </ul>
+        </section>
 
-            <q-separator class="q-my-md" />
+        <q-separator class="q-my-md" />
 
-            <section class="q-mb-lg">
-              <h2 class="text-h6 text-accent q-mb-sm">Cookieinställningar</h2>
-              <p class="text-body1 q-mb-md">
-                Nuvarande status:
-                <q-badge
-                  :color="statusColor"
-                  :label="statusLabel"
-                  class="q-ml-sm"
-                />
-              </p>
-              <q-btn
-                unelevated
-                :label="changeConsentLabel"
-                color="primary"
-                @click="handleConsentChange"
-                aria-label="Ändra cookieinställningar"
-              />
-            </section>
+        <section class="privacy-page__section">
+          <h2 class="text-h6 text-accent q-mb-sm">Cookieinställningar</h2>
+          <p class="text-body1 q-mb-md privacy-page__status">
+            <span>Nuvarande status:</span>
+            <q-badge
+              :color="statusColor"
+              :label="statusLabel"
+              class="privacy-page__badge"
+            />
+          </p>
+          <q-btn
+            unelevated
+            :label="changeConsentLabel"
+            color="primary"
+            @click="handleConsentChange"
+            aria-label="Ändra cookieinställningar"
+            class="privacy-page__button"
+          />
+        </section>
 
-            <p class="text-caption text-grey-7 text-center q-mt-lg">
-              Senast uppdaterad: November 2025
-            </p>
-          </q-card-section>
-        </q-card>
-      </div>
+        <p class="text-caption text-grey-7 text-center q-mt-lg">
+          Senast uppdaterad: November 2025
+        </p>
+      </section>
     </div>
   </q-page>
 </template>
@@ -292,6 +293,57 @@ export default defineComponent({
   },
 });
 </script>
+
+<style scoped>
+.privacy-page__hero {
+  justify-items: center;
+}
+
+.privacy-page__lead {
+  max-width: 44rem;
+}
+
+.privacy-page__content {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.privacy-page__section {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.privacy-page__list {
+  margin: 0;
+  padding-left: 1.2rem;
+  line-height: 1.7;
+}
+
+.privacy-page__status {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.privacy-page__button {
+  width: fit-content;
+}
+
+@media (max-width: 599px) {
+  .privacy-page__content {
+    gap: 0.25rem;
+  }
+
+  .privacy-page__list {
+    padding-left: 1rem;
+  }
+
+  .privacy-page__button {
+    width: 100%;
+  }
+}
+</style>
 
 <style scoped>
 ul {
