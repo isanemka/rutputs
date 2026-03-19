@@ -260,7 +260,7 @@ const siteSeoContent = {
         {
           question: 'Passar tjänsten villa och radhus i Spånga?',
           answer:
-            'Absolut. Spånga är ett vanligt område för villa- och radhuskunder, men vi   arbetar även med lägenheter och mindre fastigheter.',
+            'Absolut. Spånga är ett vanligt område för villa- och radhuskunder, men vi arbetar även med lägenheter och mindre fastigheter.',
         },
         {
           question: 'Hur bokar jag fönsterputs i Spånga?',
