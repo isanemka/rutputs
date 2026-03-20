@@ -22,7 +22,7 @@
           </p>
           <div class="hero-actions">
             <q-btn class="text-black" label="Se vad det kostar" color="accent" unelevated @click="goToPriceList" />
-            <q-btn outline color="white" label="Se områden vi täcker" href="#areas" />
+            <q-btn outline color="white" label="Se områden vi täcker" :to="{ path: '/', hash: '#areas' }" />
           </div>
           <div class="hero-metrics">
             <div class="hero-metric">
