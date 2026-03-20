@@ -15,7 +15,7 @@ const siteSeoContent = {
       {
         question: 'Vilka områden täcker Rutputs?',
         answer:
-          'Rutputs täcker norra Stockholm: Järfälla, Bromma, Kista, Solna, Sundbyberg, Spånga, Sollentuna och Täby. Men vi hjälper även kunder i närliggande områden. Fyll i formuläret för att se om vi kan hjälpa dig!',
+          'Rutputs täcker främst norra Stockholm: Järfälla, Bromma, Kista, Solna, Sundbyberg, Spånga, Sollentuna och Täby. Men vi hjälper även kunder i andra områden. Fyll i formuläret för att se hur vi kan hjälpa dig!',
       },
       {
         question: 'Hur bokar jag fönsterputsning?',

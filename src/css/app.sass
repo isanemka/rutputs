@@ -32,6 +32,7 @@ a
 
 .hero-shell
   position: relative
+  isolation: isolate
   overflow: hidden
   border-radius: var(--radius-xl)
   min-height: clamp(380px, 62vw, 620px)
@@ -42,28 +43,33 @@ a
   content: ''
   position: absolute
   inset: 0
+  z-index: 1
   background: linear-gradient(135deg, rgba(255, 97, 1, 0.18), transparent 42%), linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.16))
   pointer-events: none
 
 .hero-shell__media
   position: absolute
   inset: 0
+  z-index: 0
+  pointer-events: none
 
 .hero-shell__image
   width: 100%
   height: 100%
   object-fit: cover
   opacity: 0.28
+  pointer-events: none
 
 .hero-shell__content
   position: relative
-  z-index: 1
+  z-index: 2
   display: grid
   align-content: end
   gap: 1rem
   min-height: inherit
   padding: clamp(1.5rem, 4vw, 3rem)
   color: white
+  pointer-events: auto
 
 .hero-kicker
   display: inline-flex

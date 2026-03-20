@@ -30,10 +30,6 @@
               <span class="hero-metric__label">Efter RUT-avdrag</span>
             </div>
             <div class="hero-metric">
-              <span class="hero-metric__value">8 områden</span>
-              <span class="hero-metric__label">I norra Stockholm</span>
-            </div>
-            <div class="hero-metric">
               <span class="hero-metric__value">Direkt pris</span>
               <span class="hero-metric__label">Via formuläret</span>
             </div>

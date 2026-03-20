@@ -14,10 +14,42 @@
           Formuläret är byggt för att göra bokningen enkel: välj bostadstyp, ange antal fönster
           och skicka sedan in din förfrågan när priset känns rätt.
         </p>
+        <div class="price-intro-panel__actions">
+          <q-btn
+            color="accent"
+            label="Räkna ut ditt pris"
+            icon-right="south"
+            class="text-black"
+            @click="scrollToForm"
+          />
+        </div>
       </section>
+
+      <section class="section-grid price-list-grid">
+        <article v-for="section in priceListSections" :key="section.id" class="editorial-panel editorial-panel--solid price-list-card">
+          <span class="section-kicker">{{ section.kicker }}</span>
+          <h2 class="section-title price-list-card__title">{{ section.title }}</h2>
+          <ul class="price-list-items">
+            <li v-for="item in section.items" :key="section.id + '-' + item.id" class="price-list-item">
+              <span class="price-list-item__description">{{ item.description }}</span>
+              <strong class="price-list-item__price">{{ item.price }} kr</strong>
+            </li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="editorial-panel price-list-note">
+        <span class="section-kicker">Bra att veta</span>
+          <h2 class="section-title">Samma priser används i formuläret</h2>
+        <p class="section-text">
+            Priserna ovan är samma priser som används när du räknar ut ditt totalpris här på sidan.
+            Lägsta ordervärde är 350 kr efter RUT-avdrag.
+        </p>
+      </section>
+
       <div class="row q-flex justify-center mb-2">
         <div class="col-12">
-          <div class="editorial-panel price-stepper-shell">
+          <div id="pris-formular" class="editorial-panel price-stepper-shell">
           <!-- Stepper component for multiple steps -->
           <q-stepper
             :vertical="$q.screen.gt.sm"
@@ -63,7 +95,27 @@
                   </h2>
                 </div>
                 <div class="col-12 col-md-10 col-lg-8 q-flex">
+                  <div v-if="$q.screen.lt.sm" class="service-picker-mobile">
+                    <article v-for="article in articles" :key="article.id" class="service-picker-mobile__item">
+                      <div class="service-picker-mobile__body">
+                        <span class="service-picker-mobile__description">{{ article.description }}</span>
+                        <strong class="service-picker-mobile__price">{{ article.price }} kr</strong>
+                      </div>
+                      <q-input
+                        v-model="article.quantity"
+                        outlined
+                        dense
+                        type="number"
+                        min="0"
+                        label="Antal"
+                        :aria-label="'Antal ' + article.description"
+                        @input="handleQuantityInput(article)"
+                        class="service-picker-mobile__input"
+                      />
+                    </article>
+                  </div>
                   <q-table
+                    v-else
                     v-model:pagination="pagination"
                     :rows="articles"
                     :columns="columns"
@@ -111,7 +163,7 @@
                 </div>
               </div>
               <q-stepper-navigation>
-                <q-btn @click="addToCart(); step = 3" color="accent" label="Fortsätt"  class="q-ml-sm q-mb-sm text-black"/>
+                <q-btn @click="goToPriceStep" color="accent" label="Fortsätt"  class="q-ml-sm q-mb-sm text-black"/>
                 <q-btn @click="step = 1" color="primary" label="Tillbaka" class="q-ml-sm q-mb-sm" />
                 <q-btn @click="emptyCart" color="secondary" label="Rensa" class="q-ml-sm q-mb-sm text-black" />
               </q-stepper-navigation>
@@ -125,21 +177,23 @@
               :done="step > 4"
             >
 
-              <!-- Display selected services and total price if minimum order value is met -->
-              <div v-if="cart.length > 0 && form.totalPrice >= minimumOrderValue">
-                <h3>Dina val:</h3>
-                <ul>
-                  <li v-for="item in cart" :key="item.id">
-                    {{ item.quantity }} st {{ item.description }}
-                  </li>
-                </ul>
-                <h3>Totalpris: {{ form.totalPrice }} kr*</h3>
-                <p>*inklusive moms och efter RUT-avdrag</p>
-              </div>
+              <div id="pris-resultat" class="price-result-step">
+                <!-- Display selected services and total price if minimum order value is met -->
+                <div v-if="cart.length > 0 && form.totalPrice >= minimumOrderValue">
+                  <h3>Dina val:</h3>
+                  <ul>
+                    <li v-for="item in cart" :key="item.id">
+                      {{ item.quantity }} st {{ item.description }}
+                    </li>
+                  </ul>
+                  <h3>Totalpris: {{ form.totalPrice }} kr*</h3>
+                  <p>*inklusive moms och efter RUT-avdrag</p>
+                </div>
 
-              <!-- Inform user about minimum order value if not met -->
-              <div v-else>
-                <p class="text-body1">Du har valt tjänster till ett värde av <strong>{{ form.totalPrice }}kr</strong>. Lägsta ordervärde är 350 kr</p>
+                <!-- Inform user about minimum order value if not met -->
+                <div v-else>
+                  <p class="text-body1">Du har valt tjänster till ett värde av <strong>{{ form.totalPrice }}kr</strong>. Lägsta ordervärde är 350 kr</p>
+                </div>
               </div>
               <q-stepper-navigation>
                 <q-btn v-if="form.totalPrice < 350" @click="changeTotalPrice();step = 4 " :disable="cart.length === 0" color="accent" label="Fortsätt med ordervärde på 350 kr"  class="text-black q-ml-sm q-mb-sm" />
@@ -280,17 +334,63 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent, nextTick, ref } from 'vue';
 import { useQuasar } from 'quasar';
 import axios from 'axios';
-import { getFirestore, collection, getDocs } from 'firebase/firestore';
-import { app } from '../firebase'
 import { priceSeo } from 'src/data/seo';
+import priceArticlesData from 'src/data/prices.json';
 import { trackEvent } from 'src/boot/analytics';
 
 const columnAlign = 'left' as const;
 
 const priceFaqs = priceSeo.faq ?? [];
+
+interface PriceArticle {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+}
+
+interface CartItem {
+  id: number;
+  quantity: number;
+  description: string;
+}
+
+interface PriceTableRow extends PriceArticle {
+  quantity: number;
+}
+
+interface PriceListSection {
+  id: string;
+  kicker: string;
+  title: string;
+  items: PriceArticle[];
+}
+
+const priceArticles = priceArticlesData as PriceArticle[];
+
+const priceListSections: PriceListSection[] = [
+  {
+    id: 'base',
+    kicker: 'Fönsterputs',
+    title: 'Pris per fönsterbåge',
+    items: priceArticles.filter((article) => article.id >= 1 && article.id <= 4),
+  },
+  {
+    id: 'addons',
+    kicker: 'Tillägg',
+    title: 'Extra moment vid behov',
+    items: priceArticles.filter((article) => article.id >= 5 && article.id <= 10),
+  },
+  {
+    id: 'sunrooms',
+    kicker: 'Uterum',
+    title: 'Pris för uterum upp till 10 kvm',
+    items: priceArticles.filter((article) => article.id >= 11),
+  },
+];
 
 export default defineComponent({
   name: 'PriceListComponent',
@@ -371,10 +471,11 @@ export default defineComponent({
         totalPrice: 0
       },
       minimumOrderValue: 350,
-      /* eslint-disable @typescript-eslint/no-explicit-any */
-      articles: [] as any[],
-      cart: [] as any[],
-      /* eslint-enable @typescript-eslint/no-explicit-any */
+      articles: priceArticles
+        .slice()
+        .sort((firstArticle, secondArticle) => firstArticle.id - secondArticle.id)
+        .map((article) => ({ ...article, quantity: 0 })) as PriceTableRow[],
+      cart: [] as CartItem[],
       columns: [
         {
           name: 'id',
@@ -413,6 +514,7 @@ export default defineComponent({
 
     return {
       pagination,
+      priceListSections,
       priceFaqs,
       quasar,
       step: ref(1),
@@ -432,23 +534,53 @@ export default defineComponent({
         });
       }
     },
+    scrollToForm() {
+      document.getElementById('pris-formular')?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    },
+    goToPriceStep() {
+      const activeElement = document.activeElement;
+
+      if (activeElement instanceof HTMLElement) {
+        activeElement.blur();
+      }
+
+      this.addToCart();
+      this.step = 3;
+
+      void nextTick(() => {
+        document.getElementById('pris-resultat')?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      });
+    },
     // Handle quantity input for each article
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    handleQuantityInput(article: any) {
+    handleQuantityInput(article: PriceTableRow) {
       article.quantity = Number(article.quantity);
     },
     // Calculate total price based on selected services
     calculateTotalPrice() {
-      return this.cart.reduce((total, item) => {
-        const article = this.articles.find(article => article.id === item.id);
-        this.form.totalPrice = total + (article.price * item.quantity) + 25;
-        return this.form.totalPrice;
+      const totalPrice = this.cart.reduce((total, item) => {
+        const article = this.articles.find((priceArticle) => priceArticle.id === item.id);
+
+        if (!article) {
+          return total;
+        }
+
+        return total + (article.price * item.quantity);
       }, 0);
+
+      this.form.totalPrice = totalPrice;
+
+      return totalPrice;
     },
     // Add selected services to cart and calculate total price
     addToCart() {
-      this.articles.forEach(article => {
-        let cartItemIndex = this.cart.findIndex(item => item.id === article.id);
+      this.articles.forEach((article) => {
+        const cartItemIndex = this.cart.findIndex((item) => item.id === article.id);
         if (article.quantity > 0) {
           if (cartItemIndex !== -1) {
             this.cart[cartItemIndex].quantity = article.quantity;
@@ -475,7 +607,7 @@ export default defineComponent({
       this.cart = [];
       this.form.totalPrice = 0;
 
-      this.articles.forEach(article => {
+      this.articles.forEach((article) => {
         article.quantity = 0;
       });
     },
@@ -582,15 +714,6 @@ export default defineComponent({
   created() {
     this.calculateTotalPrice();
   },
-  // Fetch articles from Firestore when component is mounted
-  async mounted() {
-    const db = getFirestore(app);
-    const articlesCollection = collection(db, 'articles');
-    const querySnapshot = await getDocs(articlesCollection);
-    querySnapshot.forEach((doc) => {
-      this.articles.push({ id: doc.id, quantity: 0, ...doc.data() });
-    });
-  },
 });
 </script>
 <style scoped>
@@ -623,13 +746,118 @@ export default defineComponent({
   max-width: 48rem;
 }
 
+.price-intro-panel__actions {
+  margin-top: 0.5rem;
+}
+
+.price-list-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.price-list-card {
+  display: grid;
+  align-content: start;
+  gap: 0.9rem;
+}
+
+.price-list-card__title {
+  margin-bottom: 0;
+}
+
+.price-list-items {
+  display: grid;
+  gap: 0.85rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.price-list-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.75rem;
+  align-items: start;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid rgba(69, 90, 100, 0.12);
+}
+
+.price-list-item:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.price-list-item__description {
+  line-height: 1.55;
+}
+
+.price-list-item__price {
+  white-space: nowrap;
+  color: var(--q-accent);
+}
+
+.price-list-note {
+  max-width: 72rem;
+}
+
+.service-picker-mobile {
+  display: grid;
+  gap: 0.85rem;
+  width: min(100%, 34rem);
+  margin: 0 auto;
+}
+
+.service-picker-mobile__item {
+  display: grid;
+  gap: 0.9rem;
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(69, 90, 100, 0.12);
+  box-shadow: 0 10px 24px rgba(33, 41, 49, 0.06);
+}
+
+.service-picker-mobile__body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.75rem;
+  align-items: start;
+}
+
+.service-picker-mobile__description {
+  line-height: 1.5;
+  color: rgba(69, 90, 100, 0.94);
+  font-weight: 500;
+}
+
+.service-picker-mobile__price {
+  color: var(--q-accent);
+  font-size: 1rem;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.service-picker-mobile__input {
+  width: min(100%, 7rem);
+}
+
+.price-result-step {
+  scroll-margin-top: 1rem;
+}
+
 .price-stepper-shell {
   padding: 1rem;
+  scroll-margin-top: 1.5rem;
 }
 
 .price-stepper-shell :deep(.q-stepper) {
   background: transparent;
   box-shadow: none;
+}
+
+@media (max-width: 1023px) {
+  .price-list-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 599px) {
@@ -641,8 +869,26 @@ export default defineComponent({
     max-width: none;
   }
 
+  .service-picker-mobile__item {
+    gap: 0.8rem;
+    padding: 0.9rem;
+  }
+
+  .service-picker-mobile__input {
+    width: 100%;
+  }
+
   .price-stepper-shell {
     padding: 0.2rem;
+  }
+
+  .price-list-item {
+    grid-template-columns: 1fr;
+    gap: 0.3rem;
+  }
+
+  .price-list-item__price {
+    justify-self: start;
   }
 
   .price-stepper-shell :deep(.q-stepper__title) {
@@ -687,6 +933,13 @@ export default defineComponent({
 
   .price-stepper-shell :deep(.q-dialog__inner > div) {
     width: min(100vw - 1rem, 420px);
+  }
+}
+
+@media (max-width: 380px) {
+  .service-picker-mobile__body {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
   }
 }
 </style>

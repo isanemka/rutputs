@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "name": "enSida",
+    "description": "Utvändig puts, 1 sida",
+    "price": 25
+  },
+  {
+    "id": 2,
+    "name": "tvaSidor",
+    "description": "Ut- och invändig puts, 2 sidor",
+    "price": 35
+  },
+  {
+    "id": 3,
+    "name": "fyraSidor",
+    "description": "Flersidig puts, 4 sidor",
+    "price": 80
+  },
+  {
+    "id": 4,
+    "name": "sexSidor",
+    "description": "Flersidig puts, 6 sidor",
+    "price": 120
+  },
+  {
+    "id": 5,
+    "name": "fastSprojs",
+    "description": "Fast spröjs, per fönsterbåge",
+    "price": 12
+  },
+  {
+    "id": 6,
+    "name": "losSprojs",
+    "description": "Löstagbar spröjs, demontering",
+    "price": 15
+  },
+  {
+    "id": 7,
+    "name": "montSprojs",
+    "description": "Löstagbar spröjs, montering",
+    "price": 15
+  },
+  {
+    "id": 8,
+    "name": "renSprojs",
+    "description": "Löstagbar spröjs, rengöring",
+    "price": 15
+  },
+  {
+    "id": 9,
+    "name": "bleck",
+    "description": "Fönsterbleck, rengöring",
+    "price": 12
+  },
+  {
+    "id": 10,
+    "name": "karm",
+    "description": "Karmar och bågar, rengöring",
+    "price": 15
+  },
+  {
+    "id": 11,
+    "name": "uterum1",
+    "description": "Uterum, utvändig puts upp till 10 kvm",
+    "price": 125
+  },
+  {
+    "id": 12,
+    "name": "uterum2",
+    "description": "Uterum, ut- och invändig puts upp till 10 kvm",
+    "price": 250
+  }
+]
