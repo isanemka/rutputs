@@ -209,8 +209,10 @@ export default defineComponent({
 }
 
 .company-hero__title {
-  max-width: 14ch;
-  overflow-wrap: anywhere;
+  max-width: 18ch;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
 }
 
 .company-grid {
