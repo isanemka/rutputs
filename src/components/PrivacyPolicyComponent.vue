@@ -49,7 +49,7 @@
 
           <h3 class="text-subtitle1 text-primary q-mt-md q-mb-sm">2. Webbanalys (cookies)</h3>
           <p class="text-body1 q-mb-sm">
-            Om du accepterar cookies använder vi analysverktyg för att förstå hur webbplatsen används. Då kan följande anonyma eller aggregerade uppgifter samlas in:
+            Om du accepterar cookies använder vi analysverktyg från Vercel och Google för att förstå hur webbplatsen används. Då kan följande anonyma eller aggregerade uppgifter samlas in:
           </p>
           <ul class="text-body1 privacy-page__list">
             <li>Vilka sidor du besöker på webbplatsen</li>
@@ -106,7 +106,7 @@
             Dina personuppgifter från kontaktformuläret delas inte med externa parter.
           </p>
           <p class="text-body1">
-            För drift, webbanalys och marknadsföring använder vi externa leverantörer som kan behandla begränsad teknisk data och cookieinformation för vår räkning.
+            För drift, webbanalys och marknadsföring använder vi externa leverantörer, bland annat Vercel och Google, som kan behandla begränsad teknisk data och cookieinformation för vår räkning.
           </p>
           <p class="text-body1 q-mt-sm">
             Om någon behandling sker utanför EU/EES använder vi lämpliga skyddsåtgärder, till exempel standardavtalsklausuler.
