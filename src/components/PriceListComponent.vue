@@ -563,16 +563,19 @@ export default defineComponent({
     },
     // Calculate total price based on selected services
     calculateTotalPrice() {
-      return this.cart.reduce((total, item) => {
+      const totalPrice = this.cart.reduce((total, item) => {
         const article = this.articles.find((priceArticle) => priceArticle.id === item.id);
 
         if (!article) {
           return total;
         }
 
-        this.form.totalPrice = total + (article.price * item.quantity) + 25;
-        return this.form.totalPrice;
+        return total + (article.price * item.quantity);
       }, 0);
+
+      this.form.totalPrice = totalPrice;
+
+      return totalPrice;
     },
     // Add selected services to cart and calculate total price
     addToCart() {
