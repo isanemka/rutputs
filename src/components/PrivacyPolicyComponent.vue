@@ -49,7 +49,7 @@
 
           <h3 class="text-subtitle1 text-primary q-mt-md q-mb-sm">2. Webbanalys (cookies)</h3>
           <p class="text-body1 q-mb-sm">
-            Om du accepterar cookies använder vi Google Analytics, Google Tag Manager och Vercel Analytics som samlar in följande anonyma data:
+            Om du accepterar cookies använder vi analysverktyg för att förstå hur webbplatsen används. Då kan följande anonyma eller aggregerade uppgifter samlas in:
           </p>
           <ul class="text-body1 privacy-page__list">
             <li>Vilka sidor du besöker på webbplatsen</li>
@@ -62,11 +62,10 @@
             <strong>Syfte:</strong> För att förbättra webbplatsens innehåll och användarupplevelse.
           </p>
 
-          <h3 class="text-subtitle1 text-primary q-mt-md q-mb-sm">3. Marknadsföring (Google Ads)</h3>
+          <h3 class="text-subtitle1 text-primary q-mt-md q-mb-sm">3. Marknadsföring</h3>
           <p class="text-body1">
-            Om du accepterar cookies kan vi använda Google Ads för att visa relevanta annonser.
-            Vi kan även mäta formulärskick och klick på telefonnummer för att förstå vilka kampanjer som leder till kontakt.
-            Google kan då placera cookies för att mäta annonseffektivitet och visa anpassade annonser baserat på ditt besök.
+            Om du accepterar cookies kan vi använda annonseringsverktyg för att mäta vilka kampanjer som leder till kontakt,
+            till exempel formulärskick eller klick på telefonnummer. Dessa verktyg kan också användas för att visa mer relevanta annonser.
           </p>
         </section>
 
@@ -92,7 +91,7 @@
           <h2 class="text-h6 text-accent q-mb-sm">Hur länge sparas data?</h2>
           <ul class="text-body1 privacy-page__list">
             <li><strong>Kontaktformulär:</strong> Dina uppgifter raderas när din förfrågan är hanterad, eller senast efter 12 månader.</li>
-            <li><strong>Analysdata:</strong> Google Analytics och Vercel Analytics behåller aggregerad data i upp till 14 respektive 12 månader.</li>
+            <li><strong>Analysdata:</strong> Uppgifter från analysverktyg sparas under en begränsad period enligt våra inställningar, normalt upp till 14 månader.</li>
             <li><strong>Cookies:</strong> Ditt samtycke sparas tills du raderar cookies eller lokal lagring i din webbläsare.</li>
           </ul>
         </section>
@@ -107,14 +106,11 @@
             Dina personuppgifter från kontaktformuläret delas inte med externa parter.
           </p>
           <p class="text-body1">
-            För webbanalys och marknadsföring används följande tjänster som kan behandla data:
+            För drift, webbanalys och marknadsföring använder vi externa leverantörer som kan behandla begränsad teknisk data och cookieinformation för vår räkning.
           </p>
-          <ul class="text-body1 privacy-page__list">
-            <li><strong>Vercel Analytics</strong> – vår värdtjänst (USA, standardavtalsklausuler)</li>
-            <li><strong>Google Tag Manager</strong> – hantering av mät- och annonstaggar (USA, standardavtalsklausuler)</li>
-            <li><strong>Google Analytics</strong> – webbanalys (USA, standardavtalsklausuler)</li>
-            <li><strong>Google Ads</strong> – marknadsföring (USA, standardavtalsklausuler)</li>
-          </ul>
+          <p class="text-body1 q-mt-sm">
+            Om någon behandling sker utanför EU/EES använder vi lämpliga skyddsåtgärder, till exempel standardavtalsklausuler.
+          </p>
           <p class="text-body1 q-mt-sm">
             Din data säljs aldrig vidare till tredje part.
           </p>
@@ -153,7 +149,7 @@
             Har du frågor om hur vi hanterar din data? Kontakta oss:
           </p>
           <ul class="text-body1 privacy-page__list">
-            <li>E-post: kontakt (at) rutputs.nu</li>
+            <li>E-post: kontakt@rutputs.nu</li>
             <li>Telefon: 0734-64 46 04</li>
           </ul>
         </section>
@@ -181,7 +177,7 @@
         </section>
 
         <p class="text-caption text-grey-7 text-center q-mt-lg">
-          Senast uppdaterad: November 2025
+          Senast uppdaterad: Mars 2026
         </p>
       </section>
     </div>
@@ -245,8 +241,6 @@ export default defineComponent({
   setup() {
     const {
       consentStatus,
-      acceptConsent,
-      rejectConsent,
       triggerShowBanner,
     } = useConsent();
 
