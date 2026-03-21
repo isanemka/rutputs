@@ -319,11 +319,4 @@ export default defineComponent({
 .hero-shell__media {
   will-change: transform;
 }
-
-.faq-link-row {
-  margin-top: 0.65rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 0.85rem;
-}
 </style>

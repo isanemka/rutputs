@@ -214,13 +214,6 @@ export default defineComponent({
   background: linear-gradient(135deg, rgba(69, 90, 100, 0.94), rgba(46, 68, 78, 0.8));
 }
 
-.faq-link-row {
-  margin-top: 0.65rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 0.85rem;
-}
-
 .company-hero__title {
   max-width: 18ch;
   overflow-wrap: normal;

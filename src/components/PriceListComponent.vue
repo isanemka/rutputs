@@ -727,10 +727,6 @@ export default defineComponent({
 });
 </script>
 <style scoped>
-.faq-link-row {
-  margin-top: 0.65rem;
-}
-
 .property-type-group {
   margin: 1rem 0 0;
   padding: 0;

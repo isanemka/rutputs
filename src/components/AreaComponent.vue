@@ -268,10 +268,6 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.faq-link-row {
-  margin-top: 0.65rem;
-}
-
 .area-hero__media {
   position: absolute;
   inset: 0;
