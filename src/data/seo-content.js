@@ -5,7 +5,7 @@ const siteSeoContent = {
       'Rutputs erbjuder professionell fönsterputsning i norra Stockholm med RUT-avdrag. Från 350 kr. Vi täcker Järfälla, Sundbyberg, Solna, Spånga med flera områden. Boka online!',
     bodyTitle: 'Fönsterputs i norra Stockholm',
     bodyIntro:
-      'Rutputs erbjuder professionell fönsterputsning i norra Stockholm för privatpersoner och företag. Med RUT-avdrag börjar priset från 350 kr och du kan se ditt pris direkt online.',
+      'Rutputs erbjuder professionell fönsterputsning i norra Stockholm för privatpersoner och företag. Med RUT-avdrag börjar priset från 350 kr och du kan se ditt pris direkt online. Du kan boka både enstaka puts och återkommande abonnemang.',
     faq: [
       {
         question: 'Vad kostar fönsterputsning med RUT-avdrag?',
@@ -27,7 +27,7 @@ const siteSeoContent = {
           { label: 'Spånga', to: '/omrade/spanga' },
           { label: 'Sollentuna', to: '/omrade/sollentuna' },
           { label: 'Täby', to: '/omrade/taby' },
-        ]
+        ],
       },
       {
         question: 'Hur bokar jag fönsterputsning?',
@@ -35,6 +35,11 @@ const siteSeoContent = {
           'Fyll i formuläret på vår prissida så räknas ditt pris ut direkt. Vi kontaktar dig sedan för att boka en tid som passar.',
         linkLabel: 'Gå till formuläret',
         linkTo: '/pris',
+      },
+      {
+        question: 'Erbjuder ni abonnemang för återkommande fönsterputs?',
+        answer:
+          'Ja, du kan få hjälp både med enstaka puts och med återkommande abonnemang. Om du vill att vi kommer löpande tar vi fram ett upplägg som passar bostad, säsong och hur ofta du vill ha putsat.',
       },
       {
         question: 'Putsar ni även företagsfönster?',
@@ -56,7 +61,7 @@ const siteSeoContent = {
       'Professionell fönsterputs för företag i Stockholm och norra Stockholm. Flexibla avtal, regelbunden service och rena fönster för kontor, lokaler och skyltfönster.',
     bodyTitle: 'Fönsterputs för företag',
     bodyIntro:
-      'Rutputs hjälper företag, kontor, butiker och mindre fastigheter i Stockholm med professionell fönsterputsning. Tjänsten kan anpassas för återkommande intervaller, skyltfönster och tydliga serviceupplägg.',
+      'Rutputs hjälper företag, kontor, butiker och mindre fastigheter i Stockholm med professionell fönsterputsning. Tjänsten kan anpassas som abonnemang eller punktinsats för återkommande intervaller, skyltfönster och tydliga serviceupplägg.',
     benefits: [
       'Regelbunden service och flexibla avtal.',
       'Rena fönster som förbättrar intrycket för kunder och personal.',
@@ -77,6 +82,11 @@ const siteSeoContent = {
         question: 'Hur får vi en offert?',
         answer:
           'Kontakta Rutputs via kontaktuppgifterna på sidan så går vi igenom lokal, omfattning och önskat upplägg innan offert lämnas.',
+      },
+      {
+        question: 'Kan vi få abonnemang för löpande fönsterputs?',
+        answer:
+          'Ja, vi kan lägga upp abonnemang eller andra återkommande upplägg för företag som vill ha rena fönster på fasta intervaller. Upplägget anpassas efter lokal, tillgänglighet och hur ofta ni vill ha putsat.',
       },
       {
         question: 'Putsar ni även skyltfönster för butiker och verksamheter?',
@@ -117,6 +127,11 @@ const siteSeoContent = {
         question: 'Kan jag skicka förfrågan direkt efter prisberäkningen?',
         answer:
           'Ja, när du har gått igenom stegen kan du fylla i dina kontaktuppgifter och skicka in din förfrågan direkt på sidan, så återkommer vi så snart som möjligt.',
+      },
+      {
+        question: 'Kan jag få återkommande fönsterputs via abonnemang?',
+        answer:
+          'Ja, om du vill ha återkommande fönsterputs kan vi hjälpa dig med ett abonnemang eller ett löpande upplägg. Skicka in din förfrågan så återkommer vi med ett förslag som passar dig.',
       },
       {
         question: 'Är det bindande att skicka in formuläret?',

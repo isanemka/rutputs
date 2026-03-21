@@ -26,7 +26,7 @@
           </p>
           <ul class="feature-list">
             <li>Kvalitet och noggrannhet i varje återkommande besök.</li>
-            <li>Anpassade upplägg efter lokaltyp, intervall och tillgänglighet.</li>
+            <li>Anpassade upplägg som punktinsats eller abonnemang efter lokaltyp, intervall och tillgänglighet.</li>
             <li>Snabb återkoppling och enkel kontaktväg.</li>
             <li>Möjlighet att börja smått och skala upp över tid.</li>
           </ul>
@@ -40,7 +40,7 @@
             andra behöver puts inför visningar, event, säsongsskiften eller för att skyltfönster ska hålla ett jämnt och välskött intryck. Målet är samma: ett enkelt och pålitligt flöde.
           </p>
           <p class="section-text">
-            När arbetsplatsen ser välhållen ut förbättras både helhetsintrycket och miljön för dem som vistas där varje dag.
+            När arbetsplatsen ser välhållen ut förbättras både helhetsintrycket och miljön för dem som vistas där varje dag. För många företag fungerar abonnemang bäst, eftersom putsningen då sker löpande utan att någon behöver bevaka när nästa tillfälle ska bokas.
           </p>
         </div>
       </section>
