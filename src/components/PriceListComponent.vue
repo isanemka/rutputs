@@ -319,6 +319,16 @@
             <q-card flat>
               <q-card-section class="text-body2 text-primary">
                 {{ item.answer }}
+                <div v-if="item.links?.length" class="faq-link-row">
+                  <router-link
+                    v-for="link in item.links"
+                    :key="link.to"
+                    :to="link.to"
+                    class="text-accent text-weight-bold"
+                  >
+                    {{ link.label }}
+                  </router-link>
+                </div>
                 <div v-if="item.linkTo && item.linkLabel" class="faq-link-row">
                   <router-link :to="item.linkTo" class="text-accent text-weight-bold">
                     {{ item.linkLabel }}
@@ -386,8 +396,8 @@ const priceListSections: PriceListSection[] = [
   },
   {
     id: 'sunrooms',
-    kicker: 'Uterum',
-    title: 'Pris för uterum upp till 10 kvm',
+    kicker: 'Uterum/Inglasad balkong',
+    title: 'Uterum och inglasade balkonger upp till 10 kvm',
     items: priceArticles.filter((article) => article.id >= 11),
   },
 ];
@@ -796,7 +806,8 @@ export default defineComponent({
 }
 
 .price-list-note {
-  max-width: 72rem;
+  width: 100%;
+  max-width: none;
 }
 
 .service-picker-mobile {
