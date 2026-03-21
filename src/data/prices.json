@@ -62,13 +62,13 @@
   {
     "id": 11,
     "name": "uterum1",
-    "description": "Uterum, utvändig puts upp till 10 kvm",
+    "description": "Uterum/inglasad balkong, utvändig puts upp till 10 kvm",
     "price": 125
   },
   {
     "id": 12,
     "name": "uterum2",
-    "description": "Uterum, ut- och invändig puts upp till 10 kvm",
+    "description": "Uterum/inglasad balkong, ut- och invändig puts upp till 10 kvm",
     "price": 250
   }
 ]

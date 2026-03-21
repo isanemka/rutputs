@@ -27,12 +27,17 @@ function escapeJsonForScript(value) {
 const buildFaqHtml = (faq = []) =>
   `<ul>${faq
     .map((item) => {
+      const linksHtml = Array.isArray(item.links) && item.links.length
+        ? `<br>${item.links
+          .map((link) => `<a href="${escapeHtml(link.to)}">${escapeHtml(link.label)}</a>`)
+          .join(', ')}`
+        : '';
       const linkHtml =
         item.linkLabel && item.linkTo
           ? `<br><a href="${escapeHtml(item.linkTo)}">${escapeHtml(item.linkLabel)}</a>`
           : '';
 
-      return `<li><strong>${escapeHtml(item.question)}</strong><br>${escapeHtml(item.answer)}${linkHtml}</li>`;
+      return `<li><strong>${escapeHtml(item.question)}</strong><br>${escapeHtml(item.answer)}${linksHtml}${linkHtml}</li>`;
     })
     .join('')}</ul>`;
 

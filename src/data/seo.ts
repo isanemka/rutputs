@@ -5,6 +5,10 @@ export interface SeoFaq {
   answer: string;
   linkLabel?: string;
   linkTo?: string;
+  links?: Array<{
+    label: string;
+    to: string;
+  }>;
 }
 
 export interface SeoPage {

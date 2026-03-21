@@ -82,6 +82,16 @@
             <q-card flat>
               <q-card-section class="text-body2 text-primary">
                 {{ item.answer }}
+                <div v-if="item.links?.length" class="faq-link-row">
+                  <router-link
+                    v-for="link in item.links"
+                    :key="link.to"
+                    :to="link.to"
+                    class="text-accent text-weight-bold"
+                  >
+                    {{ link.label }}
+                  </router-link>
+                </div>
                 <div v-if="item.linkTo && item.linkLabel" class="faq-link-row">
                   <router-link :to="item.linkTo" class="text-accent text-weight-bold">
                     {{ item.linkLabel }}
@@ -202,10 +212,6 @@ export default defineComponent({
 <style scoped>
 .company-hero {
   background: linear-gradient(135deg, rgba(69, 90, 100, 0.94), rgba(46, 68, 78, 0.8));
-}
-
-.faq-link-row {
-  margin-top: 0.65rem;
 }
 
 .company-hero__title {

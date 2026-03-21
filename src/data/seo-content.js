@@ -11,11 +11,23 @@ const siteSeoContent = {
         question: 'Vad kostar fönsterputsning med RUT-avdrag?',
         answer:
           'Fönsterputsning med RUT-avdrag börjar från 350 kr. Det exakta priset beror på antal fönster och typ av bostad. Använd vår priskalkylator för att se ditt pris direkt.',
+        linkLabel: 'Gå till formuläret',
+        linkTo: '/pris',
       },
       {
         question: 'Vilka områden täcker Rutputs?',
         answer:
           'Rutputs täcker främst norra Stockholm: Järfälla, Bromma, Kista, Solna, Sundbyberg, Spånga, Sollentuna och Täby. Men vi hjälper även kunder i andra områden. Fyll i formuläret för att se hur vi kan hjälpa dig!',
+        links: [
+          { label: 'Järfälla', to: '/omrade/jarfalla' },
+          { label: 'Bromma', to: '/omrade/bromma' },
+          { label: 'Kista', to: '/omrade/kista' },
+          { label: 'Solna', to: '/omrade/solna' },
+          { label: 'Sundbyberg', to: '/omrade/sundbyberg' },
+          { label: 'Spånga', to: '/omrade/spanga' },
+          { label: 'Sollentuna', to: '/omrade/sollentuna' },
+          { label: 'Täby', to: '/omrade/taby' },
+        ]
       },
       {
         question: 'Hur bokar jag fönsterputsning?',
@@ -30,6 +42,11 @@ const siteSeoContent = {
           'Ja, vi erbjuder professionell fönsterputsning för kontor och företagslokaler i norra Stockholm. Kontakta oss för en offert.',
         linkLabel: 'Läs mer om fönsterputs för företag',
         linkTo: '/foretag',
+      },
+      {
+        question: 'Tar ni med egen stege och annat material?',
+        answer:
+          'Ja, vi har med oss allt som behövs. Se bara till att det är möjligt att komma åt fönstren, så fixar vi resten.',
       },
     ],
   },
@@ -66,6 +83,11 @@ const siteSeoContent = {
         answer:
           'Ja, Rutputs hjälper även butiker och verksamheter med putsning av skyltfönster. Det passar bra både som återkommande upplägg och inför perioder när du vill att entré och skyltläge ska ge ett extra välskött intryck.',
       },
+      {
+        question: 'Tar ni med eget material?',
+        answer:
+          'Ja, vi har med oss allt som behövs. Du behöver bara se till att fönstren går att komma åt.',
+      },
     ],
   },
   price: {
@@ -94,7 +116,12 @@ const siteSeoContent = {
       {
         question: 'Kan jag skicka förfrågan direkt efter prisberäkningen?',
         answer:
-          'Ja, när du har gått igenom stegen kan du fylla i dina kontaktuppgifter och skicka in din förfrågan direkt på sidan.',
+          'Ja, när du har gått igenom stegen kan du fylla i dina kontaktuppgifter och skicka in din förfrågan direkt på sidan, så återkommer vi så snart som möjligt.',
+      },
+      {
+        question: 'Är det bindande att skicka in formuläret?',
+        answer:
+          'Nej, det är inte bindande att skicka in formuläret. Vi hör av oss efteråt för att gå igenom uppgifterna och bestämma en tid som passar.',
       },
     ],
   },
