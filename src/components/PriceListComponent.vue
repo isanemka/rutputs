@@ -177,7 +177,7 @@
               :name="3"
               title="Se ditt pris"
               icon="shopping_cart"
-              :done="step > 4"
+              :done="step > 3"
             >
 
               <div id="pris-steg"></div>
@@ -357,7 +357,7 @@ import priceArticlesData from 'src/data/prices.json';
 import { trackEvent } from 'src/boot/analytics';
 
 const columnAlign = 'left' as const;
-const stepTransitionScrollDelay = 350;
+const STEP_TRANSITION_DURATION_MS = 350;
 
 const priceFaqs = priceSeo.faq ?? [];
 
@@ -486,6 +486,7 @@ export default defineComponent({
         termsAccepted: false,
         totalPrice: 0
       },
+      priceStepScrollTimeoutId: null as number | null,
       minimumOrderValue: 350,
       articles: priceArticles
         .slice()
@@ -566,13 +567,18 @@ export default defineComponent({
       this.addToCart();
       this.step = 3;
 
+      if (this.priceStepScrollTimeoutId !== null) {
+        window.clearTimeout(this.priceStepScrollTimeoutId);
+      }
+
       void nextTick(() => {
-        window.setTimeout(() => {
+        this.priceStepScrollTimeoutId = window.setTimeout(() => {
           document.getElementById('pris-steg')?.scrollIntoView({
             behavior: 'smooth',
             block: 'start'
           });
-        }, stepTransitionScrollDelay);
+          this.priceStepScrollTimeoutId = null;
+        }, STEP_TRANSITION_DURATION_MS);
       });
     },
     // Handle quantity input for each article
@@ -731,6 +737,11 @@ export default defineComponent({
   // Calculate total price when component is created
   created() {
     this.calculateTotalPrice();
+  },
+  beforeUnmount() {
+    if (this.priceStepScrollTimeoutId !== null) {
+      window.clearTimeout(this.priceStepScrollTimeoutId);
+    }
   },
 });
 </script>
