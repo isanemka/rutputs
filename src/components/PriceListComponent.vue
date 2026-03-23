@@ -8,11 +8,11 @@
         </h1>
         <p class="section-text text-center q-mx-auto price-intro-panel__text">
           Här kan du räkna ut priset för fönsterputsning i norra Stockholm direkt online.
-          Priset börjar från 350 kr efter RUT-avdrag och du ser snabbt vad som gäller för din bostad.
+          Enkla priser efter RUT-avdrag: 1 sida från 25 kr, 2 sidor 35 kr och 4 sidor 65 kr.
         </p>
         <p class="section-text text-center q-mx-auto price-intro-panel__text">
           Formuläret är byggt för att göra bokningen enkel: välj bostadstyp, ange antal fönster
-          och skicka sedan in din förfrågan när priset känns rätt.
+          och skicka sedan in din förfrågan när priset känns rätt. Minsta ordervärde är 350 kr efter RUT-avdrag.
         </p>
         <div class="price-intro-panel__actions">
           <q-btn
@@ -44,6 +44,9 @@
         <p class="section-text">
             Priserna ovan är samma priser som används när du räknar ut ditt totalpris här på sidan.
             Lägsta ordervärde är 350 kr efter RUT-avdrag.
+        </p>
+        <p class="section-text">
+            Priset är en uppskattning och gäller för normalt åtkomliga fönster.
         </p>
       </section>
 
@@ -176,6 +179,8 @@
               icon="shopping_cart"
               :done="step > 4"
             >
+
+              <div id="pris-steg"></div>
 
               <div id="pris-resultat" class="price-result-step">
                 <!-- Display selected services and total price if minimum order value is met -->
@@ -352,6 +357,7 @@ import priceArticlesData from 'src/data/prices.json';
 import { trackEvent } from 'src/boot/analytics';
 
 const columnAlign = 'left' as const;
+const stepTransitionScrollDelay = 350;
 
 const priceFaqs = priceSeo.faq ?? [];
 
@@ -561,10 +567,12 @@ export default defineComponent({
       this.step = 3;
 
       void nextTick(() => {
-        document.getElementById('pris-resultat')?.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        });
+        window.setTimeout(() => {
+          document.getElementById('pris-steg')?.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }, stepTransitionScrollDelay);
       });
     },
     // Handle quantity input for each article
