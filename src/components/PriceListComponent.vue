@@ -7,8 +7,8 @@
           Pris på fönsterputsning med RUT-avdrag
         </h1>
         <p class="section-text text-center q-mx-auto price-intro-panel__text">
-          Här kan du räkna ut priset för fönsterputsning i norra Stockholm direkt online.
-          Enkla priser efter RUT-avdrag: 1 sida från 25 kr, 2 sidor 35 kr och 4 sidor 65 kr.
+          Här kan du räkna ut priset för fönsterputsning direkt online.
+          Vårt prisformulär är enkelt att använda och ger dig snabbt en tydlig uppskattning av kostnaden.
         </p>
         <p class="section-text text-center q-mx-auto price-intro-panel__text">
           Formuläret är byggt för att göra bokningen enkel: välj bostadstyp, ange antal fönster
