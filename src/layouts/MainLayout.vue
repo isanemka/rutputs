@@ -11,7 +11,7 @@
           />
           <div class="top-nav__brand-copy">
             <span class="top-nav__eyebrow">Rutputs</span>
-            <span class="top-nav__headline">Fönsterputs i norra Stockholm</span>
+            <span class="top-nav__headline">Fönsterputs i Stockholm</span>
           </div>
         </router-link>
 
@@ -38,7 +38,7 @@
             <a href="/" @click.prevent="goToLanding()" class="brand-banner__link">
               <img
                 class="brand-banner__image"
-                alt="Rutputs – Fönsterputsning i norra Stockholm"
+                alt="Rutputs – Fönsterputsning i Stockholm"
                 src="/icons/main_logo.png"
                 width="900"
                 height="200"
