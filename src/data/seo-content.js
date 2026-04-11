@@ -17,7 +17,7 @@ const siteSeoContent = {
       {
         question: 'Vilka områden täcker Rutputs?',
         answer:
-          'Rutputs täcker främst norra Stockholm: Järfälla, Bromma, Kista, Solna, Sundbyberg, Spånga, Sollentuna och Täby. Men vi hjälper även kunder i andra områden. Fyll i formuläret för att se hur vi kan hjälpa dig!',
+          'Rutputs täcker främst norra Stockholm: Järfälla, Bromma, Kista, Solna, Sundbyberg, Spånga, Sollentuna och Täby. Vi arbetar även på Lidingö och Östermalm. Fyll i formuläret för att se hur vi kan hjälpa dig!',
         links: [
           { label: 'Järfälla', to: '/omrade/jarfalla' },
           { label: 'Bromma', to: '/omrade/bromma' },
@@ -27,6 +27,8 @@ const siteSeoContent = {
           { label: 'Spånga', to: '/omrade/spanga' },
           { label: 'Sollentuna', to: '/omrade/sollentuna' },
           { label: 'Täby', to: '/omrade/taby' },
+          { label: 'Lidingö', to: '/omrade/lidingo' },
+          { label: 'Östermalm', to: '/omrade/ostermalm' },
         ],
       },
       {
@@ -360,6 +362,60 @@ const siteSeoContent = {
         },
         {
           question: 'Hur får jag pris för fönsterputs i Täby?',
+          answer:
+            'Du fyller i formuläret på prissidan för att se pris direkt. Därefter bekräftas bokningen i nästa steg.',
+        },
+      ],
+    },
+    {
+      slug: 'lidingo',
+      name: 'Lidingö',
+      title: 'Fönsterputs Lidingö – Från 350 kr med RUT-avdrag | Rutputs',
+      description:
+        'Professionell fönsterputsning på Lidingö med RUT-avdrag. Från 350 kr. Vi täcker Lidingö centrum, Brevik, Rudboda och Herserud. Boka enkelt online!',
+      content:
+        'På Lidingö erbjuder vi professionell fönsterputsning för villor, radhus och lägenheter. Med många vackra bostäder och stora fönsterpartier är Lidingö ett område där rena fönster verkligen gör skillnad. Vi arbetar i hela kommunen och erbjuder både enstaka putsningar och återkommande upplägg för dig som vill ha ett smidigt och pålitligt resultat.',
+      districts: ['Lidingö centrum', 'Brevik', 'Rudboda', 'Herserud'],
+      faq: [
+        {
+          question: 'Vilka delar av Lidingö täcker ni?',
+          answer:
+            'Vi arbetar i hela Lidingö kommun, bland annat i Lidingö centrum, Brevik, Rudboda och Herserud samt övriga delar av ön.',
+        },
+        {
+          question: 'Vad kostar fönsterputs på Lidingö?',
+          answer:
+            'Priset börjar från 350 kr efter RUT-avdrag. Det exakta priset beror på antal fönster och bostadstyp. Använd vår priskalkylator för att se ditt pris direkt.',
+        },
+        {
+          question: 'Hur bokar jag fönsterputs på Lidingö?',
+          answer:
+            'Du fyller i prisformuläret online för att se ditt pris direkt. Därefter återkommer vi för att bekräfta bokning och tid.',
+        },
+      ],
+    },
+    {
+      slug: 'ostermalm',
+      name: 'Östermalm',
+      title: 'Fönsterputs Östermalm – Från 350 kr med RUT-avdrag | Rutputs',
+      description:
+        'Fönsterputsning på Östermalm med RUT-avdrag från 350 kr. Vi täcker Gärdet, Djurgården, Lärkstan och Hjorthagen. Boka enkelt online!',
+      content:
+        'Östermalm med sina eleganta fasader, stora fönster och klassiska bostäder är ett område där professionell fönsterputsning gör stor skillnad. Vi hjälper privatpersoner i hela stadsdelen med noggrann och smidig service, oavsett om du bor i lägenhet, radhus eller villa. Boka enstaka puts eller återkommande abonnemang.',
+      districts: ['Gärdet', 'Djurgården', 'Lärkstan', 'Hjorthagen'],
+      faq: [
+        {
+          question: 'Vilka delar av Östermalm täcker ni?',
+          answer:
+            'Vi arbetar bland annat på Gärdet, Djurgården, i Lärkstan och Hjorthagen samt i övriga delar av Östermalm.',
+        },
+        {
+          question: 'Passar tjänsten lägenheter på Östermalm?',
+          answer:
+            'Ja, vi hjälper kunder i alla typer av bostäder – lägenheter, radhus och villor. Upplägget anpassas efter bostadens storlek och antal fönster.',
+        },
+        {
+          question: 'Hur får jag pris för fönsterputs på Östermalm?',
           answer:
             'Du fyller i formuläret på prissidan för att se pris direkt. Därefter bekräftas bokningen i nästa steg.',
         },

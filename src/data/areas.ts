@@ -35,5 +35,13 @@ export const areas: AreaLink[] = [
   {
     slug: 'taby',
     name: 'Täby',
+  },
+  {
+    slug: 'lidingo',
+    name: 'Lidingö',
+  },
+  {
+    slug: 'ostermalm',
+    name: 'Östermalm',
   }
 ];
