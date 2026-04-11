@@ -38,7 +38,7 @@
             <a href="/" @click.prevent="goToLanding()" class="brand-banner__link">
               <img
                 class="brand-banner__image"
-                alt="Rutputs – Fönsterputsning Stockholm"
+                alt="Rutputs – Fönsterputsning i Stockholm"
                 src="/icons/main_logo.png"
                 width="900"
                 height="200"
