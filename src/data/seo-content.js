@@ -1,11 +1,11 @@
 const siteSeoContent = {
   home: {
-    title: 'Fönsterputs norra Stockholm – Från 350 kr med RUT | Rutputs',
+    title: 'Fönsterputs i Stockholm – Från 350 kr med RUT | Rutputs',
     description:
-      'Rutputs erbjuder professionell fönsterputsning i norra Stockholm med RUT-avdrag. Från 350 kr. Vi täcker Järfälla, Sundbyberg, Solna, Spånga med flera områden. Boka online!',
-    bodyTitle: 'Fönsterputs i norra Stockholm',
+      'Rutputs erbjuder professionell fönsterputsning i Stockholm med RUT-avdrag. Från 350 kr. Vi täcker Järfälla, Sundbyberg, Solna, Spånga med flera områden. Boka online!',
+    bodyTitle: 'Fönsterputs i Stockholm',
     bodyIntro:
-      'Rutputs erbjuder professionell fönsterputsning i norra Stockholm för privatpersoner och företag. Med RUT-avdrag börjar priset från 350 kr och du kan se ditt pris direkt online. Du kan boka både enstaka puts och återkommande abonnemang.',
+      'Rutputs erbjuder professionell fönsterputsning i Stockholm för privatpersoner och företag. Med RUT-avdrag börjar priset från 350 kr och du kan se ditt pris direkt online. Du kan boka både enstaka puts och återkommande abonnemang.',
     faq: [
       {
         question: 'Vad kostar fönsterputsning med RUT-avdrag?',
@@ -46,7 +46,7 @@ const siteSeoContent = {
       {
         question: 'Putsar ni även företagsfönster?',
         answer:
-          'Ja, vi erbjuder professionell fönsterputsning för kontor och företagslokaler i norra Stockholm. Kontakta oss för en offert.',
+          'Ja, vi erbjuder professionell fönsterputsning för kontor och företagslokaler i stora delar av Stockholm. Kontakta oss för en offert.',
         linkLabel: 'Läs mer om fönsterputs för företag',
         linkTo: '/foretag',
       },
@@ -60,7 +60,7 @@ const siteSeoContent = {
   company: {
     title: 'Fönsterputs för företag i Stockholm | Rutputs',
     description:
-      'Professionell fönsterputs för företag i Stockholm och norra Stockholm. Flexibla avtal, regelbunden service och rena fönster för kontor, lokaler och skyltfönster.',
+      'Professionell fönsterputs för företag i Stockholm. Flexibla avtal, regelbunden service och rena fönster för kontor, lokaler och skyltfönster.',
     bodyTitle: 'Fönsterputs för företag',
     bodyIntro:
       'Rutputs hjälper företag, kontor, butiker och mindre fastigheter i Stockholm med professionell fönsterputsning. Tjänsten kan anpassas som abonnemang eller punktinsats för återkommande intervaller, skyltfönster och tydliga serviceupplägg.',
@@ -78,7 +78,7 @@ const siteSeoContent = {
       {
         question: 'Arbetar ni bara i norra Stockholm?',
         answer:
-          'Fokus ligger på norra Stockholm, där Rutputs redan arbetar löpande men vi är inte omöjliga. Fyll i formuläret så ser vi om vi kan hjälpa dig oavsett var du befinner dig.',
+          'Nej. Vi utgår från norra Stockholm, där vi redan arbetar löpande men vi är inte omöjliga. Fyll i formuläret så ser vi om vi kan hjälpa dig oavsett var du befinner dig.',
       },
       {
         question: 'Hur får vi en offert?',
@@ -105,7 +105,7 @@ const siteSeoContent = {
   price: {
     title: 'Prislista – Fönsterputsning med RUT-avdrag | Rutputs',
     description:
-      'Se priser för fönsterputsning i norra Stockholm. Räkna ut ditt pris direkt – från 350 kr med RUT-avdrag. Enkel offertförfrågan online.',
+      'Se priser för fönsterputsning i Stockholm. Räkna ut ditt pris direkt – från 350 kr med RUT-avdrag. Enkel offertförfrågan online.',
     bodyTitle: 'Prislista för fönsterputsning',
     bodyIntro:
       'På prissidan kan du räkna ut vad fönsterputsningen kostar utifrån din bostad och antal fönster. Priset börjar från 350 kr efter RUT-avdrag.',

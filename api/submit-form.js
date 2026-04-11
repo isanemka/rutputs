@@ -7,7 +7,7 @@ export default async function handler(req, res) {
     return res.status(405).send({ message: 'Only POST requests allowed' });
   }
 
-  const { name, email, tel, address, propertyType, cart, totalPrice } = req.body;
+  const { name, email, tel, address, message: customerMessage, propertyType, cart, totalPrice } = req.body;
 
   if (!name || !email || !cart || !totalPrice) {
     return res.status(400).json({ error: 'Missing required fields' });
@@ -18,7 +18,7 @@ E-post: ${email}
 Telefon: ${tel}
 Adress: ${address}
 Fastighetstyp: ${propertyType}
-
+${customerMessage ? `\nMeddelande från kund:\n${customerMessage}\n` : ''}
 Tjänster kunden valt:
 ${cart.map((item) => `${item.quantity} : ${item.description}`).join('\n')}
 Offertens värde: ${totalPrice} kr`;

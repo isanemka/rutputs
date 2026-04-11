@@ -256,6 +256,15 @@
                       val => val !== null && val !== '' || 'Vänligen fyll i din e-postadress',
                       val => /.+@.+\..+/.test(val) || 'Ogiltig e-postadress']"
                   />
+                  <q-input
+                    v-model="form.message"
+                    filled
+                    type="textarea"
+                    label="Meddelande"
+                    hint="T.ex. när du vill ha putsningen utförd eller annat du vill meddela"
+                    autogrow
+                    maxlength="500"
+                  />
 
                   <!-- Terms and conditions toggle -->
                   <q-toggle
@@ -483,6 +492,7 @@ export default defineComponent({
         tel: '',
         address: '',
         email: '',
+        message: '',
         termsAccepted: false,
         totalPrice: 0
       },
@@ -669,6 +679,7 @@ export default defineComponent({
         email: this.form.email,
         tel: this.form.tel,
         address: this.form.address,
+        message: this.form.message,
         propertyType: this.form.propertyType,
         cart: this.cart,
         totalPrice: this.form.totalPrice
@@ -707,6 +718,7 @@ export default defineComponent({
         tel: '',
         address: '',
         email: '',
+        message: '',
         termsAccepted: false,
         totalPrice: this.form.totalPrice
       };

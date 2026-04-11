@@ -7,7 +7,7 @@
           <img
             class="hero-shell__image"
             :src="randomPortraitImage"
-            alt="Professionell fönsterputsning i norra Stockholm"
+            alt="Professionell fönsterputsning i Stockholm"
             fetchpriority="high"
             decoding="async"
           >
@@ -17,8 +17,8 @@
           <span class="hero-kicker">Lokal fönsterputsare</span>
           <h1 class="hero-title">Rena fönster. Tydligt pris. Snabb bokning.</h1>
           <p class="hero-lead">
-            Rutputs hjälper hushåll i norra Stockholm med fönsterputsning som känns enkel att boka,
-            enkel att förstå och genomförd med jämn kvalitet från första kontakt till färdigt resultat. Du kan boka både enstaka puts och återkommande abonnemang.
+            Rutputs hjälper hushåll och företag i Stockholm med fönsterputsning till rimliga och tydliga priser och
+            som är enkel att boka. Alltid med samma höga kvalitet. Du kan boka både enstaka puts och återkommande abonnemang.
           </p>
           <div class="hero-actions">
             <q-btn class="text-black" label="Se vad det kostar" color="accent" unelevated @click="goToPriceList" />
@@ -40,7 +40,7 @@
       <section class="section-grid section-grid--two">
         <div class="editorial-panel editorial-panel--solid">
           <span class="section-kicker">Tydligt upplägg</span>
-          <h2 class="section-title">Fönsterputs i norra Stockholm utan onödigt krångel</h2>
+          <h2 class="section-title">Fönsterputs i Stockholm utan onödigt krångel</h2>
           <p class="section-text">
             Rutputs erbjuder professionell fönsterputsning för dig som vill ha rena fönster utan att jaga priser,
             ringa runt eller vänta på otydliga offerter. Du ser priset direkt, skickar din förfrågan och får snabb återkoppling.
@@ -119,16 +119,22 @@
         <span class="section-kicker">Områden</span>
         <h2 class="section-title">Vi täcker områden där närhet faktiskt gör skillnad</h2>
         <p class="section-text">
-          Rutputs fokuserar på norra Stockholm och närliggande områden där en lokal aktör ger snabbare bokning,
-          bättre planering och ett enklare upplägg för återkommande kunder. Välj din ort för att läsa mer om hur tjänsten passar där du bor.
+          Rutputs arbetar i stora delar av Stockholm med extra stark närvaro i norra Stockholm, där vi kan erbjuda kortare restider,
+          snabbare bokning och ett smidigare upplägg för återkommande kunder. Välj din ort för att läsa mer om hur tjänsten passar där du bor.
         </p>
-        <div class="mini-card-grid q-mt-lg">
-          <article v-for="item in areaLinks" :key="item.slug" class="mini-card">
-            <h3 class="mini-card__title">{{ item.name }}</h3>
-            <p class="mini-card__text q-mb-sm">Lokal fönsterputsning med tydligt pris och bokning online.</p>
-            <router-link :to="'/omrade/' + item.slug" class="text-accent text-weight-bold">Läs om {{ item.name }}</router-link>
-          </article>
+        <div class="area-link-grid q-mt-lg">
+          <router-link
+            v-for="item in areaLinks"
+            :key="item.slug"
+            :to="'/omrade/' + item.slug"
+            class="area-link text-accent text-weight-bold"
+          >
+            {{ item.name }}
+          </router-link>
         </div>
+        <p class="section-text" style="margin-top: 2rem">
+          Bor du i ett annat område? Skicka in en förfrågan ändå så ser vi om vi kan hjälpa dig.
+        </p>
       </section>
 
       <section class="cta-band">
