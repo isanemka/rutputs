@@ -1,6 +1,6 @@
-import { Resend } from 'resend';
+import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const ses = new SESClient({ region: process.env.AWS_REGION || 'eu-north-1' });
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -24,16 +24,20 @@ ${cart.map((item) => `${item.quantity} : ${item.description}`).join('\n')}
 Offertens värde: ${totalPrice} kr`;
 
   try {
-    const data = await resend.emails.send({
-      from: 'Rutputs <form@rutputs.nu>',
-      to: process.env.EMAIL_TO,
-      subject: 'Inskickat formulär',
-      text: message,
-    });
+    const data = await ses.send(
+      new SendEmailCommand({
+        Source: process.env.SES_FROM_EMAIL,
+        Destination: { ToAddresses: [process.env.SES_TO_EMAIL] },
+        Message: {
+          Subject: { Data: 'Inskickat formulär', Charset: 'UTF-8' },
+          Body: { Text: { Data: message, Charset: 'UTF-8' } },
+        },
+      })
+    );
 
     res.status(200).json({ success: true, data });
   } catch (error) {
-    console.error('Resend error:', error?.message || error);
+    console.error('SES error:', error?.message || error);
     res.status(500).json({ success: false, error: error?.message || 'Unknown error' });
   }
 }
