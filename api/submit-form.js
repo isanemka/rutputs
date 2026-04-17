@@ -1,6 +1,12 @@
 import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses';
 
-const ses = new SESClient({ region: process.env.AWS_REGION || 'eu-north-1' });
+const { AWS_REGION, SES_FROM_EMAIL, SES_TO_EMAIL } = process.env;
+
+if (!AWS_REGION || !SES_FROM_EMAIL || !SES_TO_EMAIL) {
+  throw new Error('Missing required env vars: AWS_REGION, SES_FROM_EMAIL, SES_TO_EMAIL');
+}
+
+const ses = new SESClient({ region: AWS_REGION });
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -26,8 +32,8 @@ Offertens värde: ${totalPrice} kr`;
   try {
     const data = await ses.send(
       new SendEmailCommand({
-        Source: process.env.SES_FROM_EMAIL,
-        Destination: { ToAddresses: [process.env.SES_TO_EMAIL] },
+        Source: SES_FROM_EMAIL,
+        Destination: { ToAddresses: [SES_TO_EMAIL] },
         Message: {
           Subject: { Data: 'Inskickat formulär', Charset: 'UTF-8' },
           Body: { Text: { Data: message, Charset: 'UTF-8' } },
