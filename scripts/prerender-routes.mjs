@@ -109,7 +109,7 @@ const pages = [
         offers: {
           '@type': 'Offer',
           priceCurrency: 'SEK',
-          price: '350',
+          price: '499',
           description: 'Från-pris efter RUT-avdrag',
         },
       },
@@ -193,7 +193,7 @@ const pages = [
         offers: {
           '@type': 'Offer',
           priceCurrency: 'SEK',
-          price: '350',
+          price: '499',
           description: 'Från-pris efter RUT-avdrag',
         },
       },
