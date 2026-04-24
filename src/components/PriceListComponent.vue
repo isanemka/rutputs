@@ -107,6 +107,7 @@
                     outlined
                     type="number"
                     min="1"
+                    step="1"
                     label="Antal fönster"
                     hint="Ange ett antal från 1 och uppåt"
                     :aria-label="'Antal fönster'"
@@ -537,6 +538,14 @@ export default defineComponent({
       }
 
       this.form.windowCount = Number(this.form.windowCount);
+
+      if (!Number.isInteger(this.form.windowCount) || this.form.windowCount < 1) {
+        this.form.selectedTierId = '';
+        this.cart = [];
+        this.form.totalPrice = 0;
+        return;
+      }
+
       const tier = this.getTierFromWindowCount(this.form.windowCount);
 
       if (!tier) {
@@ -568,6 +577,15 @@ export default defineComponent({
       if (!this.form.windowCount || this.form.windowCount < 1) {
         this.quasar.notify({
           message: 'Ange antal fönster från 1 och uppåt',
+          color: 'negative',
+          position: 'top'
+        });
+        return;
+      }
+
+      if (!Number.isInteger(Number(this.form.windowCount))) {
+        this.quasar.notify({
+          message: 'Antalet fönster måste vara ett heltal.',
           color: 'negative',
           position: 'top'
         });
@@ -964,9 +982,6 @@ export default defineComponent({
   .price-stepper-shell :deep(.q-stepper__nav) {
     display: grid;
     grid-template-columns: 1fr;
-  }
-
-  .price-stepper-shell :deep(.q-stepper__nav) {
     gap: 0.55rem;
   }
 

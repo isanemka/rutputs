@@ -17,7 +17,7 @@
           <span class="hero-kicker">Lokal fönsterputsare</span>
           <h1 class="hero-title">Rena fönster. Tydligt pris. Snabb bokning.</h1>
           <p class="hero-lead">
-            Jag hjälper hushåll och företag i Stockholm med fönsterputsning med enkel prissättning som är lätt att förstå och boka.
+            Jag hjälper hushåll och företag i Stockholm med fönsterputsning och enkel prissättning som är lätt att förstå och boka.
             När du bokar hos Rutputs är det också jag som kommer och putsar, oavsett om du vill ha en enstaka puts eller ett återkommande upplägg.
           </p>
           <div class="hero-actions">
