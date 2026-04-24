@@ -8,11 +8,11 @@
         </h1>
         <p class="section-text text-center q-mx-auto price-intro-panel__text">
           Här kan du räkna ut priset för fönsterputsning direkt online.
-          Vårt prisformulär är enkelt att använda och ger dig snabbt en tydlig uppskattning av kostnaden.
+          Mitt prisformulär är enkelt att använda och ger dig snabbt en tydlig uppskattning av kostnaden.
         </p>
         <p class="section-text text-center q-mx-auto price-intro-panel__text">
           Formuläret är byggt för att göra bokningen enkel: välj bostadstyp, ange antal fönster
-          och skicka sedan in din förfrågan när priset känns rätt. Minsta ordervärde är 350 kr efter RUT-avdrag.
+          och skicka sedan in din förfrågan när priset känns rätt. Minsta ordervärde är 499 kr efter RUT-avdrag.
         </p>
         <div class="price-intro-panel__actions">
           <q-btn
@@ -25,28 +25,34 @@
         </div>
       </section>
 
-      <section class="section-grid price-list-grid">
-        <article v-for="section in priceListSections" :key="section.id" class="editorial-panel editorial-panel--solid price-list-card">
-          <span class="section-kicker">{{ section.kicker }}</span>
-          <h2 class="section-title price-list-card__title">{{ section.title }}</h2>
-          <ul class="price-list-items">
-            <li v-for="item in section.items" :key="section.id + '-' + item.id" class="price-list-item">
-              <span class="price-list-item__description">{{ item.description }}</span>
-              <strong class="price-list-item__price">{{ item.price }} kr</strong>
-            </li>
-          </ul>
-        </article>
+      <section class="price-package-shell">
+        <div class="price-package-shell__header text-center">
+          <span class="section-kicker">Tydliga paketpriser</span>
+          <h2 class="section-title">Pris efter antal fönster</h2>
+          <p class="section-text q-mx-auto">
+            Ett enklare upplägg där du snabbt ser ungefärlig kostnad utifrån hur många fönster du vill få putsade.
+          </p>
+        </div>
+
+        <div class="price-package-grid">
+          <article v-for="tier in priceTiers" :key="tier.id" class="editorial-panel editorial-panel--solid price-package-card">
+            <span class="price-package-card__range">{{ tier.windowRange }}</span>
+            <h3 class="price-package-card__price">{{ tier.priceFrom }}</h3>
+            <p class="price-package-card__label">{{ tier.label }}</p>
+          </article>
+        </div>
       </section>
 
       <section class="editorial-panel price-list-note">
         <span class="section-kicker">Bra att veta</span>
-          <h2 class="section-title">Samma priser används i formuläret</h2>
+          <h2 class="section-title">Riktpris innan offert</h2>
         <p class="section-text">
-            Priserna ovan är samma priser som används när du räknar ut ditt totalpris här på sidan.
-            Lägsta ordervärde är 350 kr efter RUT-avdrag.
+            Paketpriserna ovan är från-priser för normalt smutsade och normalt åtkomliga fönster.
+            Eventuella tillägg kan tillkomma vid exempelvis spröjsade fönster, hård nedsmutsning eller svår åtkomst.
+
         </p>
         <p class="section-text">
-            Priset är en uppskattning och gäller för normalt åtkomliga fönster.
+            Exakt pris bekräftas alltid innan arbetet startar.
         </p>
       </section>
 
@@ -75,8 +81,8 @@
             >
               <!-- Prompt user to select type of property -->
               <fieldset class="property-type-group">
-                <legend>Välj om du bor i villa eller lägenhet</legend>
-                <q-radio keep-color v-model="form.propertyType" val="house" label="Villa" color="accent" />
+                <legend>Välj om du bor i hus eller lägenhet</legend>
+                <q-radio keep-color v-model="form.propertyType" val="house" label="Villa/Radhus" color="accent" />
                 <q-radio keep-color v-model="form.propertyType" val="apartment" label="Lägenhet" color="accent" />
               </fieldset>
               <q-stepper-navigation>
@@ -87,82 +93,36 @@
             <!-- Step 2: Select services -->
             <q-step
               :name="2"
-              title="Välj tjänster"
+              title="Antal fönster"
               icon="window"
               :done="step > 2"
             >
-              <div class="row justify-center q-pa-md">
-                <div class="col-12">
-                  <h2 class="text-body1 text-accent text-center q-pa-md">
-                    Räkna snabbt ihop vad det kostar att få rena fönster
+              <div class="row justify-center q-pa-md package-step">
+                <div class="col-12 col-md-8 col-lg-6">
+                  <h2 class="text-body1 text-accent text-center q-pb-md">
+                    Ange antal fönster så matchar jag rätt paket direkt
                   </h2>
+                  <q-input
+                    v-model.number="form.windowCount"
+                    outlined
+                    type="number"
+                    min="1"
+                    step="1"
+                    label="Antal fönster"
+                    hint="Ange ett antal från 1 och uppåt"
+                    :aria-label="'Antal fönster'"
+                    @update:model-value="handleWindowCountInput"
+                  />
                 </div>
-                <div class="col-12 col-md-10 col-lg-8 q-flex">
-                  <div v-if="$q.screen.lt.sm" class="service-picker-mobile">
-                    <article v-for="article in articles" :key="article.id" class="service-picker-mobile__item">
-                      <div class="service-picker-mobile__body">
-                        <span class="service-picker-mobile__description">{{ article.description }}</span>
-                        <strong class="service-picker-mobile__price">{{ article.price }} kr</strong>
-                      </div>
-                      <q-input
-                        v-model="article.quantity"
-                        outlined
-                        dense
-                        type="number"
-                        min="0"
-                        label="Antal"
-                        :aria-label="'Antal ' + article.description"
-                        @input="handleQuantityInput(article)"
-                        class="service-picker-mobile__input"
-                      />
-                    </article>
+                <div class="col-12 q-mt-md">
+                  <div class="package-step__preview" v-if="getActiveTier()">
+                    <p class="package-step__preview-label">Valt paket</p>
+                    <p class="package-step__preview-range">{{ getActiveTier()?.windowRange }}</p>
+                    <p class="package-step__preview-price">{{ getActiveTier()?.priceFrom }}</p>
                   </div>
-                  <q-table
-                    v-else
-                    v-model:pagination="pagination"
-                    :rows="articles"
-                    :columns="columns"
-                    row-key="id"
-                    hide-bottom
-                    hide-header
-                    flat
-                  >
-
-                    <!-- Hide ID column -->
-                    <template v-slot:body-cell-id="">
-                      <q-td style="display: none;"></q-td>
-                    </template>
-
-                    <!-- Description column -->
-                    <template v-slot:body-cell-description="props">
-                      <q-td
-                        :props="props"
-                        style="white-space: normal;"
-                      >
-                        {{ props.row.description }}
-                      </q-td>
-                    </template>
-
-                    <!-- Quantity column with input field -->
-                    <template v-slot:body-cell-quantity="props">
-                      <q-td :props="props">
-                        <q-input
-                          v-model="props.row.quantity"
-                          outlined
-                          type="number"
-                          min="0"
-                          :aria-label="'Antal ' + props.row.description"
-                          @input="handleQuantityInput(props.row)"
-                          style="width: 70px;"
-                        />
-                      </q-td>
-                    </template>
-
-                    <!-- Hide addToCart column -->
-                    <template v-slot:body-cell-addToCart="props">
-                      <q-td style="display: none;" :props="props"></q-td>
-                    </template>
-                </q-table>
+                  <p v-else class="text-center package-step__hint">
+                    Välj antal fönster för att se vilket paket som passar.
+                  </p>
                 </div>
               </div>
               <q-stepper-navigation>
@@ -188,7 +148,7 @@
                   <h3>Dina val:</h3>
                   <ul>
                     <li v-for="item in cart" :key="item.id">
-                      {{ item.quantity }} st {{ item.description }}
+                      {{ item.description }}
                     </li>
                   </ul>
                   <h3>Totalpris: {{ form.totalPrice }} kr*</h3>
@@ -197,12 +157,11 @@
 
                 <!-- Inform user about minimum order value if not met -->
                 <div v-else>
-                  <p class="text-body1">Du har valt tjänster till ett värde av <strong>{{ form.totalPrice }}kr</strong>. Lägsta ordervärde är 350 kr</p>
+                  <p class="text-body1">Ange antal fönster i föregående steg för att få ditt paketpris.</p>
                 </div>
               </div>
               <q-stepper-navigation>
-                <q-btn v-if="form.totalPrice < 350" @click="changeTotalPrice();step = 4 " :disable="cart.length === 0" color="accent" label="Fortsätt med ordervärde på 350 kr"  class="text-black q-ml-sm q-mb-sm" />
-                <q-btn v-else @click="step = 4" :disable="cart.length === 0" color="accent" label="Fortsätt"  class="text-black q-ml-sm q-mb-sm" />
+                <q-btn @click="step = 4" :disable="cart.length === 0" color="accent" label="Fortsätt"  class="text-black q-ml-sm q-mb-sm" />
                 <q-btn @click="step = 2" color="primary" label="Tillbaka" class="q-ml-sm q-mb-sm"/>
               </q-stepper-navigation>
             </q-step>
@@ -286,12 +245,12 @@
                       <q-card-section>
                         <h3 id="terms-dialog-title" class="text-center">Personuppgifter</h3>
                         <p id="terms-dialog-description">
-                          När du fyller i vårt kontaktformulär på denna webbplats samlar vi
+                          När du fyller i mitt kontaktformulär på denna webbplats samlar jag
                           in dina personuppgifter, inklusive namn, adress, telefonnummer och
-                          e-postadress. Dessa uppgifter används endast för att kontakta dig
+                          e-postadress. Dessa uppgifter används endast för att jag ska kunna kontakta dig
                           angående dina förfrågningar eller för att tillhandahålla tjänster som du begär.
                           <br>
-                          Vi behandlar dina personuppgifter med största respekt för din integritet och
+                          Jag behandlar dina personuppgifter med största respekt för din integritet och
                           följer de lagar och regler som gäller för dataskydd, inklusive EU:s
                           allmänna dataskyddsförordning (GDPR).
                         </p>
@@ -362,58 +321,82 @@ import { defineComponent, nextTick, ref } from 'vue';
 import { useQuasar } from 'quasar';
 import axios from 'axios';
 import { priceSeo } from 'src/data/seo';
-import priceArticlesData from 'src/data/prices.json';
 import { trackEvent } from 'src/boot/analytics';
 
-const columnAlign = 'left' as const;
 const STEP_TRANSITION_DURATION_MS = 350;
 
 const priceFaqs = priceSeo.faq ?? [];
 
-interface PriceArticle {
-  id: number;
-  name: string;
+interface CartItem {
+  id: string;
+  quantity: number;
   description: string;
+}
+
+interface PriceTier {
+  id: string;
+  windowRange: string;
+  priceFrom: string;
+  label: string;
+  minWindows: number;
+  maxWindows: number;
   price: number;
 }
 
-interface CartItem {
-  id: number;
-  quantity: number;
-  description: string;
-}
-
-interface PriceTableRow extends PriceArticle {
-  quantity: number;
-}
-
-interface PriceListSection {
-  id: string;
-  kicker: string;
-  title: string;
-  items: PriceArticle[];
-}
-
-const priceArticles = priceArticlesData as PriceArticle[];
-
-const priceListSections: PriceListSection[] = [
+const priceTiers: PriceTier[] = [
   {
-    id: 'base',
-    kicker: 'Fönsterputs',
-    title: 'Pris per fönsterbåge',
-    items: priceArticles.filter((article) => article.id >= 1 && article.id <= 4),
+    id: 'tier-1',
+    windowRange: '1-6 fönster',
+    priceFrom: 'Från 499 kr',
+    label: 'Perfekt för mindre bostäder',
+    minWindows: 1,
+    maxWindows: 6,
+    price: 499,
   },
   {
-    id: 'addons',
-    kicker: 'Tillägg',
-    title: 'Extra moment vid behov',
-    items: priceArticles.filter((article) => article.id >= 5 && article.id <= 10),
+    id: 'tier-2',
+    windowRange: '7-12 fönster',
+    priceFrom: 'Från 799 kr',
+    label: 'Vanligt val för lägenhet och mindre villa',
+    minWindows: 7,
+    maxWindows: 12,
+    price: 799,
   },
   {
-    id: 'sunrooms',
-    kicker: 'Uterum/Inglasad balkong',
-    title: 'Uterum och inglasade balkonger upp till 10 kvm',
-    items: priceArticles.filter((article) => article.id >= 11),
+    id: 'tier-3',
+    windowRange: '13-20 fönster',
+    priceFrom: 'Från 999 kr',
+    label: 'Populärt val för familjebostad',
+    minWindows: 13,
+    maxWindows: 20,
+    price: 999,
+  },
+  {
+    id: 'tier-4',
+    windowRange: '21-30 fönster',
+    priceFrom: 'Från 1 399 kr',
+    label: 'För större villa och fler glaspartier',
+    minWindows: 21,
+    maxWindows: 30,
+    price: 1399,
+  },
+  {
+    id: 'tier-5',
+    windowRange: '31-40 fönster',
+    priceFrom: 'Från 1 699 kr',
+    label: 'För stora fastigheter och många fönsterpartier',
+    minWindows: 31,
+    maxWindows: 40,
+    price: 1699,
+  },
+  {
+    id: 'tier-6',
+    windowRange: '41+ fönster',
+    priceFrom: 'Från 1 999 kr',
+    label: 'För mycket stora uppdrag med många fönster',
+    minWindows: 41,
+    maxWindows: Number.POSITIVE_INFINITY,
+    price: 1999,
   },
 ];
 
@@ -488,6 +471,8 @@ export default defineComponent({
       showTermsDialog: false,
       form: {
         propertyType: '',
+        windowCount: null as number | null,
+        selectedTierId: '',
         name: '',
         tel: '',
         address: '',
@@ -497,55 +482,18 @@ export default defineComponent({
         totalPrice: 0
       },
       priceStepScrollTimeoutId: null as number | null,
-      minimumOrderValue: 350,
-      articles: priceArticles
-        .slice()
-        .sort((firstArticle, secondArticle) => firstArticle.id - secondArticle.id)
-        .map((article) => ({ ...article, quantity: 0 })) as PriceTableRow[],
+      minimumOrderValue: 499,
       cart: [] as CartItem[],
-      columns: [
-        {
-          name: 'id',
-          required: true,
-          label: '',
-          align: columnAlign,
-          field: 'id',
-          visible: false
-        },
-        {
-          name: 'description',
-          required: true,
-          label: '',
-          align: columnAlign,
-          field: 'description'
-        },
-        {
-          name: 'quantity',
-          required: true,
-          label: '',
-          align: columnAlign,
-          field: 'quantity'
-        },
-      ]
     };
   },
   setup() {
     const quasar = useQuasar();
 
-    const pagination = ref({
-      sortBy: 'id',
-      descending: false,
-      page: 1,
-      rowsPerPage: 50
-    });
-
     return {
-      pagination,
-      priceListSections,
+      priceTiers,
       priceFaqs,
       quasar,
-      step: ref(1),
-      color: ref('accent')
+      step: ref(1)
     }
   },
   methods: {
@@ -567,6 +515,56 @@ export default defineComponent({
         block: 'start'
       });
     },
+    getTierFromWindowCount(windowCount: number | null) {
+      if (!windowCount || Number.isNaN(windowCount)) {
+        return null;
+      }
+
+      return priceTiers.find((tier) => windowCount >= tier.minWindows && windowCount <= tier.maxWindows) ?? null;
+    },
+    getActiveTier() {
+      if (this.form.selectedTierId) {
+        return priceTiers.find((tier) => tier.id === this.form.selectedTierId) ?? null;
+      }
+
+      return this.getTierFromWindowCount(this.form.windowCount);
+    },
+    handleWindowCountInput() {
+      if (this.form.windowCount === null) {
+        this.form.selectedTierId = '';
+        this.cart = [];
+        this.form.totalPrice = 0;
+        return;
+      }
+
+      this.form.windowCount = Number(this.form.windowCount);
+
+      if (!Number.isInteger(this.form.windowCount) || this.form.windowCount < 1) {
+        this.form.selectedTierId = '';
+        this.cart = [];
+        this.form.totalPrice = 0;
+        return;
+      }
+
+      const tier = this.getTierFromWindowCount(this.form.windowCount);
+
+      if (!tier) {
+        this.form.selectedTierId = '';
+        this.cart = [];
+        this.form.totalPrice = 0;
+        return;
+      }
+
+      this.form.selectedTierId = tier.id;
+      this.cart = [
+        {
+          id: tier.id,
+          quantity: 1,
+          description: `${this.form.windowCount} fönster (${tier.windowRange}) - ${tier.priceFrom}`,
+        },
+      ];
+      this.form.totalPrice = tier.price;
+    },
     goToPriceStep() {
       const activeElement = document.activeElement;
 
@@ -574,7 +572,35 @@ export default defineComponent({
         activeElement.blur();
       }
 
-      this.addToCart();
+      this.handleWindowCountInput();
+
+      if (!this.form.windowCount || this.form.windowCount < 1) {
+        this.quasar.notify({
+          message: 'Ange antal fönster från 1 och uppåt',
+          color: 'negative',
+          position: 'top'
+        });
+        return;
+      }
+
+      if (!Number.isInteger(Number(this.form.windowCount))) {
+        this.quasar.notify({
+          message: 'Antalet fönster måste vara ett heltal.',
+          color: 'negative',
+          position: 'top'
+        });
+        return;
+      }
+
+      if (!this.form.selectedTierId || this.cart.length === 0) {
+        this.quasar.notify({
+          message: 'Jag kunde inte matcha ett paket. Kontrollera antal fönster.',
+          color: 'negative',
+          position: 'top'
+        });
+        return;
+      }
+
       this.step = 3;
 
       if (this.priceStepScrollTimeoutId !== null) {
@@ -591,59 +617,21 @@ export default defineComponent({
         }, STEP_TRANSITION_DURATION_MS);
       });
     },
-    // Handle quantity input for each article
-    handleQuantityInput(article: PriceTableRow) {
-      article.quantity = Number(article.quantity);
-    },
-    // Calculate total price based on selected services
+    // Calculate total price based on selected package
     calculateTotalPrice() {
-      const totalPrice = this.cart.reduce((total, item) => {
-        const article = this.articles.find((priceArticle) => priceArticle.id === item.id);
-
-        if (!article) {
-          return total;
-        }
-
-        return total + (article.price * item.quantity);
-      }, 0);
+      const tier = this.getActiveTier();
+      const totalPrice = tier ? tier.price : 0;
 
       this.form.totalPrice = totalPrice;
 
       return totalPrice;
     },
-    // Add selected services to cart and calculate total price
-    addToCart() {
-      this.articles.forEach((article) => {
-        const cartItemIndex = this.cart.findIndex((item) => item.id === article.id);
-        if (article.quantity > 0) {
-          if (cartItemIndex !== -1) {
-            this.cart[cartItemIndex].quantity = article.quantity;
-          } else {
-            this.cart.push({
-              id: article.id,
-              quantity: article.quantity,
-              description: article.description
-            });
-          }
-        } else {
-          if (cartItemIndex !== -1) {
-            this.cart.splice(cartItemIndex, 1);
-          }
-        }
-      });
-      this.calculateTotalPrice();
-      if (this.cart.length === 0) {
-        this.emptyCart();
-      }
-    },
     // Empty cart and reset quantity for each article
     emptyCart() {
       this.cart = [];
       this.form.totalPrice = 0;
-
-      this.articles.forEach((article) => {
-        article.quantity = 0;
-      });
+      this.form.windowCount = null;
+      this.form.selectedTierId = '';
     },
     // Open terms and conditions dialog
     openTermsDialog() {
@@ -714,6 +702,8 @@ export default defineComponent({
     onReset() {
       this.form = {
         propertyType: this.form.propertyType,
+        windowCount: this.form.windowCount,
+        selectedTierId: this.form.selectedTierId,
         name: '',
         tel: '',
         address: '',
@@ -735,15 +725,6 @@ export default defineComponent({
     // Redirect user to confirmation fail page if form submission fails
     goToFormFail() {
       this.$router.push('/fel');
-    },
-    // Change total price to minimum order value
-    changeTotalPrice() {
-      this.form.totalPrice = this.minimumOrderValue;
-      this.quasar.notify({
-        message: 'Ditt ordervärde har justerats till 350 kr',
-        color: 'positive',
-        position: 'top'
-      });
     }
   },
   // Calculate total price when component is created
@@ -787,49 +768,58 @@ export default defineComponent({
   margin-top: 0.5rem;
 }
 
-.price-list-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+.price-package-shell {
+  display: grid;
+  gap: 1rem;
 }
 
-.price-list-card {
+.price-package-shell__header {
   display: grid;
-  align-content: start;
+  gap: 0.6rem;
+}
+
+.price-package-shell__header .section-text {
+  max-width: 48rem;
+}
+
+.price-package-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.9rem;
 }
 
-.price-list-card__title {
-  margin-bottom: 0;
+.price-package-card {
+  display: grid;
+  align-content: start;
+  gap: 0.45rem;
+  text-align: center;
 }
 
-.price-list-items {
-  display: grid;
-  gap: 0.85rem;
-  padding: 0;
+.price-package-card__range {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(69, 90, 100, 0.16);
+  color: rgba(33, 41, 49, 0.85);
+  font-weight: 600;
+}
+
+.price-package-card__price {
   margin: 0;
-  list-style: none;
-}
-
-.price-list-item {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 0.75rem;
-  align-items: start;
-  padding-bottom: 0.85rem;
-  border-bottom: 1px solid rgba(69, 90, 100, 0.12);
-}
-
-.price-list-item:last-child {
-  padding-bottom: 0;
-  border-bottom: 0;
-}
-
-.price-list-item__description {
-  line-height: 1.55;
-}
-
-.price-list-item__price {
-  white-space: nowrap;
+  font-size: clamp(1.35rem, 2.1vw, 1.7rem);
+  line-height: 1.1;
   color: var(--q-accent);
+}
+
+.price-package-card__label {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.35;
+  color: rgba(69, 90, 100, 0.84);
 }
 
 .price-list-note {
@@ -882,6 +872,51 @@ export default defineComponent({
   scroll-margin-top: 1rem;
 }
 
+.package-step {
+  gap: 0.9rem;
+}
+
+.package-step__preview {
+  width: min(100%, 28rem);
+  margin: 0 auto;
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(69, 90, 100, 0.12);
+  background: rgba(255, 255, 255, 0.74);
+  box-shadow: 0 10px 24px rgba(33, 41, 49, 0.06);
+  text-align: center;
+}
+
+.package-step__preview-label,
+.package-step__preview-range,
+.package-step__preview-price {
+  margin: 0;
+}
+
+.package-step__preview-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: rgba(69, 90, 100, 0.8);
+}
+
+.package-step__preview-range {
+  margin-top: 0.2rem;
+  font-size: 1rem;
+  color: rgba(33, 41, 49, 0.95);
+}
+
+.package-step__preview-price {
+  margin-top: 0.35rem;
+  font-size: 1.3rem;
+  color: var(--q-accent);
+  font-weight: 700;
+}
+
+.package-step__hint {
+  color: rgba(69, 90, 100, 0.84);
+}
+
 .price-stepper-shell {
   padding: 1rem;
   scroll-margin-top: 1.5rem;
@@ -892,13 +927,17 @@ export default defineComponent({
   box-shadow: none;
 }
 
-@media (max-width: 1023px) {
-  .price-list-grid {
-    grid-template-columns: 1fr;
+@media (max-width: 839px) {
+  .price-package-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .price-stepper-shell {
+    padding: 0.4rem;
   }
 }
 
-@media (max-width: 599px) {
+@media (max-width: 699px) {
   .price-intro-panel {
     padding-block: 1.1rem;
   }
@@ -907,26 +946,28 @@ export default defineComponent({
     max-width: none;
   }
 
-  .service-picker-mobile__item {
-    gap: 0.8rem;
-    padding: 0.9rem;
+  .price-package-card {
+    gap: 0.35rem;
   }
 
-  .service-picker-mobile__input {
-    width: 100%;
+  .price-package-card__label {
+    font-size: 0.88rem;
+  }
+
+  .package-step__preview {
+    width: min(100%, 24rem);
+  }
+
+  .package-step__preview-price {
+    font-size: 1.2rem;
   }
 
   .price-stepper-shell {
     padding: 0.2rem;
   }
 
-  .price-list-item {
+  .price-package-grid {
     grid-template-columns: 1fr;
-    gap: 0.3rem;
-  }
-
-  .price-list-item__price {
-    justify-self: start;
   }
 
   .price-stepper-shell :deep(.q-stepper__title) {
@@ -939,6 +980,8 @@ export default defineComponent({
   }
 
   .price-stepper-shell :deep(.q-stepper__nav) {
+    display: grid;
+    grid-template-columns: 1fr;
     gap: 0.55rem;
   }
 
@@ -975,9 +1018,8 @@ export default defineComponent({
 }
 
 @media (max-width: 380px) {
-  .service-picker-mobile__body {
-    grid-template-columns: 1fr;
-    gap: 0.35rem;
+  .package-step__preview {
+    padding: 0.85rem;
   }
 }
 </style>

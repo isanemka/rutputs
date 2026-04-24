@@ -24,11 +24,11 @@
           <h2 class="section-title">En smidigare bokning när arbetet redan sker i området</h2>
           <p class="section-text">
             Fönsterputsning i {{ area.name }} passar villor, radhus, lägenheter och mindre fastigheter där rena fönster
-            gör stor skillnad för ljusinsläpp och helhetsintryck. När du bokar hos Rutputs får du hjälp av någon som redan arbetar i området.
+            gör stor skillnad för ljusinsläpp och helhetsintryck. När du bokar hos Rutputs är det jag som kommer och putsar, och jag arbetar redan i området.
           </p>
           <p class="section-text">
-            Vi hjälper kunder i {{ districtSummary }} och närliggande delar av området. Med RUT-avdraget kan du få ett tydligt pris
-            från 350 kronor och skicka en offertförfrågan när det passar dig.
+            Jag hjälper kunder i {{ districtSummary }} och närliggande delar av området. Med RUT-avdraget kan du få ett tydligt pris
+            från 499 kronor och skicka en offertförfrågan när det passar dig.
           </p>
         </div>
 
@@ -46,9 +46,9 @@
 
       <section class="editorial-panel">
         <span class="section-kicker">Delområden</span>
-        <h2 class="section-title">Områden vi täcker i {{ area.name }}</h2>
+        <h2 class="section-title">Områden jag täcker i {{ area.name }}</h2>
         <p class="section-text">
-          Vi arbetar återkommande i flera delar av {{ area.name }}, vilket gör det enkelt att boka både enstaka putsningar och återkommande hjälp.
+          Jag arbetar återkommande i flera delar av {{ area.name }}, vilket gör det enkelt att boka både enstaka putsningar och återkommande hjälp.
         </p>
         <div class="mini-card-grid q-mt-lg area-districts">
           <article v-for="district in area.districts" :key="district" class="mini-card">
@@ -235,7 +235,7 @@ export default defineComponent({
             offers: {
               '@type': 'Offer',
               priceCurrency: 'SEK',
-              price: '350',
+              price: '499',
               description: 'Från-pris efter RUT-avdrag'
             }
           })

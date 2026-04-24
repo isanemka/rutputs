@@ -6,7 +6,7 @@
           <span class="hero-kicker">Företag & lokaler</span>
           <h1 class="hero-title company-hero__title">Fönsterputs som stärker helhetsintrycket för din verksamhet</h1>
           <p class="hero-lead">
-            Rutputs hjälper företag i Stockholm med återkommande eller punktvisa upplägg
+            Jag hjälper företag i Stockholm med återkommande eller enstaka upplägg
             för kontor, lokaler och skyltfönster där tydlighet, flexibilitet och ett bra resultat är viktigast.
           </p>
           <div class="hero-actions">
@@ -27,20 +27,20 @@
           <ul class="feature-list">
             <li>Kvalitet och noggrannhet i varje återkommande besök.</li>
             <li>Anpassade upplägg som punktinsats eller abonnemang efter lokaltyp, intervall och tillgänglighet.</li>
-            <li>Snabb återkoppling och enkel kontaktväg.</li>
+            <li>Snabb återkoppling och direkt kontakt med mig som också utför arbetet.</li>
             <li>Möjlighet att börja smått och skala upp över tid.</li>
           </ul>
         </div>
 
         <div class="editorial-panel">
           <span class="section-kicker">Vad du får</span>
-          <h2 class="section-title">En enklare driftspartner, inte bara en engångsinsats</h2>
+          <h2 class="section-title">En personlig kontakt med flexibel fönsterputsning</h2>
           <p class="section-text">
             Upplägget anpassas efter hur din verksamhet fungerar i praktiken. Vissa vill ha fasta intervaller,
-            andra behöver puts inför visningar, event, säsongsskiften eller för att skyltfönster ska hålla ett jämnt och välskött intryck. Målet är samma: ett enkelt och pålitligt flöde.
+            andra behöver puts inför visningar, event, säsongsskiften eller för att skyltfönster ska hålla ett jämnt och välskött intryck. Målet är samma: ett enkelt och pålitligt flöde där du har direktkontakt med mig.
           </p>
           <p class="section-text">
-            När arbetsplatsen ser välhållen ut förbättras både helhetsintrycket och miljön för dem som vistas där varje dag. För många företag fungerar abonnemang bäst, eftersom putsningen då sker löpande utan att någon behöver bevaka när nästa tillfälle ska bokas.
+            När arbetsplatsen ser välhållen ut förbättras både helhetsintrycket och miljön för dem som vistas där varje dag. För många företag fungerar abonnemang bäst, eftersom putsningen då sker löpande utan att någon behöver bevaka när nästa tillfälle ska bokas och utan att ni behöver förklara upplägget på nytt varje gång.
           </p>
         </div>
       </section>
@@ -51,7 +51,7 @@
         <div class="mini-card-grid company-grid">
           <article class="mini-card">
             <h3 class="mini-card__title">Inventering</h3>
-            <p class="mini-card__text">Vi går igenom lokaltyp, omfattning och vilka tider som passar verksamheten bäst.</p>
+            <p class="mini-card__text">Jag går igenom lokaltyp, omfattning och vilka tider som passar verksamheten bäst.</p>
           </article>
           <article class="mini-card">
             <h3 class="mini-card__title">Förslag</h3>
@@ -59,7 +59,7 @@
           </article>
           <article class="mini-card">
             <h3 class="mini-card__title">Genomförande</h3>
-            <p class="mini-card__text">Arbetet planeras med hänsyn till er drift så att resultatet blir bra utan onödigt störmoment.</p>
+            <p class="mini-card__text">Jag planerar arbetet med hänsyn till er drift så att resultatet blir bra utan onödigt störmoment.</p>
           </article>
           <article class="mini-card">
             <h3 class="mini-card__title">Uppföljning</h3>
@@ -106,7 +106,7 @@
       <section class="cta-band">
         <div class="cta-band__text">
           <h2 class="cta-band__title">Vill du diskutera ett företagsupplägg?</h2>
-          <p class="cta-band__lead">Ta kontakt så går vi igenom lokal, intervall och hur ett fungerande upplägg kan se ut för just er verksamhet.</p>
+          <p class="cta-band__lead">Ta kontakt så går jag igenom lokal, intervall och hur ett fungerande upplägg kan se ut för just er verksamhet.</p>
         </div>
         <q-btn unelevated color="accent" text-color="black" label="Kontakta Rutputs" href="#kontakt" />
       </section>

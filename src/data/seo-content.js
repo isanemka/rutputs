@@ -1,23 +1,23 @@
 const siteSeoContent = {
   home: {
-    title: 'Fönsterputs i Stockholm – Från 350 kr med RUT | Rutputs',
+    title: 'Fönsterputs i Stockholm – Från 499 kr med RUT | Rutputs',
     description:
-      'Rutputs erbjuder professionell fönsterputsning i Stockholm med RUT-avdrag. Från 350 kr. Vi täcker Järfälla, Sundbyberg, Solna, Spånga med flera områden. Boka online!',
+      'Personlig fönsterputsning i Stockholm med RUT-avdrag. Från 499 kr. Jag täcker Järfälla, Sundbyberg, Solna, Spånga med flera områden. Boka online!',
     bodyTitle: 'Fönsterputs i Stockholm',
     bodyIntro:
-      'Rutputs erbjuder professionell fönsterputsning i Stockholm för privatpersoner och företag. Med RUT-avdrag börjar priset från 350 kr och du kan se ditt pris direkt online. Du kan boka både enstaka puts och återkommande abonnemang.',
+      'Jag erbjuder professionell fönsterputsning i Stockholm för privatpersoner och företag. Med RUT-avdrag börjar priset från 499 kr och du kan se ditt pris direkt online. När du bokar hos Rutputs är det också jag som kommer och putsar.',
     faq: [
       {
         question: 'Vad kostar fönsterputsning med RUT-avdrag?',
         answer:
-          'Fönsterputsning med RUT-avdrag börjar från 350 kr. Det exakta priset beror på antal fönster och typ av bostad. Använd vår priskalkylator för att se ditt pris direkt.',
+          'Fönsterputsning med RUT-avdrag börjar från 499 kr. Det exakta priset beror på antal fönster och typ av bostad. Använd min priskalkylator för att se ditt pris direkt.',
         linkLabel: 'Gå till formuläret',
         linkTo: '/pris',
       },
       {
-        question: 'Vilka områden täcker Rutputs?',
+        question: 'Vilka områden täcker du?',
         answer:
-          'Rutputs täcker främst norra Stockholm: Järfälla, Bromma, Kista, Solna, Sundbyberg, Spånga, Sollentuna och Täby. Vi arbetar även på Lidingö och Östermalm. Fyll i formuläret för att se hur vi kan hjälpa dig!',
+          'Jag arbetar främst i norra Stockholm: Järfälla, Bromma, Kista, Solna, Sundbyberg, Spånga, Sollentuna och Täby. Jag arbetar även på Lidingö och Östermalm. Fyll i formuläret för att se om jag kan hjälpa dig där du bor.',
         links: [
           { label: 'Järfälla', to: '/omrade/jarfalla' },
           { label: 'Bromma', to: '/omrade/bromma' },
@@ -34,26 +34,26 @@ const siteSeoContent = {
       {
         question: 'Hur bokar jag fönsterputsning?',
         answer:
-          'Fyll i formuläret på vår prissida så räknas ditt pris ut direkt. Vi kontaktar dig sedan för att boka en tid som passar.',
+          'Fyll i formuläret på prissidan så räknas ditt pris ut direkt. Jag kontaktar dig sedan för att boka en tid som passar.',
         linkLabel: 'Gå till formuläret',
         linkTo: '/pris',
       },
       {
-        question: 'Erbjuder ni abonnemang för återkommande fönsterputs?',
+        question: 'Erbjuder du abonnemang för återkommande fönsterputs?',
         answer:
-          'Ja, du kan få hjälp både med enstaka puts och med återkommande abonnemang. Om du vill att vi kommer löpande tar vi fram ett upplägg som passar bostad, säsong och hur ofta du vill ha putsat.',
+          'Ja, du kan få hjälp både med enstaka puts och med återkommande abonnemang. Om du vill att jag kommer löpande tar jag fram ett upplägg som passar bostad, säsong och hur ofta du vill ha putsat.',
       },
       {
-        question: 'Putsar ni även företagsfönster?',
+        question: 'Putsar du även företagsfönster?',
         answer:
-          'Ja, vi erbjuder professionell fönsterputsning för kontor och företagslokaler i stora delar av Stockholm. Kontakta oss för en offert.',
+          'Ja, jag erbjuder professionell fönsterputsning för kontor och företagslokaler i stora delar av Stockholm. Kontakta mig för en offert.',
         linkLabel: 'Läs mer om fönsterputs för företag',
         linkTo: '/foretag',
       },
       {
-        question: 'Tar ni med egen stege och annat material?',
+        question: 'Tar du med egen stege och annat material?',
         answer:
-          'Ja, vi har med oss allt som behövs. Se bara till att det är möjligt att komma åt fönstren, så fixar vi resten.',
+          'Ja, jag har med mig allt som behövs. Se bara till att det är möjligt att komma åt fönstren, så fixar jag resten.',
       },
     ],
   },
@@ -63,7 +63,7 @@ const siteSeoContent = {
       'Professionell fönsterputs för företag i Stockholm. Flexibla avtal, regelbunden service och rena fönster för kontor, lokaler och skyltfönster.',
     bodyTitle: 'Fönsterputs för företag',
     bodyIntro:
-      'Rutputs hjälper företag, kontor, butiker och mindre fastigheter i Stockholm med professionell fönsterputsning. Tjänsten kan anpassas som abonnemang eller punktinsats för återkommande intervaller, skyltfönster och tydliga serviceupplägg.',
+      'Jag hjälper företag, kontor, butiker och mindre fastigheter i Stockholm med professionell fönsterputsning. Tjänsten kan anpassas som abonnemang eller punktinsats för återkommande intervaller, skyltfönster och tydliga serviceupplägg.',
     benefits: [
       'Regelbunden service och flexibla avtal.',
       'Rena fönster som förbättrar intrycket för kunder och personal.',
@@ -71,44 +71,44 @@ const siteSeoContent = {
     ],
     faq: [
       {
-        question: 'Erbjuder ni återkommande fönsterputs för företag?',
+        question: 'Erbjuder du återkommande fönsterputs för företag?',
         answer:
-          'Ja, Rutputs kan hjälpa företag med både enstaka uppdrag och återkommande upplägg beroende på lokal, behov och önskat intervall.',
+          'Ja, jag kan hjälpa företag med både enstaka uppdrag och återkommande upplägg beroende på lokal, behov och önskat intervall.',
       },
       {
-        question: 'Arbetar ni bara i norra Stockholm?',
+        question: 'Arbetar du bara i norra Stockholm?',
         answer:
-          'Nej. Vi utgår från norra Stockholm, där vi redan arbetar löpande men vi är inte omöjliga. Fyll i formuläret så ser vi om vi kan hjälpa dig oavsett var du befinner dig.',
+          'Nej. Jag utgår från norra Stockholm, där jag redan arbetar löpande, men du är välkommen att höra av dig även från andra delar av stan. Fyll i formuläret så ser jag om jag kan hjälpa dig.',
       },
       {
-        question: 'Hur får vi en offert?',
+        question: 'Hur får man en offert?',
         answer:
-          'Kontakta Rutputs via kontaktuppgifterna på sidan så går vi igenom lokal, omfattning och önskat upplägg innan offert lämnas.',
+          'Kontakta mig via uppgifterna på sidan så går jag igenom lokal, omfattning och önskat upplägg innan jag lämnar offert.',
       },
       {
-        question: 'Kan vi få abonnemang för löpande fönsterputs?',
+        question: 'Går det att få abonnemang för löpande fönsterputs?',
         answer:
-          'Ja, vi kan lägga upp abonnemang eller andra återkommande upplägg för företag som vill ha rena fönster på fasta intervaller. Upplägget anpassas efter lokal, tillgänglighet och hur ofta ni vill ha putsat.',
+          'Ja, jag kan lägga upp abonnemang eller andra återkommande upplägg för företag som vill ha rena fönster på fasta intervaller. Upplägget anpassas efter lokal, tillgänglighet och hur ofta ni vill ha putsat.',
       },
       {
-        question: 'Putsar ni även skyltfönster för butiker och verksamheter?',
+        question: 'Putsar du även skyltfönster för butiker och verksamheter?',
         answer:
-          'Ja, Rutputs hjälper även butiker och verksamheter med putsning av skyltfönster. Det passar bra både som återkommande upplägg och inför perioder när du vill att entré och skyltläge ska ge ett extra välskött intryck.',
+          'Ja, jag hjälper även butiker och verksamheter med putsning av skyltfönster. Det passar bra både som återkommande upplägg och inför perioder när du vill att entré och skyltläge ska ge ett extra välskött intryck.',
       },
       {
-        question: 'Tar ni med eget material?',
+        question: 'Tar du med eget material?',
         answer:
-          'Ja, vi har med oss allt som behövs. Du behöver bara se till att fönstren går att komma åt.',
+          'Ja, jag har med mig allt som behövs. Du behöver bara se till att fönstren går att komma åt.',
       },
     ],
   },
   price: {
     title: 'Prislista – Fönsterputsning med RUT-avdrag | Rutputs',
     description:
-      'Se priser för fönsterputsning i Stockholm. Räkna ut ditt pris direkt – från 350 kr med RUT-avdrag. Enkel offertförfrågan online.',
+      'Se priser för fönsterputsning i Stockholm. Räkna ut ditt pris direkt – från 499 kr med RUT-avdrag. Enkel offertförfrågan online.',
     bodyTitle: 'Prislista för fönsterputsning',
     bodyIntro:
-      'På prissidan kan du räkna ut vad fönsterputsningen kostar utifrån din bostad och antal fönster. Priset börjar från 350 kr efter RUT-avdrag.',
+      'På prissidan kan du räkna ut vad fönsterputsningen kostar utifrån din bostad och antal fönster. Priset börjar från 499 kr efter RUT-avdrag.',
     steps: [
       'Välj bostadstyp.',
       'Fyll i antal fönster och tjänster.',
@@ -118,7 +118,7 @@ const siteSeoContent = {
       {
         question: 'Vad kostar fönsterputsning med RUT-avdrag?',
         answer:
-          'Fönsterputsning börjar från 350 kr efter RUT-avdrag. Det exakta priset beror på bostadstyp, antal fönster och vilka tjänster du väljer.',
+          'Fönsterputsning börjar från 499 kr efter RUT-avdrag. Det exakta priset beror på bostadstyp, antal fönster och vilka tjänster du väljer.',
       },
       {
         question: 'Ser jag priset direkt i formuläret?',
@@ -128,17 +128,17 @@ const siteSeoContent = {
       {
         question: 'Kan jag skicka förfrågan direkt efter prisberäkningen?',
         answer:
-          'Ja, när du har gått igenom stegen kan du fylla i dina kontaktuppgifter och skicka in din förfrågan direkt på sidan, så återkommer vi så snart som möjligt.',
+          'Ja, när du har gått igenom stegen kan du fylla i dina kontaktuppgifter och skicka in din förfrågan direkt på sidan, så återkommer jag så snart som möjligt.',
       },
       {
         question: 'Kan jag få återkommande fönsterputs via abonnemang?',
         answer:
-          'Ja, om du vill ha återkommande fönsterputs kan vi hjälpa dig med ett abonnemang eller ett löpande upplägg. Skicka in din förfrågan så återkommer vi med ett förslag som passar dig.',
+          'Ja, om du vill ha återkommande fönsterputs kan jag hjälpa dig med ett abonnemang eller ett löpande upplägg. Skicka in din förfrågan så återkommer jag med ett förslag som passar dig.',
       },
       {
         question: 'Är det bindande att skicka in formuläret?',
         answer:
-          'Nej, det är inte bindande att skicka in formuläret. Vi hör av oss efteråt för att gå igenom uppgifterna och bestämma en tid som passar.',
+          'Nej, det är inte bindande att skicka in formuläret. Jag hör av mig efteråt för att gå igenom uppgifterna och bestämma en tid som passar.',
       },
     ],
   },
@@ -148,109 +148,109 @@ const siteSeoContent = {
       'Läs om hur Rutputs hanterar dina personuppgifter, cookies och webbanalys i enlighet med GDPR.',
     bodyTitle: 'Integritetspolicy',
     bodyIntro:
-      'Här kan du läsa hur Rutputs hanterar personuppgifter, cookies och webbanalys i enlighet med GDPR.',
+      'Här kan du läsa hur jag på Rutputs hanterar personuppgifter, cookies och webbanalys i enlighet med GDPR.',
   },
   areas: [
     {
       slug: 'jarfalla',
       name: 'Järfälla',
-      title: 'Fönsterputs Järfälla – Från 350 kr med RUT-avdrag | Rutputs',
+      title: 'Fönsterputs Järfälla – Från 499 kr med RUT-avdrag | Rutputs',
       description:
-        'Professionell fönsterputs i Järfälla med RUT-avdrag. Från 350 kr. Vi täcker Jakobsberg, Viksjö, Barkarby och Kallhäll. Boka enkelt online!',
+        'Personlig fönsterputs i Järfälla med RUT-avdrag. Från 499 kr. Jag täcker Jakobsberg, Viksjö, Barkarby och Kallhäll. Boka enkelt online!',
       content:
-        'Som lokala fönsterputsare i Järfälla kan vi erbjuda snabb och smidig service utan långa restider. Vi arbetar löpande i Barkarby, Jakobsberg, Viksjö, Kallhäll och övriga delar av kommunen, vilket gör bokningen enkel och flexibel för dig som vill ha rena fönster utan krångel.',
+        'Jag arbetar löpande i Järfälla och kan därför erbjuda snabb och smidig service utan långa restider. När du bokar hos mig är det också jag som kommer och putsar, i Barkarby, Jakobsberg, Viksjö, Kallhäll och övriga delar av kommunen.',
       districts: ['Jakobsberg', 'Viksjö', 'Barkarby', 'Kallhäll'],
       faq: [
         {
           question: 'Vad kostar fönsterputs i Järfälla?',
           answer:
-            'Priset börjar från 350 kr efter RUT-avdrag. Det exakta priset beror på hur många fönster du har och vilken typ av bostad du bor i.',
+            'Priset börjar från 499 kr efter RUT-avdrag. Det exakta priset beror på hur många fönster du har och vilken typ av bostad du bor i.',
         },
         {
-          question: 'Täcker ni hela Järfälla?',
+          question: 'Täcker du hela Järfälla?',
           answer:
-            'Ja, vi hjälper kunder i bland annat Jakobsberg, Viksjö, Barkarby och Kallhäll samt övriga delar av Järfälla.',
+            'Ja, jag hjälper kunder i bland annat Jakobsberg, Viksjö, Barkarby och Kallhäll samt övriga delar av Järfälla.',
         },
         {
           question: 'Hur bokar jag fönsterputs i Järfälla?',
           answer:
-            'Du fyller i prisformuläret online för att se ditt pris direkt. Därefter återkommer vi för att bekräfta bokning och tid.',
+            'Du fyller i prisformuläret online för att se ditt pris direkt. Därefter återkommer jag för att bekräfta bokning och tid.',
         },
       ],
     },
     {
       slug: 'bromma',
       name: 'Bromma',
-      title: 'Fönsterputs Bromma – Från 350 kr med RUT-avdrag | Rutputs',
+      title: 'Fönsterputs Bromma – Från 499 kr med RUT-avdrag | Rutputs',
       description:
-        'Fönsterputsning i Bromma med RUT-avdrag från 350 kr. Vi täcker Abrahamsberg, Ulvsunda, Nockeby och hela Bromma. Boka enkelt online!',
+        'Fönsterputsning i Bromma med RUT-avdrag från 499 kr. Jag täcker Abrahamsberg, Ulvsunda, Nockeby och hela Bromma. Boka enkelt online!',
       content:
-        'Bromma med sina många villor, radhus och lägenheter är ett av våra mest efterfrågade serviceområden. Vi putsar fönster i hela Bromma och hjälper både återkommande kunder och dig som vill boka enstaka tillfällen inför säsong, försäljning eller storstädning.',
+        'Bromma med sina många villor, radhus och lägenheter är ett av de områden där jag arbetar ofta. Jag putsar fönster i hela Bromma och hjälper både återkommande kunder och dig som vill boka enstaka tillfällen inför säsong, försäljning eller storstädning.',
       districts: ['Abrahamsberg', 'Ulvsunda', 'Nockeby', 'Ålsten'],
       faq: [
         {
-          question: 'Arbetar ni i villaområden i Bromma?',
+          question: 'Arbetar du i villaområden i Bromma?',
           answer:
-            'Ja, Bromma är ett av våra vanligaste områden för villor och radhus, men vi hjälper också kunder i lägenhet och mindre fastigheter.',
+            'Ja, Bromma är ett av mina vanligaste områden för villor och radhus, men jag hjälper också kunder i lägenhet och mindre fastigheter.',
         },
         {
-          question: 'Vilka delar av Bromma täcker ni?',
+          question: 'Vilka delar av Bromma täcker du?',
           answer:
-            'Vi arbetar bland annat i Abrahamsberg, Ulvsunda, Nockeby och Ålsten samt i övriga delar av Bromma.',
+            'Jag arbetar bland annat i Abrahamsberg, Ulvsunda, Nockeby och Ålsten samt i övriga delar av Bromma.',
         },
         {
           question: 'Ingår RUT-avdrag i priset?',
           answer:
-            'Ja, priset som kommuniceras börjar från 350 kr efter RUT-avdrag för privatpersoner som uppfyller Skatteverkets villkor.',
+            'Ja, priset som kommuniceras börjar från 499 kr efter RUT-avdrag för privatpersoner som uppfyller Skatteverkets villkor.',
         },
       ],
     },
     {
       slug: 'kista',
       name: 'Kista',
-      title: 'Fönsterputs Kista – Från 350 kr med RUT-avdrag | Rutputs',
+      title: 'Fönsterputs Kista – Från 499 kr med RUT-avdrag | Rutputs',
       description:
-        'Fönsterputs i Kista med RUT-avdrag från 350 kr. Professionell service för bostäder och kontor i Kista, Husby och Akalla. Boka idag!',
+        'Fönsterputs i Kista med RUT-avdrag från 499 kr. Professionell service för bostäder och kontor i Kista, Husby och Akalla. Boka idag!',
       content:
-        'I Kista erbjuder vi fönsterputsning för både privatpersoner och företag. Det passar bra för dig som bor i lägenhet, radhus eller villa och vill ha ett smidigt upplägg, men också för kontor och verksamheter som behöver rena fönster som en del av ett professionellt helhetsintryck.',
+        'I Kista erbjuder jag fönsterputsning för både privatpersoner och företag. Det passar bra för dig som bor i lägenhet, radhus eller villa och vill ha ett smidigt upplägg, men också för kontor och verksamheter som behöver rena fönster som en del av ett professionellt helhetsintryck.',
       districts: ['Kista', 'Husby', 'Akalla', 'Ärvinge'],
       faq: [
         {
-          question: 'Erbjuder ni fönsterputs för företag i Kista?',
+          question: 'Erbjuder du fönsterputs för företag i Kista?',
           answer:
-            'Ja, vi hjälper både privatkunder och företag i Kista med professionell fönsterputsning och flexibla upplägg.',
+            'Ja, jag hjälper både privatkunder och företag i Kista med professionell fönsterputsning och flexibla upplägg.',
         },
         {
-          question: 'Vilka delar av Kista täcker ni?',
+          question: 'Vilka delar av Kista täcker du?',
           answer:
-            'Vi arbetar i Kista, Husby, Akalla och Ärvinge samt närliggande områden i norra Stockholm.',
+            'Jag arbetar i Kista, Husby, Akalla och Ärvinge samt närliggande områden i norra Stockholm.',
         },
         {
           question: 'Hur snabbt kan jag boka i Kista?',
           answer:
-            'Tillgängligheten varierar med säsong, men eftersom vi redan arbetar i området går det ofta att hitta en smidig tid utan lång väntan.',
+            'Tillgängligheten varierar med säsong, men eftersom jag redan arbetar i området går det ofta att hitta en smidig tid utan lång väntan.',
         },
       ],
     },
     {
       slug: 'solna',
       name: 'Solna',
-      title: 'Fönsterputs Solna – Från 350 kr med RUT-avdrag | Rutputs',
+      title: 'Fönsterputs Solna – Från 499 kr med RUT-avdrag | Rutputs',
       description:
-        'Fönsterputs i Solna med RUT-avdrag från 350 kr. Vi täcker Bergshamra, Råsunda, Huvudsta och Hagalund. Boka enkelt online!',
+        'Fönsterputs i Solna med RUT-avdrag från 499 kr. Jag täcker Bergshamra, Råsunda, Huvudsta och Hagalund. Boka enkelt online!',
       content:
-        'Vi erbjuder fönsterputsning i hela Solna och hjälper kunder som vill ha rena fönster året runt eller inför särskilda tillfällen. Med återkommande uppdrag i området kan vi arbeta effektivt och planera in tider som passar både lägenheter, villor och mindre fastigheter.',
+        'Jag erbjuder fönsterputsning i hela Solna och hjälper kunder som vill ha rena fönster året runt eller inför särskilda tillfällen. Med återkommande uppdrag i området kan jag arbeta effektivt och planera in tider som passar både lägenheter, villor och mindre fastigheter.',
       districts: ['Bergshamra', 'Råsunda', 'Huvudsta', 'Hagalund'],
       faq: [
         {
-          question: 'Vilka områden i Solna täcker ni?',
+          question: 'Vilka områden i Solna täcker du?',
           answer:
-            'Vi hjälper kunder i bland annat Bergshamra, Råsunda, Huvudsta och Hagalund samt i övriga delar av Solna.',
+            'Jag hjälper kunder i bland annat Bergshamra, Råsunda, Huvudsta och Hagalund samt i övriga delar av Solna.',
         },
         {
           question: 'Passar tjänsten även lägenheter i Solna?',
           answer:
-            'Ja, vi arbetar med både lägenheter, radhus och villor. Upplägget anpassas efter bostadens storlek och antal fönster.',
+            'Ja, jag arbetar med både lägenheter, radhus och villor. Upplägget anpassas efter bostadens storlek och antal fönster.',
         },
         {
           question: 'Kan jag få pris direkt online?',
@@ -262,22 +262,22 @@ const siteSeoContent = {
     {
       slug: 'sundbyberg',
       name: 'Sundbyberg',
-      title: 'Fönsterputs Sundbyberg – Från 350 kr med RUT-avdrag | Rutputs',
+      title: 'Fönsterputs Sundbyberg – Från 499 kr med RUT-avdrag | Rutputs',
       description:
-        'Boka fönsterputs i Sundbyberg med RUT-avdrag från 350 kr. Vi täcker Lilla Alby, Ursvik, Rissne och hela Sundbyberg. Fyll i formuläret för ditt pris!',
+        'Boka fönsterputs i Sundbyberg med RUT-avdrag från 499 kr. Jag täcker Lilla Alby, Ursvik, Rissne och hela Sundbyberg. Fyll i formuläret för ditt pris!',
       content:
-        'Sundbyberg är ett område där många vill boka snabb och smidig fönsterputsning utan att behöva vänta länge. Vi arbetar regelbundet i kommunen och hjälper dig oavsett om du bor centralt, i villaområde eller i ett nyare bostadsområde där rena fönster gör stor skillnad för ljusinsläpp och trivsel.',
+        'Sundbyberg är ett område där många vill boka snabb och smidig fönsterputsning utan att behöva vänta länge. Jag arbetar regelbundet i kommunen och hjälper dig oavsett om du bor centralt, i villaområde eller i ett nyare bostadsområde där rena fönster gör stor skillnad för ljusinsläpp och trivsel.',
       districts: ['Lilla Alby', 'Ursvik', 'Rissne', 'Duvbo'],
       faq: [
         {
-          question: 'Täcker ni hela Sundbyberg?',
+          question: 'Täcker du hela Sundbyberg?',
           answer:
-            'Ja, vi arbetar i hela Sundbyberg och hjälper kunder i bland annat Lilla Alby, Ursvik, Rissne och Duvbo.',
+            'Ja, jag arbetar i hela Sundbyberg och hjälper kunder i bland annat Lilla Alby, Ursvik, Rissne och Duvbo.',
         },
         {
           question: 'Hur fungerar RUT-avdrag för fönsterputs?',
           answer:
-            'RUT-avdraget dras direkt på priset för privatkunder som uppfyller villkoren, vilket gör att priset kan börja från 350 kr.',
+            'RUT-avdraget dras direkt på priset för privatkunder som uppfyller villkoren, vilket gör att priset kan börja från 499 kr.',
         },
         {
           question: 'När passar det att boka fönsterputs i Sundbyberg?',
@@ -289,49 +289,49 @@ const siteSeoContent = {
     {
       slug: 'spanga',
       name: 'Spånga',
-      title: 'Fönsterputs Spånga – Från 350 kr med RUT-avdrag | Rutputs',
+      title: 'Fönsterputs Spånga – Från 499 kr med RUT-avdrag | Rutputs',
       description:
-        'Fönsterputs i Spånga-Tensta med RUT-avdrag från 350 kr. Snabb och pålitlig service i hela Spånga. Fyll i formuläret för ditt pris!',
+        'Fönsterputs i Spånga-Tensta med RUT-avdrag från 499 kr. Snabb och pålitlig service i hela Spånga. Fyll i formuläret för ditt pris!',
       content:
-        'Spånga med sina många villakvarter och radhusområden passar mycket bra för regelbunden fönsterputsning. Vi hjälper kunder i hela området och ser till att arbetet utförs noggrant, smidigt och med fokus på ett resultat som håller hög kvalitet varje gång.',
+        'Spånga med sina många villakvarter och radhusområden passar mycket bra för regelbunden fönsterputsning. Jag hjälper kunder i hela området och ser till att arbetet utförs noggrant, smidigt och med fokus på ett resultat som håller hög kvalitet varje gång.',
       districts: ['Spånga', 'Tensta', 'Bromsten', 'Solhem'],
       faq: [
         {
-          question: 'Arbetar ni i hela Spånga-Tensta?',
+          question: 'Arbetar du i hela Spånga-Tensta?',
           answer:
-            'Ja, vi hjälper kunder i Spånga, Tensta, Bromsten, Solhem och närliggande områden i västra och norra Stockholm.',
+            'Ja, jag hjälper kunder i Spånga, Tensta, Bromsten, Solhem och närliggande områden i västra och norra Stockholm.',
         },
         {
           question: 'Passar tjänsten villa och radhus i Spånga?',
           answer:
-            'Absolut. Spånga är ett vanligt område för villa- och radhuskunder, men vi arbetar även med lägenheter och mindre fastigheter.',
+            'Absolut. Spånga är ett vanligt område för villa- och radhuskunder, men jag arbetar även med lägenheter och mindre fastigheter.',
         },
         {
           question: 'Hur bokar jag fönsterputs i Spånga?',
           answer:
-            'Du börjar på prissidan där du ser ditt pris direkt. När förfrågan är skickad återkommer vi för att bekräfta detaljer och tid.',
+            'Du börjar på prissidan där du ser ditt pris direkt. När förfrågan är skickad återkommer jag för att bekräfta detaljer och tid.',
         },
       ],
     },
     {
       slug: 'sollentuna',
       name: 'Sollentuna',
-      title: 'Fönsterputs Sollentuna – Från 350 kr med RUT-avdrag | Rutputs',
+      title: 'Fönsterputs Sollentuna – Från 499 kr med RUT-avdrag | Rutputs',
       description:
-        'Fönsterputsning i Sollentuna med RUT-avdrag från 350 kr. Vi täcker Tureberg, Edsberg, Häggvik och hela Sollentuna kommun. Boka online!',
+        'Fönsterputsning i Sollentuna med RUT-avdrag från 499 kr. Jag täcker Tureberg, Edsberg, Häggvik och hela Sollentuna kommun. Boka online!',
       content:
-        'I Sollentuna erbjuder vi fönsterputsning för dig som vill ha ett pålitligt och enkelt upplägg med tydlig prissättning. Närheten till Järfälla gör det lätt att planera in tider snabbt, och vi hjälper både privatkunder och mindre fastigheter som vill ha rena fönster med professionellt resultat.',
+        'I Sollentuna erbjuder jag fönsterputsning för dig som vill ha ett pålitligt och enkelt upplägg med tydlig prissättning. Närheten till Järfälla gör det lätt att planera in tider snabbt, och jag hjälper både privatkunder och mindre fastigheter som vill ha rena fönster med professionellt resultat.',
       districts: ['Tureberg', 'Edsberg', 'Häggvik', 'Helenelund'],
       faq: [
         {
-          question: 'Vilka områden i Sollentuna täcker ni?',
+          question: 'Vilka områden i Sollentuna täcker du?',
           answer:
-            'Vi arbetar bland annat i Tureberg, Edsberg, Häggvik och Helenelund samt i övriga delar av Sollentuna kommun.',
+            'Jag arbetar bland annat i Tureberg, Edsberg, Häggvik och Helenelund samt i övriga delar av Sollentuna kommun.',
         },
         {
-          question: 'Är ni nära Sollentuna för snabb bokning?',
+          question: 'Är du nära Sollentuna för snabb bokning?',
           answer:
-            'Ja, eftersom vi utgår från Järfälla är Sollentuna ett naturligt arbetsområde där vi ofta kan erbjuda smidiga tider.',
+            'Ja, eftersom jag utgår från Järfälla är Sollentuna ett naturligt arbetsområde där jag ofta kan erbjuda smidiga tider.',
         },
         {
           question: 'Kan jag boka som återkommande kund i Sollentuna?',
@@ -343,17 +343,17 @@ const siteSeoContent = {
     {
       slug: 'taby',
       name: 'Täby',
-      title: 'Fönsterputs Täby – Från 350 kr med RUT-avdrag | Rutputs',
+      title: 'Fönsterputs Täby – Från 499 kr med RUT-avdrag | Rutputs',
       description:
-        'Professionell fönsterputsning i Täby med RUT-avdrag. Villor, radhus och lägenheter. Boka online från 350 kr!',
+        'Professionell fönsterputsning i Täby med RUT-avdrag. Villor, radhus och lägenheter. Boka online från 499 kr!',
       content:
-        'Täby är känt för sina många villaområden, radhus och större bostäder där rena fönster verkligen gör skillnad. Vi hjälper kunder i hela kommunen och erbjuder ett enkelt bokningsflöde för dig som vill få ett tydligt pris direkt och anlita en noggrann lokal aktör.',
+        'Täby är känt för sina många villaområden, radhus och större bostäder där rena fönster verkligen gör skillnad. Jag hjälper kunder i hela kommunen och erbjuder ett enkelt bokningsflöde för dig som vill få ett tydligt pris direkt och boka en noggrann lokal aktör.',
       districts: ['Täby Centrum', 'Näsbypark', 'Gribbylund', 'Arninge'],
       faq: [
         {
-          question: 'Vilka områden i Täby täcker ni?',
+          question: 'Vilka områden i Täby täcker du?',
           answer:
-            'Vi hjälper kunder i bland annat Täby Centrum, Näsbypark, Gribbylund och Arninge samt i övriga delar av Täby.',
+            'Jag hjälper kunder i bland annat Täby Centrum, Näsbypark, Gribbylund och Arninge samt i övriga delar av Täby.',
         },
         {
           question: 'Passar fönsterputs i Täby större villor och radhus?',
@@ -370,49 +370,49 @@ const siteSeoContent = {
     {
       slug: 'lidingo',
       name: 'Lidingö',
-      title: 'Fönsterputs Lidingö – Från 350 kr med RUT-avdrag | Rutputs',
+      title: 'Fönsterputs Lidingö – Från 499 kr med RUT-avdrag | Rutputs',
       description:
-        'Professionell fönsterputsning på Lidingö med RUT-avdrag. Från 350 kr. Vi täcker Lidingö centrum, Brevik, Rudboda och Herserud. Boka enkelt online!',
+        'Professionell fönsterputsning på Lidingö med RUT-avdrag. Från 499 kr. Jag täcker Lidingö centrum, Brevik, Rudboda och Herserud. Boka enkelt online!',
       content:
-        'På Lidingö erbjuder vi professionell fönsterputsning för villor, radhus och lägenheter. Med många vackra bostäder och stora fönsterpartier är Lidingö ett område där rena fönster verkligen gör skillnad. Vi arbetar i hela kommunen och erbjuder både enstaka putsningar och återkommande upplägg för dig som vill ha ett smidigt och pålitligt resultat.',
+        'På Lidingö erbjuder jag professionell fönsterputsning för villor, radhus och lägenheter. Med många vackra bostäder och stora fönsterpartier är Lidingö ett område där rena fönster verkligen gör skillnad. Jag arbetar i hela kommunen och erbjuder både enstaka putsningar och återkommande upplägg för dig som vill ha ett smidigt och pålitligt resultat.',
       districts: ['Lidingö centrum', 'Brevik', 'Rudboda', 'Herserud'],
       faq: [
         {
-          question: 'Vilka delar av Lidingö täcker ni?',
+          question: 'Vilka delar av Lidingö täcker du?',
           answer:
-            'Vi arbetar i hela Lidingö kommun, bland annat i Lidingö centrum, Brevik, Rudboda och Herserud samt övriga delar av ön.',
+            'Jag arbetar i hela Lidingö kommun, bland annat i Lidingö centrum, Brevik, Rudboda och Herserud samt övriga delar av ön.',
         },
         {
           question: 'Vad kostar fönsterputs på Lidingö?',
           answer:
-            'Priset börjar från 350 kr efter RUT-avdrag. Det exakta priset beror på antal fönster och bostadstyp. Använd vår priskalkylator för att se ditt pris direkt.',
+            'Priset börjar från 499 kr efter RUT-avdrag. Det exakta priset beror på antal fönster och bostadstyp. Använd min priskalkylator för att se ditt pris direkt.',
         },
         {
           question: 'Hur bokar jag fönsterputs på Lidingö?',
           answer:
-            'Du fyller i prisformuläret online för att se ditt pris direkt. Därefter återkommer vi för att bekräfta bokning och tid.',
+            'Du fyller i prisformuläret online för att se ditt pris direkt. Därefter återkommer jag för att bekräfta bokning och tid.',
         },
       ],
     },
     {
       slug: 'ostermalm',
       name: 'Östermalm',
-      title: 'Fönsterputs Östermalm – Från 350 kr med RUT-avdrag | Rutputs',
+      title: 'Fönsterputs Östermalm – Från 499 kr med RUT-avdrag | Rutputs',
       description:
-        'Fönsterputsning på Östermalm med RUT-avdrag från 350 kr. Vi täcker Gärdet, Djurgården, Lärkstan och Hjorthagen. Boka enkelt online!',
+        'Fönsterputsning på Östermalm med RUT-avdrag från 499 kr. Jag täcker Gärdet, Djurgården, Lärkstan och Hjorthagen. Boka enkelt online!',
       content:
-        'Östermalm med sina eleganta fasader, stora fönster och klassiska bostäder är ett område där professionell fönsterputsning gör stor skillnad. Vi hjälper privatpersoner i hela stadsdelen med noggrann och smidig service, oavsett om du bor i lägenhet, radhus eller villa. Boka enstaka puts eller återkommande abonnemang.',
+        'Östermalm med sina eleganta fasader, stora fönster och klassiska bostäder är ett område där professionell fönsterputsning gör stor skillnad. Jag hjälper privatpersoner i hela stadsdelen med noggrann och smidig service, oavsett om du bor i lägenhet, radhus eller villa. Boka enstaka puts eller återkommande abonnemang.',
       districts: ['Gärdet', 'Djurgården', 'Lärkstan', 'Hjorthagen'],
       faq: [
         {
-          question: 'Vilka delar av Östermalm täcker ni?',
+          question: 'Vilka delar av Östermalm täcker du?',
           answer:
-            'Vi arbetar bland annat på Gärdet, Djurgården, i Lärkstan och Hjorthagen samt i övriga delar av Östermalm.',
+            'Jag arbetar bland annat på Gärdet, Djurgården, i Lärkstan och Hjorthagen samt i övriga delar av Östermalm.',
         },
         {
           question: 'Passar tjänsten lägenheter på Östermalm?',
           answer:
-            'Ja, vi hjälper kunder i alla typer av bostäder – lägenheter, radhus och villor. Upplägget anpassas efter bostadens storlek och antal fönster.',
+            'Ja, jag hjälper kunder i alla typer av bostäder – lägenheter, radhus och villor. Upplägget anpassas efter bostadens storlek och antal fönster.',
         },
         {
           question: 'Hur får jag pris för fönsterputs på Östermalm?',

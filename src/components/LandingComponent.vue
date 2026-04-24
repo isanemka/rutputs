@@ -17,20 +17,20 @@
           <span class="hero-kicker">Lokal fönsterputsare</span>
           <h1 class="hero-title">Rena fönster. Tydligt pris. Snabb bokning.</h1>
           <p class="hero-lead">
-            Rutputs hjälper hushåll och företag i Stockholm med fönsterputsning till rimliga och tydliga priser och
-            som är enkel att boka. Alltid med samma höga kvalitet. Du kan boka både enstaka puts och återkommande abonnemang.
+            Jag hjälper hushåll och företag i Stockholm med fönsterputsning och enkel prissättning som är lätt att förstå och boka.
+            När du bokar hos Rutputs är det också jag som kommer och putsar, oavsett om du vill ha en enstaka puts eller ett återkommande upplägg.
           </p>
           <div class="hero-actions">
             <q-btn class="text-black" label="Se vad det kostar" color="accent" unelevated @click="goToPriceList" />
-            <q-btn outline color="white" label="Se områden vi täcker" :to="{ hash: '#areas' }" />
+            <q-btn outline color="white" label="Se områden jag täcker" :to="{ hash: '#areas' }" />
           </div>
           <div class="hero-metrics">
             <div class="hero-metric">
-              <span class="hero-metric__value">Från 350 kr</span>
+              <span class="hero-metric__value">Från 499 kr</span>
               <span class="hero-metric__label">Efter RUT-avdrag</span>
             </div>
             <div class="hero-metric">
-              <span class="hero-metric__value">Direkt pris</span>
+              <span class="hero-metric__value">Prisuppskattning</span>
               <span class="hero-metric__label">Via formuläret</span>
             </div>
           </div>
@@ -42,12 +42,12 @@
           <span class="section-kicker">Tydligt upplägg</span>
           <h2 class="section-title">Fönsterputs i Stockholm utan onödigt krångel</h2>
           <p class="section-text">
-            Rutputs erbjuder professionell fönsterputsning för dig som vill ha rena fönster utan att jaga priser,
-            ringa runt eller vänta på otydliga offerter. Du ser priset direkt, skickar din förfrågan och får snabb återkoppling.
+            Jag erbjuder professionell fönsterputsning för dig som vill ha rena fönster utan att jaga priser,
+            ringa runt eller vänta på otydliga offerter. Du får en tydlig prisbild direkt, skickar din förfrågan och får snabb återkoppling direkt från mig.
           </p>
           <p class="section-text">
-            Vi utgår från Järfälla och arbetar löpande i flera närliggande områden. Det gör det lättare att planera in tider som passar,
-            hålla kvaliteten jämn och ge ett mer lokalt och personligt upplägg än många större aktörer. För dig som vill slippa tänka på när det är dags igen kan vi också lägga upp abonnemang för återkommande puts.
+            Putsningar utförs i större delen av Stockholm och jag kan erbjuda snabbare bokning och mer flexibla upplägg än större aktörer, samtidigt som jag
+            håller kvaliteten jämn och ger dig ett mer personligt upplägg. För dig som vill slippa tänka på när det är dags igen kan jag också lägga upp abonnemang för återkommande puts.
           </p>
         </div>
 
@@ -55,9 +55,9 @@
           <span class="section-kicker">Därför fungerar det</span>
           <h2 class="section-title">Byggt för riktiga hem och riktiga bokningar</h2>
           <ul class="feature-list">
-            <li>Tydligt från-pris och direkt prisindikation online.</li>
-            <li>Passar villor, radhus, lägenheter och mindre fastigheter.</li>
-            <li>Lokal närvaro i områden där bokningarna faktiskt sker.</li>
+            <li>Tydligt från-pris och prisindikation online.</li>
+            <li>Passar villor, radhus, lägenheter och andra fastigheter.</li>
+            <li>Direkt kontakt med personen som också kommer och putsar.</li>
             <li>Möjlighet till abonnemang för dig som vill ha återkommande puts.</li>
             <li>Smidig väg från första klick till bekräftad tid.</li>
           </ul>
@@ -78,11 +78,11 @@
           </article>
           <article class="mini-card">
             <h3 class="mini-card__title">3. Skicka förfrågan</h3>
-            <p class="mini-card__text">Skicka in uppgifterna och få återkoppling för att bekräfta tid och detaljer.</p>
+            <p class="mini-card__text">Skicka in uppgifterna så hör jag av mig för att bekräfta tid och detaljer.</p>
           </article>
           <article class="mini-card">
             <h3 class="mini-card__title">4. Få jobbet gjort</h3>
-            <p class="mini-card__text">Ett lokalt genomfört jobb med fokus på resultat, ljusinsläpp och ett rent helhetsintryck.</p>
+            <p class="mini-card__text">Jag kommer själv och putsar med fokus på resultat, ljusinsläpp och ett rent helhetsintryck.</p>
           </article>
         </div>
       </section>
@@ -92,11 +92,11 @@
           <span class="section-kicker">Abonnemang</span>
           <h2 class="section-title">Återkommande fönsterputs för dig som vill slippa boka om varje gång</h2>
           <p class="section-text">
-            För många hushåll passar abonnemang bättre än enstaka bokningar. Då får du ett löpande upplägg
+            För många hushåll passar abonnemang bättre än enstaka bokningar. Då får du ett löpande upplägg av mig
             som anpassas efter bostad, säsong och hur ofta du vill ha putsat, utan att du behöver hålla reda på när det är dags igen.
           </p>
           <p class="section-text">
-            Det fungerar bra för dig som vill ha rena fönster året om, jämn kvalitet över tid och en enklare vardag med mindre planering.
+            Det fungerar bra för dig som vill ha rena fönster året om, jämn kvalitet över tid och samma person som lär sig hur du vill ha det.
           </p>
         </div>
 
@@ -106,7 +106,7 @@
           <ul class="feature-list">
             <li>Du vill ha fasta eller flexibla intervaller utan att boka om varje gång.</li>
             <li>Du vill ha ett upplägg som passar bostad, ljusinsläpp och säsong.</li>
-            <li>Du föredrar en lokal kontakt som lär känna hemmet och behovet över tid.</li>
+            <li>Du föredrar att boka direkt med mig och få samma person på plats varje gång.</li>
             <li>Du vill kunna börja med en vanlig puts och sedan gå över till abonnemang.</li>
           </ul>
           <div class="hero-actions q-pt-sm">
@@ -117,9 +117,9 @@
 
       <section id="areas" class="editorial-panel">
         <span class="section-kicker">Områden</span>
-        <h2 class="section-title">Vi täcker områden där närhet faktiskt gör skillnad</h2>
+        <h2 class="section-title">Jag täcker områden där närhet faktiskt gör skillnad</h2>
         <p class="section-text">
-          Rutputs arbetar i stora delar av Stockholm med extra stark närvaro i norra Stockholm, där vi kan erbjuda kortare restider,
+          Jag arbetar i stora delar av Stockholm med extra stark närvaro i norra Stockholm, där jag kan erbjuda kortare restider,
           snabbare bokning och ett smidigare upplägg för återkommande kunder. Välj din ort för att läsa mer om hur tjänsten passar där du bor.
         </p>
         <div class="area-link-grid q-mt-lg">
@@ -133,14 +133,14 @@
           </router-link>
         </div>
         <p class="section-text" style="margin-top: 2rem">
-          Bor du i ett annat område? Skicka in en förfrågan ändå så ser vi om vi kan hjälpa dig.
+          Bor du i ett annat område? Skicka in en förfrågan ändå så ser jag om jag kan hjälpa dig.
         </p>
       </section>
 
       <section class="cta-band">
         <div class="cta-band__text">
           <h2 class="cta-band__title">Vill du se priset direkt eller anmäla intresse för abonnemang?</h2>
-          <p class="cta-band__lead">Prislistan är byggd för att vara snabb, begriplig och enkel att fylla i oavsett om du sitter på mobil eller dator. Om du är intresserad av återkommande fönsterputs kan du skriva det i din förfrågan så återkommer vi med ett passande upplägg.</p>
+          <p class="cta-band__lead">Prislistan är byggd för att vara snabb, begriplig och enkel att fylla i oavsett om du sitter på mobil eller dator. Om du är intresserad av återkommande fönsterputs kan du skriva det i din förfrågan så återkommer jag med ett passande upplägg.</p>
         </div>
         <q-btn unelevated color="accent" text-color="black" label="Gå till prislistan" @click="goToPriceList" />
       </section>
