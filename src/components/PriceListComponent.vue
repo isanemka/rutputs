@@ -113,11 +113,22 @@
                     @update:model-value="handleWindowCountInput"
                   />
                 </div>
+                <div class="col-12 col-md-8 col-lg-6 q-mt-md">
+                  <fieldset class="property-type-group">
+                    <legend>Vilka sidor vill du ha putsade?</legend>
+                    <q-radio keep-color v-model="form.cleaningSides" val="outside" label="Utsida" color="accent" @update:model-value="buildCart" />
+                    <q-radio keep-color v-model="form.cleaningSides" val="both" label="Utsida + Insida" color="accent" @update:model-value="buildCart" />
+                    <q-radio keep-color v-model="form.cleaningSides" val="all" label="Utsida + Insida + Mellan" color="accent" @update:model-value="buildCart" />
+                  </fieldset>
+                  <div class="q-mt-sm">
+                    <q-checkbox keep-color v-model="form.hasSprojs" label="Spröjs" color="accent" @update:model-value="buildCart" />
+                  </div>
+                </div>
                 <div class="col-12 q-mt-md">
                   <div class="package-step__preview" v-if="getActiveTier()">
                     <p class="package-step__preview-label">Valt paket</p>
                     <p class="package-step__preview-range">{{ getActiveTier()?.windowRange }}</p>
-                    <p class="package-step__preview-price">{{ getActiveTier()?.priceFrom }}</p>
+                    <p class="package-step__preview-price">{{ form.totalPrice > 0 ? 'Från ' + form.totalPrice + ' kr' : getActiveTier()?.priceFrom }}</p>
                   </div>
                   <p v-else class="text-center package-step__hint">
                     Välj antal fönster för att se vilket paket som passar.
@@ -150,7 +161,7 @@
                       {{ item.description }}
                     </li>
                   </ul>
-                  <h3>Cirka pris: {{ form.totalPrice }} kr*</h3>
+                  <h3>Uppskattat pris: {{ form.totalPrice }} kr*</h3>
                   <p>*inklusive moms och efter RUT-avdrag</p>
                 </div>
 
@@ -278,6 +289,33 @@
               title="Fyll i dina uppgifter"
               icon="person"
             >
+              <div class="order-summary">
+                <h3 class="order-summary__title">Din beställning</h3>
+                <dl class="order-summary__list">
+                  <div class="order-summary__row">
+                    <dt>Boendetyp</dt>
+                    <dd>{{ form.propertyType === 'house' ? 'Villa/Radhus' : 'Lägenhet' }}</dd>
+                  </div>
+                  <div class="order-summary__row">
+                    <dt>Antal fönster</dt>
+                    <dd>{{ form.windowCount }} st ({{ getActiveTier()?.windowRange }})</dd>
+                  </div>
+                  <div class="order-summary__row">
+                    <dt>Sidor</dt>
+                    <dd>{{ { outside: 'Utsida', both: 'Utsida + Insida', all: 'Utsida + Insida + Mellan' }[form.cleaningSides] }}</dd>
+                  </div>
+                  <div class="order-summary__row">
+                    <dt>Spröjs</dt>
+                    <dd>{{ form.hasSprojs ? 'Ja' : 'Nej' }}</dd>
+                  </div>
+                  <div class="order-summary__row order-summary__row--total">
+                    <dt>Uppskattad kostnad</dt>
+                    <dd>{{ form.totalPrice }} kr*</dd>
+                  </div>
+                </dl>
+                <p class="order-summary__footnote">*inklusive moms och efter RUT-avdrag</p>
+              </div>
+
               <div class="q-pa-md flex items-center justify-center">
                 <q-form
                   @submit="onSubmit"
@@ -449,6 +487,7 @@ interface CartItem {
 }
 
 type HalfDay = 'am' | 'pm';
+type CleaningSides = 'outside' | 'both' | 'all';
 
 interface CalendarDay {
   iso: string;
@@ -675,7 +714,9 @@ export default defineComponent({
         message: '',
         website: '',
         termsAccepted: false,
-        totalPrice: 0
+        totalPrice: 0,
+        cleaningSides: 'outside' as CleaningSides,
+        hasSprojs: false,
       },
       priceStepScrollTimeoutId: null as number | null,
       minimumOrderValue: 499,
@@ -697,6 +738,45 @@ export default defineComponent({
     }
   },
   methods: {
+    getMultipliers(tierId: string): { sides: Record<CleaningSides, number>; sprojs: number } {
+      if (tierId === 'tier-1') {
+        return {
+          sides: { outside: 1.0, both: 1.3, all: 2.0 },
+          sprojs: 1.1,
+        };
+      }
+      return {
+        sides: { outside: 1.0, both: 1.6, all: 2.2 },
+        sprojs: 1.15,
+      };
+    },
+    buildCart() {
+      const tier = this.getActiveTier();
+      if (!tier || !this.form.windowCount) return;
+
+      const sides = this.form.cleaningSides as CleaningSides;
+      const sidesLabelMap: Record<CleaningSides, string> = {
+        outside: 'Utsida',
+        both: 'Utsida + Insida',
+        all: 'Utsida + Insida + Mellan',
+      };
+      const { sides: multiplierMap, sprojs: sprójsMultiplier } = this.getMultipliers(tier.id);
+
+      let price = Math.round(tier.price * multiplierMap[sides]);
+      if (this.form.hasSprojs) {
+        price = Math.round(price * sprójsMultiplier);
+      }
+
+      const sprójsLabel = this.form.hasSprojs ? ', Spröjs' : '';
+      this.cart = [
+        {
+          id: tier.id,
+          quantity: 1,
+          description: `${this.form.windowCount} fönster (${tier.windowRange}) - ${sidesLabelMap[sides]}${sprójsLabel}`,
+        },
+      ];
+      this.form.totalPrice = price;
+    },
     // Validate property type selection before proceeding to next step
     validatePropertyType() {
       if (this.form.propertyType) {
@@ -709,11 +789,16 @@ export default defineComponent({
         });
       }
     },
+    scrollToElement(id: string) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const header = document.querySelector('.q-header') as HTMLElement | null;
+      const offset = (header?.offsetHeight ?? 0) + 16;
+      const top = el.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    },
     scrollToForm() {
-      document.getElementById('pris-formular')?.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
+      this.scrollToElement('pris-formular');
     },
     getTierFromWindowCount(windowCount: number | null) {
       if (!windowCount || Number.isNaN(windowCount)) {
@@ -756,14 +841,7 @@ export default defineComponent({
       }
 
       this.form.selectedTierId = tier.id;
-      this.cart = [
-        {
-          id: tier.id,
-          quantity: 1,
-          description: `${this.form.windowCount} fönster (${tier.windowRange}) - ${tier.priceFrom}`,
-        },
-      ];
-      this.form.totalPrice = tier.price;
+      this.buildCart();
     },
     goToPriceStep() {
       const activeElement = document.activeElement;
@@ -809,10 +887,7 @@ export default defineComponent({
 
       void nextTick(() => {
         this.priceStepScrollTimeoutId = window.setTimeout(() => {
-          document.getElementById('pris-steg')?.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
+          this.scrollToElement('pris-steg');
           this.priceStepScrollTimeoutId = null;
         }, STEP_TRANSITION_DURATION_MS);
       });
@@ -820,11 +895,21 @@ export default defineComponent({
     // Calculate total price based on selected package
     calculateTotalPrice() {
       const tier = this.getActiveTier();
-      const totalPrice = tier ? tier.price : 0;
+      if (!tier) {
+        this.form.totalPrice = 0;
+        return 0;
+      }
 
-      this.form.totalPrice = totalPrice;
+      const sides = this.form.cleaningSides as CleaningSides;
+      const { sides: multiplierMap, sprojs: sprójsMultiplier } = this.getMultipliers(tier.id);
 
-      return totalPrice;
+      let price = Math.round(tier.price * multiplierMap[sides]);
+      if (this.form.hasSprojs) {
+        price = Math.round(price * sprójsMultiplier);
+      }
+
+      this.form.totalPrice = price;
+      return price;
     },
     async loadAvailability() {
       this.availabilityLoading = true;
@@ -984,7 +1069,9 @@ export default defineComponent({
         requestedDate: this.form.requestedDate,
         requestedHalfDay: this.form.requestedHalfDay,
         cart: this.cart,
-        totalPrice: this.form.totalPrice
+        totalPrice: this.form.totalPrice,
+        cleaningSides: this.form.cleaningSides,
+        hasSprojs: this.form.hasSprojs,
       }, {
         timeout: 7000
       })
@@ -1027,7 +1114,9 @@ export default defineComponent({
         message: '',
         website: '',
         termsAccepted: false,
-        totalPrice: this.form.totalPrice
+        totalPrice: this.form.totalPrice,
+        cleaningSides: this.form.cleaningSides as CleaningSides,
+        hasSprojs: this.form.hasSprojs,
       };
       this.quasar.notify({
         message: 'Formuläret har rensats',
@@ -1093,6 +1182,63 @@ export default defineComponent({
   height: 1px;
   opacity: 0;
   pointer-events: none;
+}
+
+.order-summary {
+  margin: 0 1rem 1.5rem;
+  padding: 1.25rem 1.5rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.order-summary__title {
+  margin: 0 0 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.order-summary__list {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.order-summary__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.9rem;
+}
+
+.order-summary__row dt {
+  opacity: 0.7;
+}
+
+.order-summary__row dd {
+  margin: 0;
+  font-weight: 500;
+  text-align: right;
+}
+
+.order-summary__row--total {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.order-summary__row--total dt {
+  opacity: 1;
+}
+
+.order-summary__footnote {
+  margin: 0.75rem 0 0;
+  font-size: 0.75rem;
+  opacity: 0.55;
 }
 
 .availability-picker {
@@ -1243,10 +1389,12 @@ export default defineComponent({
 }
 
 .availability-chip--selected {
-  border-color: rgba(31, 94, 49, 0.96);
-  background: rgba(113, 193, 131, 0.3);
-  color: #0f4a1d;
-  box-shadow: 0 10px 18px rgba(31, 94, 49, 0.12);
+  border-color: #FF6101;
+  background: #FF6101;
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(255, 97, 1, 0.45);
+  transform: translateY(-1px);
+  font-weight: 700;
 }
 
 .availability-picker__selection {
