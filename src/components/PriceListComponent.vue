@@ -302,7 +302,7 @@
                   </div>
                   <div class="order-summary__row">
                     <dt>Sidor</dt>
-                    <dd>{{ { outside: 'Utsida', both: 'Utsida + Insida', all: 'Utsida + Insida + Mellan' }[form.cleaningSides] }}</dd>
+                    <dd>{{ getCleaningSidesLabel(form.cleaningSides) }}</dd>
                   </div>
                   <div class="order-summary__row">
                     <dt>Spröjs</dt>
@@ -750,29 +750,34 @@ export default defineComponent({
         sprojs: 1.15,
       };
     },
+    getCleaningSidesLabel(sides: CleaningSides): string {
+      const map: Record<CleaningSides, string> = {
+        outside: 'Utsida',
+        both: 'Utsida + Insida',
+        all: 'Utsida + Insida + Mellan',
+      };
+      return map[sides];
+    },
+    computePrice(tierId: string, sides: CleaningSides, hasSprojs: boolean, basePrice: number): number {
+      const { sides: multiplierMap, sprojs: sprojsMultiplier } = this.getMultipliers(tierId);
+      let price = Math.round(basePrice * multiplierMap[sides]);
+      if (hasSprojs) {
+        price = Math.round(price * sprojsMultiplier);
+      }
+      return price;
+    },
     buildCart() {
       const tier = this.getActiveTier();
       if (!tier || !this.form.windowCount) return;
 
       const sides = this.form.cleaningSides as CleaningSides;
-      const sidesLabelMap: Record<CleaningSides, string> = {
-        outside: 'Utsida',
-        both: 'Utsida + Insida',
-        all: 'Utsida + Insida + Mellan',
-      };
-      const { sides: multiplierMap, sprojs: sprójsMultiplier } = this.getMultipliers(tier.id);
-
-      let price = Math.round(tier.price * multiplierMap[sides]);
-      if (this.form.hasSprojs) {
-        price = Math.round(price * sprójsMultiplier);
-      }
-
-      const sprójsLabel = this.form.hasSprojs ? ', Spröjs' : '';
+      const price = this.computePrice(tier.id, sides, this.form.hasSprojs, tier.price);
+      const sprojsLabel = this.form.hasSprojs ? ', Spröjs' : '';
       this.cart = [
         {
           id: tier.id,
           quantity: 1,
-          description: `${this.form.windowCount} fönster (${tier.windowRange}) - ${sidesLabelMap[sides]}${sprójsLabel}`,
+          description: `${this.form.windowCount} fönster (${tier.windowRange}) - ${this.getCleaningSidesLabel(sides)}${sprojsLabel}`,
         },
       ];
       this.form.totalPrice = price;
@@ -900,14 +905,12 @@ export default defineComponent({
         return 0;
       }
 
-      const sides = this.form.cleaningSides as CleaningSides;
-      const { sides: multiplierMap, sprojs: sprójsMultiplier } = this.getMultipliers(tier.id);
-
-      let price = Math.round(tier.price * multiplierMap[sides]);
-      if (this.form.hasSprojs) {
-        price = Math.round(price * sprójsMultiplier);
-      }
-
+      const price = this.computePrice(
+        tier.id,
+        this.form.cleaningSides as CleaningSides,
+        this.form.hasSprojs,
+        tier.price
+      );
       this.form.totalPrice = price;
       return price;
     },
@@ -1389,10 +1392,10 @@ export default defineComponent({
 }
 
 .availability-chip--selected {
-  border-color: #FF6101;
-  background: #FF6101;
+  border-color: var(--q-accent);
+  background: var(--q-accent);
   color: #fff;
-  box-shadow: 0 4px 14px rgba(255, 97, 1, 0.45);
+  box-shadow: 0 4px 14px color-mix(in srgb, var(--q-accent) 45%, transparent);
   transform: translateY(-1px);
   font-weight: 700;
 }
