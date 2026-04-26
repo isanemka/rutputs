@@ -1,7 +1,9 @@
+import { randomUUID } from 'node:crypto';
 import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses';
 import { z } from 'zod';
 
 const { AWS_REGION, SES_FROM_EMAIL, SES_TO_EMAIL } = process.env;
+const CRM_REQUEST_TIMEOUT_MS = 6500;
 
 const ses =
   AWS_REGION && SES_FROM_EMAIL && SES_TO_EMAIL
@@ -24,7 +26,7 @@ const schema = z.object({
   message: z.string().trim().max(10000).optional().or(z.literal('')),
   cart: z.array(cartItemSchema).min(1),
   totalPrice: z.number().positive(),
-  website: z.string().optional(),
+  website: z.string().trim().max(200).optional(),
 });
 
 function getSesErrorDetails(error) {
@@ -54,7 +56,11 @@ export default async function handleKontaktRequest(req, res) {
   const secret = process.env.PPCRM_LEADS_SECRET;
 
   if (!url || !secret) {
-    return res.status(500).json({ ok: false, error: 'Misconfigured' });
+    console.error('kontakt-handler is missing required PPCRM configuration', {
+      hasLeadsUrl: Boolean(url),
+      hasLeadsSecret: Boolean(secret),
+    });
+    return res.status(500).json({ ok: false, error: 'Ett internt fel uppstod' });
   }
 
   const parsed = schema.safeParse(req.body);
@@ -72,7 +78,7 @@ export default async function handleKontaktRequest(req, res) {
   const cartSummary = parsed.data.cart
     .map((item) => `${item.quantity} x ${item.description}`)
     .join('\n');
-  const requestLabel = `[kontakt] ${new Date().toISOString()} ${parsed.data.email}`;
+  const requestLabel = `[kontakt:${randomUUID()}]`;
   const detailedMessage = [
     'Ny offertförfrågan från Rutputs.',
     '',
@@ -94,28 +100,44 @@ export default async function handleKontaktRequest(req, res) {
 
   console.info(`${requestLabel} CRM submit started`);
 
-  const upstream = await fetch(url, {
-    method: 'POST',
-    headers: { 'content-type': 'application/json', 'x-webhook-secret': secret },
-    body: JSON.stringify({
-      source: 'rutputs',
-      name: parsed.data.name,
-      email: parsed.data.email,
-      phone: parsed.data.tel,
-      subject: 'Offertförfrågan',
-      message: detailedMessage,
-      website: '',
-      metadata: {
-        page: typeof req.headers.referer === 'string' ? req.headers.referer : null,
-        submitted_at: new Date().toISOString(),
-        address: parsed.data.address || null,
-        property_type: parsed.data.propertyType,
-        window_count: parsed.data.windowCount ?? null,
-        total_price: parsed.data.totalPrice,
-        cart: parsed.data.cart,
-      },
-    }),
-  });
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), CRM_REQUEST_TIMEOUT_MS);
+
+  let upstream;
+
+  try {
+    upstream = await fetch(url, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', 'x-webhook-secret': secret },
+      signal: controller.signal,
+      body: JSON.stringify({
+        source: 'rutputs',
+        name: parsed.data.name,
+        email: parsed.data.email,
+        phone: parsed.data.tel,
+        subject: 'Offertförfrågan',
+        message: detailedMessage,
+        website: '',
+        metadata: {
+          page: typeof req.headers.referer === 'string' ? req.headers.referer : null,
+          submitted_at: new Date().toISOString(),
+          address: parsed.data.address || null,
+          property_type: parsed.data.propertyType,
+          window_count: parsed.data.windowCount ?? null,
+          total_price: parsed.data.totalPrice,
+          cart: parsed.data.cart,
+        },
+      }),
+    });
+  } catch (error) {
+    console.error(`${requestLabel} CRM submit failed`, {
+      message: error instanceof Error ? error.message : String(error),
+      timedOut: error instanceof Error && error.name === 'AbortError',
+    });
+    return res.status(502).json({ ok: false, error: 'Kunde inte skicka förfrågan just nu' });
+  } finally {
+    clearTimeout(timeoutId);
+  }
 
   if (!upstream.ok) {
     const crmResponseText = await upstream.text().catch(() => 'Could not read CRM response body');

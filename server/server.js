@@ -36,7 +36,13 @@ async function readJsonBody(req) {
     return undefined;
   }
 
-  return JSON.parse(rawBody);
+  try {
+    return JSON.parse(rawBody);
+  } catch {
+    const error = new Error('Invalid JSON body');
+    error.statusCode = 400;
+    throw error;
+  }
 }
 
 const server = http.createServer(async (req, res) => {
@@ -70,6 +76,11 @@ const server = http.createServer(async (req, res) => {
       createResponseAdapter(res)
     );
   } catch (error) {
+    if (error instanceof Error && error.statusCode === 400) {
+      sendJson(res, 400, { ok: false, error: 'Ogiltig JSON' });
+      return;
+    }
+
     console.error('Local API server error:', error);
 
     if (!res.writableEnded) {
