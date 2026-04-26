@@ -11,8 +11,7 @@
           Mitt prisformulär är enkelt att använda och ger dig snabbt en tydlig uppskattning av kostnaden.
         </p>
         <p class="section-text text-center q-mx-auto price-intro-panel__text">
-          Formuläret är byggt för att göra bokningen enkel: välj bostadstyp, ange antal fönster
-          och skicka sedan in din förfrågan när priset känns rätt. Minsta ordervärde är 499 kr efter RUT-avdrag.
+          Fyll i formuläret steg för steg så ser du direkt vilket paket som passar ditt hem bäst.
         </p>
         <div class="price-intro-panel__actions">
           <q-btn
@@ -151,7 +150,7 @@
                       {{ item.description }}
                     </li>
                   </ul>
-                  <h3>Totalpris: {{ form.totalPrice }} kr*</h3>
+                  <h3>Cirka pris: {{ form.totalPrice }} kr*</h3>
                   <p>*inklusive moms och efter RUT-avdrag</p>
                 </div>
 
@@ -224,6 +223,15 @@
                     autogrow
                     maxlength="500"
                   />
+
+                  <input
+                    v-model="form.website"
+                    name="website"
+                    tabindex="-1"
+                    autocomplete="off"
+                    aria-hidden="true"
+                    class="honeypot-field"
+                  >
 
                   <!-- Terms and conditions toggle -->
                   <q-toggle
@@ -478,6 +486,7 @@ export default defineComponent({
         address: '',
         email: '',
         message: '',
+        website: '',
         termsAccepted: false,
         totalPrice: 0
       },
@@ -662,13 +671,15 @@ export default defineComponent({
     },
     // Submit form data to backend
     onSubmit() {
-      axios.post('/api/submit-form', {
+      axios.post('/api/kontakt', {
         name: this.form.name,
         email: this.form.email,
         tel: this.form.tel,
         address: this.form.address,
         message: this.form.message,
+        website: this.form.website,
         propertyType: this.form.propertyType,
+        windowCount: this.form.windowCount,
         cart: this.cart,
         totalPrice: this.form.totalPrice
       }, {
@@ -709,6 +720,7 @@ export default defineComponent({
         address: '',
         email: '',
         message: '',
+        website: '',
         termsAccepted: false,
         totalPrice: this.form.totalPrice
       };
@@ -748,6 +760,15 @@ export default defineComponent({
 .property-type-group legend {
   margin-bottom: 0.6rem;
   font-weight: 600;
+}
+
+.honeypot-field {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .price-intro-panel {
