@@ -22,6 +22,11 @@ npm run dev
 
 To use the application please update the .env file named ".env-template". Ask the code owner for correct config settings. Please also change the file name to: ".env"
 
+For the CRM-backed booking flow you now also need:
+
+- `PPCRM_LEADS_URL` and `PPCRM_LEADS_SECRET` for lead submission
+- `PPCRM_AVAILABILITY_URL` and `PPCRM_AVAILABILITY_SECRET` for the availability feed used by the booking picker
+
 ### Access the nodemailer
 
 To use the application please update the .env-file with the appropriate e-mail settings. Ask the code owner for correct config settings.

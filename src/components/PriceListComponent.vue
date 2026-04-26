@@ -134,7 +134,7 @@
             <!-- Step 3: Review selected services and total price -->
             <q-step
               :name="3"
-              title="Se ditt pris"
+              title="Se ditt pris och lediga tider"
               icon="shopping_cart"
               :done="step > 3"
             >
@@ -159,6 +159,107 @@
                   <p class="text-body1">Ange antal fönster i föregående steg för att få ditt paketpris.</p>
                 </div>
               </div>
+
+              <section class="availability-picker availability-picker--compact" aria-labelledby="availability-heading">
+                <div class="availability-picker__header">
+                  <h3 id="availability-heading" class="availability-picker__title">Välj önskad dag</h3>
+                  <p class="availability-picker__hint">
+                    Valfritt. Välj om du vill boka en tid på förmiddagen eller eftermiddagen under ett datum i kalendern som passar dig.
+                  </p>
+                </div>
+
+                <p v-if="availabilityLoading" class="availability-picker__status">
+                  Hämtar lediga tider...
+                </p>
+                <p v-else-if="availabilityError" class="availability-picker__status availability-picker__status--error">
+                  Kunde inte hämta lediga tider just nu. Du kan fortfarande skicka din förfrågan utan att välja tid.
+                </p>
+                <p v-else-if="availabilitySlots.length === 0" class="availability-picker__status">
+                  Inga lediga halvdagsfönster är publicerade just nu.
+                </p>
+
+                <div v-else class="availability-calendar-shell">
+                  <div class="availability-calendar-nav">
+                    <q-btn
+                      flat
+                      round
+                      dense
+                      icon="chevron_left"
+                      color="primary"
+                      @click="changeAvailabilityMonth(-1)"
+                    />
+                    <p class="availability-calendar-nav__label">{{ availabilityCalendarLabel }}</p>
+                    <q-btn
+                      flat
+                      round
+                      dense
+                      icon="chevron_right"
+                      color="primary"
+                      @click="changeAvailabilityMonth(1)"
+                    />
+                  </div>
+
+                  <div class="availability-calendar-weekdays">
+                    <span v-for="weekday in availabilityWeekdays" :key="weekday">{{ weekday }}</span>
+                  </div>
+
+                  <div class="availability-calendar-grid">
+                    <div
+                      v-for="day in availabilityCalendarDays"
+                      :key="day.iso"
+                      class="availability-calendar-day"
+                      :class="{
+                        'availability-calendar-day--muted': !day.inCurrentMonth,
+                        'availability-calendar-day--today': day.isToday,
+                        'availability-calendar-day--selected': form.requestedDate === day.iso,
+                      }"
+                    >
+                      <div class="availability-calendar-day__number">{{ day.dayNumber }}</div>
+                      <div class="availability-calendar-day__slots">
+                        <button
+                          type="button"
+                          class="availability-chip"
+                          :class="{
+                            'availability-chip--available': !!day.amSlot,
+                            'availability-chip--unavailable': !day.amSlot,
+                            'availability-chip--selected': day.amSlot && isRequestedSlotSelected(day.amSlot),
+                          }"
+                          :disabled="!day.amSlot"
+                          @click="day.amSlot && selectRequestedSlot(day.amSlot)"
+                        >
+                          <span>FM</span>
+                        </button>
+                        <button
+                          type="button"
+                          class="availability-chip"
+                          :class="{
+                            'availability-chip--available': !!day.pmSlot,
+                            'availability-chip--unavailable': !day.pmSlot,
+                            'availability-chip--selected': day.pmSlot && isRequestedSlotSelected(day.pmSlot),
+                          }"
+                          :disabled="!day.pmSlot"
+                          @click="day.pmSlot && selectRequestedSlot(day.pmSlot)"
+                        >
+                          <span>EM</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div v-if="form.requestedDate && form.requestedHalfDay" class="availability-picker__selection">
+                  <span>
+                    Vald tid: {{ formatSlotDate(form.requestedDate) }} {{ formatHalfDayLabel(form.requestedHalfDay) }}
+                  </span>
+                  <q-btn
+                    flat
+                    dense
+                    color="primary"
+                    label="Rensa val"
+                    @click="clearRequestedSlot"
+                  />
+                </div>
+              </section>
               <q-stepper-navigation>
                 <q-btn @click="step = 4" :disable="cart.length === 0" color="accent" label="Fortsätt"  class="text-black q-ml-sm q-mb-sm" />
                 <q-btn @click="step = 2" color="primary" label="Tillbaka" class="q-ml-sm q-mb-sm"/>
@@ -219,7 +320,7 @@
                     filled
                     type="textarea"
                     label="Meddelande"
-                    hint="T.ex. när du vill ha putsningen utförd eller annat du vill meddela"
+                    hint="T.ex. om du har önskemål om en specifik tid för putsningen eller annat du vill meddela"
                     autogrow
                     maxlength="500"
                   />
@@ -340,6 +441,84 @@ interface CartItem {
   quantity: number;
   description: string;
 }
+
+type HalfDay = 'am' | 'pm';
+
+interface CalendarDay {
+  iso: string;
+  dayNumber: number;
+  inCurrentMonth: boolean;
+  isToday: boolean;
+  amSlot: AvailabilitySlot | null;
+  pmSlot: AvailabilitySlot | null;
+}
+
+interface AvailabilitySlot {
+  id: string;
+  slot_date: string;
+  half_day: HalfDay;
+  capacity: number;
+  notes: string | null;
+}
+
+function parseIsoDate(value: string) {
+  return new Date(`${value}T12:00:00`);
+}
+
+function formatIsoDate(date: Date) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+
+  return `${year}-${month}-${day}`;
+}
+
+function getMonthKey(value: string) {
+  return value.slice(0, 7);
+}
+
+function createMonthDate(monthKey: string) {
+  return parseIsoDate(`${monthKey}-01`);
+}
+
+function getCurrentMonthKey() {
+  return getMonthKey(formatIsoDate(new Date()));
+}
+
+function addDays(date: Date, days: number) {
+  const nextDate = new Date(date);
+  nextDate.setDate(nextDate.getDate() + days);
+  return nextDate;
+}
+
+function addMonths(date: Date, months: number) {
+  const nextDate = new Date(date);
+  nextDate.setMonth(nextDate.getMonth() + months);
+  return nextDate;
+}
+
+function isWeekend(date: Date) {
+  const day = date.getDay();
+  return day === 0 || day === 6;
+}
+
+function getStartOfCalendarMonth(date: Date) {
+  const monthStart = new Date(date.getFullYear(), date.getMonth(), 1);
+  const dayOfWeek = (monthStart.getDay() + 6) % 7;
+  return addDays(monthStart, -dayOfWeek);
+}
+
+function getEndOfCalendarMonth(date: Date) {
+  const monthEnd = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+  const dayOfWeek = (monthEnd.getDay() + 6) % 7;
+  return addDays(monthEnd, 6 - dayOfWeek);
+}
+
+function isSameCalendarDay(left: Date, right: Date) {
+  return formatIsoDate(left) === formatIsoDate(right);
+}
+
+const WEEKDAY_HEADERS = ['Mån', 'Tis', 'Ons', 'Tor', 'Fre'];
 
 interface PriceTier {
   id: string;
@@ -481,6 +660,8 @@ export default defineComponent({
         propertyType: '',
         windowCount: null as number | null,
         selectedTierId: '',
+        requestedDate: null as string | null,
+        requestedHalfDay: null as HalfDay | null,
         name: '',
         tel: '',
         address: '',
@@ -493,6 +674,10 @@ export default defineComponent({
       priceStepScrollTimeoutId: null as number | null,
       minimumOrderValue: 499,
       cart: [] as CartItem[],
+      availabilityLoading: false,
+      availabilityError: false,
+      availabilitySlots: [] as AvailabilitySlot[],
+      selectedAvailabilityMonth: null as string | null,
     };
   },
   setup() {
@@ -635,6 +820,111 @@ export default defineComponent({
 
       return totalPrice;
     },
+    async loadAvailability() {
+      this.availabilityLoading = true;
+      this.availabilityError = false;
+
+      try {
+        const response = await axios.get('/api/availability', {
+          timeout: 7000
+        });
+
+        this.availabilitySlots = Array.isArray(response.data?.slots) ? response.data.slots : [];
+        this.syncSelectedAvailabilityMonth();
+      } catch {
+        this.availabilityError = true;
+        this.availabilitySlots = [];
+        this.selectedAvailabilityMonth = null;
+      } finally {
+        this.availabilityLoading = false;
+      }
+    },
+    getAvailableCalendarDates() {
+      return [...new Set(this.availabilitySlots.map((slot) => slot.slot_date))];
+    },
+    getAvailableCalendarMonths() {
+      return [...new Set(this.availabilitySlots.map((slot) => getMonthKey(slot.slot_date)))].sort();
+    },
+    syncSelectedAvailabilityMonth() {
+      const availableMonths = this.getAvailableCalendarMonths();
+
+      if (this.form.requestedDate) {
+        const requestedMonth = getMonthKey(this.form.requestedDate);
+
+        if (availableMonths.includes(requestedMonth)) {
+          this.selectedAvailabilityMonth = requestedMonth;
+          return;
+        }
+      }
+
+      if (this.selectedAvailabilityMonth && availableMonths.includes(this.selectedAvailabilityMonth)) {
+        return;
+      }
+
+      this.selectedAvailabilityMonth = availableMonths[0] ?? this.selectedAvailabilityMonth ?? getCurrentMonthKey();
+    },
+    getAvailabilitySlot(slotDate: string, halfDay: HalfDay) {
+      return this.availabilitySlots.find((slot) => slot.slot_date === slotDate && slot.half_day === halfDay) ?? null;
+    },
+    getAvailabilityCalendarDays() {
+      if (!this.selectedAvailabilityMonth) {
+        return [] as CalendarDay[];
+      }
+
+      const monthDate = createMonthDate(this.selectedAvailabilityMonth);
+      const startDate = getStartOfCalendarMonth(monthDate);
+      const endDate = getEndOfCalendarMonth(monthDate);
+      const days: CalendarDay[] = [];
+      const today = new Date();
+
+      for (let currentDate = startDate; currentDate <= endDate; currentDate = addDays(currentDate, 1)) {
+        if (isWeekend(currentDate)) {
+          continue;
+        }
+
+        const iso = formatIsoDate(currentDate);
+
+        days.push({
+          iso,
+          dayNumber: currentDate.getDate(),
+          inCurrentMonth: getMonthKey(iso) === this.selectedAvailabilityMonth,
+          isToday: isSameCalendarDay(currentDate, today),
+          amSlot: this.getAvailabilitySlot(iso, 'am'),
+          pmSlot: this.getAvailabilitySlot(iso, 'pm'),
+        });
+      }
+
+      return days;
+    },
+    changeAvailabilityMonth(direction: number) {
+      if (!this.selectedAvailabilityMonth) {
+        this.selectedAvailabilityMonth = getCurrentMonthKey();
+      }
+
+      this.selectedAvailabilityMonth = getMonthKey(formatIsoDate(addMonths(createMonthDate(this.selectedAvailabilityMonth), direction)));
+    },
+    formatSlotDate(slotDate: string) {
+      return new Intl.DateTimeFormat('sv-SE', {
+        weekday: 'long',
+        day: 'numeric',
+        month: 'long'
+      }).format(new Date(`${slotDate}T12:00:00`));
+    },
+    formatHalfDayLabel(halfDay: HalfDay) {
+      return halfDay === 'am' ? 'Förmiddag' : 'Eftermiddag';
+    },
+    isRequestedSlotSelected(slot: AvailabilitySlot) {
+      return this.form.requestedDate === slot.slot_date && this.form.requestedHalfDay === slot.half_day;
+    },
+    selectRequestedSlot(slot: AvailabilitySlot) {
+      this.selectedAvailabilityMonth = getMonthKey(slot.slot_date);
+      this.form.requestedDate = slot.slot_date;
+      this.form.requestedHalfDay = slot.half_day;
+    },
+    clearRequestedSlot() {
+      this.form.requestedDate = null;
+      this.form.requestedHalfDay = null;
+    },
     // Empty cart and reset quantity for each article
     emptyCart() {
       this.cart = [];
@@ -680,6 +970,8 @@ export default defineComponent({
         website: this.form.website,
         propertyType: this.form.propertyType,
         windowCount: this.form.windowCount,
+        requestedDate: this.form.requestedDate,
+        requestedHalfDay: this.form.requestedHalfDay,
         cart: this.cart,
         totalPrice: this.form.totalPrice
       }, {
@@ -715,6 +1007,8 @@ export default defineComponent({
         propertyType: this.form.propertyType,
         windowCount: this.form.windowCount,
         selectedTierId: this.form.selectedTierId,
+        requestedDate: null,
+        requestedHalfDay: null,
         name: '',
         tel: '',
         address: '',
@@ -740,8 +1034,27 @@ export default defineComponent({
     }
   },
   // Calculate total price when component is created
-  created() {
+  async created() {
     this.calculateTotalPrice();
+    await this.loadAvailability();
+  },
+  computed: {
+    availabilityCalendarDays(): CalendarDay[] {
+      return this.getAvailabilityCalendarDays();
+    },
+    availabilityCalendarLabel(): string {
+      if (!this.selectedAvailabilityMonth) {
+        return 'Inga lediga datum';
+      }
+
+      return new Intl.DateTimeFormat('sv-SE', {
+        month: 'long',
+        year: 'numeric',
+      }).format(createMonthDate(this.selectedAvailabilityMonth));
+    },
+    availabilityWeekdays(): string[] {
+      return WEEKDAY_HEADERS;
+    },
   },
   beforeUnmount() {
     if (this.priceStepScrollTimeoutId !== null) {
@@ -769,6 +1082,229 @@ export default defineComponent({
   height: 1px;
   opacity: 0;
   pointer-events: none;
+}
+
+.availability-picker {
+  display: grid;
+  gap: 0.75rem;
+  padding: 0.95rem;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(69, 90, 100, 0.12);
+}
+
+.availability-picker--compact {
+  width: min(100%, 56rem);
+  margin: 0.75rem auto 0;
+  padding: 0.85rem;
+  gap: 0.65rem;
+}
+
+.availability-picker__header {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.availability-picker__title,
+.availability-picker__hint,
+.availability-picker__status,
+.availability-option__date,
+.availability-option__half-day,
+.availability-option__notes,
+.availability-picker__selection {
+  margin: 0;
+}
+
+.availability-picker__title {
+  font-size: 1rem;
+  color: rgba(33, 41, 49, 0.92);
+}
+
+.availability-picker__hint,
+.availability-picker__status,
+.availability-option__notes {
+  color: rgba(69, 90, 100, 0.84);
+}
+
+.availability-picker__status--error {
+  color: #9f2d20;
+}
+
+.availability-picker__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: 0.75rem;
+}
+
+.availability-calendar-shell {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.availability-calendar-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.availability-calendar-nav__label {
+  margin: 0;
+  font-weight: 600;
+  color: rgba(33, 41, 49, 0.92);
+  text-transform: capitalize;
+}
+
+.availability-calendar-weekdays,
+.availability-calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.35rem;
+}
+
+.availability-calendar-weekdays {
+  font-size: 0.78rem;
+  color: rgba(69, 90, 100, 0.8);
+  text-align: center;
+}
+
+.availability-calendar-day {
+  min-height: 5.8rem;
+  display: grid;
+  gap: 0.35rem;
+  align-content: start;
+  padding: 0.35rem;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(69, 90, 100, 0.12);
+  background: rgba(255, 255, 255, 0.88);
+}
+
+.availability-calendar-day--muted {
+  opacity: 0.42;
+}
+
+.availability-calendar-day--today {
+  border-color: rgba(214, 188, 95, 0.72);
+}
+
+.availability-calendar-day--selected {
+  box-shadow: 0 12px 22px rgba(214, 188, 95, 0.14);
+}
+
+.availability-calendar-day__number {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: rgba(33, 41, 49, 0.92);
+}
+
+.availability-calendar-day__slots {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.availability-chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 1.8rem;
+  padding: 0.28rem 0.4rem;
+  border: 1px solid rgba(69, 90, 100, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  color: rgba(33, 41, 49, 0.92);
+  font-size: 0.74rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 140ms ease, border-color 140ms ease, box-shadow 140ms ease, opacity 140ms ease;
+}
+
+.availability-chip--available {
+  border-color: rgba(82, 147, 104, 0.5);
+  background: rgba(113, 193, 131, 0.18);
+  color: #155724;
+}
+
+.availability-chip--unavailable {
+  border-color: rgba(196, 84, 84, 0.38);
+  background: rgba(222, 105, 105, 0.16);
+  color: #8b1e1e;
+  opacity: 1;
+}
+
+.availability-chip:hover:not(:disabled) {
+  transform: translateY(-1px);
+  border-color: rgba(82, 147, 104, 0.78);
+  box-shadow: 0 10px 18px rgba(33, 41, 49, 0.08);
+}
+
+.availability-chip:disabled {
+  cursor: default;
+}
+
+.availability-chip--selected {
+  border-color: rgba(31, 94, 49, 0.96);
+  background: rgba(113, 193, 131, 0.3);
+  color: #0f4a1d;
+  box-shadow: 0 10px 18px rgba(31, 94, 49, 0.12);
+}
+
+.availability-option {
+  display: grid;
+  gap: 0.25rem;
+  padding: 0.85rem 0.95rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(69, 90, 100, 0.12);
+  background: rgba(255, 255, 255, 0.88);
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: transform 140ms ease, border-color 140ms ease, box-shadow 140ms ease;
+}
+
+.availability-option:hover {
+  transform: translateY(-1px);
+  border-color: rgba(214, 188, 95, 0.72);
+  box-shadow: 0 10px 18px rgba(33, 41, 49, 0.08);
+}
+
+.availability-option--selected {
+  border-color: rgba(214, 188, 95, 0.96);
+  box-shadow: 0 12px 22px rgba(214, 188, 95, 0.2);
+}
+
+.availability-option__date {
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.availability-option__half-day {
+  color: var(--q-accent);
+}
+
+.availability-picker__selection {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@media (max-width: 820px) {
+  .availability-calendar-weekdays,
+  .availability-calendar-grid {
+    gap: 0.25rem;
+  }
+
+  .availability-calendar-day {
+    min-height: 5rem;
+    padding: 0.3rem;
+  }
+
+  .availability-chip {
+    min-height: 1.65rem;
+    padding-inline: 0.24rem;
+    font-size: 0.7rem;
+  }
 }
 
 .price-intro-panel {
@@ -891,6 +1427,8 @@ export default defineComponent({
 
 .price-result-step {
   scroll-margin-top: 1rem;
+  width: min(100%, 40rem);
+  margin-inline: auto;
 }
 
 .package-step {

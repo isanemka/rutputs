@@ -16,18 +16,48 @@ const cartItemSchema = z.object({
   description: z.string().trim().min(1).max(500),
 });
 
-const schema = z.object({
-  name: z.string().trim().min(1).max(200),
-  email: z.string().trim().email().max(200),
-  tel: z.string().trim().min(6).max(60),
-  address: z.string().trim().max(200).optional().or(z.literal('')),
-  propertyType: z.enum(['house', 'apartment']),
-  windowCount: z.number().int().positive().nullable().optional(),
-  message: z.string().trim().max(10000).optional().or(z.literal('')),
-  cart: z.array(cartItemSchema).min(1),
-  totalPrice: z.number().positive(),
-  website: z.string().trim().max(200).optional(),
-});
+const halfDaySchema = z.enum(['am', 'pm']);
+const requestedDateSchema = z.string().regex(/^\d{4}-\d{2}-\d{2}$/);
+
+const schema = z
+  .object({
+    name: z.string().trim().min(1).max(200),
+    email: z.string().trim().email().max(200),
+    tel: z.string().trim().min(6).max(60),
+    address: z.string().trim().max(200).optional().or(z.literal('')),
+    propertyType: z.enum(['house', 'apartment']),
+    windowCount: z.number().int().positive().nullable().optional(),
+    message: z.string().trim().max(10000).optional().or(z.literal('')),
+    cart: z.array(cartItemSchema).min(1),
+    totalPrice: z.number().positive(),
+    website: z.string().trim().max(200).optional(),
+    requestedDate: requestedDateSchema.nullable().optional(),
+    requestedHalfDay: halfDaySchema.nullable().optional(),
+  })
+  .refine(
+    (value) => {
+      const hasRequestedDate = Boolean(value.requestedDate);
+      const hasRequestedHalfDay = Boolean(value.requestedHalfDay);
+
+      return hasRequestedDate === hasRequestedHalfDay;
+    },
+    {
+      message: 'requested date and requested half day must be provided together',
+      path: ['requestedDate'],
+    }
+  );
+
+function formatRequestedHalfDay(halfDay) {
+  if (halfDay === 'am') {
+    return 'Förmiddag';
+  }
+
+  if (halfDay === 'pm') {
+    return 'Eftermiddag';
+  }
+
+  return null;
+}
 
 function getSesErrorDetails(error) {
   if (!(error instanceof Error)) {
@@ -75,6 +105,10 @@ export default async function handleKontaktRequest(req, res) {
 
   const propertyTypeLabel =
     parsed.data.propertyType === 'house' ? 'Villa/Radhus' : 'Lägenhet';
+  const requestedTimeLabel =
+    parsed.data.requestedDate && parsed.data.requestedHalfDay
+      ? `${parsed.data.requestedDate} (${formatRequestedHalfDay(parsed.data.requestedHalfDay)})`
+      : '-';
   const cartSummary = parsed.data.cart
     .map((item) => `${item.quantity} x ${item.description}`)
     .join('\n');
@@ -88,6 +122,7 @@ export default async function handleKontaktRequest(req, res) {
     `Adress: ${parsed.data.address || '-'}`,
     `Bostadstyp: ${propertyTypeLabel}`,
     `Antal fönster: ${parsed.data.windowCount ?? '-'}`,
+    `Önskad tid: ${requestedTimeLabel}`,
     `Totalpris: ${parsed.data.totalPrice} kr`,
     '',
     'Valda tjänster:',
@@ -116,6 +151,8 @@ export default async function handleKontaktRequest(req, res) {
         email: parsed.data.email,
         phone: parsed.data.tel,
         subject: 'Offertförfrågan',
+        requested_date: parsed.data.requestedDate || null,
+        requested_half_day: parsed.data.requestedHalfDay || null,
         message: detailedMessage,
         website: '',
         metadata: {
@@ -124,6 +161,8 @@ export default async function handleKontaktRequest(req, res) {
           address: parsed.data.address || null,
           property_type: parsed.data.propertyType,
           window_count: parsed.data.windowCount ?? null,
+          requested_date: parsed.data.requestedDate || null,
+          requested_half_day: parsed.data.requestedHalfDay || null,
           total_price: parsed.data.totalPrice,
           cart: parsed.data.cart,
         },
