@@ -2,6 +2,7 @@ import { z } from 'zod';
 
 const { PPCRM_AVAILABILITY_URL, PPCRM_AVAILABILITY_SECRET } = process.env;
 const AVAILABILITY_RANGE_DAYS = 90;
+const AVAILABILITY_REQUEST_TIMEOUT_MS = 6500;
 const halfDaySchema = z.enum(['am', 'pm']);
 const slotSchema = z.object({
   id: z.string().trim().min(1).optional(),
@@ -15,7 +16,11 @@ const slotSchema = z.object({
 });
 
 function formatIsoDate(date) {
-  return date.toISOString().slice(0, 10);
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+
+  return `${year}-${month}-${day}`;
 }
 
 function buildAvailabilityUrl(rawUrl) {
@@ -100,6 +105,8 @@ export default async function handleAvailabilityRequest(req, res) {
   }
 
   let upstream;
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), AVAILABILITY_REQUEST_TIMEOUT_MS);
 
   try {
     upstream = await fetch(availabilityUrl, {
@@ -107,11 +114,14 @@ export default async function handleAvailabilityRequest(req, res) {
       headers: {
         'x-webhook-secret': PPCRM_AVAILABILITY_SECRET,
       },
+      signal: controller.signal,
     });
   } catch (error) {
     return respondWithNoSlots(res, 'upstream request failed', {
       message: error instanceof Error ? error.message : String(error),
     });
+  } finally {
+    clearTimeout(timeoutId);
   }
 
   if (!upstream.ok) {

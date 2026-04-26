@@ -16,8 +16,32 @@ const cartItemSchema = z.object({
   description: z.string().trim().min(1).max(500),
 });
 
+function isValidRequestedDate(value) {
+  const [yearString, monthString, dayString] = value.split('-');
+  const year = Number(yearString);
+  const month = Number(monthString);
+  const day = Number(dayString);
+
+  if (!Number.isInteger(year) || !Number.isInteger(month) || !Number.isInteger(day)) {
+    return false;
+  }
+
+  const parsedDate = new Date(Date.UTC(year, month - 1, day));
+
+  return (
+    parsedDate.getUTCFullYear() === year &&
+    parsedDate.getUTCMonth() === month - 1 &&
+    parsedDate.getUTCDate() === day
+  );
+}
+
 const halfDaySchema = z.enum(['am', 'pm']);
-const requestedDateSchema = z.string().regex(/^\d{4}-\d{2}-\d{2}$/);
+const requestedDateSchema = z
+  .string()
+  .regex(/^\d{4}-\d{2}-\d{2}$/)
+  .refine(isValidRequestedDate, {
+    message: 'requested date must be a valid calendar date',
+  });
 
 const schema = z
   .object({

@@ -186,6 +186,7 @@
                       dense
                       icon="chevron_left"
                       color="primary"
+                      aria-label="Föregående månad"
                       @click="changeAvailabilityMonth(-1)"
                     />
                     <p class="availability-calendar-nav__label">{{ availabilityCalendarLabel }}</p>
@@ -195,6 +196,7 @@
                       dense
                       icon="chevron_right"
                       color="primary"
+                      aria-label="Nästa månad"
                       @click="changeAvailabilityMonth(1)"
                     />
                   </div>
@@ -225,6 +227,8 @@
                             'availability-chip--selected': day.amSlot && isRequestedSlotSelected(day.amSlot),
                           }"
                           :disabled="!day.amSlot"
+                          :aria-label="getSlotAriaLabel(day, 'am')"
+                          :aria-pressed="day.amSlot ? isRequestedSlotSelected(day.amSlot) : false"
                           @click="day.amSlot && selectRequestedSlot(day.amSlot)"
                         >
                           <span>FM</span>
@@ -238,6 +242,8 @@
                             'availability-chip--selected': day.pmSlot && isRequestedSlotSelected(day.pmSlot),
                           }"
                           :disabled="!day.pmSlot"
+                          :aria-label="getSlotAriaLabel(day, 'pm')"
+                          :aria-pressed="day.pmSlot ? isRequestedSlotSelected(day.pmSlot) : false"
                           @click="day.pmSlot && selectRequestedSlot(day.pmSlot)"
                         >
                           <span>EM</span>
@@ -839,9 +845,6 @@ export default defineComponent({
         this.availabilityLoading = false;
       }
     },
-    getAvailableCalendarDates() {
-      return [...new Set(this.availabilitySlots.map((slot) => slot.slot_date))];
-    },
     getAvailableCalendarMonths() {
       return [...new Set(this.availabilitySlots.map((slot) => getMonthKey(slot.slot_date)))].sort();
     },
@@ -912,6 +915,14 @@ export default defineComponent({
     },
     formatHalfDayLabel(halfDay: HalfDay) {
       return halfDay === 'am' ? 'Förmiddag' : 'Eftermiddag';
+    },
+    getSlotAriaLabel(day: CalendarDay, halfDay: HalfDay) {
+      const slot = halfDay === 'am' ? day.amSlot : day.pmSlot;
+      const label = this.formatHalfDayLabel(halfDay);
+      const date = this.formatSlotDate(day.iso);
+      const availabilityLabel = slot ? 'Ledig tid' : 'Ej ledig tid';
+
+      return `${availabilityLabel}: ${date}, ${label}`;
     },
     isRequestedSlotSelected(slot: AvailabilitySlot) {
       return this.form.requestedDate === slot.slot_date && this.form.requestedHalfDay === slot.half_day;
@@ -1108,9 +1119,6 @@ export default defineComponent({
 .availability-picker__title,
 .availability-picker__hint,
 .availability-picker__status,
-.availability-option__date,
-.availability-option__half-day,
-.availability-option__notes,
 .availability-picker__selection {
   margin: 0;
 }
@@ -1121,19 +1129,12 @@ export default defineComponent({
 }
 
 .availability-picker__hint,
-.availability-picker__status,
-.availability-option__notes {
+.availability-picker__status {
   color: rgba(69, 90, 100, 0.84);
 }
 
 .availability-picker__status--error {
   color: #9f2d20;
-}
-
-.availability-picker__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
-  gap: 0.75rem;
 }
 
 .availability-calendar-shell {
@@ -1246,39 +1247,6 @@ export default defineComponent({
   background: rgba(113, 193, 131, 0.3);
   color: #0f4a1d;
   box-shadow: 0 10px 18px rgba(31, 94, 49, 0.12);
-}
-
-.availability-option {
-  display: grid;
-  gap: 0.25rem;
-  padding: 0.85rem 0.95rem;
-  border-radius: var(--radius-sm);
-  border: 1px solid rgba(69, 90, 100, 0.12);
-  background: rgba(255, 255, 255, 0.88);
-  color: inherit;
-  text-align: left;
-  cursor: pointer;
-  transition: transform 140ms ease, border-color 140ms ease, box-shadow 140ms ease;
-}
-
-.availability-option:hover {
-  transform: translateY(-1px);
-  border-color: rgba(214, 188, 95, 0.72);
-  box-shadow: 0 10px 18px rgba(33, 41, 49, 0.08);
-}
-
-.availability-option--selected {
-  border-color: rgba(214, 188, 95, 0.96);
-  box-shadow: 0 12px 22px rgba(214, 188, 95, 0.2);
-}
-
-.availability-option__date {
-  font-weight: 600;
-  text-transform: capitalize;
-}
-
-.availability-option__half-day {
-  color: var(--q-accent);
 }
 
 .availability-picker__selection {
