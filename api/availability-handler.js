@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 const { PPCRM_AVAILABILITY_URL, PPCRM_AVAILABILITY_SECRET } = process.env;
-const AVAILABILITY_RANGE_DAYS = 90;
+const AVAILABILITY_RANGE_DAYS = 180;
 const AVAILABILITY_REQUEST_TIMEOUT_MS = 6500;
 const halfDaySchema = z.enum(['am', 'pm']);
 const slotSchema = z.object({
