@@ -115,6 +115,26 @@
         </div>
       </section>
 
+      <section class="neighbor-offer">
+        <div class="neighbor-offer__badge">Erbjudande</div>
+        <div class="neighbor-offer__content">
+          <h2 class="section-title">Boka med din granne – båda får rabatt</h2>
+          <p class="section-text">
+            Bor du nära någon som också vill ha rena fönster? När ni bokar samma dag i samma område får ni båda
+            rabatt på er bokning. Ni delar på resvägen, jag kan jobba mer effektivt och rabatten landar direkt på era priser.
+          </p>
+          <ul class="feature-list">
+            <li>Båda hushållen får rabatt på sin bokning.</li>
+            <li>Vi planerar samma dag i samma område, så det blir smidigt för alla.</li>
+            <li>Funkar för villor, radhus, lägenheter och andra fastigheter.</li>
+            <li>Skriv bara i förfrågan att ni vill boka tillsammans, så ordnar jag resten.</li>
+          </ul>
+          <div class="hero-actions q-pt-sm">
+            <q-btn unelevated color="accent" text-color="black" label="Boka och få granne-rabatt" @click="goToPriceList" />
+          </div>
+        </div>
+      </section>
+
       <section id="areas" class="editorial-panel">
         <span class="section-kicker">Områden</span>
         <h2 class="section-title">Jag täcker områden där närhet faktiskt gör skillnad</h2>

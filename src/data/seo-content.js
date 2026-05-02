@@ -55,6 +55,13 @@ const siteSeoContent = {
         answer:
           'Ja, jag har med mig allt som behövs. Se bara till att det är möjligt att komma åt fönstren, så fixar jag resten.',
       },
+      {
+        question: 'Får man rabatt om man bokar tillsammans med en granne?',
+        answer:
+          'Ja, när du och en granne bokar samma dag i samma område får ni båda rabatt på er bokning. Skriv bara i din förfrågan att ni vill boka tillsammans, så lägger jag upp ett gemensamt besök och justerar priset åt er båda.',
+        linkLabel: 'Se priset och anmäl er tillsammans',
+        linkTo: '/pris',
+      },
     ],
   },
   company: {

@@ -278,6 +278,44 @@ a
   color: rgba(255, 255, 255, 0.78)
   line-height: 1.7
 
+.neighbor-offer
+  position: relative
+  border-radius: var(--radius-lg)
+  padding: clamp(1.4rem, 3vw, 2.25rem)
+  background: linear-gradient(135deg, rgba(255, 97, 1, 0.16), rgba(255, 255, 255, 0.85))
+  border: 1px solid rgba(255, 97, 1, 0.35)
+  box-shadow: var(--surface-shadow)
+  overflow: hidden
+
+.neighbor-offer::before
+  content: ''
+  position: absolute
+  top: -40%
+  right: -10%
+  width: 60%
+  height: 180%
+  background: radial-gradient(closest-side, rgba(255, 97, 1, 0.18), transparent 70%)
+  pointer-events: none
+
+.neighbor-offer__badge
+  display: inline-block
+  padding: 0.35rem 0.8rem
+  margin-bottom: 1rem
+  border-radius: 999px
+  background: $accent
+  color: black
+  font-size: 0.78rem
+  font-weight: 700
+  text-transform: uppercase
+  letter-spacing: 0.14em
+  position: relative
+  z-index: 1
+
+.neighbor-offer__content
+  position: relative
+  z-index: 1
+  max-width: 56rem
+
 .faq-shell .q-list
   border-radius: var(--radius-md)
   overflow: hidden
@@ -382,6 +420,14 @@ a
   .mini-card__text
     font-size: 0.92rem
     line-height: 1.55
+
+  .neighbor-offer
+    padding: 1.1rem
+
+  .neighbor-offer__badge
+    font-size: 0.72rem
+    letter-spacing: 0.12em
+    padding: 0.3rem 0.7rem
 
   .cta-band
     align-items: stretch
