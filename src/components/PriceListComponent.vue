@@ -308,9 +308,19 @@
                     <dt>Spröjs</dt>
                     <dd>{{ form.hasSprojs ? 'Ja' : 'Nej' }}</dd>
                   </div>
+                  <template v-if="discountPercent > 0">
+                    <div class="order-summary__row">
+                      <dt>Pris innan rabatt</dt>
+                      <dd>{{ form.totalPrice }} kr</dd>
+                    </div>
+                    <div class="order-summary__row">
+                      <dt>Rabattkod ({{ form.discountCode }}, -{{ discountPercent }}%)</dt>
+                      <dd>-{{ discountSaving }} kr</dd>
+                    </div>
+                  </template>
                   <div class="order-summary__row order-summary__row--total">
                     <dt>Uppskattad kostnad</dt>
-                    <dd>{{ form.totalPrice }} kr*</dd>
+                    <dd>{{ discountedPrice }} kr*</dd>
                   </div>
                 </dl>
                 <p class="order-summary__footnote">*inklusive moms och efter RUT-avdrag</p>
@@ -368,6 +378,30 @@
                     autogrow
                     maxlength="500"
                   />
+
+                  <div class="discount-code-row">
+                    <q-input
+                      v-model="form.discountCode"
+                      filled
+                      label="Rabattkod"
+                      hint="Har du en rabattkod? Ange den här."
+                      maxlength="50"
+                      class="discount-code-row__input"
+                      :success="discountStatus === 'valid'"
+                      :error="discountStatus === 'invalid'"
+                      :error-message="discountStatus === 'invalid' ? 'Ogiltig rabattkod' : ''"
+                      @keyup.enter="applyDiscountCode"
+                    />
+                    <q-btn
+                      unelevated
+                      color="primary"
+                      label="Aktivera"
+                      :loading="discountStatus === 'loading'"
+                      :disable="!form.discountCode.trim()"
+                      class="discount-code-row__btn"
+                      @click="applyDiscountCode"
+                    />
+                  </div>
 
                   <input
                     v-model="form.website"
@@ -717,7 +751,10 @@ export default defineComponent({
         totalPrice: 0,
         cleaningSides: 'outside' as CleaningSides,
         hasSprojs: false,
+        discountCode: '',
       },
+      discountPercent: 0,
+      discountStatus: null as null | 'loading' | 'valid' | 'invalid',
       priceStepScrollTimeoutId: null as number | null,
       minimumOrderValue: 499,
       cart: [] as CartItem[],
@@ -725,8 +762,7 @@ export default defineComponent({
       availabilityError: false,
       availabilitySlots: [] as AvailabilitySlot[],
       selectedAvailabilityMonth: null as string | null,
-    };
-  },
+    };  },
   setup() {
     const quasar = useQuasar();
 
@@ -1058,6 +1094,26 @@ export default defineComponent({
         position: 'top'
       });
     },
+    async applyDiscountCode() {
+      const code = this.form.discountCode.trim();
+      if (!code) return;
+
+      this.discountStatus = 'loading';
+      this.discountPercent = 0;
+
+      try {
+        const response = await axios.post('/api/discount', { code }, { timeout: 5000 });
+        if (response.data?.valid) {
+          this.discountPercent = response.data.percent;
+          this.discountStatus = 'valid';
+          this.form.discountCode = code.toUpperCase();
+        } else {
+          this.discountStatus = 'invalid';
+        }
+      } catch {
+        this.discountStatus = 'invalid';
+      }
+    },
     // Submit form data to backend
     onSubmit() {
       axios.post('/api/kontakt', {
@@ -1073,6 +1129,7 @@ export default defineComponent({
         requestedHalfDay: this.form.requestedHalfDay,
         cart: this.cart,
         totalPrice: this.form.totalPrice,
+        discountCode: this.form.discountCode.trim() || undefined,
         cleaningSides: this.form.cleaningSides,
         hasSprojs: this.form.hasSprojs,
       }, {
@@ -1120,7 +1177,10 @@ export default defineComponent({
         totalPrice: this.form.totalPrice,
         cleaningSides: this.form.cleaningSides as CleaningSides,
         hasSprojs: this.form.hasSprojs,
+        discountCode: '',
       };
+      this.discountPercent = 0;
+      this.discountStatus = null;
       this.quasar.notify({
         message: 'Formuläret har rensats',
         color: 'negative',
@@ -1136,12 +1196,26 @@ export default defineComponent({
       this.$router.push('/fel');
     }
   },
+  watch: {
+    'form.discountCode'(val: string) {
+      if (!val.trim()) {
+        this.discountPercent = 0;
+        this.discountStatus = null;
+      }
+    },
+  },
   // Calculate total price when component is created
   async created() {
     this.calculateTotalPrice();
     await this.loadAvailability();
   },
   computed: {
+    discountSaving(): number {
+      return Math.round(this.form.totalPrice * this.discountPercent / 100);
+    },
+    discountedPrice(): number {
+      return this.form.totalPrice - this.discountSaving;
+    },
     availabilityCalendarDays(): CalendarDay[] {
       return this.getAvailabilityCalendarDays();
     },
@@ -1185,6 +1259,20 @@ export default defineComponent({
   height: 1px;
   opacity: 0;
   pointer-events: none;
+}
+
+.discount-code-row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+}
+
+.discount-code-row__input {
+  flex: 1;
+}
+
+.discount-code-row__btn {
+  margin-top: 8px;
 }
 
 .order-summary {
