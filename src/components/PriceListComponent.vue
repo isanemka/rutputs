@@ -308,6 +308,10 @@
                     <dt>Spröjs</dt>
                     <dd>{{ form.hasSprojs ? 'Ja' : 'Nej' }}</dd>
                   </div>
+                  <div v-if="form.requestedDate" class="order-summary__row">
+                    <dt>Önskat datum</dt>
+                    <dd>{{ formatSlotDate(form.requestedDate) }}{{ form.requestedHalfDay ? ', ' + formatHalfDayLabel(form.requestedHalfDay) : '' }}</dd>
+                  </div>
                   <template v-if="discountPercent > 0">
                     <div class="order-summary__row">
                       <dt>Pris innan rabatt</dt>
