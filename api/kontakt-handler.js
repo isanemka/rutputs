@@ -1,6 +1,7 @@
 import { randomUUID } from 'node:crypto';
 import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses';
 import { z } from 'zod';
+import { parseDiscountCodes } from './discount-codes.js';
 
 const { AWS_REGION, SES_FROM_EMAIL, SES_TO_EMAIL } = process.env;
 const CRM_REQUEST_TIMEOUT_MS = 6500;
@@ -55,6 +56,7 @@ const schema = z
     cart: z.array(cartItemSchema).min(1),
     totalPrice: z.number().positive(),
     website: z.string().trim().max(200).optional(),
+    discountCode: z.string().trim().max(50).optional().or(z.literal('')),
     requestedDate: requestedDateSchema.nullable().optional(),
     requestedHalfDay: halfDaySchema.nullable().optional(),
   })
@@ -136,7 +138,18 @@ export default async function handleKontaktRequest(req, res) {
   const cartSummary = parsed.data.cart
     .map((item) => `${item.quantity} x ${item.description}`)
     .join('\n');
+
+  const discountCode = parsed.data.discountCode?.toUpperCase() || null;
+  const discountPercent = discountCode ? (parseDiscountCodes()[discountCode] ?? 0) : 0;
+  const discountSaving = discountPercent > 0 ? Math.round(parsed.data.totalPrice * discountPercent / 100) : 0;
+  const finalPrice = parsed.data.totalPrice - discountSaving;
+
   const requestLabel = `[kontakt:${randomUUID()}]`;
+  const discountLine = discountCode && discountPercent > 0
+    ? `Rabattkod: ${discountCode} (-${discountPercent}%, -${discountSaving} kr)\nTotalpris efter rabatt: ${finalPrice} kr`
+    : discountCode
+      ? `Rabattkod: ${discountCode} (ogiltig)`
+      : null;
   const detailedMessage = [
     'Ny offertförfrågan från Rutputs.',
     '',
@@ -151,7 +164,7 @@ export default async function handleKontaktRequest(req, res) {
     '',
     'Valda tjänster:',
     cartSummary,
-    '',
+    ...(discountLine ? ['', discountLine, ''] : []),
     parsed.data.message
       ? `Kundens meddelande:\n${parsed.data.message}`
       : 'Kundens meddelande: -',
@@ -188,6 +201,9 @@ export default async function handleKontaktRequest(req, res) {
           requested_date: parsed.data.requestedDate || null,
           requested_half_day: parsed.data.requestedHalfDay || null,
           total_price: parsed.data.totalPrice,
+          discount_code: discountCode,
+          discount_percent: discountPercent || null,
+          final_price: finalPrice,
           cart: parsed.data.cart,
         },
       }),

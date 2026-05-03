@@ -1,6 +1,7 @@
 import 'dotenv/config';
 import http from 'node:http';
 import handleAvailabilityRequest from '../api/availability-handler.js';
+import handleDiscountRequest from '../api/discount-handler.js';
 import handleKontaktRequest from '../api/kontakt-handler.js';
 
 const port = Number(process.env.API_PORT || 3001);
@@ -68,6 +69,15 @@ const server = http.createServer(async (req, res) => {
         createResponseAdapter(res)
       );
 
+      return;
+    }
+
+    if (url.pathname === '/api/discount') {
+      const body = req.method === 'POST' ? await readJsonBody(req) : undefined;
+      await handleDiscountRequest(
+        { method: req.method, body },
+        createResponseAdapter(res)
+      );
       return;
     }
 
