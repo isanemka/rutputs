@@ -1114,6 +1114,12 @@ export default defineComponent({
           this.discountPercent = response.data.percent;
           this.discountStatus = 'valid';
           this.form.discountCode = code.toUpperCase();
+          this.$q.notify({
+            type: 'positive',
+            message: `Rabattkod aktiverad – ${response.data.percent}% rabatt!`,
+            icon: 'check_circle',
+            timeout: 4000,
+          });
         } else {
           this.discountStatus = 'invalid';
         }
