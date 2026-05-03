@@ -1,23 +1,10 @@
 import { randomUUID } from 'node:crypto';
 import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses';
 import { z } from 'zod';
+import { parseDiscountCodes } from './discount-codes.js';
 
 const { AWS_REGION, SES_FROM_EMAIL, SES_TO_EMAIL } = process.env;
 const CRM_REQUEST_TIMEOUT_MS = 6500;
-
-function parseDiscountCodes() {
-  const raw = process.env.DISCOUNT_CODES;
-  if (!raw) return {};
-
-  return raw.split(',').reduce((acc, entry) => {
-    const [code, percentStr] = entry.trim().split(':');
-    const percent = Number(percentStr);
-    if (code && Number.isInteger(percent) && percent > 0 && percent <= 100) {
-      acc[code.toUpperCase()] = percent;
-    }
-    return acc;
-  }, {});
-}
 
 const ses =
   AWS_REGION && SES_FROM_EMAIL && SES_TO_EMAIL

@@ -388,9 +388,9 @@
                       maxlength="50"
                       class="discount-code-row__input"
                       :success="discountStatus === 'valid'"
-                      :error="discountStatus === 'invalid'"
-                      :error-message="discountStatus === 'invalid' ? 'Ogiltig rabattkod' : ''"
-                      @keyup.enter="applyDiscountCode"
+                      :error="discountStatus === 'invalid' || discountStatus === 'error'"
+                      :error-message="discountStatus === 'invalid' ? 'Ogiltig rabattkod' : discountStatus === 'error' ? 'Kunde inte validera koden just nu, försök igen' : ''"
+                      @keydown.enter.prevent="applyDiscountCode"
                     />
                     <q-btn
                       unelevated
@@ -754,7 +754,9 @@ export default defineComponent({
         discountCode: '',
       },
       discountPercent: 0,
-      discountStatus: null as null | 'loading' | 'valid' | 'invalid',
+      discountValidatedCode: '',
+      discountStatus: null as null | 'loading' | 'valid' | 'invalid' | 'error',
+      discountRequestId: 0,
       priceStepScrollTimeoutId: null as number | null,
       minimumOrderValue: 499,
       cart: [] as CartItem[],
@@ -1098,12 +1100,17 @@ export default defineComponent({
       const code = this.form.discountCode.trim();
       if (!code) return;
 
+      this.discountRequestId++;
+      const requestId = this.discountRequestId;
+
       this.discountStatus = 'loading';
       this.discountPercent = 0;
 
       try {
         const response = await axios.post('/api/discount', { code }, { timeout: 5000 });
+        if (requestId !== this.discountRequestId) return;
         if (response.data?.valid) {
+          this.discountValidatedCode = code.toUpperCase();
           this.discountPercent = response.data.percent;
           this.discountStatus = 'valid';
           this.form.discountCode = code.toUpperCase();
@@ -1111,7 +1118,8 @@ export default defineComponent({
           this.discountStatus = 'invalid';
         }
       } catch {
-        this.discountStatus = 'invalid';
+        if (requestId !== this.discountRequestId) return;
+        this.discountStatus = 'error';
       }
     },
     // Submit form data to backend
@@ -1198,9 +1206,9 @@ export default defineComponent({
   },
   watch: {
     'form.discountCode'(val: string) {
-      if (!val.trim()) {
+      if (val.toUpperCase() !== this.discountValidatedCode) {
         this.discountPercent = 0;
-        this.discountStatus = null;
+        this.discountStatus = val.trim() ? null : null;
       }
     },
   },
