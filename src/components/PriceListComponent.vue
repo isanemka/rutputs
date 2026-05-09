@@ -46,7 +46,7 @@
         <span class="section-kicker">Bra att veta</span>
           <h2 class="section-title">Riktpris innan offert</h2>
         <p class="section-text">
-            Paketpriserna ovan är från-priser för normalt smutsade och normalt åtkomliga fönster.
+            Paketpriserna ovan är ungefärliga priser för normalt smutsade och normalt åtkomliga fönster.
             Eventuella tillägg kan tillkomma vid exempelvis spröjsade fönster, hård nedsmutsning eller svår åtkomst.
 
         </p>
@@ -128,7 +128,7 @@
                   <div class="package-step__preview" v-if="getActiveTier()">
                     <p class="package-step__preview-label">Valt paket</p>
                     <p class="package-step__preview-range">{{ getActiveTier()?.windowRange }}</p>
-                    <p class="package-step__preview-price">{{ form.totalPrice > 0 ? 'Från ' + form.totalPrice + ' kr' : getActiveTier()?.priceFrom }}</p>
+                    <p class="package-step__preview-price">{{ form.totalPrice > 0 ? 'ca ' + form.totalPrice + ' kr' : getActiveTier()?.priceFrom }}</p>
                   </div>
                   <p v-else class="text-center package-step__hint">
                     Välj antal fönster för att se vilket paket som passar.
@@ -617,7 +617,7 @@ const priceTiers: PriceTier[] = [
   {
     id: 'tier-1',
     windowRange: '1-6 fönster',
-    priceFrom: 'Från 499 kr',
+    priceFrom: 'ca 499 kr',
     label: 'Perfekt för mindre bostäder',
     minWindows: 1,
     maxWindows: 6,
@@ -626,7 +626,7 @@ const priceTiers: PriceTier[] = [
   {
     id: 'tier-2',
     windowRange: '7-12 fönster',
-    priceFrom: 'Från 799 kr',
+    priceFrom: 'ca 799 kr',
     label: 'Vanligt val för lägenhet och mindre villa',
     minWindows: 7,
     maxWindows: 12,
@@ -635,7 +635,7 @@ const priceTiers: PriceTier[] = [
   {
     id: 'tier-3',
     windowRange: '13-20 fönster',
-    priceFrom: 'Från 999 kr',
+    priceFrom: 'ca 999 kr',
     label: 'Populärt val för familjebostad',
     minWindows: 13,
     maxWindows: 20,
@@ -644,7 +644,7 @@ const priceTiers: PriceTier[] = [
   {
     id: 'tier-4',
     windowRange: '21-30 fönster',
-    priceFrom: 'Från 1 399 kr',
+    priceFrom: 'ca 1 399 kr',
     label: 'För större villa och fler glaspartier',
     minWindows: 21,
     maxWindows: 30,
@@ -653,7 +653,7 @@ const priceTiers: PriceTier[] = [
   {
     id: 'tier-5',
     windowRange: '31-40 fönster',
-    priceFrom: 'Från 1 699 kr',
+    priceFrom: 'ca 1 699 kr',
     label: 'För stora fastigheter och många fönsterpartier',
     minWindows: 31,
     maxWindows: 40,
@@ -662,7 +662,7 @@ const priceTiers: PriceTier[] = [
   {
     id: 'tier-6',
     windowRange: '41+ fönster',
-    priceFrom: 'Från 1 999 kr',
+    priceFrom: 'ca 1 999 kr',
     label: 'För mycket stora uppdrag med många fönster',
     minWindows: 41,
     maxWindows: Number.POSITIVE_INFINITY,
