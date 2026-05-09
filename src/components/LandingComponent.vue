@@ -55,7 +55,7 @@
           <span class="section-kicker">Därför fungerar det</span>
           <h2 class="section-title">Byggt för riktiga hem och riktiga bokningar</h2>
           <ul class="feature-list">
-            <li>Tydligt från-pris och prisindikation online.</li>
+            <li>Tydlig prisindikation direkt online.</li>
             <li>Passar villor, radhus, lägenheter och andra fastigheter.</li>
             <li>Direkt kontakt med personen som också kommer och putsar.</li>
             <li>Möjlighet till abonnemang för dig som vill ha återkommande puts.</li>
