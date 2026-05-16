@@ -15,29 +15,20 @@ export interface ReviewsData {
 
 export const reviewsData: ReviewsData = {
   aggregateRating: 5.0,
-  reviewCount: 12,
-  googleBusinessUrl: 'https://g.page/rutputs',
+  reviewCount: 3,
+  googleBusinessUrl: 'https://g.page/r/rutputs/review',
   reviews: [
     {
-      author: 'Anna L.',
+      author: 'Ulla S.',
       rating: 5,
-      text: 'Otroligt nöjd! Anton kom själv, var prick i tid och fönstren har aldrig sett så rena ut. Tydligt pris från start utan krångel.',
-      date: '2026-04-12',
-      area: 'Järfälla',
+      text: 'Aldrig haft så fina fönster tidigare.',
+      date: '2026-04-25',
     },
     {
-      author: 'Mikael S.',
+      author: 'Delina Le Nguyen',
       rating: 5,
-      text: 'Smidig bokning online och bra kommunikation. Boken bra abonnemang för villan. Rekommenderar varmt!',
-      date: '2026-03-28',
-      area: 'Täby',
-    },
-    {
-      author: 'Sara H.',
-      rating: 5,
-      text: 'Snabb återkoppling, vänligt bemötande och ett resultat som verkligen syns. Tog även med grannen och vi fick båda rabatt.',
-      date: '2026-03-05',
-      area: 'Solna',
+      text: 'Jättenoga putsade. Det blev mycket rent och snyggt. Tack för det!',
+      date: '2026-04-25',
     },
   ],
 };

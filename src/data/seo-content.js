@@ -243,6 +243,88 @@ const siteSeoContent = {
       ],
     },
     {
+      slug: 'varputs',
+      name: 'Vårputs',
+      title: 'Vårputs av fönster i Stockholm – Boka tid med RUT | Rutputs',
+      description:
+        'Boka vårputsning av fönstren i Stockholm. RUT-avdrag från 499 kr. Få bort pollen, saltskador och vintersmuts inför sommaren. Smidig bokning online.',
+      bodyTitle: 'Vårputs av fönster i Stockholm',
+      bodyIntro:
+        'Vintern lämnar tydliga spår på fönstren: saltdamm, regnränder och pollen som lagrats sedan första marsdagarna. En vårputs är det snabbaste sättet att få hem och kontor att kännas ljusare när solen börjar visa sig på riktigt. Boka in din vårputsning nu så hinner du få en bra tid innan högsäsongen i maj.',
+      benefits: [
+        'Få bort pollen, saltskador och vintersmuts på en gång.',
+        'Fönstren släpper in upp till 30 % mer ljus efter en grundlig vårputs.',
+        'Boka nu och säkra en tid innan högsäsong (mitten av maj).',
+        'RUT-avdrag direkt på priset – från 499 kr.',
+        'Granne-rabatt om ni bokar samma dag i samma område.',
+      ],
+      faq: [
+        {
+          question: 'När är bäst att boka vårputs?',
+          answer:
+            'Mellan mitten av april och slutet av maj är populärast. Boka helst 2–3 veckor i förväg för att få en tid som passar, särskilt under maj.',
+        },
+        {
+          question: 'Vad skiljer en vårputs från vanlig fönsterputs?',
+          answer:
+            'Innehållsmässigt är det samma noggranna fönsterputsning, men jag är extra uppmärksam på vintersmuts, saltavlagringar och pollenlager som sätter sig under den kallare halvan av året.',
+        },
+        {
+          question: 'Hinner jag boka till maj?',
+          answer:
+            'Det beror på när du läser detta. Skicka in din förfrågan så återkommer jag inom kort med tillgängliga tider.',
+          linkLabel: 'Få pris och tid direkt',
+          linkTo: '/pris',
+        },
+        {
+          question: 'Får jag RUT-avdrag även på vårputs?',
+          answer:
+            'Ja, RUT-avdraget gäller fönsterputsning året om för privatpersoner som uppfyller Skatteverkets villkor.',
+        },
+      ],
+    },
+    {
+      slug: 'hostputs',
+      name: 'Höstputs',
+      title: 'Höstputs av fönster i Stockholm – Boka tid med RUT | Rutputs',
+      description:
+        'Boka höstputsning av fönstren i Stockholm. RUT-avdrag från 499 kr. Få bort sommarens damm, regnränder och insekter inför vintern. Smidig bokning online.',
+      bodyTitle: 'Höstputs av fönster i Stockholm',
+      bodyIntro:
+        'När mörkret kryper in tidigare på dagen blir varje smutsig fönsterruta extra tydlig. Med en höstputs får du bort sommarens damm, regnränder och insektsspår innan vintern slår till. Det ger ljusare rum, bättre utsikt och en känsla av att hemmet är förberett för den mörkare halvan av året.',
+      benefits: [
+        'Maximera ljusinsläppet under den mörka årstiden.',
+        'Bli av med damm, regnränder och insektsspår från sommaren.',
+        'Bra läge att passa på innan första frosten kommer.',
+        'RUT-avdrag direkt på priset – från 499 kr.',
+        'Kombinera gärna med abonnemang för en automatisk vårputs nästa år.',
+      ],
+      faq: [
+        {
+          question: 'När är bäst att boka höstputs?',
+          answer:
+            'Från mitten av september till slutet av oktober. Många väljer en sista helg innan första frosten, men putsning fungerar bra hela hösten.',
+        },
+        {
+          question: 'Behöver jag putsa fönstren även på hösten?',
+          answer:
+            'Många gör bara vårputs, men en höstputs gör en stor skillnad under den mörka delen av året, då varje droppe ljus räknas. Sotpartiklar och regnskvätt sätter sig också tydligare under hösten.',
+        },
+        {
+          question: 'Kan jag teckna abonnemang som börjar med höstputs?',
+          answer:
+            'Ja, många kunder börjar med en höstputs och tecknar sedan abonnemang för automatisk vårputs nästa år.',
+          linkLabel: 'Läs mer om abonnemang',
+          linkTo: '/tjanst/abonnemang-fonsterputs',
+        },
+        {
+          question: 'Tar det längre tid att göra höstputs?',
+          answer:
+            'Nej, det är samma jobb som vanlig fönsterputsning. Tidsåtgången beror på antalet fönster och tillgängligheten.',
+        },
+      ],
+    },
+    {
       slug: 'abonnemang-fonsterputs',
       name: 'Abonnemang för fönsterputs',
       title: 'Abonnemang för fönsterputs i Stockholm – RUT-avdrag | Rutputs',
