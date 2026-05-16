@@ -11,14 +11,14 @@ ordningen punkterna är listade.
 Gå till **Vercel → Project (rutputs) → Settings → Environment Variables**
 och lägg till följande för både `Production`, `Preview` och `Development`:
 
-| Variabel | Värde | Var hittar du det? |
-|---|---|---|
-| `VITE_GA_MEASUREMENT_ID` | `G-XXXXXXXXXX` | Google Analytics → Admin → Datastreams → Webb → Mätnings-ID |
-| `VITE_GOOGLE_ADS_ID` | `AW-XXXXXXXXXX` | Google Ads → Verktyg → Konverteringar → klicka på din konverterings­åtgärd → "Installera taggen" |
-| `VITE_GOOGLE_ADS_LEAD_LABEL` | `AbC-D_efGhIj` | Lead-konverteringens label (samma som `VITE_GOOGLE_ADS_CONVERSION_LABEL` om du bara har en) |
-| `VITE_GOOGLE_ADS_PHONE_LABEL` | `XyZ-1_qrStuV` | Telefonklick-konverteringens label |
-| `VITE_META_PIXEL_ID` | `1234567890123456` | Meta Events Manager → Datakällor → din pixel → Inställningar |
-| `VITE_CLARITY_ID` | `xxxxxxxxxx` | clarity.microsoft.com → ditt projekt → Settings → Setup → "Tag" |
+| Variabel                      | Värde              | Var hittar du det?                                                                               |
+| ----------------------------- | ------------------ | ------------------------------------------------------------------------------------------------ |
+| `VITE_GA_MEASUREMENT_ID`      | `G-XXXXXXXXXX`     | Google Analytics → Admin → Datastreams → Webb → Mätnings-ID                                      |
+| `VITE_GOOGLE_ADS_ID`          | `AW-XXXXXXXXXX`    | Google Ads → Verktyg → Konverteringar → klicka på din konverterings­åtgärd → "Installera taggen" |
+| `VITE_GOOGLE_ADS_LEAD_LABEL`  | `AbC-D_efGhIj`     | Lead-konverteringens label (samma som `VITE_GOOGLE_ADS_CONVERSION_LABEL` om du bara har en)      |
+| `VITE_GOOGLE_ADS_PHONE_LABEL` | `XyZ-1_qrStuV`     | Telefonklick-konverteringens label                                                               |
+| `VITE_META_PIXEL_ID`          | `1234567890123456` | Meta Events Manager → Datakällor → din pixel → Inställningar                                     |
+| `VITE_CLARITY_ID`             | `xxxxxxxxxx`       | clarity.microsoft.com → ditt projekt → Settings → Setup → "Tag"                                  |
 
 > **OBS:** Klicka `Redeploy` efter att variabler lagts till – de bakas in vid build-tid.
 
@@ -141,12 +141,12 @@ När allt är deployat – kör igenom denna lista innan du startar annonser:
 
 Du behöver inte alla samtidigt – välj 1-2 att börja med.
 
-| Kanal | Mål | Föreslagen start-budget | Tips |
-|---|---|---|---|
-| Google Search Ads | Hetaste söktrafik | 100 kr/dag | Sökord: `fönsterputs [område]`, `fönsterputs RUT`, `fönsterputs villa stockholm`. Använd dina nya områdessidor som landningssidor – matcha sökord mot område. |
-| Google Performance Max | Bred täckning | 75-150 kr/dag | Slå på efter att du har minst 30 konverteringar registrerade i kontot (annars hittar algoritmen inte mönstret) |
-| Meta Lead Ads | Lead med låg friktion | 75 kr/dag | Använd "Lead"-mål, koppla pixeln. Bilder från riktiga jobb fungerar bäst. |
-| Google Local Services Ads | Verifierade leads | Per-lead-pris | Kräver bakgrundskontroll men ger högkvalitativa leads, värt att ansöka |
+| Kanal                     | Mål                   | Föreslagen start-budget | Tips                                                                                                                                                          |
+| ------------------------- | --------------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Google Search Ads         | Hetaste söktrafik     | 100 kr/dag              | Sökord: `fönsterputs [område]`, `fönsterputs RUT`, `fönsterputs villa stockholm`. Använd dina nya områdessidor som landningssidor – matcha sökord mot område. |
+| Google Performance Max    | Bred täckning         | 75-150 kr/dag           | Slå på efter att du har minst 30 konverteringar registrerade i kontot (annars hittar algoritmen inte mönstret)                                                |
+| Meta Lead Ads             | Lead med låg friktion | 75 kr/dag               | Använd "Lead"-mål, koppla pixeln. Bilder från riktiga jobb fungerar bäst.                                                                                     |
+| Google Local Services Ads | Verifierade leads     | Per-lead-pris           | Kräver bakgrundskontroll men ger högkvalitativa leads, värt att ansöka                                                                                        |
 
 ---
 
@@ -172,4 +172,5 @@ Saker som inte är gjorda än men ger ytterligare lyft:
 ---
 
 ## Behöver du hjälp med något av detta?
+
 Fråga bara, så fixar jag eller går igenom det med dig steg-för-steg.

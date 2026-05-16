@@ -58,7 +58,7 @@ function trackEvent(eventName: string, params: Record<string, unknown> = {}) {
 
 function trackConversion(
   conversionType: ConversionType,
-  params: Record<string, unknown> = {},
+  params: Record<string, unknown> = {}
 ) {
   if (typeof window === 'undefined' || !hasTrackingConsent()) {
     return;
@@ -235,9 +235,7 @@ function initializeMetaPixel() {
   (function (f: any, b: Document, e: string, v: string) {
     if (f.fbq) return;
     const n: any = (f.fbq = function () {
-      n.callMethod
-        ? n.callMethod.apply(n, arguments)
-        : n.queue.push(arguments);
+      n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
     });
     if (!f._fbq) f._fbq = n;
     n.push = n;
@@ -249,7 +247,12 @@ function initializeMetaPixel() {
     t.src = v;
     const s = b.getElementsByTagName(e)[0];
     s.parentNode?.insertBefore(t, s);
-  })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+  })(
+    window,
+    document,
+    'script',
+    'https://connect.facebook.net/en_US/fbevents.js'
+  );
   /* eslint-enable */
 
   window.fbq('init', META_PIXEL_ID);
@@ -295,7 +298,11 @@ function initializeAllowedAnalytics() {
     // loads would otherwise be missed until the next router navigation.
     // Meta Pixel already fires its own PageView during init, so only send
     // the GA/dataLayer event here to avoid double-counting.
-    if (typeof window !== 'undefined' && typeof window.gtag === 'function' && !GTM_ID) {
+    if (
+      typeof window !== 'undefined' &&
+      typeof window.gtag === 'function' &&
+      !GTM_ID
+    ) {
       window.gtag('event', 'page_view', {
         page_path: window.location.pathname + window.location.search,
         page_location: window.location.href,
