@@ -33,6 +33,10 @@ const routes: RouteRecordRaw[] = [
         path: 'omrade/:area',
         component: () => import('src/components/AreaComponent.vue'),
       },
+      {
+        path: 'tjanst/:service',
+        component: () => import('src/components/ServicePageComponent.vue'),
+      },
     ],
   },
 

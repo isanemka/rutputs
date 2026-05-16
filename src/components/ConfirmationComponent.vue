@@ -23,7 +23,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, onMounted } from 'vue';
+import { trackConversion, trackEvent } from 'src/boot/analytics';
 
 export default defineComponent({
   name: 'ConfirmationComponent',
@@ -35,6 +36,34 @@ export default defineComponent({
         content: 'noindex, nofollow'
       }
     }
+  },
+  setup() {
+    onMounted(() => {
+      if (typeof window === 'undefined') return;
+      const pendingKey = 'rutputs:pending_lead';
+      let isPending = false;
+      try {
+        isPending = window.sessionStorage.getItem(pendingKey) === '1';
+        if (isPending) {
+          window.sessionStorage.removeItem(pendingKey);
+        }
+      } catch {
+        // Storage blocked – skip tracking but keep page functional.
+        return;
+      }
+      if (!isPending) {
+        // Direct visit, refresh, or back-navigation – do not double-count.
+        return;
+      }
+
+      trackEvent('lead_submit', {
+        page_location: window.location.href,
+      });
+      trackConversion('lead', {
+        value: 499,
+        currency: 'SEK',
+      });
+    });
   },
   methods: {
     goToLanding() {

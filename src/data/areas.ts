@@ -43,5 +43,37 @@ export const areas: AreaLink[] = [
   {
     slug: 'ostermalm',
     name: 'Östermalm',
-  }
+  },
+  {
+    slug: 'vallingby',
+    name: 'Vällingby',
+  },
+  {
+    slug: 'hasselby',
+    name: 'Hässelby',
+  },
+  {
+    slug: 'danderyd',
+    name: 'Danderyd',
+  },
+  {
+    slug: 'kungsholmen',
+    name: 'Kungsholmen',
+  },
+  {
+    slug: 'norrmalm',
+    name: 'Norrmalm',
+  },
+  {
+    slug: 'bromsten',
+    name: 'Bromsten',
+  },
+  {
+    slug: 'nacka',
+    name: 'Nacka',
+  },
+  {
+    slug: 'upplands-vasby',
+    name: 'Upplands Väsby',
+  },
 ];
