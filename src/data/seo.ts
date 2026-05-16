@@ -40,6 +40,7 @@ export interface ServiceSeo {
   bodyIntro: string;
   benefits: string[];
   faq: SeoFaq[];
+  contactOnly?: boolean;
 }
 
 interface SiteSeoContent {

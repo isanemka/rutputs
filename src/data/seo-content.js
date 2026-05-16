@@ -337,6 +337,7 @@ const siteSeoContent = {
     {
       slug: 'abonnemang-fonsterputs',
       name: 'Abonnemang för fönsterputs',
+      contactOnly: true,
       title: 'Abonnemang för fönsterputs i Stockholm – RUT-avdrag | Rutputs',
       description:
         'Återkommande fönsterputs som abonnemang. Du slipper boka om varje gång, får samma person varje besök och rabatt jämfört med engångsbokning.',
