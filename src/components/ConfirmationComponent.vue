@@ -41,11 +41,20 @@ export default defineComponent({
     onMounted(() => {
       if (typeof window === 'undefined') return;
       const pendingKey = 'rutputs:pending_lead';
-      if (window.sessionStorage.getItem(pendingKey) !== '1') {
+      let isPending = false;
+      try {
+        isPending = window.sessionStorage.getItem(pendingKey) === '1';
+        if (isPending) {
+          window.sessionStorage.removeItem(pendingKey);
+        }
+      } catch {
+        // Storage blocked – skip tracking but keep page functional.
+        return;
+      }
+      if (!isPending) {
         // Direct visit, refresh, or back-navigation – do not double-count.
         return;
       }
-      window.sessionStorage.removeItem(pendingKey);
 
       trackEvent('lead_submit', {
         page_location: window.location.href,

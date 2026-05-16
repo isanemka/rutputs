@@ -16,7 +16,7 @@ export interface ReviewsData {
 export const reviewsData: ReviewsData = {
   aggregateRating: 5.0,
   reviewCount: 2,
-  googleBusinessUrl: 'https://g.page/r/rutputs/review',
+  googleBusinessUrl: 'https://www.google.com/search?q=Rutputs&stick=H4sIAAAAAAAAAONgU1I1qDAxM7U0SDNONDQ1SDUxSkqzMqgwNzExMzdITDa1NLRMNTQyWsTKHlRaUlBaUgwAQ7U7RjMAAAA&mat=CajQ30ohy9Xe',
   reviews: [
     {
       author: 'Ulla S.',

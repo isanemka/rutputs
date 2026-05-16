@@ -11,16 +11,14 @@ const GOOGLE_ADS_LEAD_LABEL =
   import.meta.env.VITE_GOOGLE_ADS_LEAD_LABEL ||
   import.meta.env.VITE_GOOGLE_ADS_CONVERSION_LABEL;
 const GOOGLE_ADS_PHONE_LABEL = import.meta.env.VITE_GOOGLE_ADS_PHONE_LABEL;
-const GOOGLE_ADS_FORM_LABEL = import.meta.env.VITE_GOOGLE_ADS_FORM_LABEL;
 const META_PIXEL_ID = import.meta.env.VITE_META_PIXEL_ID;
 const CLARITY_ID = import.meta.env.VITE_CLARITY_ID;
 
-type ConversionType = 'lead' | 'phone_call' | 'form_submit';
+type ConversionType = 'lead' | 'phone_call';
 
 const adsLabelFor = (type: ConversionType): string | undefined => {
   if (type === 'lead') return GOOGLE_ADS_LEAD_LABEL;
   if (type === 'phone_call') return GOOGLE_ADS_PHONE_LABEL;
-  if (type === 'form_submit') return GOOGLE_ADS_FORM_LABEL;
   return undefined;
 };
 
@@ -292,6 +290,17 @@ function initializeAllowedAnalytics() {
     initializeMetaPixel();
     initializeClarity();
     bindPhoneClickTracking();
+    // Report a page view for the current route now that gtag is loaded.
+    // GA4 auto page_view is disabled (send_page_view: false) so SPA initial
+    // loads would otherwise be missed until the next router navigation.
+    // Meta Pixel already fires its own PageView during init, so only send
+    // the GA/dataLayer event here to avoid double-counting.
+    if (typeof window !== 'undefined' && typeof window.gtag === 'function' && !GTM_ID) {
+      window.gtag('event', 'page_view', {
+        page_path: window.location.pathname + window.location.search,
+        page_location: window.location.href,
+      });
+    }
   });
 }
 

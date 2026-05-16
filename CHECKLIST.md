@@ -17,7 +17,6 @@ och lägg till följande för både `Production`, `Preview` och `Development`:
 | `VITE_GOOGLE_ADS_ID` | `AW-XXXXXXXXXX` | Google Ads → Verktyg → Konverteringar → klicka på din konverterings­åtgärd → "Installera taggen" |
 | `VITE_GOOGLE_ADS_LEAD_LABEL` | `AbC-D_efGhIj` | Lead-konverteringens label (samma som `VITE_GOOGLE_ADS_CONVERSION_LABEL` om du bara har en) |
 | `VITE_GOOGLE_ADS_PHONE_LABEL` | `XyZ-1_qrStuV` | Telefonklick-konverteringens label |
-| `VITE_GOOGLE_ADS_FORM_LABEL` | (valfritt) | Om du vill mäta enbart "form_submit" separat |
 | `VITE_META_PIXEL_ID` | `1234567890123456` | Meta Events Manager → Datakällor → din pixel → Inställningar |
 | `VITE_CLARITY_ID` | `xxxxxxxxxx` | clarity.microsoft.com → ditt projekt → Settings → Setup → "Tag" |
 
@@ -50,10 +49,12 @@ Du har redan `G-5SEKFW68XH` som default i koden. Kontrollera att:
   - `/omrade/vallingby`, `/omrade/hasselby`, `/omrade/danderyd`,
     `/omrade/kungsholmen`, `/omrade/norrmalm`, `/omrade/bromsten`,
     `/omrade/nacka`, `/omrade/upplands-vasby`
-- [ ] Begär indexering av de **3 nya tjänstesidorna**:
+- [ ] Begär indexering av de **5 nya tjänstesidorna**:
   - `/tjanst/villa-fonsterputs`
   - `/tjanst/lagenhet-fonsterputs`
   - `/tjanst/abonnemang-fonsterputs`
+  - `/tjanst/varputs`
+  - `/tjanst/hostputs`
 - [ ] Kontrollera Coverage-rapporten 7-14 dagar efter att se att alla nya URL:er är indexerade
 
 ---
@@ -96,7 +97,7 @@ Du har redan en profil med recensioner. Maxa den så här:
 - [ ] **Lägg till tjänster** under "Tjänster" – matchar dina nya sidor: Villa-fönsterputs, Lägenhets-fönsterputs, Abonnemang, Företagsfönsterputs
 - [ ] **Lägg till områden du täcker** under "Serviceområde" – inkludera alla 18 områden (de matchar dina landningssidor)
 - [ ] **Lägg upp ett inlägg per vecka** (sektionen "Uppdateringar") – t.ex. "Bokar in maj-tider i Bromma och Solna nu"
-- [ ] **Skapa en kort URL** för att be kunder lämna recensioner: `g.page/r/rutputs/review`
+- [ ] **Skapa en kort URL** för att be kunder lämna recensioner – gå till [Google Business Profile](https://business.google.com) → "Be om recensioner" för att hämta din direktlänk
 - [ ] Skicka SMS-länk till de senaste 10 nöjda kunderna och be om en recension (mål: 20+ recensioner ger fetare rich snippets)
 
 **När du har riktiga recensioner:** Uppdatera `src/data/reviews.ts` med
@@ -125,7 +126,7 @@ Detta är inte ett måste men ger dig superinsikt om var folk klickar.
 När allt är deployat – kör igenom denna lista innan du startar annonser:
 
 - [ ] Öppna `https://www.rutputs.nu/omrade/vallingby` i inkognitofönster och se att den laddar med rätt title (titta i flik-baren)
-- [ ] Kör `https://www.rutputs.nu/sitemap.xml` – skall innehålla 25 URL:er
+- [ ] Kör `https://www.rutputs.nu/sitemap.xml` – skall innehålla 27 URL:er
 - [ ] Kör en URL genom Googles **Rich Results Test** (https://search.google.com/test/rich-results) – ska visa LocalBusiness, Service, FAQPage och BreadcrumbList
 - [ ] Kör startsidan genom **PageSpeed Insights** – sikta på ≥90 på mobil
 - [ ] Acceptera cookies på sidan och kolla i DevTools → Network att `gtag/js`, `fbevents.js` och `clarity.ms/tag` laddar
@@ -166,7 +167,6 @@ Saker som inte är gjorda än men ger ytterligare lyft:
 - **Förenklad steg 1 i prisformuläret** – minska antalet fält i första steget till 1-2 så att fler börjar
 - **Exit-intent-popup** – när användaren rör musen mot fliken på desktop: "Vänta! Få 10 % rabatt om du lämnar e-post"
 - **Bloggsektion** – guideartiklar som "När är bäst att putsa fönstren?" och "Så fungerar RUT-avdraget för fönsterputs" → fångar long-tail-trafik
-- **Säsongs-LP:er** – `/varputs` (april-maj) och `/hostputs` (sep-okt) som du kan annonsera mot under säsongerna
 - **Recensionsautomatik** – SMS-länk till kunden 2 dagar efter avslutat jobb med direktlänk till Google-recension
 
 ---
