@@ -120,6 +120,7 @@
 
       <section class="editorial-panel reviews-shell">
         <span class="section-kicker">Kundomdömen</span>
+        <h2 class="section-title">Omdömen från kunder som bokat fönsterputs i Stockholm</h2>
         <p class="section-text">
           Riktiga omdömen från kunder som bokat fönsterputs i Stockholm. Vill du läsa fler eller lämna ett eget omdöme hittar du Rutputs på Google.
         </p>
