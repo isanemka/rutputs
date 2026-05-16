@@ -85,16 +85,15 @@
     <!-- Cookie Consent Banner -->
     <CookieConsentBanner />
 
-    <!-- Sticky mobile CTA bar -->
-    <div v-if="$q.screen.lt.md" class="mobile-cta-bar" role="region" aria-label="Snabbkontakt">
-      <a href="tel:+46734644604" class="mobile-cta-bar__phone" aria-label="Ring 0734-64 46 04">
-        <q-icon name="phone" size="20px" />
-        <span>Ring</span>
-      </a>
-      <router-link to="/pris" class="mobile-cta-bar__primary">
-        Få pris – 30 sek
-      </router-link>
-    </div>
+    <!-- Sticky mobile call button -->
+    <a
+      v-if="$q.screen.lt.md"
+      href="tel:+46734644604"
+      class="mobile-call-fab"
+      aria-label="Ring 0734-64 46 04"
+    >
+      <q-icon name="phone" size="24px" />
+    </a>
   </q-layout>
 </template>
 
@@ -470,52 +469,25 @@ export default defineComponent({
   }
 }
 
-@media (max-width: 1023px) {
-  .site-layout {
-    padding-bottom: calc(72px + env(safe-area-inset-bottom));
-  }
-}
-
-.mobile-cta-bar {
+.mobile-call-fab {
   position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  gap: 0.5rem;
-  padding: 0.6rem 0.75rem calc(0.6rem + env(safe-area-inset-bottom));
-  background: rgba(27, 35, 42, 0.96);
-  backdrop-filter: blur(12px);
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  z-index: 2500;
-  box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.25);
-}
-
-.mobile-cta-bar__phone,
-.mobile-cta-bar__primary {
-  flex: 1;
+  bottom: calc(1rem + env(safe-area-inset-bottom));
+  right: 0.9rem;
+  width: 56px;
+  height: 56px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.45rem;
-  padding: 0.85rem 0.5rem;
-  border-radius: 0.6rem;
-  font-weight: 700;
-  font-size: 0.95rem;
-  text-decoration: none;
-  line-height: 1;
-}
-
-.mobile-cta-bar__phone {
-  background: rgba(255, 255, 255, 0.08);
-  color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  flex: 0 0 auto;
-  min-width: 92px;
-}
-
-.mobile-cta-bar__primary {
+  border-radius: 50%;
   background: var(--q-accent, #f4c542);
   color: #000;
+  text-decoration: none;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+  z-index: 2500;
+}
+
+.mobile-call-fab:hover,
+.mobile-call-fab:focus {
+  filter: brightness(0.95);
 }
 </style>

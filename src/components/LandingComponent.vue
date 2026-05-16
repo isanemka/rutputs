@@ -98,6 +98,9 @@
           <p class="section-text">
             Det fungerar bra för dig som vill ha rena fönster året om, jämn kvalitet över tid och samma person som lär sig hur du vill ha det.
           </p>
+          <div class="hero-actions q-pt-sm">
+            <q-btn outline color="primary" label="Läs mer om abonnemang" to="/tjanst/abonnemang-fonsterputs" />
+          </div>
         </div>
 
         <div class="editorial-panel">
@@ -110,14 +113,13 @@
             <li>Du vill kunna börja med en vanlig puts och sedan gå över till abonnemang.</li>
           </ul>
           <div class="hero-actions q-pt-sm">
-            <q-btn unelevated color="accent" text-color="black" label="Se pris och anmäl intresse" @click="goToPriceList" />
+            <q-btn unelevated color="accent" text-color="black" label="Ta kontakt" :to="{ hash: '#kontakt' }" />
           </div>
         </div>
       </section>
 
       <section class="editorial-panel reviews-shell">
         <span class="section-kicker">Kundomdömen</span>
-        <h2 class="section-title">{{ reviewsData.aggregateRating.toFixed(1) }} / 5 från {{ reviewsData.reviewCount }} kunder på Google</h2>
         <p class="section-text">
           Riktiga omdömen från kunder som bokat fönsterputs i Stockholm. Vill du läsa fler eller lämna ett eget omdöme hittar du Rutputs på Google.
         </p>
