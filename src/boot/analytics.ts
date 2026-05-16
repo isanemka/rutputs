@@ -6,10 +6,16 @@ import { watch } from 'vue';
 const GA_MEASUREMENT_ID =
   import.meta.env.VITE_GA_MEASUREMENT_ID || 'G-5SEKFW68XH';
 const GTM_ID = import.meta.env.VITE_GTM_ID;
+const GOOGLE_ADS_ID = import.meta.env.VITE_GOOGLE_ADS_ID;
+const GOOGLE_ADS_CONVERSION_LABEL = import.meta.env
+  .VITE_GOOGLE_ADS_CONVERSION_LABEL;
+const META_PIXEL_ID = import.meta.env.VITE_META_PIXEL_ID;
 
 // Flag to prevent multiple analytics injections
 let analyticsInitialized = false;
 let googleAnalyticsInitialized = false;
+let googleAdsInitialized = false;
+let metaPixelInitialized = false;
 let tagManagerInitialized = false;
 let phoneClickTrackingBound = false;
 
@@ -32,6 +38,37 @@ function trackEvent(eventName: string, params: Record<string, unknown> = {}) {
   if (typeof window.gtag === 'function') {
     window.gtag('event', eventName, params);
   }
+
+  if (typeof window.fbq === 'function') {
+    window.fbq('trackCustom', eventName, params);
+  }
+}
+
+function trackConversion(
+  conversionType: 'lead' | 'phone_call' | 'form_submit',
+  params: Record<string, unknown> = {},
+) {
+  if (typeof window === 'undefined' || !hasTrackingConsent()) {
+    return;
+  }
+
+  if (
+    typeof window.gtag === 'function' &&
+    GOOGLE_ADS_ID &&
+    GOOGLE_ADS_CONVERSION_LABEL
+  ) {
+    window.gtag('event', 'conversion', {
+      send_to: `${GOOGLE_ADS_ID}/${GOOGLE_ADS_CONVERSION_LABEL}`,
+      ...params,
+    });
+  }
+
+  if (typeof window.fbq === 'function') {
+    const fbEventName = conversionType === 'lead' ? 'Lead' : 'Contact';
+    window.fbq('track', fbEventName, params);
+  }
+
+  trackEvent(`conversion_${conversionType}`, params);
 }
 
 function handleDocumentClick(event: MouseEvent) {
@@ -51,6 +88,11 @@ function handleDocumentClick(event: MouseEvent) {
   trackEvent('phone_click', {
     phone_number: phoneNumber,
     link_text: phoneLink.textContent?.trim() || phoneNumber,
+    page_location: window.location.href,
+  });
+
+  trackConversion('phone_call', {
+    phone_number: phoneNumber,
     page_location: window.location.href,
   });
 }
@@ -125,11 +167,77 @@ function initializeGoogleAnalytics() {
   googleAnalyticsInitialized = true;
 }
 
+function initializeGoogleAds() {
+  if (
+    googleAdsInitialized ||
+    typeof window === 'undefined' ||
+    !GOOGLE_ADS_ID ||
+    GTM_ID
+  ) {
+    return;
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  if (typeof window.gtag !== 'function') {
+    window.gtag = function gtag(...args: unknown[]) {
+      window.dataLayer.push(args);
+    };
+    window.gtag('js', new Date());
+  }
+
+  window.gtag('config', GOOGLE_ADS_ID);
+
+  // gtag.js script is shared with GA; load only if GA didn't already
+  if (!googleAnalyticsInitialized) {
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ADS_ID}`;
+    document.head.appendChild(script);
+  }
+
+  googleAdsInitialized = true;
+}
+
+function initializeMetaPixel() {
+  if (metaPixelInitialized || typeof window === 'undefined' || !META_PIXEL_ID) {
+    return;
+  }
+
+  // Standard Meta Pixel snippet (slimmed)
+  /* eslint-disable */
+  (function (f: any, b: Document, e: string, v: string) {
+    if (f.fbq) return;
+    const n: any = (f.fbq = function () {
+      n.callMethod
+        ? n.callMethod.apply(n, arguments)
+        : n.queue.push(arguments);
+    });
+    if (!f._fbq) f._fbq = n;
+    n.push = n;
+    n.loaded = true;
+    n.version = '2.0';
+    n.queue = [];
+    const t = b.createElement(e) as HTMLScriptElement;
+    t.async = true;
+    t.src = v;
+    const s = b.getElementsByTagName(e)[0];
+    s.parentNode?.insertBefore(t, s);
+  })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+  /* eslint-enable */
+
+  window.fbq('init', META_PIXEL_ID);
+  window.fbq('track', 'PageView');
+
+  metaPixelInitialized = true;
+}
+
 function initializeAllowedAnalytics() {
   runWhenIdle(() => {
     initializeAnalytics();
     initializeGoogleTagManager();
     initializeGoogleAnalytics();
+    initializeGoogleAds();
+    initializeMetaPixel();
     bindPhoneClickTracking();
   });
 }
@@ -138,10 +246,18 @@ declare global {
   interface Window {
     dataLayer?: Array<Record<string, unknown> | unknown[]>;
     gtag?: (...args: unknown[]) => void;
+    fbq?: ((...args: unknown[]) => void) & {
+      callMethod?: (...args: unknown[]) => void;
+      queue?: unknown[];
+      loaded?: boolean;
+      version?: string;
+      push?: unknown;
+    };
+    _fbq?: unknown;
   }
 }
 
-export { trackEvent };
+export { trackEvent, trackConversion };
 
 export default boot(() => {
   const { consentStatus, hasAccepted } = useConsent();

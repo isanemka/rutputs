@@ -17,7 +17,7 @@ const siteSeoContent = {
       {
         question: 'Vilka områden täcker du?',
         answer:
-          'Jag arbetar främst i norra Stockholm: Järfälla, Bromma, Kista, Solna, Sundbyberg, Spånga, Sollentuna och Täby. Jag arbetar även på Lidingö och Östermalm. Fyll i formuläret för att se om jag kan hjälpa dig där du bor.',
+          'Jag arbetar i stora delar av Stockholm: Järfälla, Bromma, Kista, Solna, Sundbyberg, Spånga, Sollentuna, Täby, Lidingö, Östermalm, Vällingby, Hässelby, Danderyd, Kungsholmen, Norrmalm, Bromsten, Nacka och Upplands Väsby. Fyll i formuläret för att se om jag kan hjälpa dig där du bor.',
         links: [
           { label: 'Järfälla', to: '/omrade/jarfalla' },
           { label: 'Bromma', to: '/omrade/bromma' },
@@ -29,6 +29,14 @@ const siteSeoContent = {
           { label: 'Täby', to: '/omrade/taby' },
           { label: 'Lidingö', to: '/omrade/lidingo' },
           { label: 'Östermalm', to: '/omrade/ostermalm' },
+          { label: 'Vällingby', to: '/omrade/vallingby' },
+          { label: 'Hässelby', to: '/omrade/hasselby' },
+          { label: 'Danderyd', to: '/omrade/danderyd' },
+          { label: 'Kungsholmen', to: '/omrade/kungsholmen' },
+          { label: 'Norrmalm', to: '/omrade/norrmalm' },
+          { label: 'Bromsten', to: '/omrade/bromsten' },
+          { label: 'Nacka', to: '/omrade/nacka' },
+          { label: 'Upplands Väsby', to: '/omrade/upplands-vasby' },
         ],
       },
       {
@@ -425,6 +433,222 @@ const siteSeoContent = {
           question: 'Hur får jag pris för fönsterputs på Östermalm?',
           answer:
             'Du fyller i formuläret på prissidan för att se pris direkt. Därefter bekräftas bokningen i nästa steg.',
+        },
+      ],
+    },
+    {
+      slug: 'vallingby',
+      name: 'Vällingby',
+      title: 'Fönsterputs Vällingby – Från 499 kr med RUT-avdrag | Rutputs',
+      description:
+        'Fönsterputsning i Vällingby med RUT-avdrag från 499 kr. Jag täcker Vällingby City, Råcksta, Grimsta och Hässelby gård. Boka enkelt online!',
+      content:
+        'I Vällingby erbjuder jag fönsterputsning för villor, radhus och lägenheter i västra Stockholm. Många bostäder här har stora fönsterpartier mot grönområden, vilket gör att rena fönster verkligen syns. Jag arbetar regelbundet i området och kan ofta erbjuda smidiga tider utan långa restider.',
+      districts: ['Vällingby City', 'Råcksta', 'Grimsta', 'Hässelby gård'],
+      faq: [
+        {
+          question: 'Vilka delar av Vällingby täcker du?',
+          answer:
+            'Jag arbetar i Vällingby City, Råcksta, Grimsta, Hässelby gård och övriga delar av västra Stockholm.',
+        },
+        {
+          question: 'Passar tjänsten både villa och lägenhet i Vällingby?',
+          answer:
+            'Ja, jag hjälper både villa-, radhus- och lägenhetskunder. Priset börjar från 499 kr efter RUT-avdrag och anpassas efter antal fönster.',
+        },
+        {
+          question: 'Hur snabbt kan jag boka fönsterputs i Vällingby?',
+          answer:
+            'Eftersom jag arbetar regelbundet i området går det ofta att hitta en tid relativt snabbt. Fyll i formuläret så återkommer jag.',
+        },
+      ],
+    },
+    {
+      slug: 'hasselby',
+      name: 'Hässelby',
+      title: 'Fönsterputs Hässelby – Från 499 kr med RUT-avdrag | Rutputs',
+      description:
+        'Professionell fönsterputs i Hässelby med RUT-avdrag från 499 kr. Jag täcker Hässelby strand, Hässelby villastad, Hässelby gård och Smedshagen. Boka online!',
+      content:
+        'Hässelby är ett område med blandning av villor, radhus och lägenheter där rena fönster gör skillnad för ljusinsläpp och utsikt – särskilt nära vattnet i Hässelby strand. Jag putsar fönster i hela Hässelby och kan både ta enstaka uppdrag och lägga upp återkommande puts.',
+      districts: ['Hässelby strand', 'Hässelby villastad', 'Hässelby gård', 'Smedshagen'],
+      faq: [
+        {
+          question: 'Vilka delar av Hässelby täcker du?',
+          answer:
+            'Jag arbetar i Hässelby strand, Hässelby villastad, Hässelby gård och Smedshagen samt övriga delar av Hässelby.',
+        },
+        {
+          question: 'Kan jag få återkommande fönsterputs i Hässelby?',
+          answer:
+            'Ja, jag erbjuder både enstaka putsningar och återkommande abonnemang för dig som vill slippa boka om varje gång.',
+        },
+        {
+          question: 'Vad kostar fönsterputs i Hässelby?',
+          answer:
+            'Priset börjar från 499 kr efter RUT-avdrag. Använd priskalkylatorn för att se ditt exakta pris direkt.',
+        },
+      ],
+    },
+    {
+      slug: 'danderyd',
+      name: 'Danderyd',
+      title: 'Fönsterputs Danderyd – Från 499 kr med RUT-avdrag | Rutputs',
+      description:
+        'Fönsterputsning i Danderyd med RUT-avdrag från 499 kr. Jag täcker Djursholm, Stocksund, Enebyberg och Mörby. Professionell service – boka online!',
+      content:
+        'Danderyd med Djursholm, Stocksund, Enebyberg och Mörby har många villor och större bostäder där rena fönster är en självklar del av helhetsintrycket. Jag arbetar löpande i Danderyd och erbjuder ett personligt upplägg där det är jag själv som kommer och putsar, både för enstaka besök och återkommande abonnemang.',
+      districts: ['Djursholm', 'Stocksund', 'Enebyberg', 'Mörby'],
+      faq: [
+        {
+          question: 'Vilka delar av Danderyd täcker du?',
+          answer:
+            'Jag arbetar i Djursholm, Stocksund, Enebyberg och Mörby samt i övriga delar av Danderyds kommun.',
+        },
+        {
+          question: 'Passar tjänsten större villor i Danderyd?',
+          answer:
+            'Ja, jag är van vid större villor och bostäder med många fönsterpartier. Priset anpassas efter antal fönster.',
+        },
+        {
+          question: 'Kan jag boka abonnemang för fönsterputs i Danderyd?',
+          answer:
+            'Ja, många kunder i Danderyd väljer återkommande abonnemang. Jag tar fram ett upplägg som passar bostad och säsong.',
+        },
+      ],
+    },
+    {
+      slug: 'kungsholmen',
+      name: 'Kungsholmen',
+      title: 'Fönsterputs Kungsholmen – Från 499 kr med RUT-avdrag | Rutputs',
+      description:
+        'Fönsterputs på Kungsholmen med RUT-avdrag från 499 kr. Jag täcker Fridhemsplan, Stadshagen, Marieberg och Kristineberg. Boka enkelt online!',
+      content:
+        'På Kungsholmen erbjuder jag fönsterputsning för lägenheter och mindre fastigheter mitt i Stockholms innerstad. Många bostäder här har stora fönster mot vattnet, vilket gör att putsningen verkligen lyfter ljusinsläpp och utsikt. Jag arbetar smidigt i innerstaden och bokar gärna in flera kunder i samma byggnad eller område samma dag.',
+      districts: ['Fridhemsplan', 'Stadshagen', 'Marieberg', 'Kristineberg'],
+      faq: [
+        {
+          question: 'Vilka delar av Kungsholmen täcker du?',
+          answer:
+            'Jag arbetar vid Fridhemsplan, Stadshagen, Marieberg, Kristineberg och övriga delar av Kungsholmen.',
+        },
+        {
+          question: 'Passar fönsterputs lägenheter på Kungsholmen?',
+          answer:
+            'Ja, lägenheter är vanligast på Kungsholmen och tjänsten är väl anpassad för innerstadsbostäder med varierande fönsterlösningar.',
+        },
+        {
+          question: 'Får jag rabatt om jag bokar med en granne på Kungsholmen?',
+          answer:
+            'Ja, om du och din granne bokar samma dag i samma fastighet eller område får ni båda rabatt. Skriv det i förfrågan.',
+        },
+      ],
+    },
+    {
+      slug: 'norrmalm',
+      name: 'Norrmalm',
+      title: 'Fönsterputs Norrmalm – Från 499 kr med RUT-avdrag | Rutputs',
+      description:
+        'Fönsterputs på Norrmalm med RUT-avdrag från 499 kr. Jag täcker Vasastan, City, Norra Djurgården och Klara. Boka enkelt online!',
+      content:
+        'Norrmalm omfattar både Vasastan, Stockholms City och Klara – områden med många lägenheter, kontor och butikslokaler. Jag erbjuder fönsterputsning för privatpersoner i lägenhet såväl som företag som vill ha rena skyltfönster och kontorsfönster i centrala Stockholm.',
+      districts: ['Vasastan', 'City', 'Klara', 'Norra Djurgården'],
+      faq: [
+        {
+          question: 'Vilka delar av Norrmalm täcker du?',
+          answer:
+            'Jag arbetar i Vasastan, City, Klara, Norra Djurgården och övriga delar av Norrmalm.',
+        },
+        {
+          question: 'Erbjuder du fönsterputs för butiker och kontor på Norrmalm?',
+          answer:
+            'Ja, jag tar både privatkunder och företag. Kontakta mig för offert på skyltfönster, kontor eller butikslokaler.',
+        },
+        {
+          question: 'Hur får jag pris för fönsterputs på Norrmalm?',
+          answer:
+            'Privatkunder fyller i prisformuläret för direktpris. Företag kontaktar mig så återkommer jag med skräddarsydd offert.',
+        },
+      ],
+    },
+    {
+      slug: 'bromsten',
+      name: 'Bromsten',
+      title: 'Fönsterputs Bromsten – Från 499 kr med RUT-avdrag | Rutputs',
+      description:
+        'Fönsterputsning i Bromsten med RUT-avdrag från 499 kr. Lokal fönsterputsare med personlig service i Bromsten och hela Spånga-Tensta. Boka online!',
+      content:
+        'Bromsten är ett trivsamt villaområde i norra Stockholm där rena fönster verkligen lyfter de äldre trähusen och de nyare bostäderna. Jag arbetar regelbundet i Bromsten och närliggande delar av Spånga-Tensta och kan ofta erbjuda mycket smidiga tider tack vare närheten.',
+      districts: ['Bromsten', 'Spånga', 'Sundby', 'Solhem'],
+      faq: [
+        {
+          question: 'Vilka delar av Bromsten täcker du?',
+          answer:
+            'Jag arbetar i hela Bromsten samt i Spånga, Sundby och Solhem och övriga närliggande områden.',
+        },
+        {
+          question: 'Passar tjänsten villor och radhus i Bromsten?',
+          answer:
+            'Ja, Bromsten är ett klassiskt villa- och radhusområde och tjänsten passar utmärkt. Priset anpassas efter antal fönster.',
+        },
+        {
+          question: 'Kan jag boka tillsammans med grannen i Bromsten?',
+          answer:
+            'Ja, ni får båda rabatt när ni bokar samma dag i samma område. Skriv det i förfrågan så lägger jag upp besöket.',
+        },
+      ],
+    },
+    {
+      slug: 'nacka',
+      name: 'Nacka',
+      title: 'Fönsterputs Nacka – Från 499 kr med RUT-avdrag | Rutputs',
+      description:
+        'Professionell fönsterputs i Nacka med RUT-avdrag från 499 kr. Jag täcker Saltsjöbaden, Saltsjö-Boo, Sickla och Nacka Strand. Boka online!',
+      content:
+        'I Nacka erbjuder jag fönsterputsning för villor, radhus och lägenheter i hela kommunen. Med många bostäder nära vattnet och stora panoramafönster gör en professionell putsning stor skillnad för utsikten och ljusinsläppet. Jag arbetar både med enstaka uppdrag och återkommande abonnemang.',
+      districts: ['Saltsjöbaden', 'Saltsjö-Boo', 'Sickla', 'Nacka Strand'],
+      faq: [
+        {
+          question: 'Vilka delar av Nacka täcker du?',
+          answer:
+            'Jag arbetar i Saltsjöbaden, Saltsjö-Boo, Sickla, Nacka Strand och övriga delar av Nacka kommun.',
+        },
+        {
+          question: 'Passar tjänsten större villor med panoramafönster i Nacka?',
+          answer:
+            'Ja, jag är van vid större bostäder med utsiktsfönster och anpassar upplägget efter fönstrens storlek och antal.',
+        },
+        {
+          question: 'Kan jag få återkommande fönsterputs i Nacka?',
+          answer:
+            'Ja, många kunder i Nacka väljer återkommande puts två gånger per år eller oftare. Skicka in förfrågan så återkommer jag med upplägg.',
+        },
+      ],
+    },
+    {
+      slug: 'upplands-vasby',
+      name: 'Upplands Väsby',
+      title: 'Fönsterputs Upplands Väsby – Från 499 kr med RUT-avdrag | Rutputs',
+      description:
+        'Fönsterputs i Upplands Väsby med RUT-avdrag från 499 kr. Jag täcker Bollstanäs, Runby, Vilundaparken och Smedby. Boka enkelt online!',
+      content:
+        'Upplands Väsby är ett område med många villor och radhus där jag arbetar löpande tack vare närheten till Järfälla och Sollentuna. Det gör att jag ofta kan erbjuda smidiga tider och konkurrenskraftiga priser även här. Jag hjälper både privatpersoner och mindre fastigheter.',
+      districts: ['Bollstanäs', 'Runby', 'Vilundaparken', 'Smedby'],
+      faq: [
+        {
+          question: 'Vilka delar av Upplands Väsby täcker du?',
+          answer:
+            'Jag arbetar i Bollstanäs, Runby, Vilundaparken, Smedby och övriga delar av Upplands Väsby kommun.',
+        },
+        {
+          question: 'Är du nära Upplands Väsby för snabb bokning?',
+          answer:
+            'Ja, jag utgår från Järfälla och har redan löpande uppdrag i området, vilket gör att jag ofta kan vara där snabbt.',
+        },
+        {
+          question: 'Vad kostar fönsterputs i Upplands Väsby?',
+          answer:
+            'Priset börjar från 499 kr efter RUT-avdrag. Använd priskalkylatorn på prissidan för att se ditt pris direkt.',
         },
       ],
     },

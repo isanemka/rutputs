@@ -23,7 +23,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, onMounted } from 'vue';
+import { trackConversion, trackEvent } from 'src/boot/analytics';
 
 export default defineComponent({
   name: 'ConfirmationComponent',
@@ -35,6 +36,17 @@ export default defineComponent({
         content: 'noindex, nofollow'
       }
     }
+  },
+  setup() {
+    onMounted(() => {
+      trackEvent('lead_submit', {
+        page_location: typeof window !== 'undefined' ? window.location.href : '',
+      });
+      trackConversion('lead', {
+        value: 499,
+        currency: 'SEK',
+      });
+    });
   },
   methods: {
     goToLanding() {

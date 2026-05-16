@@ -315,10 +315,48 @@ async function writePage(page, template) {
   await writeFile(outputPath, html, 'utf8');
 }
 
+function buildSitemapXml() {
+  const today = new Date().toISOString().slice(0, 10);
+  const entries = [
+    { loc: '/', changefreq: 'weekly', priority: '1.0' },
+    { loc: '/pris', changefreq: 'weekly', priority: '0.9' },
+    { loc: '/foretag', changefreq: 'monthly', priority: '0.8' },
+    ...areas.map((a) => ({
+      loc: `/omrade/${a.slug}`,
+      changefreq: 'monthly',
+      priority: '0.8',
+    })),
+    { loc: '/integritetspolicy', changefreq: 'yearly', priority: '0.3' },
+  ];
+
+  const urls = entries
+    .map(
+      (e) => `  <url>
+    <loc>${baseUrl}${e.loc}</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>${e.changefreq}</changefreq>
+    <priority>${e.priority}</priority>
+  </url>`,
+    )
+    .join('\n');
+
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls}
+</urlset>
+`;
+}
+
+async function writeSitemap() {
+  const sitemapPath = path.join(distDir, 'sitemap.xml');
+  await writeFile(sitemapPath, buildSitemapXml(), 'utf8');
+}
+
 async function main() {
   const template = await readFile(templatePath, 'utf8');
   await Promise.all(pages.map((page) => writePage(page, template)));
-  console.log(`Prerendered ${pages.length} SEO routes in dist/spa.`);
+  await writeSitemap();
+  console.log(`Prerendered ${pages.length} SEO routes and regenerated sitemap.xml in dist/spa.`);
 }
 
 main().catch((error) => {

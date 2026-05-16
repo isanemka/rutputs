@@ -115,6 +115,31 @@
         </div>
       </section>
 
+      <section class="editorial-panel reviews-shell">
+        <span class="section-kicker">Kundomdömen</span>
+        <h2 class="section-title">{{ reviewsData.aggregateRating.toFixed(1) }} / 5 från {{ reviewsData.reviewCount }} kunder på Google</h2>
+        <p class="section-text">
+          Riktiga omdömen från kunder som bokat fönsterputs i Stockholm. Vill du läsa fler eller lämna ett eget omdöme hittar du Rutputs på Google.
+        </p>
+        <div class="review-grid q-mt-lg">
+          <article v-for="review in reviewsData.reviews" :key="review.author + review.date" class="review-card">
+            <div class="review-card__stars" :aria-label="review.rating + ' av 5 stjärnor'">
+              <span v-for="n in review.rating" :key="n">★</span>
+            </div>
+            <p class="review-card__text">&ldquo;{{ review.text }}&rdquo;</p>
+            <p class="review-card__meta">
+              <strong>{{ review.author }}</strong>
+              <span v-if="review.area"> &middot; {{ review.area }}</span>
+            </p>
+          </article>
+        </div>
+        <div class="hero-actions q-pt-md">
+          <a :href="reviewsData.googleBusinessUrl" target="_blank" rel="noopener" class="text-accent text-weight-bold">
+            Läs alla recensioner på Google →
+          </a>
+        </div>
+      </section>
+
       <section class="neighbor-offer">
         <div class="neighbor-offer__badge">Erbjudande</div>
         <div class="neighbor-offer__content">
@@ -207,6 +232,7 @@
 import { computed, defineComponent, onBeforeUnmount, onMounted, ref } from 'vue';
 import { areas } from 'src/data/areas';
 import { homeSeo } from 'src/data/seo';
+import { reviewsData } from 'src/data/reviews';
 
 const homeFaqs = homeSeo.faq ?? [];
 
@@ -289,6 +315,35 @@ export default defineComponent({
             }
           }))
         })
+      },
+      reviewSchema: {
+        type: 'application/ld+json',
+        innerHTML: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'LocalBusiness',
+          name: 'Rutputs',
+          url: 'https://www.rutputs.nu/',
+          image: 'https://www.rutputs.nu/og-image.jpg',
+          aggregateRating: {
+            '@type': 'AggregateRating',
+            ratingValue: reviewsData.aggregateRating.toFixed(1),
+            reviewCount: reviewsData.reviewCount,
+            bestRating: '5',
+            worstRating: '1'
+          },
+          review: reviewsData.reviews.map((r) => ({
+            '@type': 'Review',
+            author: { '@type': 'Person', name: r.author },
+            datePublished: r.date,
+            reviewBody: r.text,
+            reviewRating: {
+              '@type': 'Rating',
+              ratingValue: String(r.rating),
+              bestRating: '5',
+              worstRating: '1'
+            }
+          }))
+        })
       }
     }
   },
@@ -356,6 +411,7 @@ export default defineComponent({
     return {
       areaLinks,
       homeFaqs,
+      reviewsData,
       heroMediaStyle,
       heroSection,
       randomLandscapeImage,
@@ -373,5 +429,51 @@ export default defineComponent({
 <style>
 .hero-shell__media {
   will-change: transform;
+}
+
+.review-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+@media (max-width: 1023px) {
+  .review-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 599px) {
+  .review-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.review-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.review-card__stars {
+  color: #f4c542;
+  font-size: 1rem;
+  letter-spacing: 2px;
+}
+
+.review-card__text {
+  font-style: italic;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.review-card__meta {
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.85;
 }
 </style>
