@@ -10,12 +10,14 @@ const GOOGLE_ADS_ID = import.meta.env.VITE_GOOGLE_ADS_ID;
 const GOOGLE_ADS_CONVERSION_LABEL = import.meta.env
   .VITE_GOOGLE_ADS_CONVERSION_LABEL;
 const META_PIXEL_ID = import.meta.env.VITE_META_PIXEL_ID;
+const CLARITY_ID = import.meta.env.VITE_CLARITY_ID;
 
 // Flag to prevent multiple analytics injections
 let analyticsInitialized = false;
 let googleAnalyticsInitialized = false;
 let googleAdsInitialized = false;
 let metaPixelInitialized = false;
+let clarityInitialized = false;
 let tagManagerInitialized = false;
 let phoneClickTrackingBound = false;
 
@@ -231,6 +233,29 @@ function initializeMetaPixel() {
   metaPixelInitialized = true;
 }
 
+function initializeClarity() {
+  if (clarityInitialized || typeof window === 'undefined' || !CLARITY_ID) {
+    return;
+  }
+
+  /* eslint-disable */
+  (function (c: any, l: Document, a: string, r: string, i: string) {
+    c[a] =
+      c[a] ||
+      function () {
+        (c[a].q = c[a].q || []).push(arguments);
+      };
+    const t = l.createElement(r) as HTMLScriptElement;
+    t.async = true;
+    t.src = 'https://www.clarity.ms/tag/' + i;
+    const y = l.getElementsByTagName(r)[0];
+    y.parentNode?.insertBefore(t, y);
+  })(window, document, 'clarity', 'script', CLARITY_ID);
+  /* eslint-enable */
+
+  clarityInitialized = true;
+}
+
 function initializeAllowedAnalytics() {
   runWhenIdle(() => {
     initializeAnalytics();
@@ -238,6 +263,7 @@ function initializeAllowedAnalytics() {
     initializeGoogleAnalytics();
     initializeGoogleAds();
     initializeMetaPixel();
+    initializeClarity();
     bindPhoneClickTracking();
   });
 }

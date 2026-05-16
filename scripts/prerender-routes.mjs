@@ -6,7 +6,18 @@ const baseUrl = 'https://www.rutputs.nu';
 const distDir = path.resolve('dist/spa');
 const templatePath = path.join(distDir, 'index.html');
 
-const { home, company, price, privacy, areas } = siteSeoContent;
+const { home, company, price, privacy, areas, services = [] } = siteSeoContent;
+
+const buildBreadcrumbSchema = (items) => ({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: items.map((item, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: item.name,
+    item: `${baseUrl}${item.path}`,
+  })),
+});
 
 function escapeHtml(value = '') {
   return String(value)
@@ -198,6 +209,44 @@ const pages = [
         },
       },
       buildFaqSchema(page.faq),
+      buildBreadcrumbSchema([
+        { name: 'Start', path: '/' },
+        { name: page.name, path: `/omrade/${page.slug}` },
+      ]),
+    ],
+  })),
+  ...services.map((page) => ({
+    route: `/tjanst/${page.slug}`,
+    title: page.title,
+    description: page.description,
+    bodyTitle: page.bodyTitle,
+    bodyIntro: page.bodyIntro,
+    sections: [
+      { heading: 'Det här ingår', html: buildTextListHtml(page.benefits) },
+      { heading: 'Vanliga frågor', html: buildFaqHtml(page.faq) },
+    ],
+    extraSchemas: [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Service',
+        name: page.bodyTitle,
+        serviceType: 'Fönsterputsning',
+        description: page.description,
+        url: `${baseUrl}/tjanst/${page.slug}`,
+        provider: { '@type': 'LocalBusiness', name: 'Rutputs', url: `${baseUrl}/` },
+        areaServed: 'Stockholm',
+        offers: {
+          '@type': 'Offer',
+          priceCurrency: 'SEK',
+          price: '499',
+          description: 'Från-pris efter RUT-avdrag',
+        },
+      },
+      buildFaqSchema(page.faq),
+      buildBreadcrumbSchema([
+        { name: 'Start', path: '/' },
+        { name: page.name, path: `/tjanst/${page.slug}` },
+      ]),
     ],
   })),
 ];
@@ -323,6 +372,11 @@ function buildSitemapXml() {
     { loc: '/foretag', changefreq: 'monthly', priority: '0.8' },
     ...areas.map((a) => ({
       loc: `/omrade/${a.slug}`,
+      changefreq: 'monthly',
+      priority: '0.8',
+    })),
+    ...services.map((s) => ({
+      loc: `/tjanst/${s.slug}`,
       changefreq: 'monthly',
       priority: '0.8',
     })),

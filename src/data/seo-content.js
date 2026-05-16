@@ -50,6 +50,8 @@ const siteSeoContent = {
         question: 'Erbjuder du abonnemang för återkommande fönsterputs?',
         answer:
           'Ja, du kan få hjälp både med enstaka puts och med återkommande abonnemang. Om du vill att jag kommer löpande tar jag fram ett upplägg som passar bostad, säsong och hur ofta du vill ha putsat.',
+        linkLabel: 'Läs mer om abonnemang',
+        linkTo: '/tjanst/abonnemang-fonsterputs',
       },
       {
         question: 'Putsar du även företagsfönster?',
@@ -157,6 +159,133 @@ const siteSeoContent = {
       },
     ],
   },
+  services: [
+    {
+      slug: 'villa-fonsterputs',
+      name: 'Villa-fönsterputs',
+      title: 'Fönsterputs för villa i Stockholm – Från 499 kr med RUT | Rutputs',
+      description:
+        'Professionell fönsterputs för villor i Stockholm. RUT-avdrag från 499 kr, allt material ingår, jag arbetar med villor i hela norra Stockholm.',
+      bodyTitle: 'Fönsterputs för villor i Stockholm',
+      bodyIntro:
+        'Villor har ofta många fönster, spröjs och fönsterpartier mot trädgården – och rena fönster gör enorm skillnad för både ljusinsläpp och helhetsintryck. Jag arbetar med villor i hela norra Stockholm och anpassar upplägget efter hur ditt hus ser ut, från enstaka putsningar till återkommande abonnemang vår och höst.',
+      benefits: [
+        'Tydligt pris per fönster med RUT-avdrag – från 499 kr.',
+        'Allt material ingår – jag tar med stege, skrapor och miljövänligt rengöringsmedel.',
+        'Spröjsade, kupolfönster och takfönster – inga problem.',
+        'Säkert utfört – F-skatt, försäkrad och godkänd för RUT.',
+        'Samma person varje gång om du tecknar abonnemang.',
+      ],
+      faq: [
+        {
+          question: 'Vad kostar fönsterputs på en villa?',
+          answer:
+            'Priset utgår från antal fönster och eventuella extra tjänster. För en normalstor villa ligger priset oftast mellan 800 och 2 000 kr efter RUT-avdrag. Använd priskalkylatorn för exakt pris.',
+          linkLabel: 'Räkna ut ditt pris',
+          linkTo: '/pris',
+        },
+        {
+          question: 'Putsar du även spröjsade fönster?',
+          answer:
+            'Ja, spröjsade fönster ingår. Det tar lite längre tid men prissätts tydligt i kalkylatorn så du vet vad du betalar.',
+        },
+        {
+          question: 'Hur ofta bör man putsa fönstren på en villa?',
+          answer:
+            'För de flesta villor räcker det med två gånger per år – på våren när pollen och saltskador syns mest, och på hösten innan vintern. Abonnemangskunder får en automatisk planering.',
+        },
+        {
+          question: 'Kommer du till min villa även om jag inte är hemma?',
+          answer:
+            'Ja, vi kan komma överens om att jag putsar utsidan medan du är på jobbet. Många villakunder väljer det upplägget.',
+        },
+      ],
+    },
+    {
+      slug: 'lagenhet-fonsterputs',
+      name: 'Lägenhets-fönsterputs',
+      title: 'Fönsterputs för lägenhet – Från 499 kr med RUT-avdrag | Rutputs',
+      description:
+        'Fönsterputs för lägenhet i Stockholm. Från 499 kr med RUT-avdrag. Smidig bokning, snabbt klart, jag tar med allt material.',
+      bodyTitle: 'Fönsterputs för lägenhet i Stockholm',
+      bodyIntro:
+        'För lägenheter går putsningen ofta snabbt och smidigt, men det är ändå viktigt att den görs noggrant – särskilt i innerstaden där sot och avgaser sätter sig på rutorna. Jag putsar lägenhetsfönster i hela Stockholm med RUT-avdrag och kan ofta erbjuda tid samma vecka.',
+      benefits: [
+        'Från 499 kr efter RUT-avdrag.',
+        'Inomhus, utomhus och mellan glaspartier – välj själv.',
+        'Funkar även på höga våningar – jag har säkerhetsutrustning för fönster som inte går att vända.',
+        'Smidig nyckelhantering om du är på jobbet.',
+        'Rabatt om du och en granne i samma hus bokar samma dag.',
+      ],
+      faq: [
+        {
+          question: 'Vad kostar fönsterputs i en lägenhet?',
+          answer:
+            'För en normalstor lägenhet ligger priset från 499 kr och uppåt efter RUT-avdrag. Det beror på antalet fönster och om även mellan glaspartier ska putsas.',
+          linkLabel: 'Räkna ut ditt pris',
+          linkTo: '/pris',
+        },
+        {
+          question: 'Putsar du även insidan av lägenhetsfönster?',
+          answer:
+            'Ja, du väljer själv om jag ska putsa både inne och ute eller bara utsidan. Båda alternativen finns i priskalkylatorn.',
+        },
+        {
+          question: 'Kan jag boka även om jag bor på 5:e våningen?',
+          answer:
+            'Ja. För fönster som inte går att vända inåt använder jag särskild teleskoputrustning eller arbetar från balkongen där det går säkert.',
+        },
+        {
+          question: 'Får jag rabatt om grannen också bokar?',
+          answer:
+            'Ja, när du och en granne bokar samma dag i samma fastighet får ni båda rabatt. Skriv det i förfrågan.',
+        },
+      ],
+    },
+    {
+      slug: 'abonnemang-fonsterputs',
+      name: 'Abonnemang för fönsterputs',
+      title: 'Abonnemang för fönsterputs i Stockholm – RUT-avdrag | Rutputs',
+      description:
+        'Återkommande fönsterputs som abonnemang. Du slipper boka om varje gång, får samma person varje besök och rabatt jämfört med engångsbokning.',
+      bodyTitle: 'Abonnemang för återkommande fönsterputs',
+      bodyIntro:
+        'Vill du slippa hålla reda på när det är dags att putsa fönstren igen? Med ett abonnemang sköter jag det åt dig – jag återkommer på de intervall vi kommit överens om, anpassat efter bostad, säsong och budget. Du får rabatt jämfört med engångsbokning och samma person varje gång.',
+      benefits: [
+        'Spara tid – jag bokar in nästa tillfälle automatiskt.',
+        'Lägre pris per tillfälle jämfört med engångsbokning.',
+        'Välj intervall: 2, 3 eller 4 gånger per år.',
+        'Samma person varje gång, som lär sig hur du vill ha det.',
+        'RUT-avdrag dras på varje besök för privatpersoner.',
+      ],
+      faq: [
+        {
+          question: 'Kan jag avbryta abonnemanget när jag vill?',
+          answer:
+            'Ja, det är inte bindande. Du kan pausa eller avsluta abonnemanget när du vill – säg bara till innan nästa planerade besök.',
+        },
+        {
+          question: 'Hur stor är rabatten på abonnemang?',
+          answer:
+            'Rabatten varierar beroende på intervall och bostad. Det enklaste är att fylla i prisformuläret och skriva i meddelandet att du vill ha abonnemangsförslag, så återkommer jag med pris.',
+          linkLabel: 'Få abonnemangsförslag',
+          linkTo: '/pris',
+        },
+        {
+          question: 'Funkar abonnemang för företag också?',
+          answer:
+            'Ja, många av mina företagskunder har återkommande upplägg. Kontakta mig så lägger jag en plan som passar lokalen.',
+          linkLabel: 'Fönsterputs för företag',
+          linkTo: '/foretag',
+        },
+        {
+          question: 'Vilka områden gäller abonnemanget?',
+          answer:
+            'Abonnemang erbjuds i alla områden jag täcker – från Järfälla och Sollentuna till Östermalm och Nacka.',
+        },
+      ],
+    },
+  ],
   privacy: {
     title: 'Integritetspolicy – Rutputs',
     description:

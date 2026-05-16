@@ -31,12 +31,24 @@ export interface AreaSeo {
   faq: SeoFaq[];
 }
 
+export interface ServiceSeo {
+  slug: string;
+  name: string;
+  title: string;
+  description: string;
+  bodyTitle: string;
+  bodyIntro: string;
+  benefits: string[];
+  faq: SeoFaq[];
+}
+
 interface SiteSeoContent {
   home: SeoPage;
   company: SeoPage;
   price: SeoPage;
   privacy: SeoPage;
   areas: AreaSeo[];
+  services: ServiceSeo[];
 }
 
 const siteSeoContent = rawSiteSeoContent as SiteSeoContent;
@@ -46,9 +58,14 @@ export const companySeo = siteSeoContent.company;
 export const priceSeo = siteSeoContent.price;
 export const privacySeo = siteSeoContent.privacy;
 export const areaSeoPages = siteSeoContent.areas;
+export const servicePages = siteSeoContent.services;
 
 export function getAreaBySlug(slug: string): AreaSeo | undefined {
   return areaSeoPages.find((area) => area.slug === slug);
+}
+
+export function getServiceBySlug(slug: string): ServiceSeo | undefined {
+  return servicePages.find((service) => service.slug === slug);
 }
 
 export default siteSeoContent;

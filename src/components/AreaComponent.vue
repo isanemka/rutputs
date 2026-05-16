@@ -1,6 +1,11 @@
 <template>
   <q-page class="page-shell">
     <div v-if="area" class="page-stack">
+      <nav class="breadcrumbs" aria-label="Brödsmulor">
+        <router-link to="/">Start</router-link>
+        <span aria-hidden="true">›</span>
+        <span>{{ area.name }}</span>
+      </nav>
       <section class="hero-shell area-hero">
         <picture class="hero-shell__media area-hero__media">
           <source media="(min-width: 600px)" :srcset="randomLandscapeImage" type="image/webp">
@@ -254,6 +259,17 @@ export default defineComponent({
               }
             }))
           })
+        },
+        breadcrumbSchema: {
+          type: 'application/ld+json',
+          innerHTML: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Start', item: 'https://www.rutputs.nu/' },
+              { '@type': 'ListItem', position: 2, name: area.name, item: `https://www.rutputs.nu/omrade/${area.slug}` }
+            ]
+          })
         }
       },
       link: {
@@ -268,6 +284,20 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.breadcrumbs {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  font-size: 0.85rem;
+  opacity: 0.8;
+  padding: 0.5rem 0;
+}
+
+.breadcrumbs a {
+  color: var(--q-accent, #f4c542);
+  text-decoration: none;
+}
+
 .area-hero__media {
   position: absolute;
   inset: 0;
