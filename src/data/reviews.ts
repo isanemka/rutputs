@@ -15,7 +15,7 @@ export interface ReviewsData {
 
 export const reviewsData: ReviewsData = {
   aggregateRating: 5.0,
-  reviewCount: 3,
+  reviewCount: 2,
   googleBusinessUrl: 'https://g.page/r/rutputs/review',
   reviews: [
     {
