@@ -4,7 +4,7 @@
       <nav class="breadcrumbs" aria-label="Brödsmulor">
         <router-link to="/">Start</router-link>
         <span aria-hidden="true">›</span>
-        <span>{{ area.name }}</span>
+        <span aria-current="page">{{ area.name }}</span>
       </nav>
       <section class="hero-shell area-hero">
         <picture class="hero-shell__media area-hero__media">

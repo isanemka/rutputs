@@ -470,6 +470,12 @@ export default defineComponent({
   }
 }
 
+@media (max-width: 1023px) {
+  .site-layout {
+    padding-bottom: calc(72px + env(safe-area-inset-bottom));
+  }
+}
+
 .mobile-cta-bar {
   position: fixed;
   left: 0;

@@ -7,10 +7,22 @@ const GA_MEASUREMENT_ID =
   import.meta.env.VITE_GA_MEASUREMENT_ID || 'G-5SEKFW68XH';
 const GTM_ID = import.meta.env.VITE_GTM_ID;
 const GOOGLE_ADS_ID = import.meta.env.VITE_GOOGLE_ADS_ID;
-const GOOGLE_ADS_CONVERSION_LABEL = import.meta.env
-  .VITE_GOOGLE_ADS_CONVERSION_LABEL;
+const GOOGLE_ADS_LEAD_LABEL =
+  import.meta.env.VITE_GOOGLE_ADS_LEAD_LABEL ||
+  import.meta.env.VITE_GOOGLE_ADS_CONVERSION_LABEL;
+const GOOGLE_ADS_PHONE_LABEL = import.meta.env.VITE_GOOGLE_ADS_PHONE_LABEL;
+const GOOGLE_ADS_FORM_LABEL = import.meta.env.VITE_GOOGLE_ADS_FORM_LABEL;
 const META_PIXEL_ID = import.meta.env.VITE_META_PIXEL_ID;
 const CLARITY_ID = import.meta.env.VITE_CLARITY_ID;
+
+type ConversionType = 'lead' | 'phone_call' | 'form_submit';
+
+const adsLabelFor = (type: ConversionType): string | undefined => {
+  if (type === 'lead') return GOOGLE_ADS_LEAD_LABEL;
+  if (type === 'phone_call') return GOOGLE_ADS_PHONE_LABEL;
+  if (type === 'form_submit') return GOOGLE_ADS_FORM_LABEL;
+  return undefined;
+};
 
 // Flag to prevent multiple analytics injections
 let analyticsInitialized = false;
@@ -47,20 +59,17 @@ function trackEvent(eventName: string, params: Record<string, unknown> = {}) {
 }
 
 function trackConversion(
-  conversionType: 'lead' | 'phone_call' | 'form_submit',
+  conversionType: ConversionType,
   params: Record<string, unknown> = {},
 ) {
   if (typeof window === 'undefined' || !hasTrackingConsent()) {
     return;
   }
 
-  if (
-    typeof window.gtag === 'function' &&
-    GOOGLE_ADS_ID &&
-    GOOGLE_ADS_CONVERSION_LABEL
-  ) {
+  const label = adsLabelFor(conversionType);
+  if (typeof window.gtag === 'function' && GOOGLE_ADS_ID && label) {
     window.gtag('event', 'conversion', {
-      send_to: `${GOOGLE_ADS_ID}/${GOOGLE_ADS_CONVERSION_LABEL}`,
+      send_to: `${GOOGLE_ADS_ID}/${label}`,
       ...params,
     });
   }
@@ -71,6 +80,23 @@ function trackConversion(
   }
 
   trackEvent(`conversion_${conversionType}`, params);
+}
+
+function trackPageView(path: string) {
+  if (typeof window === 'undefined' || !hasTrackingConsent()) {
+    return;
+  }
+
+  if (typeof window.gtag === 'function' && !GTM_ID) {
+    window.gtag('event', 'page_view', {
+      page_path: path,
+      page_location: window.location.href,
+    });
+  }
+
+  if (typeof window.fbq === 'function') {
+    window.fbq('track', 'PageView');
+  }
 }
 
 function handleDocumentClick(event: MouseEvent) {
@@ -159,7 +185,8 @@ function initializeGoogleAnalytics() {
   };
 
   window.gtag('js', new Date());
-  window.gtag('config', GA_MEASUREMENT_ID);
+  // Disable automatic page_view so we can control it for SPA navigation
+  window.gtag('config', GA_MEASUREMENT_ID, { send_page_view: false });
 
   const script = document.createElement('script');
   script.async = true;
@@ -283,9 +310,9 @@ declare global {
   }
 }
 
-export { trackEvent, trackConversion };
+export { trackEvent, trackConversion, trackPageView };
 
-export default boot(() => {
+export default boot(({ router }) => {
   const { consentStatus, hasAccepted } = useConsent();
 
   // Initialize analytics only if user has already accepted
@@ -293,10 +320,23 @@ export default boot(() => {
     initializeAllowedAnalytics();
   }
 
-  // Watch for consent changes and initialize analytics when accepted
+  // Track SPA page navigations as page views (after consent)
+  router.afterEach((to) => {
+    trackPageView(to.fullPath);
+  });
+
+  // Watch for consent changes. The third-party trackers cannot be reliably
+  // unloaded from a running page once their globals exist – the only safe
+  // option on withdrawal is to reload so the scripts are not re-attached.
+  let wasAccepted = hasAccepted();
   watch(consentStatus, (newStatus) => {
-    if (newStatus === 'accepted') {
+    if (newStatus === 'accepted' && !wasAccepted) {
       initializeAllowedAnalytics();
+      wasAccepted = true;
+    } else if (wasAccepted && newStatus !== 'accepted') {
+      if (typeof window !== 'undefined') {
+        window.location.reload();
+      }
     }
   });
 });

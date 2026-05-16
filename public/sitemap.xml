@@ -127,6 +127,36 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.rutputs.nu/tjanst/villa-fonsterputs</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.rutputs.nu/tjanst/lagenhet-fonsterputs</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.rutputs.nu/tjanst/abonnemang-fonsterputs</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.rutputs.nu/tjanst/varputs</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.rutputs.nu/tjanst/hostputs</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.rutputs.nu/integritetspolicy</loc>
     <lastmod>2026-05-16</lastmod>
     <changefreq>yearly</changefreq>

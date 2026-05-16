@@ -39,8 +39,16 @@ export default defineComponent({
   },
   setup() {
     onMounted(() => {
+      if (typeof window === 'undefined') return;
+      const pendingKey = 'rutputs:pending_lead';
+      if (window.sessionStorage.getItem(pendingKey) !== '1') {
+        // Direct visit, refresh, or back-navigation – do not double-count.
+        return;
+      }
+      window.sessionStorage.removeItem(pendingKey);
+
       trackEvent('lead_submit', {
-        page_location: typeof window !== 'undefined' ? window.location.href : '',
+        page_location: window.location.href,
       });
       trackConversion('lead', {
         value: 499,

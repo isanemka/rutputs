@@ -15,13 +15,15 @@ och lägg till följande för både `Production`, `Preview` och `Development`:
 |---|---|---|
 | `VITE_GA_MEASUREMENT_ID` | `G-XXXXXXXXXX` | Google Analytics → Admin → Datastreams → Webb → Mätnings-ID |
 | `VITE_GOOGLE_ADS_ID` | `AW-XXXXXXXXXX` | Google Ads → Verktyg → Konverteringar → klicka på din konverterings­åtgärd → "Installera taggen" |
-| `VITE_GOOGLE_ADS_CONVERSION_LABEL` | `AbC-D_efGhIj` | Samma plats – det är texten efter snedstrecket i `send_to`-koden, t.ex. `AW-123/AbC...` |
+| `VITE_GOOGLE_ADS_LEAD_LABEL` | `AbC-D_efGhIj` | Lead-konverteringens label (samma som `VITE_GOOGLE_ADS_CONVERSION_LABEL` om du bara har en) |
+| `VITE_GOOGLE_ADS_PHONE_LABEL` | `XyZ-1_qrStuV` | Telefonklick-konverteringens label |
+| `VITE_GOOGLE_ADS_FORM_LABEL` | (valfritt) | Om du vill mäta enbart "form_submit" separat |
 | `VITE_META_PIXEL_ID` | `1234567890123456` | Meta Events Manager → Datakällor → din pixel → Inställningar |
 | `VITE_CLARITY_ID` | `xxxxxxxxxx` | clarity.microsoft.com → ditt projekt → Settings → Setup → "Tag" |
 
 > **OBS:** Klicka `Redeploy` efter att variabler lagts till – de bakas in vid build-tid.
 
-- [ ] Alla 5 variabler tillagda i Vercel
+- [ ] Alla variabler tillagda i Vercel
 - [ ] Sidan ny-deployad efter att variablerna lades till
 
 ---
@@ -66,10 +68,12 @@ Du har redan ett Google Ads-konto. Konfigurera så här:
   - Värde: `499 SEK` (eller "Använd olika värden för varje konvertering")
   - Räkning: **En** (per klick)
   - Konverteringsfönster: 30 dagar
-  - Installationsmetod: **Google Tag** (du kommer ändå att fyra triggas via gtag)
+  - Installationsmetod: **Google Tag** (taggen triggas via gtag som redan finns på sidan, du behöver inte klistra in scriptet manuellt)
 - [ ] Skapa konverteringsåtgärden **"Telefonklick"** (samma flöde, kategori: "Telefonsamtal från klick på webbplats")
-- [ ] Kopiera `AW-XXXXXXXXXX` (Conversion ID) och `AbC-D_efGhIj12kLmN` (Conversion Label) till Vercel-variablerna ovan
-- [ ] Testa med Google Tag Assistant att taggen brinner när du gör en testbokning
+- [ ] Kopiera `AW-XXXXXXXXXX` (Conversion ID) till `VITE_GOOGLE_ADS_ID`
+- [ ] Kopiera Lead-konverteringens label till `VITE_GOOGLE_ADS_LEAD_LABEL`
+- [ ] Kopiera Telefonklick-konverteringens label till `VITE_GOOGLE_ADS_PHONE_LABEL`
+- [ ] Testa med Google Tag Assistant att taggen triggas när du gör en testbokning
 - [ ] Markera "Lead"-konverteringen som primär i den kampanj du kör
 
 ---
@@ -106,7 +110,7 @@ också `googleBusinessUrl` till din GBP-länk.
 
 Detta är inte ett måste men ger dig superinsikt om var folk klickar.
 
-- [ ] Skapa konto på `clarity.microsoft.com` (gratis, ingen kortfråga)
+- [ ] Skapa konto på `clarity.microsoft.com` (gratis, inget kreditkort krävs)
 - [ ] Skapa projekt → kopiera projekt-ID
 - [ ] Lägg in i `VITE_CLARITY_ID` i Vercel
 - [ ] Efter deploy: gå in i Clarity-dashboarden efter 24h och titta på:
@@ -140,7 +144,7 @@ Du behöver inte alla samtidigt – välj 1-2 att börja med.
 |---|---|---|---|
 | Google Search Ads | Hetaste söktrafik | 100 kr/dag | Sökord: `fönsterputs [område]`, `fönsterputs RUT`, `fönsterputs villa stockholm`. Använd dina nya områdessidor som landningssidor – matcha sökord mot område. |
 | Google Performance Max | Bred täckning | 75-150 kr/dag | Slå på efter att du har minst 30 konverteringar registrerade i kontot (annars hittar algoritmen inte mönstret) |
-| Meta Lead Ads | Lågfriction-lead | 75 kr/dag | Använd "Lead"-mål, koppla pixeln. Bilder från riktiga jobb fungerar bäst. |
+| Meta Lead Ads | Lead med låg friktion | 75 kr/dag | Använd "Lead"-mål, koppla pixeln. Bilder från riktiga jobb fungerar bäst. |
 | Google Local Services Ads | Verifierade leads | Per-lead-pris | Kräver bakgrundskontroll men ger högkvalitativa leads, värt att ansöka |
 
 ---

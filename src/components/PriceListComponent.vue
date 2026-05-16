@@ -1207,6 +1207,9 @@ export default defineComponent({
     },
     // Redirect user to confirmation page after form submission
     goToConfirmation() {
+      if (typeof window !== 'undefined') {
+        window.sessionStorage.setItem('rutputs:pending_lead', '1');
+      }
       this.$router.push('/bekraftelse');
     },
     // Redirect user to confirmation fail page if form submission fails

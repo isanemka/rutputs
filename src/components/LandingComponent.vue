@@ -123,8 +123,8 @@
         </p>
         <div class="review-grid q-mt-lg">
           <article v-for="review in reviewsData.reviews" :key="review.author + review.date" class="review-card">
-            <div class="review-card__stars" :aria-label="review.rating + ' av 5 stjärnor'">
-              <span v-for="n in review.rating" :key="n">★</span>
+            <div class="review-card__stars" role="img" :aria-label="review.rating + ' av 5 stjärnor'">
+              <span v-for="n in review.rating" :key="n" aria-hidden="true">★</span>
             </div>
             <p class="review-card__text">&ldquo;{{ review.text }}&rdquo;</p>
             <p class="review-card__meta">

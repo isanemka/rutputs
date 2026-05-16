@@ -54,6 +54,16 @@ const siteSeoContent = {
         linkTo: '/tjanst/abonnemang-fonsterputs',
       },
       {
+        question: 'Putsar du både villor och lägenheter?',
+        answer:
+          'Ja, jag arbetar med både villor, radhus och lägenheter och anpassar upplägget efter bostaden. Läs mer på respektive tjänstesida för detaljer om vad som ingår.',
+        links: [
+          { label: 'Fönsterputs för villa', to: '/tjanst/villa-fonsterputs' },
+          { label: 'Fönsterputs för lägenhet', to: '/tjanst/lagenhet-fonsterputs' },
+          { label: 'Abonnemang', to: '/tjanst/abonnemang-fonsterputs' },
+        ],
+      },
+      {
         question: 'Putsar du även företagsfönster?',
         answer:
           'Ja, jag erbjuder professionell fönsterputsning för kontor och företagslokaler i stora delar av Stockholm. Kontakta mig för en offert.',
@@ -209,7 +219,7 @@ const siteSeoContent = {
         'Fönsterputs för lägenhet i Stockholm. Från 499 kr med RUT-avdrag. Smidig bokning, snabbt klart, jag tar med allt material.',
       bodyTitle: 'Fönsterputs för lägenhet i Stockholm',
       bodyIntro:
-        'För lägenheter går putsningen ofta snabbt och smidigt, men det är ändå viktigt att den görs noggrant – särskilt i innerstaden där sot och avgaser sätter sig på rutorna. Jag putsar lägenhetsfönster i hela Stockholm med RUT-avdrag och kan ofta erbjuda tid samma vecka.',
+        'För lägenheter går putsningen ofta snabbt och smidigt, men det är ändå viktigt att den görs noggrant – särskilt i innerstaden där sot och avgaser sätter sig på rutorna. Jag putsar lägenhetsfönster i stora delar av Stockholm – från Kungsholmen, Norrmalm och Östermalm till Solna, Bromma och övriga områden jag täcker – med RUT-avdrag och kan ofta erbjuda tid samma vecka.',
       benefits: [
         'Från 499 kr efter RUT-avdrag.',
         'Inomhus, utomhus och mellan glaspartier – välj själv.',
