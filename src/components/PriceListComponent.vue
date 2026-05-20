@@ -2,21 +2,22 @@
     <q-page class="page-shell">
       <div class="page-stack">
       <section class="editorial-panel editorial-panel--solid price-intro-panel">
-        <span class="section-kicker price-intro-panel__kicker">Pris direkt online</span>
+        <span class="section-kicker price-intro-panel__kicker">Begär offert</span>
         <h1 class="section-title text-center">
-          Pris på fönsterputsning med RUT-avdrag
+          Offert på fönsterputsning med RUT-avdrag
         </h1>
         <p class="section-text text-center q-mx-auto price-intro-panel__text">
-          Här kan du räkna ut priset för fönsterputsning direkt online.
-          Mitt prisformulär är enkelt att använda och ger dig snabbt en tydlig uppskattning av kostnaden.
+          Berätta lite om dina fönster så återkommer jag med en personlig offert.
+          Fyll i formuläret nedan – det tar bara någon minut.
         </p>
         <p class="section-text text-center q-mx-auto price-intro-panel__text">
-          Fyll i formuläret steg för steg så ser du direkt vilket paket som passar ditt hem bäst.
+          Du anger antal fönster, vilka sidor du vill ha putsade och om fönstren har spröjs,
+          så räknar jag fram ett pris med RUT-avdrag och hör av mig.
         </p>
         <div class="price-intro-panel__actions">
           <q-btn
             color="accent"
-            label="Räkna ut ditt pris"
+            label="Fyll i din förfrågan"
             icon-right="south"
             class="text-black"
             @click="scrollToForm"
@@ -24,34 +25,16 @@
         </div>
       </section>
 
-      <section class="price-package-shell">
-        <div class="price-package-shell__header text-center">
-          <span class="section-kicker">Tydliga paketpriser</span>
-          <h2 class="section-title">Pris efter antal fönster</h2>
-          <p class="section-text q-mx-auto">
-            Ett enklare upplägg där du snabbt ser ungefärlig kostnad utifrån hur många fönster du vill få putsade.
-          </p>
-        </div>
-
-        <div class="price-package-grid">
-          <article v-for="tier in priceTiers" :key="tier.id" class="editorial-panel editorial-panel--solid price-package-card">
-            <span class="price-package-card__range">{{ tier.windowRange }}</span>
-            <h3 class="price-package-card__price">{{ tier.priceFrom }}</h3>
-            <p class="price-package-card__label">{{ tier.label }}</p>
-          </article>
-        </div>
-      </section>
-
       <section class="editorial-panel price-list-note">
         <span class="section-kicker">Bra att veta</span>
-          <h2 class="section-title">Riktpris innan offert</h2>
+          <h2 class="section-title">Offert utan förpliktelser</h2>
         <p class="section-text">
-            Paketpriserna ovan är ungefärliga priser för normalt smutsade och normalt åtkomliga fönster.
-            Eventuella tillägg kan tillkomma vid exempelvis spröjsade fönster, hård nedsmutsning eller svår åtkomst.
-
+            Det är kostnadsfritt och inte bindande att skicka in din förfrågan.
+            Jag återkommer med ett tydligt pris efter RUT-avdrag utifrån dina uppgifter.
         </p>
         <p class="section-text">
-            Exakt pris bekräftas alltid innan arbetet startar.
+            Eventuella tillägg vid exempelvis spröjsade fönster, hård nedsmutsning eller svår åtkomst
+            framgår alltid innan arbetet startar.
         </p>
       </section>
 
@@ -89,17 +72,17 @@
               </q-stepper-navigation>
             </q-step>
 
-            <!-- Step 2: Select services -->
+            <!-- Step 2: Window details -->
             <q-step
               :name="2"
-              title="Antal fönster"
+              title="Dina fönster"
               icon="window"
               :done="step > 2"
             >
               <div class="row justify-center q-pa-md package-step">
                 <div class="col-12 col-md-8 col-lg-6">
                   <h2 class="text-body1 text-accent text-center q-pb-md">
-                    Ange antal fönster så matchar jag rätt paket direkt
+                    Berätta hur många fönster du har och vad du vill ha putsat
                   </h2>
                   <q-input
                     v-model.number="form.windowCount"
@@ -110,187 +93,35 @@
                     label="Antal fönster"
                     hint="Ange ett antal från 1 och uppåt"
                     :aria-label="'Antal fönster'"
-                    @update:model-value="handleWindowCountInput"
                   />
                 </div>
                 <div class="col-12 col-md-8 col-lg-6 q-mt-md">
                   <fieldset class="property-type-group">
                     <legend>Vilka sidor vill du ha putsade?</legend>
-                    <q-radio keep-color v-model="form.cleaningSides" val="outside" label="Utsida" color="accent" @update:model-value="buildCart" />
-                    <q-radio keep-color v-model="form.cleaningSides" val="both" label="Utsida + Insida" color="accent" @update:model-value="buildCart" />
-                    <q-radio keep-color v-model="form.cleaningSides" val="all" label="Utsida + Insida + Mellan" color="accent" @update:model-value="buildCart" />
+                    <q-radio keep-color v-model="form.cleaningSides" val="outside" label="Utsida" color="accent" />
+                    <q-radio keep-color v-model="form.cleaningSides" val="both" label="Utsida + Insida" color="accent" />
+                    <q-radio keep-color v-model="form.cleaningSides" val="all" label="Utsida + Insida + Mellan" color="accent" />
                   </fieldset>
                   <div class="q-mt-sm">
-                    <q-checkbox keep-color v-model="form.hasSprojs" label="Spröjs" color="accent" @update:model-value="buildCart" />
+                    <q-checkbox keep-color v-model="form.hasSprojs" label="Spröjs" color="accent" />
                   </div>
-                </div>
-                <div class="col-12 q-mt-md">
-                  <div class="package-step__preview" v-if="getActiveTier()">
-                    <p class="package-step__preview-label">Valt paket</p>
-                    <p class="package-step__preview-range">{{ getActiveTier()?.windowRange }}</p>
-                    <p class="package-step__preview-price">{{ form.totalPrice > 0 ? 'ca ' + form.totalPrice + ' kr' : getActiveTier()?.priceFrom }}</p>
-                  </div>
-                  <p v-else class="text-center package-step__hint">
-                    Välj antal fönster för att se vilket paket som passar.
-                  </p>
                 </div>
               </div>
               <q-stepper-navigation>
-                <q-btn @click="goToPriceStep" color="accent" label="Fortsätt"  class="q-ml-sm q-mb-sm text-black"/>
+                <q-btn @click="goToContactStep" color="accent" label="Fortsätt"  class="q-ml-sm q-mb-sm text-black"/>
                 <q-btn @click="step = 1" color="primary" label="Tillbaka" class="q-ml-sm q-mb-sm" />
-                <q-btn @click="emptyCart" color="secondary" label="Rensa" class="q-ml-sm q-mb-sm text-black" />
+                <q-btn @click="resetWindowDetails" color="secondary" label="Rensa" class="q-ml-sm q-mb-sm text-black" />
               </q-stepper-navigation>
             </q-step>
 
-            <!-- Step 3: Review selected services and total price -->
+            <!-- Step 3: Contact form -->
             <q-step
               :name="3"
-              title="Se ditt pris och lediga tider"
-              icon="shopping_cart"
-              :done="step > 3"
-            >
-
-              <div id="pris-steg"></div>
-
-              <div id="pris-resultat" class="price-result-step">
-                <!-- Display selected services and total price if minimum order value is met -->
-                <div v-if="cart.length > 0 && form.totalPrice >= minimumOrderValue">
-                  <h3>Dina val:</h3>
-                  <ul>
-                    <li v-for="item in cart" :key="item.id">
-                      {{ item.description }}
-                    </li>
-                  </ul>
-                  <h3>Uppskattat pris: {{ form.totalPrice }} kr*</h3>
-                  <p>*inklusive moms och efter RUT-avdrag</p>
-                </div>
-
-                <!-- Inform user about minimum order value if not met -->
-                <div v-else>
-                  <p class="text-body1">Ange antal fönster i föregående steg för att få ditt paketpris.</p>
-                </div>
-              </div>
-
-              <section class="availability-picker availability-picker--compact" aria-labelledby="availability-heading">
-                <div class="availability-picker__header">
-                  <h3 id="availability-heading" class="availability-picker__title">Välj önskad dag</h3>
-                  <p class="availability-picker__hint">
-                    Valfritt. Välj om du vill boka en tid på förmiddagen eller eftermiddagen under ett datum i kalendern som passar dig.
-                  </p>
-                </div>
-
-                <p v-if="availabilityLoading" class="availability-picker__status">
-                  Hämtar lediga tider...
-                </p>
-                <p v-else-if="availabilityError" class="availability-picker__status availability-picker__status--error">
-                  Kunde inte hämta lediga tider just nu. Du kan fortfarande skicka din förfrågan utan att välja tid.
-                </p>
-                <p v-else-if="availabilitySlots.length === 0" class="availability-picker__status">
-                  Inga lediga halvdagsfönster är publicerade just nu.
-                </p>
-
-                <div v-else class="availability-calendar-shell">
-                  <div class="availability-calendar-nav">
-                    <q-btn
-                      flat
-                      round
-                      dense
-                      icon="chevron_left"
-                      color="primary"
-                      aria-label="Föregående månad"
-                      @click="changeAvailabilityMonth(-1)"
-                    />
-                    <p class="availability-calendar-nav__label">{{ availabilityCalendarLabel }}</p>
-                    <q-btn
-                      flat
-                      round
-                      dense
-                      icon="chevron_right"
-                      color="primary"
-                      aria-label="Nästa månad"
-                      @click="changeAvailabilityMonth(1)"
-                    />
-                  </div>
-
-                  <div class="availability-calendar-weekdays">
-                    <span v-for="weekday in availabilityWeekdays" :key="weekday">{{ weekday }}</span>
-                  </div>
-
-                  <div class="availability-calendar-grid">
-                    <div
-                      v-for="day in availabilityCalendarDays"
-                      :key="day.iso"
-                      class="availability-calendar-day"
-                      :class="{
-                        'availability-calendar-day--muted': !day.inCurrentMonth,
-                        'availability-calendar-day--today': day.isToday,
-                        'availability-calendar-day--selected': form.requestedDate === day.iso,
-                      }"
-                    >
-                      <div class="availability-calendar-day__number">{{ day.dayNumber }}</div>
-                      <div class="availability-calendar-day__slots">
-                        <button
-                          type="button"
-                          class="availability-chip"
-                          :class="{
-                            'availability-chip--available': !!day.amSlot,
-                            'availability-chip--unavailable': !day.amSlot,
-                            'availability-chip--selected': day.amSlot && isRequestedSlotSelected(day.amSlot),
-                          }"
-                          :disabled="!day.amSlot"
-                          :aria-label="getSlotAriaLabel(day, 'am')"
-                          :aria-pressed="day.amSlot ? isRequestedSlotSelected(day.amSlot) : false"
-                          @click="day.amSlot && selectRequestedSlot(day.amSlot)"
-                        >
-                          <span>FM</span>
-                        </button>
-                        <button
-                          type="button"
-                          class="availability-chip"
-                          :class="{
-                            'availability-chip--available': !!day.pmSlot,
-                            'availability-chip--unavailable': !day.pmSlot,
-                            'availability-chip--selected': day.pmSlot && isRequestedSlotSelected(day.pmSlot),
-                          }"
-                          :disabled="!day.pmSlot"
-                          :aria-label="getSlotAriaLabel(day, 'pm')"
-                          :aria-pressed="day.pmSlot ? isRequestedSlotSelected(day.pmSlot) : false"
-                          @click="day.pmSlot && selectRequestedSlot(day.pmSlot)"
-                        >
-                          <span>EM</span>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div v-if="form.requestedDate && form.requestedHalfDay" class="availability-picker__selection">
-                  <span>
-                    Vald tid: {{ formatSlotDate(form.requestedDate) }} {{ formatHalfDayLabel(form.requestedHalfDay) }}
-                  </span>
-                  <q-btn
-                    flat
-                    dense
-                    color="primary"
-                    label="Rensa val"
-                    @click="clearRequestedSlot"
-                  />
-                </div>
-              </section>
-              <q-stepper-navigation>
-                <q-btn @click="step = 4" :disable="cart.length === 0" color="accent" label="Fortsätt"  class="text-black q-ml-sm q-mb-sm" />
-                <q-btn @click="step = 2" color="primary" label="Tillbaka" class="q-ml-sm q-mb-sm"/>
-              </q-stepper-navigation>
-            </q-step>
-
-            <!-- Step 4: Contact form -->
-            <q-step
-              :name="4"
               title="Fyll i dina uppgifter"
               icon="person"
             >
               <div class="order-summary">
-                <h3 class="order-summary__title">Din beställning</h3>
+                <h3 class="order-summary__title">Din förfrågan</h3>
                 <dl class="order-summary__list">
                   <div class="order-summary__row">
                     <dt>Boendetyp</dt>
@@ -298,7 +129,7 @@
                   </div>
                   <div class="order-summary__row">
                     <dt>Antal fönster</dt>
-                    <dd>{{ form.windowCount }} st ({{ getActiveTier()?.windowRange }})</dd>
+                    <dd>{{ form.windowCount }} st</dd>
                   </div>
                   <div class="order-summary__row">
                     <dt>Sidor</dt>
@@ -308,26 +139,8 @@
                     <dt>Spröjs</dt>
                     <dd>{{ form.hasSprojs ? 'Ja' : 'Nej' }}</dd>
                   </div>
-                  <div v-if="form.requestedDate" class="order-summary__row">
-                    <dt>Önskat datum</dt>
-                    <dd>{{ formatSlotDate(form.requestedDate) }}{{ form.requestedHalfDay ? ', ' + formatHalfDayLabel(form.requestedHalfDay) : '' }}</dd>
-                  </div>
-                  <template v-if="discountPercent > 0">
-                    <div class="order-summary__row">
-                      <dt>Pris innan rabatt</dt>
-                      <dd>{{ form.totalPrice }} kr</dd>
-                    </div>
-                    <div class="order-summary__row">
-                      <dt>Rabattkod ({{ form.discountCode }}, -{{ discountPercent }}%)</dt>
-                      <dd>-{{ discountSaving }} kr</dd>
-                    </div>
-                  </template>
-                  <div class="order-summary__row order-summary__row--total">
-                    <dt>Uppskattad kostnad</dt>
-                    <dd>{{ discountedPrice }} kr*</dd>
-                  </div>
                 </dl>
-                <p class="order-summary__footnote">*inklusive moms och efter RUT-avdrag</p>
+                <p class="order-summary__footnote">Jag återkommer med en offert efter RUT-avdrag utifrån dessa uppgifter.</p>
               </div>
 
               <div class="q-pa-md flex items-center justify-center">
@@ -383,30 +196,6 @@
                     maxlength="500"
                   />
 
-                  <div class="discount-code-row">
-                    <q-input
-                      v-model="form.discountCode"
-                      filled
-                      label="Rabattkod"
-                      hint="Har du en rabattkod? Ange den här."
-                      maxlength="50"
-                      class="discount-code-row__input"
-                      :success="discountStatus === 'valid'"
-                      :error="discountStatus === 'invalid' || discountStatus === 'error'"
-                      :error-message="discountStatus === 'invalid' ? 'Ogiltig rabattkod' : discountStatus === 'error' ? 'Kunde inte validera koden just nu, försök igen' : ''"
-                      @keydown.enter.prevent="applyDiscountCode"
-                    />
-                    <q-btn
-                      unelevated
-                      color="primary"
-                      label="Aktivera"
-                      :loading="discountStatus === 'loading'"
-                      :disable="!form.discountCode.trim()"
-                      class="discount-code-row__btn"
-                      @click="applyDiscountCode"
-                    />
-                  </div>
-
                   <input
                     v-model="form.website"
                     name="website"
@@ -455,7 +244,7 @@
                   <q-stepper-navigation>
                     <div>
                       <q-btn type="submit" :disable="!form.termsAccepted" color="accent" label="Skicka offertförfrågan" class="q-ml-sm q-mb-sm text-black" />
-                      <q-btn @click="step = 3" color="primary" label="Tillbaka" class="q-ml-sm q-mb-sm" />
+                      <q-btn @click="step = 2" color="primary" label="Tillbaka" class="q-ml-sm q-mb-sm" />
                     </div>
                     <div>
                       <q-btn type="reset" label="Rensa formulär" color="secondary" class="q-ml-sm q-mb-sm text-black" />
@@ -471,7 +260,7 @@
 
       <section class="editorial-panel faq-shell q-pb-xl">
         <span class="section-kicker">Vanliga frågor</span>
-        <h2 class="section-title">Pris och bokning</h2>
+        <h2 class="section-title">Offert och bokning</h2>
         <q-list bordered separator>
           <q-expansion-item
             v-for="item in priceFaqs"
@@ -508,167 +297,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, nextTick, ref } from 'vue';
+import { defineComponent, ref } from 'vue';
 import { useQuasar } from 'quasar';
 import axios from 'axios';
 import { priceSeo } from 'src/data/seo';
 import { trackEvent } from 'src/boot/analytics';
 
-const STEP_TRANSITION_DURATION_MS = 350;
-
 const priceFaqs = priceSeo.faq ?? [];
 
-interface CartItem {
-  id: string;
-  quantity: number;
-  description: string;
-}
-
-type HalfDay = 'am' | 'pm';
 type CleaningSides = 'outside' | 'both' | 'all';
-
-interface CalendarDay {
-  iso: string;
-  dayNumber: number;
-  inCurrentMonth: boolean;
-  isToday: boolean;
-  amSlot: AvailabilitySlot | null;
-  pmSlot: AvailabilitySlot | null;
-}
-
-interface AvailabilitySlot {
-  id: string;
-  slot_date: string;
-  half_day: HalfDay;
-  capacity: number;
-  notes: string | null;
-}
-
-function parseIsoDate(value: string) {
-  return new Date(`${value}T12:00:00`);
-}
-
-function formatIsoDate(date: Date) {
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, '0');
-  const day = String(date.getDate()).padStart(2, '0');
-
-  return `${year}-${month}-${day}`;
-}
-
-function getMonthKey(value: string) {
-  return value.slice(0, 7);
-}
-
-function createMonthDate(monthKey: string) {
-  return parseIsoDate(`${monthKey}-01`);
-}
-
-function getCurrentMonthKey() {
-  return getMonthKey(formatIsoDate(new Date()));
-}
-
-function addDays(date: Date, days: number) {
-  const nextDate = new Date(date);
-  nextDate.setDate(nextDate.getDate() + days);
-  return nextDate;
-}
-
-function addMonths(date: Date, months: number) {
-  const nextDate = new Date(date);
-  nextDate.setMonth(nextDate.getMonth() + months);
-  return nextDate;
-}
-
-function isWeekend(date: Date) {
-  const day = date.getDay();
-  return day === 0 || day === 6;
-}
-
-function getStartOfCalendarMonth(date: Date) {
-  const monthStart = new Date(date.getFullYear(), date.getMonth(), 1);
-  const dayOfWeek = (monthStart.getDay() + 6) % 7;
-  return addDays(monthStart, -dayOfWeek);
-}
-
-function getEndOfCalendarMonth(date: Date) {
-  const monthEnd = new Date(date.getFullYear(), date.getMonth() + 1, 0);
-  const dayOfWeek = (monthEnd.getDay() + 6) % 7;
-  return addDays(monthEnd, 6 - dayOfWeek);
-}
-
-function isSameCalendarDay(left: Date, right: Date) {
-  return formatIsoDate(left) === formatIsoDate(right);
-}
-
-const WEEKDAY_HEADERS = ['Mån', 'Tis', 'Ons', 'Tor', 'Fre'];
-
-interface PriceTier {
-  id: string;
-  windowRange: string;
-  priceFrom: string;
-  label: string;
-  minWindows: number;
-  maxWindows: number;
-  price: number;
-}
-
-const priceTiers: PriceTier[] = [
-  {
-    id: 'tier-1',
-    windowRange: '1-6 fönster',
-    priceFrom: 'ca 499 kr',
-    label: 'Perfekt för mindre bostäder',
-    minWindows: 1,
-    maxWindows: 6,
-    price: 499,
-  },
-  {
-    id: 'tier-2',
-    windowRange: '7-12 fönster',
-    priceFrom: 'ca 799 kr',
-    label: 'Vanligt val för lägenhet och mindre villa',
-    minWindows: 7,
-    maxWindows: 12,
-    price: 799,
-  },
-  {
-    id: 'tier-3',
-    windowRange: '13-20 fönster',
-    priceFrom: 'ca 999 kr',
-    label: 'Populärt val för familjebostad',
-    minWindows: 13,
-    maxWindows: 20,
-    price: 999,
-  },
-  {
-    id: 'tier-4',
-    windowRange: '21-30 fönster',
-    priceFrom: 'ca 1 399 kr',
-    label: 'För större villa och fler glaspartier',
-    minWindows: 21,
-    maxWindows: 30,
-    price: 1399,
-  },
-  {
-    id: 'tier-5',
-    windowRange: '31-40 fönster',
-    priceFrom: 'ca 1 699 kr',
-    label: 'För stora fastigheter och många fönsterpartier',
-    minWindows: 31,
-    maxWindows: 40,
-    price: 1699,
-  },
-  {
-    id: 'tier-6',
-    windowRange: '41+ fönster',
-    priceFrom: 'ca 1 999 kr',
-    label: 'För mycket stora uppdrag med många fönster',
-    minWindows: 41,
-    maxWindows: Number.POSITIVE_INFINITY,
-    price: 1999,
-  },
-];
 
 export default defineComponent({
   name: 'PriceListComponent',
@@ -742,9 +379,6 @@ export default defineComponent({
       form: {
         propertyType: '',
         windowCount: null as number | null,
-        selectedTierId: '',
-        requestedDate: null as string | null,
-        requestedHalfDay: null as HalfDay | null,
         name: '',
         tel: '',
         address: '',
@@ -752,46 +386,20 @@ export default defineComponent({
         message: '',
         website: '',
         termsAccepted: false,
-        totalPrice: 0,
         cleaningSides: 'outside' as CleaningSides,
         hasSprojs: false,
-        discountCode: '',
       },
-      discountPercent: 0,
-      discountValidatedCode: '',
-      discountStatus: null as null | 'loading' | 'valid' | 'invalid' | 'error',
-      discountRequestId: 0,
-      priceStepScrollTimeoutId: null as number | null,
-      minimumOrderValue: 499,
-      cart: [] as CartItem[],
-      availabilityLoading: false,
-      availabilityError: false,
-      availabilitySlots: [] as AvailabilitySlot[],
-      selectedAvailabilityMonth: null as string | null,
     };  },
   setup() {
     const quasar = useQuasar();
 
     return {
-      priceTiers,
       priceFaqs,
       quasar,
       step: ref(1)
     }
   },
   methods: {
-    getMultipliers(tierId: string): { sides: Record<CleaningSides, number>; sprojs: number } {
-      if (tierId === 'tier-1') {
-        return {
-          sides: { outside: 1.0, both: 1.3, all: 2.0 },
-          sprojs: 1.1,
-        };
-      }
-      return {
-        sides: { outside: 1.0, both: 1.6, all: 2.2 },
-        sprojs: 1.15,
-      };
-    },
     getCleaningSidesLabel(sides: CleaningSides): string {
       const map: Record<CleaningSides, string> = {
         outside: 'Utsida',
@@ -799,30 +407,6 @@ export default defineComponent({
         all: 'Utsida + Insida + Mellan',
       };
       return map[sides];
-    },
-    computePrice(tierId: string, sides: CleaningSides, hasSprojs: boolean, basePrice: number): number {
-      const { sides: multiplierMap, sprojs: sprojsMultiplier } = this.getMultipliers(tierId);
-      let price = Math.round(basePrice * multiplierMap[sides]);
-      if (hasSprojs) {
-        price = Math.round(price * sprojsMultiplier);
-      }
-      return price;
-    },
-    buildCart() {
-      const tier = this.getActiveTier();
-      if (!tier || !this.form.windowCount) return;
-
-      const sides = this.form.cleaningSides as CleaningSides;
-      const price = this.computePrice(tier.id, sides, this.form.hasSprojs, tier.price);
-      const sprojsLabel = this.form.hasSprojs ? ', Spröjs' : '';
-      this.cart = [
-        {
-          id: tier.id,
-          quantity: 1,
-          description: `${this.form.windowCount} fönster (${tier.windowRange}) - ${this.getCleaningSidesLabel(sides)}${sprojsLabel}`,
-        },
-      ];
-      this.form.totalPrice = price;
     },
     // Validate property type selection before proceeding to next step
     validatePropertyType() {
@@ -847,57 +431,16 @@ export default defineComponent({
     scrollToForm() {
       this.scrollToElement('pris-formular');
     },
-    getTierFromWindowCount(windowCount: number | null) {
-      if (!windowCount || Number.isNaN(windowCount)) {
-        return null;
-      }
-
-      return priceTiers.find((tier) => windowCount >= tier.minWindows && windowCount <= tier.maxWindows) ?? null;
-    },
-    getActiveTier() {
-      if (this.form.selectedTierId) {
-        return priceTiers.find((tier) => tier.id === this.form.selectedTierId) ?? null;
-      }
-
-      return this.getTierFromWindowCount(this.form.windowCount);
-    },
-    handleWindowCountInput() {
-      if (this.form.windowCount === null) {
-        this.form.selectedTierId = '';
-        this.cart = [];
-        this.form.totalPrice = 0;
-        return;
-      }
-
-      this.form.windowCount = Number(this.form.windowCount);
-
-      if (!Number.isInteger(this.form.windowCount) || this.form.windowCount < 1) {
-        this.form.selectedTierId = '';
-        this.cart = [];
-        this.form.totalPrice = 0;
-        return;
-      }
-
-      const tier = this.getTierFromWindowCount(this.form.windowCount);
-
-      if (!tier) {
-        this.form.selectedTierId = '';
-        this.cart = [];
-        this.form.totalPrice = 0;
-        return;
-      }
-
-      this.form.selectedTierId = tier.id;
-      this.buildCart();
-    },
-    goToPriceStep() {
+    goToContactStep() {
       const activeElement = document.activeElement;
 
       if (activeElement instanceof HTMLElement) {
         activeElement.blur();
       }
 
-      this.handleWindowCountInput();
+      if (this.form.windowCount !== null) {
+        this.form.windowCount = Number(this.form.windowCount);
+      }
 
       if (!this.form.windowCount || this.form.windowCount < 1) {
         this.quasar.notify({
@@ -908,7 +451,7 @@ export default defineComponent({
         return;
       }
 
-      if (!Number.isInteger(Number(this.form.windowCount))) {
+      if (!Number.isInteger(this.form.windowCount)) {
         this.quasar.notify({
           message: 'Antalet fönster måste vara ett heltal.',
           color: 'negative',
@@ -917,161 +460,12 @@ export default defineComponent({
         return;
       }
 
-      if (!this.form.selectedTierId || this.cart.length === 0) {
-        this.quasar.notify({
-          message: 'Jag kunde inte matcha ett paket. Kontrollera antal fönster.',
-          color: 'negative',
-          position: 'top'
-        });
-        return;
-      }
-
       this.step = 3;
-
-      if (this.priceStepScrollTimeoutId !== null) {
-        window.clearTimeout(this.priceStepScrollTimeoutId);
-      }
-
-      void nextTick(() => {
-        this.priceStepScrollTimeoutId = window.setTimeout(() => {
-          this.scrollToElement('pris-steg');
-          this.priceStepScrollTimeoutId = null;
-        }, STEP_TRANSITION_DURATION_MS);
-      });
     },
-    // Calculate total price based on selected package
-    calculateTotalPrice() {
-      const tier = this.getActiveTier();
-      if (!tier) {
-        this.form.totalPrice = 0;
-        return 0;
-      }
-
-      const price = this.computePrice(
-        tier.id,
-        this.form.cleaningSides as CleaningSides,
-        this.form.hasSprojs,
-        tier.price
-      );
-      this.form.totalPrice = price;
-      return price;
-    },
-    async loadAvailability() {
-      this.availabilityLoading = true;
-      this.availabilityError = false;
-
-      try {
-        const response = await axios.get('/api/availability', {
-          timeout: 7000
-        });
-
-        this.availabilitySlots = Array.isArray(response.data?.slots) ? response.data.slots : [];
-        this.syncSelectedAvailabilityMonth();
-      } catch {
-        this.availabilityError = true;
-        this.availabilitySlots = [];
-        this.selectedAvailabilityMonth = null;
-      } finally {
-        this.availabilityLoading = false;
-      }
-    },
-    getAvailableCalendarMonths() {
-      return [...new Set(this.availabilitySlots.map((slot) => getMonthKey(slot.slot_date)))].sort();
-    },
-    syncSelectedAvailabilityMonth() {
-      const availableMonths = this.getAvailableCalendarMonths();
-
-      if (this.form.requestedDate) {
-        const requestedMonth = getMonthKey(this.form.requestedDate);
-
-        if (availableMonths.includes(requestedMonth)) {
-          this.selectedAvailabilityMonth = requestedMonth;
-          return;
-        }
-      }
-
-      if (this.selectedAvailabilityMonth && availableMonths.includes(this.selectedAvailabilityMonth)) {
-        return;
-      }
-
-      this.selectedAvailabilityMonth = availableMonths[0] ?? this.selectedAvailabilityMonth ?? getCurrentMonthKey();
-    },
-    getAvailabilitySlot(slotDate: string, halfDay: HalfDay) {
-      return this.availabilitySlots.find((slot) => slot.slot_date === slotDate && slot.half_day === halfDay) ?? null;
-    },
-    getAvailabilityCalendarDays() {
-      if (!this.selectedAvailabilityMonth) {
-        return [] as CalendarDay[];
-      }
-
-      const monthDate = createMonthDate(this.selectedAvailabilityMonth);
-      const startDate = getStartOfCalendarMonth(monthDate);
-      const endDate = getEndOfCalendarMonth(monthDate);
-      const days: CalendarDay[] = [];
-      const today = new Date();
-
-      for (let currentDate = startDate; currentDate <= endDate; currentDate = addDays(currentDate, 1)) {
-        if (isWeekend(currentDate)) {
-          continue;
-        }
-
-        const iso = formatIsoDate(currentDate);
-
-        days.push({
-          iso,
-          dayNumber: currentDate.getDate(),
-          inCurrentMonth: getMonthKey(iso) === this.selectedAvailabilityMonth,
-          isToday: isSameCalendarDay(currentDate, today),
-          amSlot: this.getAvailabilitySlot(iso, 'am'),
-          pmSlot: this.getAvailabilitySlot(iso, 'pm'),
-        });
-      }
-
-      return days;
-    },
-    changeAvailabilityMonth(direction: number) {
-      if (!this.selectedAvailabilityMonth) {
-        this.selectedAvailabilityMonth = getCurrentMonthKey();
-      }
-
-      this.selectedAvailabilityMonth = getMonthKey(formatIsoDate(addMonths(createMonthDate(this.selectedAvailabilityMonth), direction)));
-    },
-    formatSlotDate(slotDate: string) {
-      return new Intl.DateTimeFormat('sv-SE', {
-        weekday: 'long',
-        day: 'numeric',
-        month: 'long'
-      }).format(new Date(`${slotDate}T12:00:00`));
-    },
-    formatHalfDayLabel(halfDay: HalfDay) {
-      return halfDay === 'am' ? 'Förmiddag' : 'Eftermiddag';
-    },
-    getSlotAriaLabel(day: CalendarDay, halfDay: HalfDay) {
-      const slot = halfDay === 'am' ? day.amSlot : day.pmSlot;
-      const label = this.formatHalfDayLabel(halfDay);
-      const date = this.formatSlotDate(day.iso);
-      const availabilityLabel = slot ? 'Ledig tid' : 'Ej ledig tid';
-
-      return `${availabilityLabel}: ${date}, ${label}`;
-    },
-    isRequestedSlotSelected(slot: AvailabilitySlot) {
-      return this.form.requestedDate === slot.slot_date && this.form.requestedHalfDay === slot.half_day;
-    },
-    selectRequestedSlot(slot: AvailabilitySlot) {
-      this.selectedAvailabilityMonth = getMonthKey(slot.slot_date);
-      this.form.requestedDate = slot.slot_date;
-      this.form.requestedHalfDay = slot.half_day;
-    },
-    clearRequestedSlot() {
-      this.form.requestedDate = null;
-      this.form.requestedHalfDay = null;
-    },
-    // Empty cart and reset quantity for each article
-    emptyCart() {
-      this.cart = [];
-      this.form.totalPrice = 0;
+    resetWindowDetails() {
       this.form.windowCount = null;
-      this.form.selectedTierId = '';
+      this.form.cleaningSides = 'outside';
+      this.form.hasSprojs = false;
     },
     // Open terms and conditions dialog
     openTermsDialog() {
@@ -1100,38 +494,6 @@ export default defineComponent({
         position: 'top'
       });
     },
-    async applyDiscountCode() {
-      const code = this.form.discountCode.trim();
-      if (!code) return;
-
-      this.discountRequestId++;
-      const requestId = this.discountRequestId;
-
-      this.discountStatus = 'loading';
-      this.discountPercent = 0;
-
-      try {
-        const response = await axios.post('/api/discount', { code }, { timeout: 5000 });
-        if (requestId !== this.discountRequestId) return;
-        if (response.data?.valid) {
-          this.discountValidatedCode = code.toUpperCase();
-          this.discountPercent = response.data.percent;
-          this.discountStatus = 'valid';
-          this.form.discountCode = code.toUpperCase();
-          this.$q.notify({
-            type: 'positive',
-            message: `Rabattkod aktiverad – ${response.data.percent}% rabatt!`,
-            icon: 'check_circle',
-            timeout: 4000,
-          });
-        } else {
-          this.discountStatus = 'invalid';
-        }
-      } catch {
-        if (requestId !== this.discountRequestId) return;
-        this.discountStatus = 'error';
-      }
-    },
     // Submit form data to backend
     onSubmit() {
       axios.post('/api/kontakt', {
@@ -1143,11 +505,6 @@ export default defineComponent({
         website: this.form.website,
         propertyType: this.form.propertyType,
         windowCount: this.form.windowCount,
-        requestedDate: this.form.requestedDate,
-        requestedHalfDay: this.form.requestedHalfDay,
-        cart: this.cart,
-        totalPrice: this.form.totalPrice,
-        discountCode: this.form.discountCode.trim() || undefined,
         cleaningSides: this.form.cleaningSides,
         hasSprojs: this.form.hasSprojs,
       }, {
@@ -1155,10 +512,8 @@ export default defineComponent({
       })
       .then(() => {
         trackEvent('lead_form_submit', {
-          form_name: 'price_request',
+          form_name: 'quote_request',
           property_type: this.form.propertyType,
-          total_price: this.form.totalPrice,
-          currency: 'SEK',
         });
 
         this.quasar.notify({
@@ -1177,28 +532,15 @@ export default defineComponent({
         this.goToFormFail();
       });
     },
-    // Reset form data
+    // Reset contact fields
     onReset() {
-      this.form = {
-        propertyType: this.form.propertyType,
-        windowCount: this.form.windowCount,
-        selectedTierId: this.form.selectedTierId,
-        requestedDate: null,
-        requestedHalfDay: null,
-        name: '',
-        tel: '',
-        address: '',
-        email: '',
-        message: '',
-        website: '',
-        termsAccepted: false,
-        totalPrice: this.form.totalPrice,
-        cleaningSides: this.form.cleaningSides as CleaningSides,
-        hasSprojs: this.form.hasSprojs,
-        discountCode: '',
-      };
-      this.discountPercent = 0;
-      this.discountStatus = null;
+      this.form.name = '';
+      this.form.tel = '';
+      this.form.address = '';
+      this.form.email = '';
+      this.form.message = '';
+      this.form.website = '';
+      this.form.termsAccepted = false;
       this.quasar.notify({
         message: 'Formuläret har rensats',
         color: 'negative',
@@ -1219,48 +561,6 @@ export default defineComponent({
     // Redirect user to confirmation fail page if form submission fails
     goToFormFail() {
       this.$router.push('/fel');
-    }
-  },
-  watch: {
-    'form.discountCode'(val: string) {
-      if (val.toUpperCase() !== this.discountValidatedCode) {
-        this.discountPercent = 0;
-        this.discountStatus = val.trim() ? null : null;
-      }
-    },
-  },
-  // Calculate total price when component is created
-  async created() {
-    this.calculateTotalPrice();
-    await this.loadAvailability();
-  },
-  computed: {
-    discountSaving(): number {
-      return Math.round(this.form.totalPrice * this.discountPercent / 100);
-    },
-    discountedPrice(): number {
-      return this.form.totalPrice - this.discountSaving;
-    },
-    availabilityCalendarDays(): CalendarDay[] {
-      return this.getAvailabilityCalendarDays();
-    },
-    availabilityCalendarLabel(): string {
-      if (!this.selectedAvailabilityMonth) {
-        return 'Inga lediga datum';
-      }
-
-      return new Intl.DateTimeFormat('sv-SE', {
-        month: 'long',
-        year: 'numeric',
-      }).format(createMonthDate(this.selectedAvailabilityMonth));
-    },
-    availabilityWeekdays(): string[] {
-      return WEEKDAY_HEADERS;
-    },
-  },
-  beforeUnmount() {
-    if (this.priceStepScrollTimeoutId !== null) {
-      window.clearTimeout(this.priceStepScrollTimeoutId);
     }
   },
 });
@@ -1284,20 +584,6 @@ export default defineComponent({
   height: 1px;
   opacity: 0;
   pointer-events: none;
-}
-
-.discount-code-row {
-  display: flex;
-  gap: 0.5rem;
-  align-items: flex-start;
-}
-
-.discount-code-row__input {
-  flex: 1;
-}
-
-.discount-code-row__btn {
-  margin-top: 8px;
 }
 
 .order-summary {
@@ -1339,204 +625,10 @@ export default defineComponent({
   text-align: right;
 }
 
-.order-summary__row--total {
-  margin-top: 0.75rem;
-  padding-top: 0.75rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
-  font-weight: 700;
-  font-size: 1rem;
-}
-
-.order-summary__row--total dt {
-  opacity: 1;
-}
-
 .order-summary__footnote {
   margin: 0.75rem 0 0;
   font-size: 0.75rem;
   opacity: 0.55;
-}
-
-.availability-picker {
-  display: grid;
-  gap: 0.75rem;
-  padding: 0.95rem;
-  border-radius: var(--radius-md);
-  background: rgba(255, 255, 255, 0.72);
-  border: 1px solid rgba(69, 90, 100, 0.12);
-}
-
-.availability-picker--compact {
-  width: min(100%, 56rem);
-  margin: 0.75rem auto 0;
-  padding: 0.85rem;
-  gap: 0.65rem;
-}
-
-.availability-picker__header {
-  display: grid;
-  gap: 0.25rem;
-}
-
-.availability-picker__title,
-.availability-picker__hint,
-.availability-picker__status,
-.availability-picker__selection {
-  margin: 0;
-}
-
-.availability-picker__title {
-  font-size: 1rem;
-  color: rgba(33, 41, 49, 0.92);
-}
-
-.availability-picker__hint,
-.availability-picker__status {
-  color: rgba(69, 90, 100, 0.84);
-}
-
-.availability-picker__status--error {
-  color: #9f2d20;
-}
-
-.availability-calendar-shell {
-  display: grid;
-  gap: 0.65rem;
-}
-
-.availability-calendar-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem;
-}
-
-.availability-calendar-nav__label {
-  margin: 0;
-  font-weight: 600;
-  color: rgba(33, 41, 49, 0.92);
-  text-transform: capitalize;
-}
-
-.availability-calendar-weekdays,
-.availability-calendar-grid {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 0.35rem;
-}
-
-.availability-calendar-weekdays {
-  font-size: 0.78rem;
-  color: rgba(69, 90, 100, 0.8);
-  text-align: center;
-}
-
-.availability-calendar-day {
-  min-height: 5.8rem;
-  display: grid;
-  gap: 0.35rem;
-  align-content: start;
-  padding: 0.35rem;
-  border-radius: var(--radius-md);
-  border: 1px solid rgba(69, 90, 100, 0.12);
-  background: rgba(255, 255, 255, 0.88);
-}
-
-.availability-calendar-day--muted {
-  opacity: 0.42;
-}
-
-.availability-calendar-day--today {
-  border-color: rgba(214, 188, 95, 0.72);
-}
-
-.availability-calendar-day--selected {
-  box-shadow: 0 12px 22px rgba(214, 188, 95, 0.14);
-}
-
-.availability-calendar-day__number {
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: rgba(33, 41, 49, 0.92);
-}
-
-.availability-calendar-day__slots {
-  display: grid;
-  gap: 0.25rem;
-}
-
-.availability-chip {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 1.8rem;
-  padding: 0.28rem 0.4rem;
-  border: 1px solid rgba(69, 90, 100, 0.12);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.92);
-  color: rgba(33, 41, 49, 0.92);
-  font-size: 0.74rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: transform 140ms ease, border-color 140ms ease, box-shadow 140ms ease, opacity 140ms ease;
-}
-
-.availability-chip--available {
-  border-color: rgba(82, 147, 104, 0.5);
-  background: rgba(113, 193, 131, 0.18);
-  color: #155724;
-}
-
-.availability-chip--unavailable {
-  border-color: rgba(196, 84, 84, 0.38);
-  background: rgba(222, 105, 105, 0.16);
-  color: #8b1e1e;
-  opacity: 1;
-}
-
-.availability-chip:hover:not(:disabled) {
-  transform: translateY(-1px);
-  border-color: rgba(82, 147, 104, 0.78);
-  box-shadow: 0 10px 18px rgba(33, 41, 49, 0.08);
-}
-
-.availability-chip:disabled {
-  cursor: default;
-}
-
-.availability-chip--selected {
-  border-color: var(--q-accent);
-  background: var(--q-accent);
-  color: #fff;
-  box-shadow: 0 4px 14px color-mix(in srgb, var(--q-accent) 45%, transparent);
-  transform: translateY(-1px);
-  font-weight: 700;
-}
-
-.availability-picker__selection {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  align-items: center;
-  justify-content: space-between;
-}
-
-@media (max-width: 820px) {
-  .availability-calendar-weekdays,
-  .availability-calendar-grid {
-    gap: 0.25rem;
-  }
-
-  .availability-calendar-day {
-    min-height: 5rem;
-    padding: 0.3rem;
-  }
-
-  .availability-chip {
-    min-height: 1.65rem;
-    padding-inline: 0.24rem;
-    font-size: 0.7rem;
-  }
 }
 
 .price-intro-panel {
@@ -1557,155 +649,13 @@ export default defineComponent({
   margin-top: 0.5rem;
 }
 
-.price-package-shell {
-  display: grid;
-  gap: 1rem;
-}
-
-.price-package-shell__header {
-  display: grid;
-  gap: 0.6rem;
-}
-
-.price-package-shell__header .section-text {
-  max-width: 48rem;
-}
-
-.price-package-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.9rem;
-}
-
-.price-package-card {
-  display: grid;
-  align-content: start;
-  gap: 0.45rem;
-  text-align: center;
-}
-
-.price-package-card__range {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 2rem;
-  padding: 0.3rem 0.7rem;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.75);
-  border: 1px solid rgba(69, 90, 100, 0.16);
-  color: rgba(33, 41, 49, 0.85);
-  font-weight: 600;
-}
-
-.price-package-card__price {
-  margin: 0;
-  font-size: clamp(1.35rem, 2.1vw, 1.7rem);
-  line-height: 1.1;
-  color: var(--q-accent);
-}
-
-.price-package-card__label {
-  margin: 0;
-  font-size: 0.92rem;
-  line-height: 1.35;
-  color: rgba(69, 90, 100, 0.84);
-}
-
 .price-list-note {
   width: 100%;
   max-width: none;
 }
 
-.service-picker-mobile {
-  display: grid;
-  gap: 0.85rem;
-  width: min(100%, 34rem);
-  margin: 0 auto;
-}
-
-.service-picker-mobile__item {
-  display: grid;
-  gap: 0.9rem;
-  padding: 1rem;
-  border-radius: var(--radius-md);
-  background: rgba(255, 255, 255, 0.72);
-  border: 1px solid rgba(69, 90, 100, 0.12);
-  box-shadow: 0 10px 24px rgba(33, 41, 49, 0.06);
-}
-
-.service-picker-mobile__body {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 0.75rem;
-  align-items: start;
-}
-
-.service-picker-mobile__description {
-  line-height: 1.5;
-  color: rgba(69, 90, 100, 0.94);
-  font-weight: 500;
-}
-
-.service-picker-mobile__price {
-  color: var(--q-accent);
-  font-size: 1rem;
-  line-height: 1.2;
-  white-space: nowrap;
-}
-
-.service-picker-mobile__input {
-  width: min(100%, 7rem);
-}
-
-.price-result-step {
-  scroll-margin-top: 1rem;
-  width: min(100%, 40rem);
-  margin-inline: auto;
-}
-
 .package-step {
   gap: 0.9rem;
-}
-
-.package-step__preview {
-  width: min(100%, 28rem);
-  margin: 0 auto;
-  padding: 1rem;
-  border-radius: var(--radius-md);
-  border: 1px solid rgba(69, 90, 100, 0.12);
-  background: rgba(255, 255, 255, 0.74);
-  box-shadow: 0 10px 24px rgba(33, 41, 49, 0.06);
-  text-align: center;
-}
-
-.package-step__preview-label,
-.package-step__preview-range,
-.package-step__preview-price {
-  margin: 0;
-}
-
-.package-step__preview-label {
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: rgba(69, 90, 100, 0.8);
-}
-
-.package-step__preview-range {
-  margin-top: 0.2rem;
-  font-size: 1rem;
-  color: rgba(33, 41, 49, 0.95);
-}
-
-.package-step__preview-price {
-  margin-top: 0.35rem;
-  font-size: 1.3rem;
-  color: var(--q-accent);
-  font-weight: 700;
-}
-
-.package-step__hint {
-  color: rgba(69, 90, 100, 0.84);
 }
 
 .price-stepper-shell {
@@ -1719,10 +669,6 @@ export default defineComponent({
 }
 
 @media (max-width: 839px) {
-  .price-package-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
   .price-stepper-shell {
     padding: 0.4rem;
   }
@@ -1737,28 +683,8 @@ export default defineComponent({
     max-width: none;
   }
 
-  .price-package-card {
-    gap: 0.35rem;
-  }
-
-  .price-package-card__label {
-    font-size: 0.88rem;
-  }
-
-  .package-step__preview {
-    width: min(100%, 24rem);
-  }
-
-  .package-step__preview-price {
-    font-size: 1.2rem;
-  }
-
   .price-stepper-shell {
     padding: 0.2rem;
-  }
-
-  .price-package-grid {
-    grid-template-columns: 1fr;
   }
 
   .price-stepper-shell :deep(.q-stepper__title) {
@@ -1797,20 +723,8 @@ export default defineComponent({
     font-size: 16px;
   }
 
-  .price-stepper-shell :deep(.q-table td),
-  .price-stepper-shell :deep(.q-table th) {
-    padding: 0.5rem 0.35rem;
-    font-size: 0.9rem;
-  }
-
   .price-stepper-shell :deep(.q-dialog__inner > div) {
     width: min(100vw - 1rem, 420px);
-  }
-}
-
-@media (max-width: 380px) {
-  .package-step__preview {
-    padding: 0.85rem;
   }
 }
 </style>

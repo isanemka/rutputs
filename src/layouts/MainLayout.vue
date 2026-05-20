@@ -18,14 +18,14 @@
         <div class="top-nav__menu">
           <q-tabs align="left" class="top-nav__tabs" indicator-color="accent" active-color="accent">
             <q-route-tab to="/" label="Start" class="top-nav__tab" />
-            <q-route-tab to="/pris" label="Prislista" class="top-nav__tab" />
+            <q-route-tab to="/pris" label="Offert" class="top-nav__tab" />
             <q-route-tab to="/foretag" label="Företag" class="top-nav__tab" />
           </q-tabs>
           <q-btn
             unelevated
             color="accent"
             text-color="black"
-            :label="$q.screen.lt.sm ? 'Pris' : 'Få pris direkt'"
+            :label="$q.screen.lt.sm ? 'Offert' : 'Begär offert'"
             class="top-nav__cta"
             to="/pris"
           />
@@ -55,7 +55,7 @@
           <section class="site-footer__panel">
             <p class="site-footer__kicker">Kontakt</p>
             <h2 class="site-footer__title">Boka eller fråga om pris</h2>
-            <p class="site-footer__text">Snabbast väg in är prislistan, men du kan också ringa eller mejla direkt om du vill diskutera upplägget först.</p>
+            <p class="site-footer__text">Snabbast väg in är offertformuläret, men du kan också ringa eller mejla direkt om du vill diskutera upplägget först.</p>
             <div class="site-footer__contact-list">
               <a href="tel:+46734644604" class="site-footer__contact-link">0734-64 46 04</a>
               <a href="mailto:kontakt@rutputs.nu" class="site-footer__contact-link">kontakt@rutputs.nu</a>

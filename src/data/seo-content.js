@@ -5,13 +5,13 @@ const siteSeoContent = {
       'Personlig fönsterputsning i Stockholm med RUT-avdrag. Från 499 kr. Jag täcker Järfälla, Sundbyberg, Solna, Spånga med flera områden. Boka online!',
     bodyTitle: 'Fönsterputs i Stockholm',
     bodyIntro:
-      'Jag erbjuder professionell fönsterputsning i Stockholm för privatpersoner och företag. Med RUT-avdrag börjar priset från 499 kr och du kan se ditt pris direkt online. När du bokar hos Rutputs är det också jag som kommer och putsar.',
+      'Jag erbjuder professionell fönsterputsning i Stockholm för privatpersoner och företag. Med RUT-avdrag börjar priset från 499 kr och du fyller enkelt i en förfrågan så återkommer jag med en personlig offert. När du bokar hos Rutputs är det också jag som kommer och putsar.',
     faq: [
       {
         question: 'Vad kostar fönsterputsning med RUT-avdrag?',
         answer:
-          'Fönsterputsning med RUT-avdrag börjar från 499 kr. Det exakta priset beror på antal fönster och typ av bostad. Använd min priskalkylator för att se ditt pris direkt.',
-        linkLabel: 'Gå till formuläret',
+          'Fönsterputsning med RUT-avdrag börjar från 499 kr. Det exakta priset beror på antal fönster och typ av bostad. Fyll i offertformuläret så återkommer jag med en personlig offert.',
+        linkLabel: 'Begär offert',
         linkTo: '/pris',
       },
       {
@@ -42,8 +42,8 @@ const siteSeoContent = {
       {
         question: 'Hur bokar jag fönsterputsning?',
         answer:
-          'Fyll i formuläret på prissidan så räknas ditt pris ut direkt. Jag kontaktar dig sedan för att boka en tid som passar.',
-        linkLabel: 'Gå till formuläret',
+          'Fyll i offertformuläret så återkommer jag med en personlig offert. Jag kontaktar dig sedan för att boka en tid som passar.',
+        linkLabel: 'Begär offert',
         linkTo: '/pris',
       },
       {
@@ -79,7 +79,7 @@ const siteSeoContent = {
         question: 'Får man rabatt om man bokar tillsammans med en granne?',
         answer:
           'Ja, när du och en granne bokar samma dag i samma område får ni båda rabatt på er bokning. Skriv bara i din förfrågan att ni vill boka tillsammans, så lägger jag upp ett gemensamt besök och justerar priset åt er båda.',
-        linkLabel: 'Se priset och anmäl er tillsammans',
+        linkLabel: 'Begär offert tillsammans',
         linkTo: '/pris',
       },
     ],
@@ -130,32 +130,32 @@ const siteSeoContent = {
     ],
   },
   price: {
-    title: 'Prislista – Fönsterputsning med RUT-avdrag | Rutputs',
+    title: 'Begär offert – Fönsterputsning med RUT-avdrag | Rutputs',
     description:
-      'Se priser för fönsterputsning i Stockholm. Räkna ut ditt pris direkt – från 499 kr med RUT-avdrag. Enkel offertförfrågan online.',
-    bodyTitle: 'Prislista för fönsterputsning',
+      'Begär offert på fönsterputsning i Stockholm – från 499 kr med RUT-avdrag. Fyll i en enkel förfrågan så återkommer jag med ett personligt pris.',
+    bodyTitle: 'Begär offert för fönsterputsning',
     bodyIntro:
-      'På prissidan kan du räkna ut vad fönsterputsningen kostar utifrån din bostad och antal fönster. Priset börjar från 499 kr efter RUT-avdrag.',
+      'Fyll i offertformuläret med din bostad, antal fönster och vad du vill ha putsat så återkommer jag med en personlig offert. Priset börjar från 499 kr efter RUT-avdrag.',
     steps: [
       'Välj bostadstyp.',
-      'Fyll i antal fönster och tjänster.',
-      'Se ditt pris direkt och skicka in förfrågan.',
+      'Ange antal fönster, sidor och eventuell spröjs.',
+      'Fyll i dina uppgifter och skicka in din förfrågan.',
     ],
     faq: [
       {
         question: 'Vad kostar fönsterputsning med RUT-avdrag?',
         answer:
-          'Fönsterputsning börjar från 499 kr efter RUT-avdrag. Det exakta priset beror på bostadstyp, antal fönster och vilka tjänster du väljer.',
+          'Fönsterputsning börjar från 499 kr efter RUT-avdrag. Det exakta priset beror på bostadstyp, antal fönster och vad du vill ha putsat.',
       },
       {
-        question: 'Ser jag priset direkt i formuläret?',
+        question: 'Hur snabbt får jag en offert?',
         answer:
-          'Ja, prissidan räknar ut ditt pris direkt utifrån de val du gör innan du skickar in offertförfrågan.',
+          'När du har skickat in din förfrågan tittar jag på dina uppgifter och återkommer med en personlig offert så snart som möjligt, oftast inom ett par dagar.',
       },
       {
-        question: 'Kan jag skicka förfrågan direkt efter prisberäkningen?',
+        question: 'Vad behöver jag fylla i för att få en offert?',
         answer:
-          'Ja, när du har gått igenom stegen kan du fylla i dina kontaktuppgifter och skicka in din förfrågan direkt på sidan, så återkommer jag så snart som möjligt.',
+          'Du anger bostadstyp, antal fönster, vilka sidor du vill ha putsade och om fönstren har spröjs, samt dina kontaktuppgifter. Sedan återkommer jag med ett pris.',
       },
       {
         question: 'Kan jag få återkommande fönsterputs via abonnemang?',
@@ -165,7 +165,7 @@ const siteSeoContent = {
       {
         question: 'Är det bindande att skicka in formuläret?',
         answer:
-          'Nej, det är inte bindande att skicka in formuläret. Jag hör av mig efteråt för att gå igenom uppgifterna och bestämma en tid som passar.',
+          'Nej, det är kostnadsfritt och inte bindande att skicka in formuläret. Jag hör av mig efteråt med en offert och för att bestämma en tid som passar.',
       },
     ],
   },
@@ -190,14 +190,14 @@ const siteSeoContent = {
         {
           question: 'Vad kostar fönsterputs på en villa?',
           answer:
-            'Priset utgår från antal fönster och eventuella extra tjänster. För en normalstor villa ligger priset oftast mellan 800 och 2 000 kr efter RUT-avdrag. Använd priskalkylatorn för exakt pris.',
-          linkLabel: 'Räkna ut ditt pris',
+            'Priset utgår från antal fönster och eventuella extra tjänster. För en normalstor villa ligger priset oftast mellan 800 och 2 000 kr efter RUT-avdrag. Begär offert för exakt pris.',
+          linkLabel: 'Begär offert',
           linkTo: '/pris',
         },
         {
           question: 'Putsar du även spröjsade fönster?',
           answer:
-            'Ja, spröjsade fönster ingår. Det tar lite längre tid men prissätts tydligt i kalkylatorn så du vet vad du betalar.',
+            'Ja, spröjsade fönster ingår. Det tar lite längre tid men jag prissätter det tydligt i offerten så du vet vad du betalar.',
         },
         {
           question: 'Hur ofta bör man putsa fönstren på en villa?',
@@ -232,13 +232,13 @@ const siteSeoContent = {
           question: 'Vad kostar fönsterputs i en lägenhet?',
           answer:
             'För en normalstor lägenhet ligger priset från 499 kr och uppåt efter RUT-avdrag. Det beror på antalet fönster och om även mellan glaspartier ska putsas.',
-          linkLabel: 'Räkna ut ditt pris',
+          linkLabel: 'Begär offert',
           linkTo: '/pris',
         },
         {
           question: 'Putsar du även insidan av lägenhetsfönster?',
           answer:
-            'Ja, du väljer själv om jag ska putsa både inne och ute eller bara utsidan. Båda alternativen finns i priskalkylatorn.',
+            'Ja, du väljer själv om jag ska putsa både inne och ute eller bara utsidan. Båda alternativen kan du ange i offertförfrågan.',
         },
         {
           question: 'Kan jag boka även om jag bor på 5:e våningen?',
@@ -282,8 +282,8 @@ const siteSeoContent = {
         {
           question: 'Hinner jag boka till maj?',
           answer:
-            'Det beror på när du läser detta. Skicka in din förfrågan så återkommer jag inom kort med tillgängliga tider.',
-          linkLabel: 'Få pris och tid direkt',
+            'Det beror på när du läser detta. Skicka in din förfrågan så återkommer jag inom kort med offert och tillgängliga tider.',
+          linkLabel: 'Begär offert',
           linkTo: '/pris',
         },
         {
@@ -360,7 +360,7 @@ const siteSeoContent = {
         {
           question: 'Hur stor är rabatten på abonnemang?',
           answer:
-            'Rabatten varierar beroende på intervall och bostad. Det enklaste är att fylla i prisformuläret och skriva i meddelandet att du vill ha abonnemangsförslag, så återkommer jag med pris.',
+            'Rabatten varierar beroende på intervall och bostad. Det enklaste är att fylla i offertformuläret och skriva i meddelandet att du vill ha abonnemangsförslag, så återkommer jag med pris.',
           linkLabel: 'Få abonnemangsförslag',
           linkTo: '/pris',
         },
@@ -411,7 +411,7 @@ const siteSeoContent = {
         {
           question: 'Hur bokar jag fönsterputs i Järfälla?',
           answer:
-            'Du fyller i prisformuläret online för att se ditt pris direkt. Därefter återkommer jag för att bekräfta bokning och tid.',
+            'Du fyller i offertformuläret online så återkommer jag med en personlig offert och för att bekräfta bokning och tid.',
         },
       ],
     },
@@ -490,9 +490,9 @@ const siteSeoContent = {
             'Ja, jag arbetar med både lägenheter, radhus och villor. Upplägget anpassas efter bostadens storlek och antal fönster.',
         },
         {
-          question: 'Kan jag få pris direkt online?',
+          question: 'Kan jag få en offert online?',
           answer:
-            'Ja, via prissidan kan du fylla i dina uppgifter och få en tydlig uppskattning direkt innan bokningen bekräftas.',
+            'Ja, via offertformuläret fyller du i dina uppgifter så återkommer jag med en personlig offert innan bokningen bekräftas.',
         },
       ],
     },
@@ -546,7 +546,7 @@ const siteSeoContent = {
         {
           question: 'Hur bokar jag fönsterputs i Spånga?',
           answer:
-            'Du börjar på prissidan där du ser ditt pris direkt. När förfrågan är skickad återkommer jag för att bekräfta detaljer och tid.',
+            'Du börjar i offertformuläret. När förfrågan är skickad återkommer jag med en offert och för att bekräfta detaljer och tid.',
         },
       ],
     },
@@ -600,7 +600,7 @@ const siteSeoContent = {
         {
           question: 'Hur får jag pris för fönsterputs i Täby?',
           answer:
-            'Du fyller i formuläret på prissidan för att se pris direkt. Därefter bekräftas bokningen i nästa steg.',
+            'Du fyller i offertformuläret så återkommer jag med en personlig offert. Därefter bekräftas bokningen i nästa steg.',
         },
       ],
     },
@@ -622,12 +622,12 @@ const siteSeoContent = {
         {
           question: 'Vad kostar fönsterputs på Lidingö?',
           answer:
-            'Priset börjar från 499 kr efter RUT-avdrag. Det exakta priset beror på antal fönster och bostadstyp. Använd min priskalkylator för att se ditt pris direkt.',
+            'Priset börjar från 499 kr efter RUT-avdrag. Det exakta priset beror på antal fönster och bostadstyp. Begär offert så återkommer jag med ett personligt pris.',
         },
         {
           question: 'Hur bokar jag fönsterputs på Lidingö?',
           answer:
-            'Du fyller i prisformuläret online för att se ditt pris direkt. Därefter återkommer jag för att bekräfta bokning och tid.',
+            'Du fyller i offertformuläret online så återkommer jag med en personlig offert och för att bekräfta bokning och tid.',
         },
       ],
     },
@@ -654,7 +654,7 @@ const siteSeoContent = {
         {
           question: 'Hur får jag pris för fönsterputs på Östermalm?',
           answer:
-            'Du fyller i formuläret på prissidan för att se pris direkt. Därefter bekräftas bokningen i nästa steg.',
+            'Du fyller i offertformuläret så återkommer jag med en personlig offert. Därefter bekräftas bokningen i nästa steg.',
         },
       ],
     },
@@ -708,7 +708,7 @@ const siteSeoContent = {
         {
           question: 'Vad kostar fönsterputs i Hässelby?',
           answer:
-            'Priset börjar från 499 kr efter RUT-avdrag. Använd priskalkylatorn för att se ditt exakta pris direkt.',
+            'Priset börjar från 499 kr efter RUT-avdrag. Begär offert så återkommer jag med ditt exakta pris.',
         },
       ],
     },
@@ -789,7 +789,7 @@ const siteSeoContent = {
         {
           question: 'Hur får jag pris för fönsterputs på Norrmalm?',
           answer:
-            'Privatkunder fyller i prisformuläret för direktpris. Företag kontaktar mig så återkommer jag med skräddarsydd offert.',
+            'Privatkunder fyller i offertformuläret så återkommer jag med en personlig offert. Företag kontaktar mig så återkommer jag med skräddarsydd offert.',
         },
       ],
     },
@@ -870,7 +870,7 @@ const siteSeoContent = {
         {
           question: 'Vad kostar fönsterputs i Upplands Väsby?',
           answer:
-            'Priset börjar från 499 kr efter RUT-avdrag. Använd priskalkylatorn på prissidan för att se ditt pris direkt.',
+            'Priset börjar från 499 kr efter RUT-avdrag. Begär offert så återkommer jag med ditt personliga pris.',
         },
       ],
     },

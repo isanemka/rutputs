@@ -18,7 +18,7 @@
             {{ area.content }}
           </p>
           <div class="hero-actions">
-            <q-btn unelevated color="accent" text-color="black" label="Se vad det kostar" to="/pris" />
+            <q-btn unelevated color="accent" text-color="black" label="Begär offert" to="/pris" />
           </div>
         </div>
       </section>
@@ -32,17 +32,17 @@
             gör stor skillnad för ljusinsläpp och helhetsintryck. När du bokar hos Rutputs är det jag som kommer och putsar, och jag arbetar redan i området.
           </p>
           <p class="section-text">
-            Jag hjälper kunder i {{ districtSummary }} och närliggande delar av området. Med RUT-avdraget kan du få ett tydligt pris
-            från 499 kronor och skicka en offertförfrågan när det passar dig.
+            Jag hjälper kunder i {{ districtSummary }} och närliggande delar av området. Med RUT-avdraget börjar priset
+            från 499 kronor och du skickar enkelt en offertförfrågan när det passar dig.
           </p>
         </div>
 
         <div class="editorial-panel">
           <span class="section-kicker">Så går det till</span>
-          <h2 class="section-title">Från prisförfrågan till färdigt resultat</h2>
+          <h2 class="section-title">Från offertförfrågan till färdigt resultat</h2>
           <ul class="feature-list">
-            <li>Fyll i uppgifterna på prissidan och se priset direkt.</li>
-            <li>Skicka in förfrågan när upplägget känns rätt.</li>
+            <li>Fyll i uppgifterna i offertformuläret.</li>
+            <li>Skicka in förfrågan när upplägget känns rätt, så återkommer jag med en offert.</li>
             <li>Få återkoppling om bokning, tid och eventuella detaljer.</li>
             <li>Få arbetet utfört av någon som redan är verksam i {{ area.name }}.</li>
           </ul>
@@ -65,10 +65,10 @@
 
       <section class="cta-band">
         <div class="cta-band__text">
-          <h2 class="cta-band__title">Vill du se priset för {{ area.name }} direkt?</h2>
-          <p class="cta-band__lead">Prissidan ger dig en snabb väg vidare utan att du först behöver invänta manuell offert.</p>
+          <h2 class="cta-band__title">Vill du ha en offert för {{ area.name }}?</h2>
+          <p class="cta-band__lead">Fyll i offertformuläret så återkommer jag med ett tydligt pris efter RUT-avdrag.</p>
         </div>
-        <q-btn unelevated color="accent" text-color="black" label="Gå till prislistan" to="/pris" />
+        <q-btn unelevated color="accent" text-color="black" label="Begär offert" to="/pris" />
       </section>
 
       <section class="editorial-panel faq-shell">

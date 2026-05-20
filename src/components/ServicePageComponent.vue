@@ -22,7 +22,7 @@
               <q-btn outline color="white" label="Skicka mejl" type="a" href="mailto:kontakt@rutputs.nu" />
             </template>
             <template v-else>
-              <q-btn unelevated color="accent" text-color="black" label="Se vad det kostar" to="/pris" />
+              <q-btn unelevated color="accent" text-color="black" label="Begär offert" to="/pris" />
               <q-btn outline color="white" label="Ring direkt" type="a" href="tel:+46734644604" />
             </template>
           </div>
@@ -36,21 +36,21 @@
           <li v-for="benefit in service.benefits" :key="benefit">{{ benefit }}</li>
         </ul>
         <div class="hero-actions q-pt-md">
-          <q-btn v-if="!service.contactOnly" unelevated color="accent" text-color="black" label="Få pris direkt" to="/pris" />
+          <q-btn v-if="!service.contactOnly" unelevated color="accent" text-color="black" label="Begär offert" to="/pris" />
           <q-btn v-else unelevated color="accent" text-color="black" label="Ring direkt" type="a" href="tel:+46734644604" />
         </div>
       </section>
 
       <section class="cta-band">
         <div class="cta-band__text">
-          <h2 class="cta-band__title">{{ service.contactOnly ? 'Intresserad av abonnemang?' : 'Vill du se ditt pris direkt?' }}</h2>
-          <p class="cta-band__lead">{{ service.contactOnly ? 'Ring eller mejla så tar vi fram ett upplägg som passar dig.' : 'Prislistan räknar ut ditt pris efter RUT-avdrag på under 30 sekunder.' }}</p>
+          <h2 class="cta-band__title">{{ service.contactOnly ? 'Intresserad av abonnemang?' : 'Vill du ha en offert?' }}</h2>
+          <p class="cta-band__lead">{{ service.contactOnly ? 'Ring eller mejla så tar vi fram ett upplägg som passar dig.' : 'Fyll i offertformuläret så återkommer jag med ett pris efter RUT-avdrag.' }}</p>
         </div>
         <div v-if="service.contactOnly" class="hero-actions">
           <q-btn unelevated color="accent" text-color="black" label="Ring direkt" type="a" href="tel:+46734644604" />
           <q-btn outline color="white" label="Skicka mejl" type="a" href="mailto:kontakt@rutputs.nu" />
         </div>
-        <q-btn v-else unelevated color="accent" text-color="black" label="Gå till prislistan" to="/pris" />
+        <q-btn v-else unelevated color="accent" text-color="black" label="Begär offert" to="/pris" />
       </section>
 
       <section class="editorial-panel faq-shell">

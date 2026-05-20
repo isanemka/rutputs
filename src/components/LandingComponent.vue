@@ -15,13 +15,13 @@
 
         <div class="hero-shell__content">
           <span class="hero-kicker">Lokal fönsterputsare</span>
-          <h1 class="hero-title">Rena fönster. Tydligt pris. Snabb bokning.</h1>
+          <h1 class="hero-title">Rena fönster. Personlig offert. Snabb bokning.</h1>
           <p class="hero-lead">
-            Jag hjälper hushåll och företag i Stockholm med fönsterputsning och enkel prissättning som är lätt att förstå och boka.
+            Jag hjälper hushåll och företag i Stockholm med fönsterputsning. Berätta lite om dina fönster i formuläret så återkommer jag med en personlig offert.
             När du bokar hos Rutputs är det också jag som kommer och putsar, oavsett om du vill ha en enstaka puts eller ett återkommande upplägg.
           </p>
           <div class="hero-actions">
-            <q-btn class="text-black" label="Se vad det kostar" color="accent" unelevated @click="goToPriceList" />
+            <q-btn class="text-black" label="Begär offert" color="accent" unelevated @click="goToPriceList" />
             <q-btn outline color="white" label="Se områden jag täcker" :to="{ hash: '#areas' }" />
           </div>
           <div class="hero-metrics">
@@ -30,7 +30,7 @@
               <span class="hero-metric__label">Efter RUT-avdrag</span>
             </div>
             <div class="hero-metric">
-              <span class="hero-metric__value">Prisuppskattning</span>
+              <span class="hero-metric__value">Kostnadsfri offert</span>
               <span class="hero-metric__label">Via formuläret</span>
             </div>
           </div>
@@ -43,7 +43,7 @@
           <h2 class="section-title">Fönsterputs i Stockholm utan onödigt krångel</h2>
           <p class="section-text">
             Jag erbjuder professionell fönsterputsning för dig som vill ha rena fönster utan att jaga priser,
-            ringa runt eller vänta på otydliga offerter. Du får en tydlig prisbild direkt, skickar din förfrågan och får snabb återkoppling direkt från mig.
+            ringa runt eller vänta på otydliga offerter. Du skickar in en enkel förfrågan och får en personlig offert och snabb återkoppling direkt från mig.
           </p>
           <p class="section-text">
             Putsningar utförs i större delen av Stockholm och jag kan erbjuda snabbare bokning och mer flexibla upplägg än större aktörer, samtidigt som jag
@@ -55,7 +55,7 @@
           <span class="section-kicker">Därför fungerar det</span>
           <h2 class="section-title">Byggt för riktiga hem och riktiga bokningar</h2>
           <ul class="feature-list">
-            <li>Tydlig prisindikation direkt online.</li>
+            <li>Personlig offert utifrån dina fönster.</li>
             <li>Passar villor, radhus, lägenheter och andra fastigheter.</li>
             <li>Direkt kontakt med personen som också kommer och putsar.</li>
             <li>Möjlighet till abonnemang för dig som vill ha återkommande puts.</li>
@@ -73,12 +73,12 @@
             <p class="mini-card__text">Fyll i vad du bor i och vilka typer av fönster som ska putsas.</p>
           </article>
           <article class="mini-card">
-            <h3 class="mini-card__title">2. Se priset</h3>
-            <p class="mini-card__text">Du får en tydlig prisbild direkt, inklusive hur RUT-avdraget påverkar kostnaden.</p>
+            <h3 class="mini-card__title">2. Beskriv dina fönster</h3>
+            <p class="mini-card__text">Ange antal fönster, vilka sidor du vill ha putsade och om de har spröjs.</p>
           </article>
           <article class="mini-card">
             <h3 class="mini-card__title">3. Skicka förfrågan</h3>
-            <p class="mini-card__text">Skicka in uppgifterna så hör jag av mig för att bekräfta tid och detaljer.</p>
+            <p class="mini-card__text">Skicka in uppgifterna så återkommer jag med en offert och bekräftar tid och detaljer.</p>
           </article>
           <article class="mini-card">
             <h3 class="mini-card__title">4. Få jobbet gjort</h3>
@@ -158,7 +158,7 @@
             <li>Skriv bara i förfrågan att ni vill boka tillsammans, så ordnar jag resten.</li>
           </ul>
           <div class="hero-actions q-pt-sm">
-            <q-btn unelevated color="accent" text-color="black" label="Boka och få granne-rabatt" @click="goToPriceList" />
+            <q-btn unelevated color="accent" text-color="black" label="Begär offert med granne" @click="goToPriceList" />
           </div>
         </div>
       </section>
@@ -187,10 +187,10 @@
 
       <section class="cta-band">
         <div class="cta-band__text">
-          <h2 class="cta-band__title">Vill du se priset direkt eller anmäla intresse för abonnemang?</h2>
-          <p class="cta-band__lead">Prislistan är byggd för att vara snabb, begriplig och enkel att fylla i oavsett om du sitter på mobil eller dator. Om du är intresserad av återkommande fönsterputs kan du skriva det i din förfrågan så återkommer jag med ett passande upplägg.</p>
+          <h2 class="cta-band__title">Vill du ha en offert eller anmäla intresse för abonnemang?</h2>
+          <p class="cta-band__lead">Offertformuläret är byggt för att vara snabbt, begripligt och enkelt att fylla i oavsett om du sitter på mobil eller dator. Om du är intresserad av återkommande fönsterputs kan du skriva det i din förfrågan så återkommer jag med ett passande upplägg.</p>
         </div>
-        <q-btn unelevated color="accent" text-color="black" label="Gå till prislistan" @click="goToPriceList" />
+        <q-btn unelevated color="accent" text-color="black" label="Begär offert" @click="goToPriceList" />
       </section>
 
       <section class="editorial-panel faq-shell">
