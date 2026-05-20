@@ -1,7 +1,6 @@
 import { randomUUID } from 'node:crypto';
 import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses';
 import { z } from 'zod';
-import { parseDiscountCodes } from './discount-codes.js';
 
 const { AWS_REGION, SES_FROM_EMAIL, SES_TO_EMAIL } = process.env;
 const CRM_REQUEST_TIMEOUT_MS = 6500;
@@ -11,78 +10,31 @@ const ses =
     ? new SESClient({ region: AWS_REGION })
     : null;
 
-const cartItemSchema = z.object({
-  id: z.string().trim().min(1).max(100),
-  quantity: z.number().int().positive(),
-  description: z.string().trim().min(1).max(500),
+const cleaningSidesSchema = z.enum(['outside', 'both', 'all']);
+
+const schema = z.object({
+  name: z.string().trim().min(1).max(200),
+  email: z.string().trim().email().max(200),
+  tel: z.string().trim().min(6).max(60),
+  address: z.string().trim().max(200).optional().or(z.literal('')),
+  propertyType: z.enum(['house', 'apartment']),
+  windowCount: z.number().int().positive(),
+  cleaningSides: cleaningSidesSchema,
+  hasSprojs: z.boolean().optional(),
+  message: z.string().trim().max(10000).optional().or(z.literal('')),
+  website: z.string().trim().max(200).optional(),
 });
 
-function isValidRequestedDate(value) {
-  const [yearString, monthString, dayString] = value.split('-');
-  const year = Number(yearString);
-  const month = Number(monthString);
-  const day = Number(dayString);
-
-  if (!Number.isInteger(year) || !Number.isInteger(month) || !Number.isInteger(day)) {
-    return false;
+function formatCleaningSides(sides) {
+  if (sides === 'outside') {
+    return 'Utsida';
   }
 
-  const parsedDate = new Date(Date.UTC(year, month - 1, day));
-
-  return (
-    parsedDate.getUTCFullYear() === year &&
-    parsedDate.getUTCMonth() === month - 1 &&
-    parsedDate.getUTCDate() === day
-  );
-}
-
-const halfDaySchema = z.enum(['am', 'pm']);
-const requestedDateSchema = z
-  .string()
-  .regex(/^\d{4}-\d{2}-\d{2}$/)
-  .refine(isValidRequestedDate, {
-    message: 'requested date must be a valid calendar date',
-  });
-
-const schema = z
-  .object({
-    name: z.string().trim().min(1).max(200),
-    email: z.string().trim().email().max(200),
-    tel: z.string().trim().min(6).max(60),
-    address: z.string().trim().max(200).optional().or(z.literal('')),
-    propertyType: z.enum(['house', 'apartment']),
-    windowCount: z.number().int().positive().nullable().optional(),
-    message: z.string().trim().max(10000).optional().or(z.literal('')),
-    cart: z.array(cartItemSchema).min(1),
-    totalPrice: z.number().positive(),
-    website: z.string().trim().max(200).optional(),
-    discountCode: z.string().trim().max(50).optional().or(z.literal('')),
-    requestedDate: requestedDateSchema.nullable().optional(),
-    requestedHalfDay: halfDaySchema.nullable().optional(),
-  })
-  .refine(
-    (value) => {
-      const hasRequestedDate = Boolean(value.requestedDate);
-      const hasRequestedHalfDay = Boolean(value.requestedHalfDay);
-
-      return hasRequestedDate === hasRequestedHalfDay;
-    },
-    {
-      message: 'requested date and requested half day must be provided together',
-      path: ['requestedDate'],
-    }
-  );
-
-function formatRequestedHalfDay(halfDay) {
-  if (halfDay === 'am') {
-    return 'Förmiddag';
+  if (sides === 'both') {
+    return 'Utsida + Insida';
   }
 
-  if (halfDay === 'pm') {
-    return 'Eftermiddag';
-  }
-
-  return null;
+  return 'Utsida + Insida + Mellan';
 }
 
 function getSesErrorDetails(error) {
@@ -131,25 +83,9 @@ export default async function handleKontaktRequest(req, res) {
 
   const propertyTypeLabel =
     parsed.data.propertyType === 'house' ? 'Villa/Radhus' : 'Lägenhet';
-  const requestedTimeLabel =
-    parsed.data.requestedDate && parsed.data.requestedHalfDay
-      ? `${parsed.data.requestedDate} (${formatRequestedHalfDay(parsed.data.requestedHalfDay)})`
-      : '-';
-  const cartSummary = parsed.data.cart
-    .map((item) => `${item.quantity} x ${item.description}`)
-    .join('\n');
-
-  const discountCode = parsed.data.discountCode?.toUpperCase() || null;
-  const discountPercent = discountCode ? (parseDiscountCodes()[discountCode] ?? 0) : 0;
-  const discountSaving = discountPercent > 0 ? Math.round(parsed.data.totalPrice * discountPercent / 100) : 0;
-  const finalPrice = parsed.data.totalPrice - discountSaving;
+  const cleaningSidesLabel = formatCleaningSides(parsed.data.cleaningSides);
 
   const requestLabel = `[kontakt:${randomUUID()}]`;
-  const discountLine = discountCode && discountPercent > 0
-    ? `Rabattkod: ${discountCode} (-${discountPercent}%, -${discountSaving} kr)\nTotalpris efter rabatt: ${finalPrice} kr`
-    : discountCode
-      ? `Rabattkod: ${discountCode} (ogiltig)`
-      : null;
   const detailedMessage = [
     'Ny offertförfrågan från Rutputs.',
     '',
@@ -158,13 +94,10 @@ export default async function handleKontaktRequest(req, res) {
     `Telefon: ${parsed.data.tel}`,
     `Adress: ${parsed.data.address || '-'}`,
     `Bostadstyp: ${propertyTypeLabel}`,
-    `Antal fönster: ${parsed.data.windowCount ?? '-'}`,
-    `Önskad tid: ${requestedTimeLabel}`,
-    `Totalpris: ${parsed.data.totalPrice} kr`,
+    `Antal fönster: ${parsed.data.windowCount}`,
+    `Sidor: ${cleaningSidesLabel}`,
+    `Spröjs: ${parsed.data.hasSprojs ? 'Ja' : 'Nej'}`,
     '',
-    'Valda tjänster:',
-    cartSummary,
-    ...(discountLine ? ['', discountLine, ''] : []),
     parsed.data.message
       ? `Kundens meddelande:\n${parsed.data.message}`
       : 'Kundens meddelande: -',
@@ -188,8 +121,6 @@ export default async function handleKontaktRequest(req, res) {
         email: parsed.data.email,
         phone: parsed.data.tel,
         subject: 'Offertförfrågan',
-        requested_date: parsed.data.requestedDate || null,
-        requested_half_day: parsed.data.requestedHalfDay || null,
         message: detailedMessage,
         website: '',
         metadata: {
@@ -197,14 +128,9 @@ export default async function handleKontaktRequest(req, res) {
           submitted_at: new Date().toISOString(),
           address: parsed.data.address || null,
           property_type: parsed.data.propertyType,
-          window_count: parsed.data.windowCount ?? null,
-          requested_date: parsed.data.requestedDate || null,
-          requested_half_day: parsed.data.requestedHalfDay || null,
-          total_price: parsed.data.totalPrice,
-          discount_code: discountCode,
-          discount_percent: discountPercent || null,
-          final_price: finalPrice,
-          cart: parsed.data.cart,
+          window_count: parsed.data.windowCount,
+          cleaning_sides: parsed.data.cleaningSides,
+          has_sprojs: Boolean(parsed.data.hasSprojs),
         },
       }),
     });
