@@ -1,6 +1,7 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import siteSeoContent from '../src/data/seo-content.js';
+import guides from '../src/data/guides-content.js';
 
 const baseUrl = 'https://www.rutputs.nu';
 const distDir = path.resolve('dist/spa');
@@ -249,6 +250,86 @@ const pages = [
       ]),
     ],
   })),
+  {
+    route: '/guide',
+    title: 'Guider om fönsterputs i Stockholm | Rutputs',
+    description:
+      'Råd, prisinfo och guider om fönsterputs i Stockholm — RUT-avdrag, intervall, säsongstips och mer.',
+    bodyTitle: 'Guider om fönsterputs',
+    bodyIntro:
+      'Vi samlar handfasta guider om fönsterputs i Stockholm — från hur ofta du bör putsa till hur RUT-avdraget fungerar.',
+    sections: [
+      {
+        heading: 'Alla guider',
+        html: `<ul>${[...guides]
+          .sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : -1))
+          .map(
+            (g) =>
+              `<li><a href="/guide/${escapeHtml(g.slug)}">${escapeHtml(g.title)}</a> — ${escapeHtml(g.description)}</li>`,
+          )
+          .join('')}</ul>`,
+      },
+    ],
+    extraSchemas: [
+      buildBreadcrumbSchema([
+        { name: 'Start', path: '/' },
+        { name: 'Guider', path: '/guide' },
+      ]),
+      {
+        '@context': 'https://schema.org',
+        '@type': 'ItemList',
+        itemListElement: [...guides]
+          .sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : -1))
+          .map((g, index) => ({
+            '@type': 'ListItem',
+            position: index + 1,
+            url: `${baseUrl}/guide/${g.slug}`,
+            name: g.title,
+          })),
+      },
+    ],
+  },
+  ...guides.map((guide) => ({
+    route: `/guide/${guide.slug}`,
+    title: `${guide.title} | Rutputs`,
+    description: guide.description,
+    bodyTitle: guide.h1,
+    bodyIntro: guide.intro,
+    sections: [
+      ...guide.sections.map((section) => ({
+        heading: section.heading,
+        html: section.html,
+      })),
+      {
+        heading: 'Vanliga frågor',
+        html: buildFaqHtml(guide.faq),
+      },
+    ],
+    extraSchemas: [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline: guide.title,
+        description: guide.description,
+        author: { '@type': 'Organization', name: guide.author },
+        publisher: {
+          '@type': 'Organization',
+          name: 'Rutputs',
+          url: `${baseUrl}/`,
+        },
+        datePublished: guide.publishedAt,
+        dateModified: guide.updatedAt || guide.publishedAt,
+        mainEntityOfPage: `${baseUrl}/guide/${guide.slug}`,
+        inLanguage: 'sv-SE',
+      },
+      buildFaqSchema(guide.faq),
+      buildBreadcrumbSchema([
+        { name: 'Start', path: '/' },
+        { name: 'Guider', path: '/guide' },
+        { name: guide.h1, path: `/guide/${guide.slug}` },
+      ]),
+    ],
+  })),
 ];
 
 function replaceContent(source, pattern, replacement) {
@@ -379,6 +460,12 @@ function buildSitemapXml() {
       loc: `/tjanst/${s.slug}`,
       changefreq: 'monthly',
       priority: '0.8',
+    })),
+    { loc: '/guide', changefreq: 'weekly', priority: '0.7' },
+    ...guides.map((g) => ({
+      loc: `/guide/${g.slug}`,
+      changefreq: 'monthly',
+      priority: '0.7',
     })),
     { loc: '/integritetspolicy', changefreq: 'yearly', priority: '0.3' },
   ];
