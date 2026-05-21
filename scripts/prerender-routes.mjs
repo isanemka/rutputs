@@ -262,7 +262,7 @@ const pages = [
       {
         heading: 'Alla guider',
         html: `<ul>${[...guides]
-          .sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : -1))
+          .sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : a.publishedAt > b.publishedAt ? -1 : a.slug.localeCompare(b.slug)))
           .map(
             (g) =>
               `<li><a href="/guide/${escapeHtml(g.slug)}">${escapeHtml(g.title)}</a> — ${escapeHtml(g.description)}</li>`,
@@ -279,7 +279,7 @@ const pages = [
         '@context': 'https://schema.org',
         '@type': 'ItemList',
         itemListElement: [...guides]
-          .sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : -1))
+          .sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : a.publishedAt > b.publishedAt ? -1 : a.slug.localeCompare(b.slug)))
           .map((g, index) => ({
             '@type': 'ListItem',
             position: index + 1,

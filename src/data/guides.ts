@@ -3,7 +3,7 @@ import guidesData from './guides-content.js';
 
 export interface GuideSection {
   heading: string;
-  /** Allowed inline HTML: <p>, <ul>/<ol>/<li>, <strong>, <em>, <a href>, <br>. Sanitized at render time via v-html. */
+  /** Allowed inline HTML: <p>, <ul>/<ol>/<li>, <strong>, <em>, <a href>, <br>. Content is authored in guides-content.js (not user-generated input). */
   html: string;
 }
 
@@ -38,5 +38,7 @@ export function getGuideBySlug(slug: string): Guide | undefined {
 }
 
 export function getGuidesSortedByDate(): Guide[] {
-  return [...guides].sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : -1));
+  return [...guides].sort((a, b) =>
+    a.publishedAt < b.publishedAt ? 1 : a.publishedAt > b.publishedAt ? -1 : a.slug.localeCompare(b.slug),
+  );
 }

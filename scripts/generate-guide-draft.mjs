@@ -162,7 +162,7 @@ const guideObject = {
 };
 
 const fileContent = `/**
- * UTKAST — generat ${today} via scripts/generate-guide-draft.mjs
+ * UTKAST — genererat ${today} via scripts/generate-guide-draft.mjs
  *
  * GRANSKA NOGA innan du flyttar in objektet i src/data/guides-content.js:
  *  - Fakta (RUT-belopp, årtal, lokala referenser)

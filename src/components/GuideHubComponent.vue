@@ -48,7 +48,7 @@ import { getGuidesSortedByDate } from 'src/data/guides';
 const SITE_URL = 'https://www.rutputs.nu';
 
 function formatDate(iso: string): string {
-  return new Date(iso).toLocaleDateString('sv-SE', { year: 'numeric', month: 'long', day: 'numeric' });
+  return new Date(iso + 'T00:00:00').toLocaleDateString('sv-SE', { year: 'numeric', month: 'long', day: 'numeric' });
 }
 
 export default defineComponent({

@@ -102,7 +102,7 @@ const SITE_URL = 'https://www.rutputs.nu';
 
 function formatDate(iso?: string): string {
   if (!iso) return '';
-  const date = new Date(iso);
+  const date = new Date(iso + 'T00:00:00');
   return date.toLocaleDateString('sv-SE', { year: 'numeric', month: 'long', day: 'numeric' });
 }
 
@@ -164,7 +164,7 @@ export default defineComponent({
     }
     const url = `${SITE_URL}/guide/${guide.slug}`;
     return {
-      title: guide.title,
+      title: `${guide.title} | Rutputs`,
       meta: {
         description: { name: 'description', content: guide.description },
         ogTitle: { property: 'og:title', content: guide.title },
