@@ -37,6 +37,14 @@ const routes: RouteRecordRaw[] = [
         path: 'tjanst/:service',
         component: () => import('src/components/ServicePageComponent.vue'),
       },
+      {
+        path: 'guide',
+        component: () => import('src/components/GuideHubComponent.vue'),
+      },
+      {
+        path: 'guide/:slug',
+        component: () => import('src/components/GuideComponent.vue'),
+      },
     ],
   },
 

@@ -221,7 +221,7 @@ Ge mig en rapport med alla findings sorterade efter prioritet (kritisk/medel/lå
 
 ---
 
-## 7. Innehållsstrategi — nya sökord att rikta in sig på
+## ~~7. Innehållsstrategi — nya sökord att rikta in sig på~~ ✅
 
 ```
 Baserat på att rutputs.nu rankar för "fönsterputs + [stadsdel]"-sökord, hjälp mig identifiera och skapa innehåll för nya sökmöjligheter.

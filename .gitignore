@@ -47,3 +47,6 @@ yarn-error.log*
 # VS Code settings
 .vscode/
 .vercel
+
+# LLM-genererade guide-utkast (lokala, granskas manuellt)
+src/data/_drafts/

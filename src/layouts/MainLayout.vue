@@ -20,6 +20,7 @@
             <q-route-tab to="/" label="Start" class="top-nav__tab" />
             <q-route-tab to="/pris" label="Offert" class="top-nav__tab" />
             <q-route-tab to="/foretag" label="Företag" class="top-nav__tab" />
+            <q-route-tab to="/guide" label="Guider" class="top-nav__tab" />
           </q-tabs>
           <q-btn
             unelevated
@@ -70,6 +71,16 @@
               </router-link>
             </div>
           </section>
+
+          <section class="site-footer__panel site-footer__panel--wide">
+            <p class="site-footer__kicker">Guider</p>
+            <div class="site-footer__area-list">
+              <router-link to="/guide" class="site-footer__pill">Alla guider</router-link>
+              <router-link v-for="g in guideLinks" :key="g.slug" :to="'/guide/' + g.slug" class="site-footer__pill">
+                {{ g.shortTitle }}
+              </router-link>
+            </div>
+          </section>
         </div>
 
         <div class="site-footer__meta">
@@ -103,6 +114,7 @@ import { useRouter } from 'vue-router';
 import CookieConsentBanner from 'src/components/CookieConsentBanner.vue';
 import { useConsent } from 'src/composables/useConsent';
 import { areas } from 'src/data/areas';
+import { getGuidesSortedByDate } from 'src/data/guides';
 
 export default defineComponent({
   name: 'App',
@@ -133,10 +145,15 @@ export default defineComponent({
     };
 
     const areaLinks = areas;
+    const guideLinks = getGuidesSortedByDate().map((g) => ({
+      slug: g.slug,
+      shortTitle: g.h1,
+    }));
 
     return {
       currentYear,
       areaLinks,
+      guideLinks,
       goToLanding,
       goToConfirmation,
       goToFormFail,
@@ -253,6 +270,10 @@ export default defineComponent({
   display: grid;
   grid-template-columns: 1.1fr 1fr;
   gap: 1rem;
+}
+
+.site-footer__panel--wide {
+  grid-column: 1 / -1;
 }
 
 .site-footer__panel {
