@@ -71,7 +71,7 @@ Visa alla ändringar som diff.
 
 ---
 
-## 3. Högvolym-områden — Bromma, Sollentuna, Täby (position 39-46)
+## ~~3. Högvolym-områden — Bromma, Sollentuna, Täby (position 39-46)~~ ✅
 
 **Problem:** Många exponeringar (344-457) men position runt 40. Behöver starkare innehåll.
 
