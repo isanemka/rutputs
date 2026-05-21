@@ -1,8 +1,8 @@
 const siteSeoContent = {
   home: {
-    title: 'Fönsterputs i Stockholm – Från 499 kr med RUT | Rutputs',
+    title: 'Fönsterputs Stockholm — Från 499 kr | Boka med RUT-avdrag',
     description:
-      'Personlig fönsterputsning i Stockholm med RUT-avdrag. Från 499 kr. Jag täcker Järfälla, Sundbyberg, Solna, Spånga med flera områden. Boka online!',
+      '✓ Professionell fönsterputs i Stockholm från 499 kr ✓ RUT-avdrag 50% ✓ Boka enkelt online. Vi putsar fönster i hela Stockholmsområdet.',
     bodyTitle: 'Fönsterputs i Stockholm',
     bodyIntro:
       'Jag erbjuder professionell fönsterputsning i Stockholm för privatpersoner och företag. Med RUT-avdrag börjar priset från 499 kr och du fyller enkelt i en förfrågan så återkommer jag med en personlig offert. När du bokar hos Rutputs är det också jag som kommer och putsar.',
@@ -17,9 +17,11 @@ const siteSeoContent = {
       {
         question: 'Vilka områden täcker du?',
         answer:
-          'Jag arbetar i stora delar av Stockholm: Järfälla, Bromma, Kista, Solna, Sundbyberg, Spånga, Sollentuna, Täby, Lidingö, Östermalm, Vällingby, Hässelby, Danderyd, Kungsholmen, Norrmalm, Bromsten, Nacka och Upplands Väsby. Fyll i formuläret för att se om jag kan hjälpa dig där du bor.',
+          'Jag arbetar i stora delar av Stockholm: Järfälla, Viksjö, Kallhäll, Bromma, Kista, Solna, Sundbyberg, Spånga, Sollentuna, Täby, Lidingö, Östermalm, Vällingby, Hässelby, Danderyd, Kungsholmen, Norrmalm, Bromsten, Nacka och Upplands Väsby. Fyll i formuläret för att se om jag kan hjälpa dig där du bor.',
         links: [
           { label: 'Järfälla', to: '/omrade/jarfalla' },
+          { label: 'Viksjö', to: '/omrade/viksjo' },
+          { label: 'Kallhäll', to: '/omrade/kallhall' },
           { label: 'Bromma', to: '/omrade/bromma' },
           { label: 'Kista', to: '/omrade/kista' },
           { label: 'Solna', to: '/omrade/solna' },

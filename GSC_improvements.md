@@ -143,7 +143,7 @@ Skapa alla tre sidor och visa mig resultatet.
 
 ---
 
-## 5. Startsidan — CTR-optimering
+## ~~5. Startsidan — CTR-optimering~~ ✅
 
 **Problem:** Bäst CTR (1,1%) men bara 5 klick av 467 exponeringar. Position 26,3.
 

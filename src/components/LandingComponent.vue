@@ -15,7 +15,7 @@
 
         <div class="hero-shell__content">
           <span class="hero-kicker">Lokal fönsterputsare</span>
-          <h1 class="hero-title">Rena fönster. Personlig offert. Snabb bokning.</h1>
+          <h1 class="hero-title">Professionell fönsterputs i Stockholm</h1>
           <p class="hero-lead">
             Jag hjälper hushåll och företag i Stockholm med fönsterputsning. Berätta lite om dina fönster i formuläret så återkommer jag med en personlig offert.
             När du bokar hos Rutputs är det också jag som kommer och putsar, oavsett om du vill ha en enstaka puts eller ett återkommande upplägg.
@@ -324,6 +324,7 @@ export default defineComponent({
         innerHTML: JSON.stringify({
           '@context': 'https://schema.org',
           '@type': 'LocalBusiness',
+          '@id': 'https://www.rutputs.nu/',
           name: 'Rutputs',
           url: 'https://www.rutputs.nu/',
           image: 'https://www.rutputs.nu/og-image.jpg',
@@ -346,6 +347,30 @@ export default defineComponent({
               worstRating: '1'
             }
           }))
+        })
+      },
+      organizationSchema: {
+        type: 'application/ld+json',
+        innerHTML: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'Organization',
+          name: 'Rutputs',
+          url: 'https://www.rutputs.nu/',
+          logo: 'https://www.rutputs.nu/icons/main_logo.png',
+          telephone: '+46734644604'
+        })
+      },
+      breadcrumbSchema: {
+        type: 'application/ld+json',
+        innerHTML: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: [{
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Start',
+            item: 'https://www.rutputs.nu/'
+          }]
         })
       }
     }
