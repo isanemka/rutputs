@@ -15,7 +15,7 @@
 
         <div class="hero-shell__content">
           <span class="hero-kicker">Lokal fönsterputsare</span>
-          <h1 class="hero-title">Rena fönster. Personlig offert. Snabb bokning.</h1>
+          <h1 class="hero-title">Professionell fönsterputs i Stockholm</h1>
           <p class="hero-lead">
             Jag hjälper hushåll och företag i Stockholm med fönsterputsning. Berätta lite om dina fönster i formuläret så återkommer jag med en personlig offert.
             När du bokar hos Rutputs är det också jag som kommer och putsar, oavsett om du vill ha en enstaka puts eller ett återkommande upplägg.
@@ -327,6 +327,19 @@ export default defineComponent({
           name: 'Rutputs',
           url: 'https://www.rutputs.nu/',
           image: 'https://www.rutputs.nu/og-image.jpg',
+          telephone: '+46734644604',
+          priceRange: 'Från 499 kr',
+          address: {
+            '@type': 'PostalAddress',
+            addressLocality: 'Stockholm',
+            addressRegion: 'Stockholm',
+            addressCountry: 'SE'
+          },
+          areaServed: [
+            'Järfälla', 'Viksjö', 'Kallhäll', 'Bromma', 'Kista', 'Solna', 'Sundbyberg',
+            'Spånga', 'Sollentuna', 'Täby', 'Lidingö', 'Östermalm', 'Vällingby',
+            'Hässelby', 'Danderyd', 'Kungsholmen', 'Norrmalm', 'Bromsten', 'Nacka', 'Upplands Väsby'
+          ],
           aggregateRating: {
             '@type': 'AggregateRating',
             ratingValue: reviewsData.aggregateRating.toFixed(1),
@@ -346,6 +359,30 @@ export default defineComponent({
               worstRating: '1'
             }
           }))
+        })
+      },
+      organizationSchema: {
+        type: 'application/ld+json',
+        innerHTML: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'Organization',
+          name: 'Rutputs',
+          url: 'https://www.rutputs.nu/',
+          logo: 'https://www.rutputs.nu/icons/icon-512x512.png',
+          telephone: '+46734644604'
+        })
+      },
+      breadcrumbSchema: {
+        type: 'application/ld+json',
+        innerHTML: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: [{
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Hem',
+            item: 'https://www.rutputs.nu/'
+          }]
         })
       }
     }
