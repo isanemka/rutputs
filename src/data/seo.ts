@@ -29,6 +29,7 @@ export interface AreaSeo {
   content: string;
   districts: string[];
   faq: SeoFaq[];
+  nearbyAreas?: Array<{ name: string; slug: string }>;
 }
 
 export interface ServiceSeo {

@@ -35,7 +35,7 @@ Visa mig alla ändringar innan du sparar.
 
 ---
 
-## 2. Snabbvinster — Spånga & Bergshamra (position 15-20)
+## ~~2. Snabbvinster — Spånga & Bergshamra (position 15-20)~~ ✅
 
 **Problem:** Redan nära förstasidan men 0 klick. Behöver CTR-optimering + litet positionslyft.
 
@@ -276,13 +276,13 @@ Visa mig hur jag konfigurerar API-åtkomsten steg för steg.
 
 ## Prioriteringsordning
 
-| Prio | Åtgärd | Förväntad effekt | Tidsåtgång |
-|------|--------|-------------------|------------|
-| 1 | Spånga & Bergshamra (pos 15-20) | Klick inom 1-2 veckor | 1-2 timmar |
-| 2 | Prissidan | Fånga prisrelaterade sökningar | 2-3 timmar |
-| 3 | Startsidan | Förbättra övergripande ranking | 1-2 timmar |
-| 4 | Bromma, Sollentuna, Täby | Långsiktigt trafiklyft | 3-4 timmar |
-| 5 | Nya områdessidor | Nya sökord | 3-4 timmar |
-| 6 | Teknisk SEO | Grundläggande hälsa | 2-3 timmar |
-| 7 | Innehållsstrategi | Bredare synlighet | 5-8 timmar |
-| 8 | Löpande övervakning | Spåra framsteg | 1-2 timmar |
+| Prio | Åtgärd                          | Förväntad effekt               | Tidsåtgång |
+| ---- | ------------------------------- | ------------------------------ | ---------- |
+| 1    | Spånga & Bergshamra (pos 15-20) | Klick inom 1-2 veckor          | 1-2 timmar |
+| 2    | Prissidan                       | Fånga prisrelaterade sökningar | 2-3 timmar |
+| 3    | Startsidan                      | Förbättra övergripande ranking | 1-2 timmar |
+| 4    | Bromma, Sollentuna, Täby        | Långsiktigt trafiklyft         | 3-4 timmar |
+| 5    | Nya områdessidor                | Nya sökord                     | 3-4 timmar |
+| 6    | Teknisk SEO                     | Grundläggande hälsa            | 2-3 timmar |
+| 7    | Innehållsstrategi               | Bredare synlighet              | 5-8 timmar |
+| 8    | Löpande övervakning             | Spåra framsteg                 | 1-2 timmar |

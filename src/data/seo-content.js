@@ -507,6 +507,51 @@ const siteSeoContent = {
       ],
     },
     {
+      slug: 'bergshamra',
+      name: 'Bergshamra',
+      title: 'Bergshamra Fönsterputs – Från 499 kr med RUT | Rutputs.nu',
+      description:
+        'Fönsterputs i Bergshamra, Solna med RUT-avdrag från 499 kr. Lokal service för villor och lägenheter nära Brunnsviken. Boka enkelt idag!',
+      content:
+        'Bergshamra är ett omväxlande område i Solna med villor, radhus och bostadsrätter nära Brunnsviken och Hagaparken. Jag arbetar regelbundet i Bergshamra och övriga delar av norra Solna, vilket gör det enkelt att boka en tid för fönsterputsning som passar dig.',
+      districts: ['Bergshamra', 'Råsunda', 'Haga', 'Norra Bergshamra'],
+      nearbyAreas: [
+        { name: 'Solna', slug: 'solna' },
+        { name: 'Sundbyberg', slug: 'sundbyberg' },
+        { name: 'Danderyd', slug: 'danderyd' },
+        { name: 'Kista', slug: 'kista' },
+      ],
+      faq: [
+        {
+          question: 'Vad kostar fönsterputs i Bergshamra?',
+          answer:
+            'Priset baseras på antalet fönster och bostadens typ. Med RUT-avdrag börjar priset från 499 kr för privatkunder. Fyll i offertformuläret så får du ett tydligt pris.',
+        },
+        {
+          question: 'Vilka delar av Bergshamra och Solna täcker du?',
+          answer:
+            'Jag hjälper kunder i Bergshamra, Råsunda, Haga och Norra Bergshamra samt i övriga delar av Solna.',
+        },
+        {
+          question: 'Passar tjänsten villor och lägenheter i Bergshamra?',
+          answer:
+            'Ja, jag arbetar med både villor, radhus, bostadsrätter och lägenheter. Upplägget anpassas efter bostadens storlek och antal fönster.',
+        },
+        {
+          question: 'Hur snabbt kan jag få en offert i Bergshamra?',
+          answer:
+            'Du fyller i offertformuläret och jag återkommer med ett pris. Bokning sker efter att du har godkänt offerten och vi har kommit överens om en tid.',
+          linkLabel: 'Gå till prissidan',
+          linkTo: '/pris',
+        },
+        {
+          question: 'Kan jag boka återkommande fönsterputs i Bergshamra?',
+          answer:
+            'Ja, det går bra att boka både enstaka putsningar och återkommande intervaller. Många kunder väljer service inför vår och höst eller efter specifika behov.',
+        },
+      ],
+    },
+    {
       slug: 'sundbyberg',
       name: 'Sundbyberg',
       title: 'Fönsterputs Sundbyberg – Från 499 kr med RUT-avdrag | Rutputs',
@@ -536,13 +581,24 @@ const siteSeoContent = {
     {
       slug: 'spanga',
       name: 'Spånga',
-      title: 'Fönsterputs Spånga – Från 499 kr med RUT-avdrag | Rutputs',
+      title: 'Spånga Fönsterputs – Från 499 kr med RUT | Rutputs.nu',
       description:
-        'Fönsterputs i Spånga-Tensta med RUT-avdrag från 499 kr. Snabb och pålitlig service i hela Spånga. Fyll i formuläret för ditt pris!',
+        'Fönsterputs i Spånga med RUT-avdrag från 499 kr. Lokal service för villor och radhus i Spånga-Tensta. Boka enkelt och få en offert snabbt!',
       content:
-        'Spånga med sina många villakvarter och radhusområden passar mycket bra för regelbunden fönsterputsning. Jag hjälper kunder i hela området och ser till att arbetet utförs noggrant, smidigt och med fokus på ett resultat som håller hög kvalitet varje gång.',
+        'Spånga med sina många villakvarter och radhusområden i Tensta, Bromsten och Solhem är ett av mina vanligaste arbetsområden. Jag hjälper kunder i hela Spånga-Tensta och ser till att fönsterputsningen utförs noggrant med fokus på hög kvalitet och tydlig prissättning.',
       districts: ['Spånga', 'Tensta', 'Bromsten', 'Solhem'],
+      nearbyAreas: [
+        { name: 'Järfälla', slug: 'jarfalla' },
+        { name: 'Kista', slug: 'kista' },
+        { name: 'Vällingby', slug: 'vallingby' },
+        { name: 'Bromsten', slug: 'bromsten' },
+      ],
       faq: [
+        {
+          question: 'Vad kostar fönsterputs i Spånga?',
+          answer:
+            'Priset beräknas utifrån antalet fönster och bostadens storlek. Med RUT-avdraget börjar priset från 499 kr för privatkunder. Du fyller i uppgifterna i offertformuläret och får ett tydligt pris innan du behöver boka.',
+        },
         {
           question: 'Arbetar du i hela Spånga-Tensta?',
           answer:
@@ -551,12 +607,19 @@ const siteSeoContent = {
         {
           question: 'Passar tjänsten villa och radhus i Spånga?',
           answer:
-            'Absolut. Spånga är ett vanligt område för villa- och radhuskunder, men jag arbetar även med lägenheter och mindre fastigheter.',
+            'Absolut. Spånga är ett vanligt område för villa- och radhuskunder, men jag arbetar även med lägenheter och mindre fastigheter i hela Spånga-Tensta.',
         },
         {
           question: 'Hur bokar jag fönsterputs i Spånga?',
           answer:
-            'Du börjar i offertformuläret. När förfrågan är skickad återkommer jag med en offert och för att bekräfta detaljer och tid.',
+            'Du börjar i offertformuläret på prissidan. När förfrågan är skickad återkommer jag med en offert och bekräftar detaljer och tid som passar dig.',
+          linkLabel: 'Gå till prissidan',
+          linkTo: '/pris',
+        },
+        {
+          question: 'Kan jag boka återkommande fönsterputs i Spånga?',
+          answer:
+            'Ja, många kunder i Spånga-Tensta väljer att boka både enstaka putsningar och återkommande service inför vår, höst eller efter behov.',
         },
       ],
     },
