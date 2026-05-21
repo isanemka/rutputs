@@ -2,17 +2,17 @@
     <q-page class="page-shell">
       <div class="page-stack">
       <section class="editorial-panel editorial-panel--solid price-intro-panel">
-        <span class="section-kicker price-intro-panel__kicker">Begär offert</span>
+        <span class="section-kicker price-intro-panel__kicker">Priser &amp; offert</span>
         <h1 class="section-title text-center">
-          Offert på fönsterputsning med RUT-avdrag
+          Pris på fönsterputs i Stockholm
         </h1>
         <p class="section-text text-center q-mx-auto price-intro-panel__text">
           Berätta lite om dina fönster så återkommer jag med en personlig offert.
           Fyll i formuläret nedan – det tar bara någon minut.
         </p>
         <p class="section-text text-center q-mx-auto price-intro-panel__text">
-          Du anger antal fönster, vilka sidor du vill ha putsade och om fönstren har spröjs,
-          så räknar jag fram ett pris med RUT-avdrag och hör av mig.
+          Priset börjar från 499 kr efter RUT-avdrag och beräknas utifrån antal fönster,
+          bostadstyp och vad du vill ha putsat.
         </p>
         <div class="price-intro-panel__actions">
           <q-btn
@@ -35,6 +35,50 @@
         <p class="section-text">
             Eventuella tillägg vid exempelvis spröjsade fönster, hård nedsmutsning eller svår åtkomst
             framgår alltid innan arbetet startar.
+        </p>
+      </section>
+
+      <section class="editorial-panel price-table-panel">
+        <span class="section-kicker">Vad kostar det?</span>
+        <h2 class="section-title">Pris per fönster</h2>
+        <p class="section-text">
+          Priset börjar från 499 kr efter RUT-avdrag och beräknas utifrån dina fönster.
+          Fyll i formuläret nedan så räknar jag fram ett exakt pris för just din bostad.
+        </p>
+        <div class="price-callout">
+          Från 499 kr efter RUT-avdrag
+        </div>
+        <div class="price-table-wrap">
+          <table class="price-table">
+            <thead>
+              <tr>
+                <th scope="col">Vad vill du ha putsat?</th>
+                <th scope="col">Vad ingår</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Utsida</td>
+                <td>Rengöring av utsidan på alla fönster</td>
+              </tr>
+              <tr>
+                <td>Utsida + insida</td>
+                <td>Rengöring av både utsida och insida</td>
+              </tr>
+              <tr>
+                <td>Utsida + insida + mellan</td>
+                <td>Komplett puts inklusive mellanrutan</td>
+              </tr>
+              <tr>
+                <td>Spröjsade fönster</td>
+                <td>Tas med i offerten – priset anpassas efter typ och antal</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="section-text q-mt-md">
+          <strong>RUT-avdrag:</strong> Som privatperson betalar du hälften av arbetskostnaden –
+          resten dras direkt av på fakturan. Avdraget är redan inräknat i priset ovan.
         </p>
       </section>
 
@@ -258,6 +302,25 @@
         </div>
       </div>
 
+      <section class="editorial-panel areas-panel">
+        <span class="section-kicker">Var arbetar jag?</span>
+        <h2 class="section-title">Fönsterputs i Stockholmsområdet</h2>
+        <p class="section-text">
+          Jag utför fönsterputs i följande stadsdelar och kommuner runt Stockholm.
+          Klicka på din stadsdel för mer information.
+        </p>
+        <div class="areas-link-grid">
+          <router-link
+            v-for="area in areas"
+            :key="area.slug"
+            :to="`/omrade/${area.slug}`"
+            class="area-chip"
+          >
+            {{ area.name }}
+          </router-link>
+        </div>
+      </section>
+
       <section class="editorial-panel faq-shell q-pb-xl">
         <span class="section-kicker">Vanliga frågor</span>
         <h2 class="section-title">Offert och bokning</h2>
@@ -302,6 +365,7 @@ import { useQuasar } from 'quasar';
 import axios from 'axios';
 import { priceSeo } from 'src/data/seo';
 import { trackEvent } from 'src/boot/analytics';
+import { areas } from 'src/data/areas';
 
 const priceFaqs = priceSeo.faq ?? [];
 
@@ -396,7 +460,8 @@ export default defineComponent({
     return {
       priceFaqs,
       quasar,
-      step: ref(1)
+      step: ref(1),
+      areas,
     }
   },
   methods: {
@@ -726,5 +791,71 @@ export default defineComponent({
   .price-stepper-shell :deep(.q-dialog__inner > div) {
     width: min(100vw - 1rem, 420px);
   }
+}
+
+.price-callout {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.6rem 1.25rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.price-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 1.25rem;
+}
+
+.price-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.price-table th,
+.price-table td {
+  padding: 0.65rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.price-table thead th {
+  font-weight: 600;
+  border-bottom-color: rgba(255, 255, 255, 0.2);
+  white-space: nowrap;
+}
+
+.price-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.price-table tbody tr:nth-child(even) td {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.areas-link-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+}
+
+.area-chip {
+  display: inline-block;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 0.85rem;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.area-chip:hover {
+  border-color: currentColor;
+  background: rgba(255, 255, 255, 0.06);
 }
 </style>
