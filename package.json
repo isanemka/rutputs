@@ -10,7 +10,8 @@
     "format": "prettier --write \"**/*.{js,ts,vue,html,md,json}\" --ignore-path .gitignore",
     "test": "echo \"No test specified\" && exit 0",
     "dev": "concurrently \"quasar dev\" \"node server/server.js\"",
-    "build": "npx quasar build && node scripts/prerender-routes.mjs"
+    "build": "npx quasar build && node scripts/prerender-routes.mjs",
+    "gsc-report": "node scripts/gsc-report.mjs"
   },
   "dependencies": {
     "@aws-sdk/client-ses": "^3.750.0",
@@ -38,6 +39,7 @@
     "eslint": "^8.11.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-vue": "^9.0.0",
+    "googleapis": "^172.0.0",
     "prettier": "^2.5.1",
     "typescript": "^5.8.3"
   },
