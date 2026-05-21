@@ -40,7 +40,7 @@
 
       <section class="editorial-panel price-table-panel">
         <span class="section-kicker">Vad kostar det?</span>
-        <h2 class="section-title">Pris per fönster</h2>
+        <h2 class="section-title">Tjänster och vad som ingår</h2>
         <p class="section-text">
           Priset börjar från 499 kr efter RUT-avdrag och beräknas utifrån dina fönster.
           Fyll i formuläret nedan så räknar jag fram ett exakt pris för just din bostad.
@@ -50,6 +50,7 @@
         </div>
         <div class="price-table-wrap">
           <table class="price-table">
+            <caption class="price-table__caption">Tjänstealternativ för fönsterputs – vad ingår i varje val</caption>
             <thead>
               <tr>
                 <th scope="col">Vad vill du ha putsat?</th>
@@ -803,6 +804,17 @@ export default defineComponent({
   font-weight: 600;
 }
 
+.price-table__caption {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .price-table-wrap {
   width: 100%;
   overflow-x: auto;
@@ -856,6 +868,12 @@ export default defineComponent({
 
 .area-chip:hover {
   border-color: currentColor;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.area-chip:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
   background: rgba(255, 255, 255, 0.06);
 }
 </style>

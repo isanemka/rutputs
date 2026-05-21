@@ -132,7 +132,7 @@ const siteSeoContent = {
   price: {
     title: 'Fönsterputs Stockholm – Priser från 499 kr med RUT | Rutputs',
     description:
-      'Professionell fönsterputs i Stockholm från 499 kr med RUT-avdrag. Priset beräknas efter dina fönster. Boka enkelt – få offert idag.',
+      'Professionell fönsterputs i Stockholm från 499 kr med RUT-avdrag. Priset beräknas efter dina fönster. Boka enkelt – få en offert idag.',
     bodyTitle: 'Pris på fönsterputs i Stockholm',
     bodyIntro:
       'Fyll i offertformuläret med din bostad, antal fönster och vad du vill ha putsat så återkommer jag med en personlig offert. Priset börjar från 499 kr efter RUT-avdrag.',
