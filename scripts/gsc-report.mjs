@@ -1,31 +1,35 @@
 /**
  * Google Search Console weekly report generator.
  *
+ * Uses Application Default Credentials (ADC) — no key file needed.
+ *
  * Usage:
  *   node scripts/gsc-report.mjs
  *
- * Requires:
- *   GSC_KEY_FILE=path/to/service-account.json  (default: gsc-key.json)
- *   GSC_SITE_URL=https://www.rutputs.nu         (default: https://www.rutputs.nu)
+ * Optional env var:
+ *   GSC_SITE_URL=https://www.rutputs.nu  (default: https://www.rutputs.nu)
  *
  * Output: reports/veckorapport-YYYY-MM-DD.md
  *
  * Setup (once):
- *   1. Google Cloud Console → IAM & Admin → Service Accounts → Create
- *   2. Grant the service account no project roles (it only needs GSC access)
- *   3. Create a JSON key and save as gsc-key.json in the repo root
- *   4. Google Search Console → Settings → Users and permissions → Add user
- *      with the service account email (at least "Restricted" access)
- *   5. Add gsc-key.json to .gitignore
+ *   1. Install gcloud CLI: https://cloud.google.com/sdk/docs/install
+ *   2. Run:
+ *        gcloud auth application-default login \
+ *          --scopes=https://www.googleapis.com/auth/webmasters.readonly
+ *   3. Google Search Console → Settings → Users and permissions →
+ *      Add your Google account with at least "Restricted" access
+ *   4. npm run gsc-report
+ *
+ *   Credentials are stored by gcloud in:
+ *   ~/.config/gcloud/application_default_credentials.json
+ *   (never committed to the repo)
  */
 
 import { google } from 'googleapis';
 import { mkdir, writeFile } from 'node:fs/promises';
-import { existsSync } from 'node:fs';
 import path from 'node:path';
 
 // ── Config ────────────────────────────────────────────────────────────────────
-const KEY_FILE = process.env.GSC_KEY_FILE ?? 'gsc-key.json';
 const SITE_URL = process.env.GSC_SITE_URL ?? 'https://www.rutputs.nu';
 const REPORTS_DIR = 'reports';
 
@@ -76,13 +80,7 @@ function row(...cols) {
 
 // ── GSC API ───────────────────────────────────────────────────────────────────
 async function buildClient() {
-  if (!existsSync(KEY_FILE)) {
-    console.error(`Nyckelfel: Hittar inte "${KEY_FILE}".`);
-    console.error('Läs setup-instruktionerna överst i scriptet.');
-    process.exit(1);
-  }
   const auth = new google.auth.GoogleAuth({
-    keyFile: KEY_FILE,
     scopes: ['https://www.googleapis.com/auth/webmasters.readonly'],
   });
   return google.searchconsole({ version: 'v1', auth });

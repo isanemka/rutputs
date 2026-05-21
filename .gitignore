@@ -51,8 +51,5 @@ yarn-error.log*
 # LLM-genererade guide-utkast (lokala, granskas manuellt)
 src/data/_drafts/
 
-# Google Search Console service account key
-gsc-key.json
-
 # Genererade GSC-rapporter (lokala)
 reports/
