@@ -104,7 +104,7 @@ Ge mig en prioriterad lista över ändringarna per sida.
 
 ---
 
-## 4. Nya områdessidor — Kista, Viksjö, Kallhäll
+## ~~4. Nya områdessidor — Kista, Viksjö, Kallhäll~~ ✅
 
 **Problem:** Dessa sökord har exponeringar (101-166) men saknar dedicerade sidor eller har svagt innehåll.
 

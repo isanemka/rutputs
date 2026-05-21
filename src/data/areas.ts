@@ -9,6 +9,14 @@ export const areas: AreaLink[] = [
     name: 'Järfälla',
   },
   {
+    slug: 'viksjo',
+    name: 'Viksjö',
+  },
+  {
+    slug: 'kallhall',
+    name: 'Kallhäll',
+  },
+  {
     slug: 'bromma',
     name: 'Bromma',
   },
