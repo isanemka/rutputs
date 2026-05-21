@@ -14,7 +14,7 @@
         color="accent"
         text-color="black"
         unelevated
-        to="/landing"
+        to="/"
         label="Börja om"
         no-caps
       />

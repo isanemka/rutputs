@@ -126,9 +126,9 @@
             >
               <div class="row justify-center q-pa-md package-step">
                 <div class="col-12 col-md-8 col-lg-6">
-                  <h2 class="text-body1 text-accent text-center q-pb-md">
+                  <p class="text-body1 text-accent text-center q-pb-md">
                     Berätta hur många fönster du har och vad du vill ha putsat
-                  </h2>
+                  </p>
                   <q-input
                     v-model.number="form.windowCount"
                     outlined
