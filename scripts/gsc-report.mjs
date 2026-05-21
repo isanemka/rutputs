@@ -74,8 +74,13 @@ function positionDelta(current, previous) {
   return `${arrow} ${Math.abs(diff).toFixed(1)}`;
 }
 
+/** Escape a value for use in a markdown table cell. */
+function escapeCell(val) {
+  return String(val).replace(/\|/g, '\\|').replace(/[\r\n]+/g, ' ');
+}
+
 function row(...cols) {
-  return '| ' + cols.join(' | ') + ' |';
+  return '| ' + cols.map(escapeCell).join(' | ') + ' |';
 }
 
 // ── GSC API ───────────────────────────────────────────────────────────────────
@@ -86,18 +91,50 @@ async function buildClient() {
   return google.searchconsole({ version: 'v1', auth });
 }
 
-async function fetchRows(client, startDate, endDate) {
+/**
+ * Fetch all rows for given dimensions, paging through up to the API maximum
+ * (25 000 rows per request). Separate dimension sets avoid cross-product
+ * truncation when query×page combinations exceed the row limit.
+ */
+async function fetchRows(client, startDate, endDate, dimensions) {
+  const MAX_ROWS = 25_000;
+  let startRow = 0;
+  const all = [];
+  while (true) {
+    const res = await client.searchanalytics.query({
+      siteUrl: SITE_URL,
+      requestBody: {
+        startDate,
+        endDate,
+        dimensions,
+        rowLimit: MAX_ROWS,
+        startRow,
+        dataState: 'all',
+      },
+    });
+    const rows = res.data.rows ?? [];
+    all.push(...rows);
+    if (rows.length < MAX_ROWS) break;
+    startRow += rows.length;
+  }
+  return all;
+}
+
+/** Accurate site-wide totals via a dimension-free request. */
+async function fetchTotals(client, startDate, endDate) {
   const res = await client.searchanalytics.query({
     siteUrl: SITE_URL,
-    requestBody: {
-      startDate,
-      endDate,
-      dimensions: ['query', 'page'],
-      rowLimit: 500,
-      dataState: 'all',
-    },
+    requestBody: { startDate, endDate, rowLimit: 1, dataState: 'all' },
   });
-  return res.data.rows ?? [];
+  // The response totals field contains the true site-wide aggregate.
+  return res.data.responseAggregationType === 'byPage'
+    ? { clicks: 0, impressions: 0, ctr: 0, position: 0 }
+    : {
+        clicks: res.data.rows?.[0]?.clicks ?? 0,
+        impressions: res.data.rows?.[0]?.impressions ?? 0,
+        ctr: res.data.rows?.[0]?.ctr ?? 0,
+        position: res.data.rows?.[0]?.position ?? 0,
+      };
 }
 
 // ── Aggregation ───────────────────────────────────────────────────────────────
@@ -168,14 +205,14 @@ function totals(rows) {
 }
 
 // ── Report builder ────────────────────────────────────────────────────────────
-function buildReport({ thisWeek, lastWeek, dateThis, dateLast }) {
-  const t = totals(thisWeek);
-  const p = totals(lastWeek);
+function buildReport({ queryRows, pageRows, totalsThis, totalsLast, queryRowsLast, pageRowsLast, dateThis, dateLast }) {
+  const t = totalsThis;
+  const p = totalsLast;
 
-  const thisQueries = aggregateByQuery(thisWeek);
-  const lastQueries = aggregateByQuery(lastWeek);
-  const thisPages = aggregateByPage(thisWeek);
-  const lastPages = aggregateByPage(lastWeek);
+  const thisQueries = aggregateByQuery(queryRows);
+  const lastQueries = aggregateByQuery(queryRowsLast);
+  const thisPages = aggregateByPage(pageRows);
+  const lastPages = aggregateByPage(pageRowsLast);
 
   const lines = [];
   const h = (level, text) => lines.push(`${'#'.repeat(level)} ${text}`, '');
@@ -347,14 +384,18 @@ async function main() {
   console.log(`  Denna vecka:      ${dateThis.startDate} – ${dateThis.endDate}`);
   console.log(`  Föregående vecka: ${dateLast.startDate} – ${dateLast.endDate}`);
 
-  const [thisWeek, lastWeek] = await Promise.all([
-    fetchRows(client, dateThis.startDate, dateThis.endDate),
-    fetchRows(client, dateLast.startDate, dateLast.endDate),
+  const [totalsThis, totalsLast, queryRows, queryRowsLast, pageRows, pageRowsLast] = await Promise.all([
+    fetchTotals(client, dateThis.startDate, dateThis.endDate),
+    fetchTotals(client, dateLast.startDate, dateLast.endDate),
+    fetchRows(client, dateThis.startDate, dateThis.endDate, ['query']),
+    fetchRows(client, dateLast.startDate, dateLast.endDate, ['query']),
+    fetchRows(client, dateThis.startDate, dateThis.endDate, ['page']),
+    fetchRows(client, dateLast.startDate, dateLast.endDate, ['page']),
   ]);
 
-  console.log(`  Rader denna vecka: ${thisWeek.length}, föregående: ${lastWeek.length}`);
+  console.log(`  Sökfrågor denna vecka: ${queryRows.length}, föregående: ${queryRowsLast.length}`);
 
-  const report = buildReport({ thisWeek, lastWeek, dateThis, dateLast });
+  const report = buildReport({ queryRows, pageRows, totalsThis, totalsLast, queryRowsLast, pageRowsLast, dateThis, dateLast });
 
   await mkdir(REPORTS_DIR, { recursive: true });
   const filename = path.join(REPORTS_DIR, `veckorapport-${dateThis.endDate}.md`);
