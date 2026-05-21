@@ -324,22 +324,10 @@ export default defineComponent({
         innerHTML: JSON.stringify({
           '@context': 'https://schema.org',
           '@type': 'LocalBusiness',
+          '@id': 'https://www.rutputs.nu/',
           name: 'Rutputs',
           url: 'https://www.rutputs.nu/',
           image: 'https://www.rutputs.nu/og-image.jpg',
-          telephone: '+46734644604',
-          priceRange: 'Från 499 kr',
-          address: {
-            '@type': 'PostalAddress',
-            addressLocality: 'Stockholm',
-            addressRegion: 'Stockholm',
-            addressCountry: 'SE'
-          },
-          areaServed: [
-            'Järfälla', 'Viksjö', 'Kallhäll', 'Bromma', 'Kista', 'Solna', 'Sundbyberg',
-            'Spånga', 'Sollentuna', 'Täby', 'Lidingö', 'Östermalm', 'Vällingby',
-            'Hässelby', 'Danderyd', 'Kungsholmen', 'Norrmalm', 'Bromsten', 'Nacka', 'Upplands Väsby'
-          ],
           aggregateRating: {
             '@type': 'AggregateRating',
             ratingValue: reviewsData.aggregateRating.toFixed(1),
@@ -368,7 +356,7 @@ export default defineComponent({
           '@type': 'Organization',
           name: 'Rutputs',
           url: 'https://www.rutputs.nu/',
-          logo: 'https://www.rutputs.nu/icons/icon-512x512.png',
+          logo: 'https://www.rutputs.nu/icons/main_logo.png',
           telephone: '+46734644604'
         })
       },
@@ -380,7 +368,7 @@ export default defineComponent({
           itemListElement: [{
             '@type': 'ListItem',
             position: 1,
-            name: 'Hem',
+            name: 'Start',
             item: 'https://www.rutputs.nu/'
           }]
         })
