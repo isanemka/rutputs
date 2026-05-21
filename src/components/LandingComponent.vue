@@ -153,7 +153,7 @@
           </p>
           <ul class="feature-list">
             <li>Båda hushållen får rabatt på sin bokning.</li>
-            <li>Vi planerar samma dag i samma område, så det blir smidigt för alla.</li>
+            <li>Jag planerar samma dag i samma område, så det blir smidigt för alla.</li>
             <li>Funkar för villor, radhus, lägenheter och andra fastigheter.</li>
             <li>Skriv bara i förfrågan att ni vill boka tillsammans, så ordnar jag resten.</li>
           </ul>

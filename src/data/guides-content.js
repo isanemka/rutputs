@@ -12,7 +12,7 @@ const guides = [
     slug: 'hur-ofta-ska-man-putsa-fonster',
     title: 'Hur ofta ska man putsa fönster? Komplett guide 2026',
     description:
-      'Hur ofta bör du putsa fönster i Stockholm? Vi går igenom rekommenderat intervall baserat på säsong, boendetyp och läge — med konkreta tips.',
+      'Hur ofta bör du putsa fönster i Stockholm? Här går jag igenom rekommenderat intervall baserat på säsong, boendetyp och läge — med konkreta tips.',
     h1: 'Hur ofta ska man putsa fönster?',
     intro:
       'Det korta svaret: två gånger per år för de flesta hem. Det långa svaret beror på var du bor, vilken typ av bostad du har och hur mycket pollen, trafik och regn dina fönster utsätts för.',
@@ -47,7 +47,7 @@ const guides = [
 <li><strong>Vår (april–maj):</strong> Den viktigaste puts-perioden. Få bort vinterns saltspray, sand och stadens grus innan pollenet kommer.</li>
 <li><strong>Sommar (juni–augusti):</strong> Punktinsatser om något specifikt händer, men generellt en lugn period.</li>
 <li><strong>Höst (september–oktober):</strong> Puts inför mörkrets ankomst — rena fönster släpper in maximalt med dagsljus när vi behöver det som mest.</li>
-<li><strong>Vinter (november–mars):</strong> Undvik puts vid temperaturer under +5 °C. Vattnet fryser och putsmedel fungerar dåligt. Vi tar gärna inomhusputs under vintern.</li>
+<li><strong>Vinter (november–mars):</strong> Undvik puts vid temperaturer under +5 °C. Vattnet fryser och putsmedel fungerar dåligt. Jag tar gärna inomhusputs under vintern.</li>
 </ul>`,
       },
       {
@@ -88,7 +88,7 @@ const guides = [
       {
         question: 'Kan man putsa fönster på vintern?',
         answer:
-          'Utomhusputs fungerar dåligt under +5 °C eftersom vattnet fryser och putsmedel inte verkar som det ska. Inomhusputs går utmärkt hela året och vi tar gärna sådana uppdrag under vintern.',
+          'Ja, jag putsar fönster hela året — även i minusgrader. Vid lägre temperaturer använder jag ett specialmedel framtaget för vinterklimat, som är både effektivt och miljövänligt. Hör av dig så hittar jag en tid som passar.',
       },
       {
         question: 'Hur lång tid håller en fönsterputs?',
@@ -106,7 +106,7 @@ const guides = [
       'Allt du behöver veta om RUT-avdrag för fönsterputs 2026: belopp, regler, hur det dras automatiskt och vad som gäller för villa, lägenhet och brf.',
     h1: 'RUT-avdrag för fönsterputs 2026',
     intro:
-      'Fönsterputsning är en av tjänsterna som omfattas av RUT-avdraget. Det betyder att du som privatperson får 50 % rabatt direkt på fakturan — vi sköter all administration mot Skatteverket.',
+      'Fönsterputsning är en av tjänsterna som omfattas av RUT-avdraget. Det betyder att du som privatperson får 50 % rabatt direkt på fakturan — jag sköter all administration mot Skatteverket.',
     publishedAt: '2026-05-21',
     readingTimeMin: 5,
     author: 'Rutputs',
@@ -140,8 +140,8 @@ const guides = [
         heading: 'Så går det till hos oss',
         html: `<ol>
 <li><strong>Du begär offert</strong> via <a href="/pris">formuläret på prissidan</a> och anger ditt personnummer (krävs för RUT-administrationen).</li>
-<li><strong>Vi utför jobbet</strong> och fakturerar dig direkt med RUT-avdraget redan avdraget — du betalar alltså bara 50 %.</li>
-<li><strong>Vi ansöker hos Skatteverket</strong> om resterande del. Det är ingenting du behöver göra själv.</li>
+<li><strong>Jag utför jobbet</strong> och fakturerar dig direkt med RUT-avdraget redan avdraget — du betalar alltså bara 50 %.</li>
+<li><strong>Jag ansöker hos Skatteverket</strong> om resterande del. Det är ingenting du behöver göra själv.</li>
 <li><strong>Du redovisar inget extra i deklarationen</strong> — det syns automatiskt i din förtryckta deklaration året efter.</li>
 </ol>`,
       },
@@ -157,7 +157,7 @@ const guides = [
         html: `<ul>
 <li><strong>"RUT dras i deklarationen."</strong> Nej — sedan länge dras det direkt på fakturan. Du ser alltid det rabatterade priset.</li>
 <li><strong>"Bara städning omfattas."</strong> Fel — fönsterputsning är en uttrycklig RUT-tjänst.</li>
-<li><strong>"Jag måste själv ansöka."</strong> Nej — det är vi som utförare som ansöker hos Skatteverket.</li>
+<li><strong>"Jag måste själv ansöka."</strong> Nej — det är jag som utförare som ansöker hos Skatteverket.</li>
 <li><strong>"Det gäller bara villor."</strong> Fel — RUT gäller för alla boendeformer, inklusive lägenhet och fritidshus.</li>
 </ul>`,
       },
@@ -171,7 +171,7 @@ const guides = [
       {
         question: 'Måste jag ansöka om RUT-avdraget själv?',
         answer:
-          'Nej — vi som utförare drar av RUT direkt på fakturan och ansöker hos Skatteverket. Du behöver bara uppge ditt personnummer när du beställer.',
+          'Nej — jag som utförare drar av RUT direkt på fakturan och ansöker hos Skatteverket. Du behöver bara uppge ditt personnummer när du beställer.',
         linkLabel: 'Begär offert',
         linkTo: '/pris',
       },
