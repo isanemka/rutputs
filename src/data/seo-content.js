@@ -428,17 +428,28 @@ const siteSeoContent = {
     {
       slug: 'bromma',
       name: 'Bromma',
-      title: 'Fönsterputs Bromma – Från 499 kr med RUT-avdrag | Rutputs',
+      title: 'Bromma Fönsterputs – Från 499 kr med RUT | Rutputs.nu',
       description:
-        'Fönsterputsning i Bromma med RUT-avdrag från 499 kr. Jag täcker Abrahamsberg, Ulvsunda, Nockeby och hela Bromma. Boka enkelt online!',
+        'Fönsterputs i Bromma med RUT-avdrag från 499 kr. Lokal service för villor och radhus i Abrahamsberg, Ulvsunda och Nockeby. Boka enkelt idag!',
       content:
-        'Bromma med sina många villor, radhus och lägenheter är ett av de områden där jag arbetar ofta. Jag putsar fönster i hela Bromma och hjälper både återkommande kunder och dig som vill boka enstaka tillfällen inför säsong, försäljning eller storstädning.',
+        'Bromma med sina många villor, radhus och lägenheter i Abrahamsberg, Ulvsunda, Nockeby och Ålsten är ett av de områden där jag arbetar regelbundet. Jag hjälper kunder i hela Bromma och ser till att fönsterputsningen utförs noggrant – oavsett om du vill boka enstaka tillfällen inför säsong, försäljning eller storstädning.',
       districts: ['Abrahamsberg', 'Ulvsunda', 'Nockeby', 'Ålsten'],
+      nearbyAreas: [
+        { name: 'Kungsholmen', slug: 'kungsholmen' },
+        { name: 'Vällingby', slug: 'vallingby' },
+        { name: 'Hässelby', slug: 'hasselby' },
+        { name: 'Spånga', slug: 'spanga' },
+      ],
       faq: [
+        {
+          question: 'Vad kostar fönsterputs i Bromma?',
+          answer:
+            'Priset beräknas utifrån antalet fönster och bostadens typ. Med RUT-avdraget börjar priset från 499 kr för privatkunder. Du fyller i offertformuläret och får ett tydligt pris innan du behöver boka.',
+        },
         {
           question: 'Arbetar du i villaområden i Bromma?',
           answer:
-            'Ja, Bromma är ett av mina vanligaste områden för villor och radhus, men jag hjälper också kunder i lägenhet och mindre fastigheter.',
+            'Ja, Bromma är ett av mina vanligaste områden för villor och radhus, men jag hjälper också kunder i lägenhet och mindre fastigheter i hela Bromma.',
         },
         {
           question: 'Vilka delar av Bromma täcker du?',
@@ -446,9 +457,16 @@ const siteSeoContent = {
             'Jag arbetar bland annat i Abrahamsberg, Ulvsunda, Nockeby och Ålsten samt i övriga delar av Bromma.',
         },
         {
-          question: 'Ingår RUT-avdrag i priset?',
+          question: 'Hur bokar jag fönsterputs i Bromma?',
           answer:
-            'Ja, priset som kommuniceras börjar från 499 kr efter RUT-avdrag för privatpersoner som uppfyller Skatteverkets villkor.',
+            'Du börjar i offertformuläret på prissidan. När förfrågan är skickad återkommer jag med en offert och bekräftar detaljer och tid.',
+          linkLabel: 'Gå till prissidan',
+          linkTo: '/pris',
+        },
+        {
+          question: 'Kan jag boka återkommande fönsterputs i Bromma?',
+          answer:
+            'Ja, många kunder i Bromma väljer att boka både enstaka putsningar och återkommande service inför vår, höst eller efter specifika behov.',
         },
       ],
     },
@@ -626,40 +644,69 @@ const siteSeoContent = {
     {
       slug: 'sollentuna',
       name: 'Sollentuna',
-      title: 'Fönsterputs Sollentuna – Från 499 kr med RUT-avdrag | Rutputs',
+      title: 'Sollentuna Fönsterputs – Från 499 kr med RUT | Rutputs.nu',
       description:
-        'Fönsterputsning i Sollentuna med RUT-avdrag från 499 kr. Jag täcker Tureberg, Edsberg, Häggvik och hela Sollentuna kommun. Boka online!',
+        'Fönsterputs i Sollentuna med RUT-avdrag från 499 kr. Lokal service för Tureberg, Edsberg och Häggvik. Snabb bokning direkt online!',
       content:
-        'I Sollentuna erbjuder jag fönsterputsning för dig som vill ha ett pålitligt och enkelt upplägg med tydlig prissättning. Närheten till Järfälla gör det lätt att planera in tider snabbt, och jag hjälper både privatkunder och mindre fastigheter som vill ha rena fönster med professionellt resultat.',
+        'I Sollentuna erbjuder jag fönsterputsning för dig som vill ha ett pålitligt upplägg med tydlig prissättning. Närheten till Järfälla gör det enkelt att planera in tider snabbt, och jag hjälper både privatkunder i Tureberg, Edsberg och Häggvik och mindre fastigheter som vill ha rena fönster med professionellt resultat.',
       districts: ['Tureberg', 'Edsberg', 'Häggvik', 'Helenelund'],
+      nearbyAreas: [
+        { name: 'Järfälla', slug: 'jarfalla' },
+        { name: 'Täby', slug: 'taby' },
+        { name: 'Kista', slug: 'kista' },
+        { name: 'Upplands Väsby', slug: 'upplands-vasby' },
+      ],
       faq: [
+        {
+          question: 'Vad kostar fönsterputs i Sollentuna?',
+          answer:
+            'Priset baseras på antal fönster och bostadens storlek. Med RUT-avdrag börjar priset från 499 kr för privatkunder. Fyll i offertformuläret så får du ett tydligt pris.',
+        },
         {
           question: 'Vilka områden i Sollentuna täcker du?',
           answer:
             'Jag arbetar bland annat i Tureberg, Edsberg, Häggvik och Helenelund samt i övriga delar av Sollentuna kommun.',
         },
         {
-          question: 'Är du nära Sollentuna för snabb bokning?',
+          question: 'Passar tjänsten villor och lägenheter i Sollentuna?',
           answer:
-            'Ja, eftersom jag utgår från Järfälla är Sollentuna ett naturligt arbetsområde där jag ofta kan erbjuda smidiga tider.',
+            'Ja, jag arbetar med villor, radhus, bostadsrätter och lägenheter. Upplägget anpassas efter bostadens storlek och antal fönster.',
         },
         {
-          question: 'Kan jag boka som återkommande kund i Sollentuna?',
+          question: 'Hur bokar jag fönsterputs i Sollentuna?',
           answer:
-            'Ja, det går bra att boka både enstaka putsningar och återkommande intervaller beroende på behov och säsong.',
+            'Du börjar i offertformuläret på prissidan. Jag återkommer sedan med en offert och bekräftar tid och detaljer.',
+          linkLabel: 'Gå till prissidan',
+          linkTo: '/pris',
+        },
+        {
+          question: 'Kan jag boka återkommande fönsterputs i Sollentuna?',
+          answer:
+            'Ja, det går bra att boka både enstaka putsningar och återkommande service beroende på behov och säsong. Många kunder väljer vår och höst.',
         },
       ],
     },
     {
       slug: 'taby',
       name: 'Täby',
-      title: 'Fönsterputs Täby – Från 499 kr med RUT-avdrag | Rutputs',
+      title: 'Täby Fönsterputs – Från 499 kr med RUT | Rutputs.nu',
       description:
-        'Professionell fönsterputsning i Täby med RUT-avdrag. Villor, radhus och lägenheter. Boka online från 499 kr!',
+        'Fönsterputs i Täby med RUT-avdrag från 499 kr. Lokal service för villor och radhus i Näsbypark, Gribbylund och Täby Centrum. Boka enkelt!',
       content:
-        'Täby är känt för sina många villaområden, radhus och större bostäder där rena fönster verkligen gör skillnad. Jag hjälper kunder i hela kommunen och erbjuder ett enkelt bokningsflöde för dig som vill få ett tydligt pris direkt och boka en noggrann lokal aktör.',
+        'Täby är känt för sina många villaområden och radhus i Näsbypark, Gribbylund, Arninge och Täby Centrum där rena fönster verkligen gör skillnad för ljusinsläpp och trivsel. Jag hjälper kunder i hela Täby och erbjuder ett enkelt bokningsflöde för dig som vill få ett tydligt pris och en noggrann lokal aktör.',
       districts: ['Täby Centrum', 'Näsbypark', 'Gribbylund', 'Arninge'],
+      nearbyAreas: [
+        { name: 'Danderyd', slug: 'danderyd' },
+        { name: 'Sollentuna', slug: 'sollentuna' },
+        { name: 'Lidingö', slug: 'lidingo' },
+        { name: 'Upplands Väsby', slug: 'upplands-vasby' },
+      ],
       faq: [
+        {
+          question: 'Vad kostar fönsterputs i Täby?',
+          answer:
+            'Priset beräknas utifrån antalet fönster och bostadens typ. Med RUT-avdraget börjar priset från 499 kr för privatkunder. Fyll i offertformuläret så får du ett personligt pris.',
+        },
         {
           question: 'Vilka områden i Täby täcker du?',
           answer:
@@ -671,9 +718,16 @@ const siteSeoContent = {
             'Ja, tjänsten är anpassad för både större villor, radhus, lägenheter och mindre fastigheter beroende på antal fönster och behov.',
         },
         {
-          question: 'Hur får jag pris för fönsterputs i Täby?',
+          question: 'Hur bokar jag fönsterputs i Täby?',
           answer:
-            'Du fyller i offertformuläret så återkommer jag med en personlig offert. Därefter bekräftas bokningen i nästa steg.',
+            'Du fyller i offertformuläret på prissidan så återkommer jag med en personlig offert. Bokningen bekräftas efter att vi kommit överens om tid och detaljer.',
+          linkLabel: 'Gå till prissidan',
+          linkTo: '/pris',
+        },
+        {
+          question: 'Kan jag boka återkommande fönsterputs i Täby?',
+          answer:
+            'Ja, det går bra att boka återkommande service. Många kunder i Täby väljer att putsa fönster inför vår och höst, eller vid specifika tillfällen som inför försäljning.',
         },
       ],
     },
