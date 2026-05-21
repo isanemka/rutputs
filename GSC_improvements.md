@@ -182,7 +182,7 @@ Visa alla ändringar.
 
 ---
 
-## 6. Teknisk SEO — sajtövergripande
+## ~~6. Teknisk SEO — sajtövergripande~~ ✅
 
 ```
 Gör en teknisk SEO-audit av hela sajten rutputs.nu. Kontrollera och åtgärda:
