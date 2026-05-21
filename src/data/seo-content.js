@@ -130,10 +130,10 @@ const siteSeoContent = {
     ],
   },
   price: {
-    title: 'Begär offert – Fönsterputsning med RUT-avdrag | Rutputs',
+    title: 'Fönsterputs Stockholm – Priser från 499 kr med RUT | Rutputs',
     description:
-      'Begär offert på fönsterputsning i Stockholm – från 499 kr med RUT-avdrag. Fyll i en enkel förfrågan så återkommer jag med ett personligt pris.',
-    bodyTitle: 'Begär offert för fönsterputsning',
+      'Professionell fönsterputs i Stockholm från 499 kr med RUT-avdrag. Priset beräknas efter dina fönster. Boka enkelt – få en offert idag.',
+    bodyTitle: 'Pris på fönsterputs i Stockholm',
     bodyIntro:
       'Fyll i offertformuläret med din bostad, antal fönster och vad du vill ha putsat så återkommer jag med en personlig offert. Priset börjar från 499 kr efter RUT-avdrag.',
     steps: [
@@ -143,9 +143,19 @@ const siteSeoContent = {
     ],
     faq: [
       {
-        question: 'Vad kostar fönsterputsning med RUT-avdrag?',
+        question: 'Vad kostar fönsterputs i Stockholm?',
         answer:
-          'Fönsterputsning börjar från 499 kr efter RUT-avdrag. Det exakta priset beror på bostadstyp, antal fönster och vad du vill ha putsat.',
+          'Fönsterputs i Stockholm börjar från 499 kr efter RUT-avdrag. Exakt pris beror på antal fönster, bostadstyp och om du vill ha utsida, insida eller mellanruta putsat. Fyll i formuläret så får du ett personligt pris.',
+      },
+      {
+        question: 'Hur mycket kostar fönsterputs per timme?',
+        answer:
+          'Jag prissätter per fönster och uppdrag, inte per timme. Det ger dig ett tydligt fast pris i förväg utan obehagliga överraskningar. Grundpriset börjar från 499 kr per tillfälle efter RUT-avdrag.',
+      },
+      {
+        question: 'Vad kostar fönsterputs med RUT-avdrag?',
+        answer:
+          'Med RUT-avdrag betalar du hälften av arbetskostnaden – resten dras direkt av på fakturan. Det innebär att fönsterputs börjar från 499 kr i din kostnad. Avdraget gäller för privatpersoner och dras automatiskt.',
       },
       {
         question: 'Hur snabbt får jag en offert?',
