@@ -401,12 +401,18 @@ const siteSeoContent = {
     {
       slug: 'jarfalla',
       name: 'Järfälla',
-      title: 'Fönsterputs Järfälla – Från 499 kr med RUT-avdrag | Rutputs',
+      title: 'Järfälla Fönsterputs – Från 499 kr med RUT | Rutputs.nu',
       description:
-        'Personlig fönsterputs i Järfälla med RUT-avdrag. Från 499 kr. Jag täcker Jakobsberg, Viksjö, Barkarby och Kallhäll. Boka enkelt online!',
+        'Fönsterputs i Järfälla med RUT-avdrag från 499 kr. Lokal service i Jakobsberg, Viksjö, Barkarby och Kallhäll. Boka enkelt online!',
       content:
         'Jag arbetar löpande i Järfälla och kan därför erbjuda snabb och smidig service utan långa restider. När du bokar hos mig är det också jag som kommer och putsar, i Barkarby, Jakobsberg, Viksjö, Kallhäll och övriga delar av kommunen.',
       districts: ['Jakobsberg', 'Viksjö', 'Barkarby', 'Kallhäll'],
+      nearbyAreas: [
+        { name: 'Viksjö', slug: 'viksjo' },
+        { name: 'Kallhäll', slug: 'kallhall' },
+        { name: 'Kista', slug: 'kista' },
+        { name: 'Sollentuna', slug: 'sollentuna' },
+      ],
       faq: [
         {
           question: 'Vad kostar fönsterputs i Järfälla?',
@@ -419,9 +425,111 @@ const siteSeoContent = {
             'Ja, jag hjälper kunder i bland annat Jakobsberg, Viksjö, Barkarby och Kallhäll samt övriga delar av Järfälla.',
         },
         {
+          question: 'Passar tjänsten villor och radhus i Järfälla?',
+          answer:
+            'Ja, jag arbetar med villor, radhus och lägenheter i hela Järfälla. Upplägget anpassas efter din bostads storlek och antal fönster.',
+        },
+        {
           question: 'Hur bokar jag fönsterputs i Järfälla?',
           answer:
-            'Du fyller i offertformuläret online så återkommer jag med en personlig offert och för att bekräfta bokning och tid.',
+            'Du fyller i offertformuläret på prissidan så återkommer jag med en personlig offert och bekräftar bokning och tid.',
+          linkLabel: 'Gå till prissidan',
+          linkTo: '/pris',
+        },
+        {
+          question: 'Kan jag boka återkommande fönsterputs i Järfälla?',
+          answer:
+            'Ja, många kunder väljer återkommande service inför vår och höst. Det går bra att boka enstaka tillfällen eller ett fast intervall.',
+        },
+      ],
+    },
+    {
+      slug: 'viksjo',
+      name: 'Viksjö',
+      title: 'Viksjö Fönsterputs – Från 499 kr med RUT | Rutputs.nu',
+      description:
+        'Fönsterputs i Viksjö, Järfälla med RUT-avdrag från 499 kr. Lokal service för villor och radhus i Viksjö. Boka enkelt och få en offert snabbt!',
+      content:
+        'Viksjö i Järfälla är ett lugnt villaområde med många radhus och egnahem där rena fönster gör stor skillnad för ljusinsläpp och trivsel. Jag arbetar regelbundet i Viksjö och övriga delar av Järfälla, vilket gör det enkelt att boka en tid som passar dig.',
+      districts: ['Viksjö', 'Jakobsberg', 'Kallhäll', 'Barkarby'],
+      nearbyAreas: [
+        { name: 'Järfälla', slug: 'jarfalla' },
+        { name: 'Kallhäll', slug: 'kallhall' },
+        { name: 'Kista', slug: 'kista' },
+        { name: 'Spånga', slug: 'spanga' },
+      ],
+      faq: [
+        {
+          question: 'Vad kostar fönsterputs i Viksjö?',
+          answer:
+            'Priset baseras på antal fönster och bostadens typ. Med RUT-avdrag börjar priset från 499 kr för privatkunder. Fyll i offertformuläret så får du ett tydligt pris.',
+        },
+        {
+          question: 'Vilka delar av Viksjö och Järfälla täcker du?',
+          answer:
+            'Jag hjälper kunder i Viksjö, Jakobsberg, Kallhäll och Barkarby samt i övriga delar av Järfälla kommun.',
+        },
+        {
+          question: 'Passar tjänsten villor och radhus i Viksjö?',
+          answer:
+            'Ja, Viksjö är ett typiskt villaområde och jag arbetar ofta med villor och radhus här. Tjänsten passar även lägenheter och bostadsrätter.',
+        },
+        {
+          question: 'Hur bokar jag fönsterputs i Viksjö?',
+          answer:
+            'Du fyller i offertformuläret på prissidan. Jag återkommer med en offert och bekräftar tid och detaljer innan uppdraget startar.',
+          linkLabel: 'Gå till prissidan',
+          linkTo: '/pris',
+        },
+        {
+          question: 'Kan jag boka återkommande fönsterputs i Viksjö?',
+          answer:
+            'Ja, det går bra att boka både enstaka putsningar och återkommande service. Många kunder i Viksjö väljer inför vår och höst.',
+        },
+      ],
+    },
+    {
+      slug: 'kallhall',
+      name: 'Kallhäll',
+      title: 'Kallhäll Fönsterputs – Från 499 kr med RUT | Rutputs.nu',
+      description:
+        'Fönsterputs i Kallhäll, Järfälla med RUT-avdrag från 499 kr. Lokal service för villor och radhus i Kallhäll. Boka enkelt och snabbt!',
+      content:
+        'Kallhäll i Järfälla är ett välskött bostadsområde med villor, radhus och lägenheter nära Mälaren och gröna rekreationsområden. Jag arbetar regelbundet i Kallhäll och övriga delar av Järfälla och erbjuder ett smidigt bokningsupplägg med tydlig prissättning.',
+      districts: ['Kallhäll', 'Viksjö', 'Jakobsberg', 'Stäket'],
+      nearbyAreas: [
+        { name: 'Järfälla', slug: 'jarfalla' },
+        { name: 'Viksjö', slug: 'viksjo' },
+        { name: 'Upplands Väsby', slug: 'upplands-vasby' },
+        { name: 'Spånga', slug: 'spanga' },
+      ],
+      faq: [
+        {
+          question: 'Vad kostar fönsterputs i Kallhäll?',
+          answer:
+            'Priset beräknas utifrån antal fönster och bostadens typ. Med RUT-avdrag börjar priset från 499 kr för privatkunder. Begär offert online för ett personligt pris.',
+        },
+        {
+          question: 'Vilka delar av Kallhäll och Järfälla täcker du?',
+          answer:
+            'Jag hjälper kunder i Kallhäll, Viksjö, Jakobsberg och Stäket samt i övriga delar av Järfälla kommun.',
+        },
+        {
+          question: 'Passar tjänsten villor och radhus i Kallhäll?',
+          answer:
+            'Ja, jag arbetar med villor, radhus och lägenheter i Kallhäll. Upplägget anpassas efter antal fönster och bostadens storlek.',
+        },
+        {
+          question: 'Hur bokar jag fönsterputs i Kallhäll?',
+          answer:
+            'Du fyller i offertformuläret på prissidan. Jag återkommer med en offert och vi bekräftar tid och detaljer innan arbetet utförs.',
+          linkLabel: 'Gå till prissidan',
+          linkTo: '/pris',
+        },
+        {
+          question: 'Kan jag boka återkommande fönsterputs i Kallhäll?',
+          answer:
+            'Ja, det går bra att boka enstaka putsningar eller ett återkommande upplägg. Populärt är inför vår och höst för att hålla fönstren rena året runt.',
         },
       ],
     },
@@ -473,13 +581,24 @@ const siteSeoContent = {
     {
       slug: 'kista',
       name: 'Kista',
-      title: 'Fönsterputs Kista – Från 499 kr med RUT-avdrag | Rutputs',
+      title: 'Kista Fönsterputs – Från 499 kr med RUT | Rutputs.nu',
       description:
-        'Fönsterputs i Kista med RUT-avdrag från 499 kr. Professionell service för bostäder och kontor i Kista, Husby och Akalla. Boka idag!',
+        'Fönsterputs i Kista med RUT-avdrag från 499 kr. Lokal service för bostäder och kontor i Kista, Husby och Akalla. Boka enkelt online!',
       content:
         'I Kista erbjuder jag fönsterputsning för både privatpersoner och företag. Det passar bra för dig som bor i lägenhet, radhus eller villa och vill ha ett smidigt upplägg, men också för kontor och verksamheter som behöver rena fönster som en del av ett professionellt helhetsintryck.',
       districts: ['Kista', 'Husby', 'Akalla', 'Ärvinge'],
+      nearbyAreas: [
+        { name: 'Järfälla', slug: 'jarfalla' },
+        { name: 'Spånga', slug: 'spanga' },
+        { name: 'Sollentuna', slug: 'sollentuna' },
+        { name: 'Vällingby', slug: 'vallingby' },
+      ],
       faq: [
+        {
+          question: 'Vad kostar fönsterputs i Kista?',
+          answer:
+            'Priset beräknas utifrån antal fönster och bostadens typ. Med RUT-avdrag börjar priset från 499 kr för privatkunder. Fyll i offertformuläret för ett personligt pris.',
+        },
         {
           question: 'Erbjuder du fönsterputs för företag i Kista?',
           answer:
@@ -491,9 +610,16 @@ const siteSeoContent = {
             'Jag arbetar i Kista, Husby, Akalla och Ärvinge samt närliggande områden i norra Stockholm.',
         },
         {
-          question: 'Hur snabbt kan jag boka i Kista?',
+          question: 'Hur bokar jag fönsterputs i Kista?',
           answer:
-            'Tillgängligheten varierar med säsong, men eftersom jag redan arbetar i området går det ofta att hitta en smidig tid utan lång väntan.',
+            'Du fyller i offertformuläret på prissidan. Jag återkommer med en offert och bekräftar tid och detaljer.',
+          linkLabel: 'Gå till prissidan',
+          linkTo: '/pris',
+        },
+        {
+          question: 'Kan jag boka återkommande fönsterputs i Kista?',
+          answer:
+            'Ja, det går bra att boka både enstaka putsningar och ett återkommande upplägg. Eftersom jag arbetar regelbundet i Kista går det ofta att erbjuda smidiga tider.',
         },
       ],
     },
