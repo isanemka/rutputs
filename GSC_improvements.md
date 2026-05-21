@@ -249,7 +249,7 @@ Börja med de två artiklar som troligen har högst sökvolym och visa mig dem.
 
 ---
 
-## 8. Löpande övervakning
+## ~~8. Löpande övervakning~~ ✅
 
 ```
 Skapa ett script (Node.js eller Python) som jag kan köra varje vecka för att:
