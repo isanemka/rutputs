@@ -13,7 +13,7 @@
         </picture>
         <div class="hero-shell__content">
           <span class="hero-kicker">{{ area.name }}</span>
-          <h1 class="hero-title area-hero__title">Fönsterputsning i {{ area.name }} med lokalt fokus</h1>
+          <h1 class="hero-title area-hero__title">Fönsterputsning i {{ area.name }}</h1>
           <p class="hero-lead">
             {{ area.content }}
           </p>
@@ -60,6 +60,21 @@
             <h3 class="mini-card__title">{{ district }}</h3>
             <p class="mini-card__text">Fönsterputsning för bostäder och mindre fastigheter i {{ district }} med tydlig prissättning och smidig bokning.</p>
           </article>
+        </div>
+      </section>
+
+      <section v-if="area.nearbyAreas?.length" class="editorial-panel">
+        <span class="section-kicker">Utforska fler områden</span>
+        <h2 class="section-title">Fönsterputs i närliggande områden</h2>
+        <div class="nearby-areas-grid">
+          <router-link
+            v-for="nearby in area.nearbyAreas"
+            :key="nearby.slug"
+            :to="`/omrade/${nearby.slug}`"
+            class="area-chip"
+          >
+            {{ nearby.name }}
+          </router-link>
         </div>
       </section>
 
@@ -346,5 +361,32 @@ export default defineComponent({
   .area-districts {
     grid-template-columns: 1fr;
   }
+}
+
+.nearby-areas-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.area-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid var(--q-accent, #f4c542);
+  border-radius: 9999px;
+  color: var(--q-primary, #1a1a2e);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.area-chip:hover,
+.area-chip:focus-visible {
+  background-color: var(--q-accent, #f4c542);
+  outline: 2px solid var(--q-accent, #f4c542);
+  outline-offset: 2px;
 }
 </style>
