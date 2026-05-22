@@ -19,6 +19,8 @@
    gcloud auth application-default set-quota-project rutputs
    ```
 
+   > **Obs:** `rutputs` är projekt-ID för den här sajten. Har du ett annat Google Cloud-projekt, byt ut det mot ditt eget projekt-ID.
+
    Webbläsaren öppnas (två gånger) — logga in med kontot som har GSC-åtkomst.
 
 2. **Verifiera att kontot har åtkomst i GSC:**
@@ -31,6 +33,8 @@
    ```bash
    gcloud services enable searchconsole.googleapis.com --project=rutputs
    ```
+
+   > **Obs:** Byt ut `rutputs` mot ditt eget Google Cloud-projekt-ID om du kör under ett annat projekt.
 
 4. **Egendomen i GSC är en domänegenskap** — använd `sc-domain:`-formatet:
 
