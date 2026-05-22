@@ -39,6 +39,10 @@ export function getGuideBySlug(slug: string): Guide | undefined {
 
 export function getGuidesSortedByDate(): Guide[] {
   return [...guides].sort((a, b) =>
-    a.publishedAt < b.publishedAt ? 1 : a.publishedAt > b.publishedAt ? -1 : a.slug.localeCompare(b.slug),
+    a.publishedAt < b.publishedAt
+      ? 1
+      : a.publishedAt > b.publishedAt
+      ? -1
+      : a.slug.localeCompare(b.slug)
   );
 }

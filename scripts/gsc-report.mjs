@@ -7,7 +7,7 @@
  *   node scripts/gsc-report.mjs
  *
  * Optional env var:
- *   GSC_SITE_URL=https://www.rutputs.nu  (default: https://www.rutputs.nu)
+ *   GSC_SITE_URL=sc-domain:rutputs.nu  (default: sc-domain:rutputs.nu)
  *
  * Output: reports/veckorapport-YYYY-MM-DD.md
  *
@@ -30,7 +30,7 @@ import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 
 // ── Config ────────────────────────────────────────────────────────────────────
-const SITE_URL = process.env.GSC_SITE_URL ?? 'https://www.rutputs.nu';
+const SITE_URL = process.env.GSC_SITE_URL ?? 'sc-domain:rutputs.nu';
 const REPORTS_DIR = 'reports';
 
 // Thresholds for flags
@@ -169,7 +169,7 @@ function aggregateByQuery(rows) {
 function aggregateByPage(rows) {
   const map = new Map();
   for (const row of rows) {
-    const page = row.keys[1];
+    const page = row.keys[0];
     const existing = map.get(page);
     if (existing) {
       existing.clicks += row.clicks;
