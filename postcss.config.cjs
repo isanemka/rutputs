@@ -3,6 +3,12 @@
 
 module.exports = {
   plugins: [
+    // Quasar's Material Icons @font-face uses font-display:block by default.
+    // This plugin overrides it to font-display:swap to satisfy Lighthouse.
+    require('postcss-font-display')({
+      display: 'swap',
+      replace: true
+    }),
     // https://github.com/postcss/autoprefixer
     require('autoprefixer')({
       overrideBrowserslist: [
