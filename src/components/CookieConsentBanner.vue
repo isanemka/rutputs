@@ -120,4 +120,9 @@ export default defineComponent({
 .cookie-dialog .q-dialog__inner {
   padding: 0 !important;
 }
+
+/* #FF6101 accent on white bg = 2.9:1 (fails WCAG AA). Override to #B84000 = 5.1:1. */
+.cookie-consent-card .text-accent {
+  color: #B84000;
+}
 </style>

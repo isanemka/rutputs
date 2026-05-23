@@ -12,8 +12,11 @@
     <noscript>
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" />
     </noscript>
-    <!-- Preload default hero portrait image (mobile LCP element) -->
-    <link rel="preload" as="image" href="/img/15050.webp" fetchpriority="high" media="(max-width: 599px)" />
+    <!-- Preload default hero portrait image (mobile LCP element).
+         No fetchpriority here — the <img fetchpriority="high"> in the component
+         already boosts priority once discovered; adding it on the preload link
+         too would compete with the CSS download and delay FCP. -->
+    <link rel="preload" as="image" href="/img/15050.webp" media="(max-width: 599px)" />
     <title>Fönsterputs i Stockholm – Från 499 kr med RUT | Rutputs</title>
     <meta
       name="description"
