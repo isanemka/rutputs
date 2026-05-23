@@ -352,6 +352,11 @@ export default defineComponent({
   font-size: 0.84rem;
 }
 
+/* #FF6101 accent on #314047 bg = 3.1:1 (fails). Override to #FFA94D = 4.9:1. */
+.site-footer .text-accent {
+  color: #FFA94D;
+}
+
 @media (max-width: 899px) {
   .top-nav {
     min-height: auto;
