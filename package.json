@@ -40,6 +40,7 @@
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-vue": "^9.0.0",
     "googleapis": "^172.0.0",
+    "postcss-font-display": "^0.3.0",
     "prettier": "^2.5.1",
     "typescript": "^5.8.3"
   },

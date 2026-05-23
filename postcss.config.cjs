@@ -3,6 +3,10 @@
 
 module.exports = {
   plugins: [
+    require('postcss-font-display')({
+      display: 'swap',
+      replace: true
+    }),
     // https://github.com/postcss/autoprefixer
     require('autoprefixer')({
       overrideBrowserslist: [
