@@ -413,7 +413,18 @@ export default defineComponent({
 
     onMounted(() => {
       randomLandscapeImage.value = pickRandomImage(landscapeImages);
-      randomPortraitImage.value = pickRandomImage(portraitImages);
+      // Defer portrait randomization until after LCP is measured.
+      // The prerendered src="/img/15050.webp" is preloaded in index.html,
+      // so it loads immediately. Swapping before LCP fires would waste that
+      // preload and delay the LCP metric.
+      const randomizePortrait = () => {
+        randomPortraitImage.value = pickRandomImage(portraitImages);
+      };
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(randomizePortrait, { timeout: 5000 });
+      } else {
+        setTimeout(randomizePortrait, 3000);
+      }
       updateParallax();
 
       window.addEventListener('scroll', scheduleParallaxUpdate, { passive: true });
