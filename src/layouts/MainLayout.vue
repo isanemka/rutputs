@@ -16,7 +16,7 @@
         </router-link>
 
         <div class="top-nav__menu">
-          <q-tabs align="left" class="top-nav__tabs" indicator-color="accent" active-color="accent">
+          <q-tabs align="left" class="top-nav__tabs" indicator-color="accent" active-color="accent" inactive-color="white">
             <q-route-tab to="/" label="Start" class="top-nav__tab" />
             <q-route-tab to="/pris" label="Offert" class="top-nav__tab" />
             <q-route-tab to="/foretag" label="Företag" class="top-nav__tab" />
