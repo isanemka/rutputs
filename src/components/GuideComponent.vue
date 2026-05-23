@@ -35,7 +35,7 @@
         <section class="editorial-panel faq-shell">
           <span class="section-kicker">Vanliga frågor</span>
           <h2 class="section-title">Frågor och svar</h2>
-          <q-list bordered separator>
+          <q-list bordered separator role="none">
             <q-expansion-item
               v-for="item in guide.faq"
               :key="item.question"
