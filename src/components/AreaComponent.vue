@@ -89,7 +89,7 @@
       <section class="editorial-panel faq-shell">
         <span class="section-kicker">Vanliga frågor</span>
         <h2 class="section-title">Det här undrar kunder i {{ area.name }} oftast</h2>
-        <q-list bordered separator>
+        <q-list bordered separator role="none">
           <q-expansion-item
             v-for="item in area.faq"
             :key="item.question"

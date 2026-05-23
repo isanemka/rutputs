@@ -71,7 +71,7 @@
       <section id="company-faq" class="editorial-panel faq-shell">
         <span class="section-kicker">Vanliga frågor</span>
         <h2 class="section-title">Det här frågar företag oftast om först</h2>
-        <q-list bordered separator>
+        <q-list bordered separator role="none">
           <q-expansion-item
             v-for="item in companyFaqs"
             :key="item.question"

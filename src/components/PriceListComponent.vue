@@ -325,7 +325,7 @@
       <section class="editorial-panel faq-shell q-pb-xl">
         <span class="section-kicker">Vanliga frågor</span>
         <h2 class="section-title">Offert och bokning</h2>
-        <q-list bordered separator>
+        <q-list bordered separator role="none">
           <q-expansion-item
             v-for="item in priceFaqs"
             :key="item.question"

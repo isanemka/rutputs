@@ -205,7 +205,7 @@ export default defineComponent({
   font-size: 0.72rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.62);
+  color: rgba(255, 255, 255, 0.90);
 }
 
 .top-nav__headline {
