@@ -381,6 +381,7 @@ export default defineComponent({
     const randomLandscapeImage = ref(landscapeImages[0]);
     const randomPortraitImage = ref(portraitImages[0]);
     let animationFrameId = 0;
+    let portraitTimerId: ReturnType<typeof setTimeout> | number = 0;
 
     const pickRandomImage = (images: string[]) => images[Math.floor(Math.random() * images.length)];
 
@@ -413,7 +414,18 @@ export default defineComponent({
 
     onMounted(() => {
       randomLandscapeImage.value = pickRandomImage(landscapeImages);
-      randomPortraitImage.value = pickRandomImage(portraitImages);
+      // Defer portrait randomization until the browser is idle (after initial
+      // paint). The prerendered src="/img/15050.webp" is preloaded in
+      // index.html so it starts loading immediately; randomising before that
+      // download completes would force a second image request and delay LCP.
+      const randomizePortrait = () => {
+        randomPortraitImage.value = pickRandomImage(portraitImages);
+      };
+      if ('requestIdleCallback' in window) {
+        portraitTimerId = window.requestIdleCallback(randomizePortrait, { timeout: 5000 });
+      } else {
+        portraitTimerId = setTimeout(randomizePortrait, 3000);
+      }
       updateParallax();
 
       window.addEventListener('scroll', scheduleParallaxUpdate, { passive: true });
@@ -428,6 +440,14 @@ export default defineComponent({
 
       if (animationFrameId) {
         window.cancelAnimationFrame(animationFrameId);
+      }
+
+      if (portraitTimerId) {
+        if ('cancelIdleCallback' in window) {
+          window.cancelIdleCallback(portraitTimerId as number);
+        } else {
+          clearTimeout(portraitTimerId as ReturnType<typeof setTimeout>);
+        }
       }
     });
 

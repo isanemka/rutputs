@@ -288,7 +288,7 @@ export default defineComponent({
   font-size: 0.78rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.56);
+  color: rgba(255, 255, 255, 0.70);
 }
 
 .site-footer__title {
