@@ -12,6 +12,7 @@
     "dev": "concurrently \"quasar dev\" \"node server/server.js\"",
     "build": "npx quasar build && node scripts/prerender-routes.mjs",
     "guide:new": "node scripts/generate-guide-draft.mjs",
+    "guide:image": "node scripts/generate-guide-image.mjs",
     "guide:publish": "node scripts/publish-guide-draft.mjs",
     "gsc-report": "node scripts/gsc-report.mjs"
   },
@@ -44,6 +45,7 @@
     "googleapis": "^172.0.0",
     "postcss-font-display": "^0.3.0",
     "prettier": "^2.5.1",
+    "sharp": "^0.34.5",
     "typescript": "^5.8.3"
   },
   "engines": {

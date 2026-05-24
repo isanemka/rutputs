@@ -215,7 +215,14 @@ async function main() {
   if (fmt.status !== 0) {
     console.log('⚠ Kunde inte köra prettier automatiskt – kör `npm run format` manuellt.');
   }
-  console.log('› Kör nu: npm run build och granska /guide/' + slug);
+
+  const ogImagePath = path.resolve('public/og', `guide-${slug}.jpg`);
+  if (!existsSync(ogImagePath)) {
+    console.log(
+      `› Saknar delningsbild – kör: npm run guide:image -- ${slug} (kräver OPENAI_API_KEY)`
+    );
+  }
+  console.log('› Kör sedan: npm run build och granska /guide/' + slug);
 }
 
 main().catch((err) => {
