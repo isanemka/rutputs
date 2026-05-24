@@ -2,12 +2,76 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import siteSeoContent from '../src/data/seo-content.js';
 import guides from '../src/data/guides-content.js';
+import business from '../src/data/business.js';
 
 const baseUrl = 'https://www.rutputs.nu';
 const distDir = path.resolve('dist/spa');
+const publicDir = path.resolve('public');
 const templatePath = path.join(distDir, 'index.html');
 
 const { home, company, price, privacy, areas, services = [] } = siteSeoContent;
+
+// Single business entity, referenced by @id from per-page Service schemas.
+const businessRef = { '@type': 'LocalBusiness', '@id': business.id };
+
+function buildLocalBusinessSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    '@id': business.id,
+    name: business.name,
+    slogan: business.slogan,
+    url: business.url,
+    logo: business.logo,
+    image: business.image,
+    description: business.description,
+    telephone: business.telephone,
+    email: business.email,
+    priceRange: business.priceRange,
+    openingHours: business.openingHours,
+    address: { '@type': 'PostalAddress', ...business.address },
+    geo: { '@type': 'GeoCoordinates', ...business.geo },
+    hasMap: business.googleBusinessUrl,
+    sameAs: business.sameAs,
+    knowsAbout: business.knowsAbout,
+    areaServed: areas.map((a) => ({ '@type': 'City', name: a.name })),
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: String(business.aggregateRating.ratingValue),
+      reviewCount: String(business.aggregateRating.reviewCount),
+      bestRating: '5',
+      worstRating: '1',
+    },
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Fönsterputsningstjänster',
+      itemListElement: services.map((s) => ({
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: s.bodyTitle || s.name,
+          description: s.description,
+        },
+      })),
+    },
+  };
+}
+
+// Replace the static LocalBusiness JSON-LD in the template with one generated
+// from the single source of truth (business.js + areas + services), so the
+// prerendered markup never drifts from the data.
+function injectLocalBusinessSchema(template) {
+  const generated = `<script type="application/ld+json">${escapeJsonForScript(
+    buildLocalBusinessSchema(),
+  )}</script>`;
+  if (/<script type="application\/ld\+json">[\s\S]*?<\/script>/.test(template)) {
+    return template.replace(
+      /<script type="application\/ld\+json">[\s\S]*?<\/script>/,
+      generated,
+    );
+  }
+  return template.replace(/<\/head>/, `    ${generated}\n  </head>`);
+}
 
 const buildBreadcrumbSchema = (items) => ({
   '@context': 'https://schema.org',
@@ -113,11 +177,7 @@ const pages = [
         '@type': 'Service',
         name: 'Prisberäkning för fönsterputs',
         serviceType: 'Fönsterputsning',
-        provider: {
-          '@type': 'LocalBusiness',
-          name: 'Rutputs',
-          url: `${baseUrl}/`,
-        },
+        provider: businessRef,
         offers: {
           '@type': 'Offer',
           priceCurrency: 'SEK',
@@ -150,11 +210,7 @@ const pages = [
         '@type': 'Service',
         name: 'Fönsterputs för företag i Stockholm',
         serviceType: 'Fönsterputsning för företag',
-        provider: {
-          '@type': 'LocalBusiness',
-          name: 'Rutputs',
-          url: `${baseUrl}/`,
-        },
+        provider: businessRef,
         areaServed: 'Stockholm',
         url: `${baseUrl}/foretag`,
       },
@@ -193,11 +249,7 @@ const pages = [
         serviceType: 'Fönsterputsning',
         description: page.description,
         url: `${baseUrl}/omrade/${page.slug}`,
-        provider: {
-          '@type': 'LocalBusiness',
-          name: 'Rutputs',
-          url: `${baseUrl}/`,
-        },
+        provider: businessRef,
         areaServed: {
           '@type': 'City',
           name: page.name,
@@ -234,7 +286,7 @@ const pages = [
         serviceType: 'Fönsterputsning',
         description: page.description,
         url: `${baseUrl}/tjanst/${page.slug}`,
-        provider: { '@type': 'LocalBusiness', name: 'Rutputs', url: `${baseUrl}/` },
+        provider: businessRef,
         areaServed: 'Stockholm',
         offers: {
           '@type': 'Offer',
@@ -493,11 +545,75 @@ async function writeSitemap() {
   await writeFile(sitemapPath, buildSitemapXml(), 'utf8');
 }
 
+function buildLlmsTxt() {
+  const sortedGuides = [...guides].sort((a, b) =>
+    a.publishedAt < b.publishedAt ? 1 : a.publishedAt > b.publishedAt ? -1 : a.slug.localeCompare(b.slug),
+  );
+  const homeFaq = (home.faq || []).slice(0, 6);
+
+  return `# Rutputs – Fönsterputsning i Stockholm
+
+> ${business.description}
+
+## Om Rutputs
+Rutputs erbjuder professionell fönsterputsning för privatpersoner och företag i Stockholm. Med RUT-avdrag (50% skattereduktion) börjar priset från 499 kr. När du bokar hos Rutputs är det också jag som kommer och putsar.
+
+## Tjänster
+${services.map((s) => `- ${s.bodyTitle || s.name}`).join('\n')}
+
+## Serviceområden
+${areas.map((a) => `- ${a.name}`).join('\n')}
+
+## Priser
+- Från 499 SEK efter RUT-avdrag (50% skattereduktion)
+- Priset beror på antal fönster och bostadstyp
+- Få exakt pris via formuläret: ${baseUrl}/pris
+
+## Kontakt
+- Telefon: ${business.phoneDisplay}
+- E-post: ${business.email}
+- Webb: ${business.url}
+
+## Öppettider
+Måndag–fredag 08:00–18:00
+
+## Sidor
+- Startsida: ${baseUrl}/
+- Prislista: ${baseUrl}/pris
+- Företag: ${baseUrl}/foretag
+- Guider: ${baseUrl}/guide
+- Integritetspolicy: ${baseUrl}/integritetspolicy
+
+## Tjänstesidor
+${services.map((s) => `- ${baseUrl}/tjanst/${s.slug}`).join('\n')}
+
+## Guider
+- ${baseUrl}/guide
+${sortedGuides.map((g) => `- ${baseUrl}/guide/${g.slug}`).join('\n')}
+
+## Områdessidor
+${areas.map((a) => `- ${baseUrl}/omrade/${a.slug}`).join('\n')}
+
+## Vanliga frågor
+${homeFaq.map((f) => `### ${f.question}\n${f.answer}`).join('\n\n')}
+`;
+}
+
+async function writeLlmsTxt() {
+  const content = buildLlmsTxt();
+  // Write the production output and keep the public source copy in sync so the
+  // two can never drift apart.
+  await writeFile(path.join(distDir, 'llms.txt'), content, 'utf8');
+  await writeFile(path.join(publicDir, 'llms.txt'), content, 'utf8');
+}
+
 async function main() {
-  const template = await readFile(templatePath, 'utf8');
+  const rawTemplate = await readFile(templatePath, 'utf8');
+  const template = injectLocalBusinessSchema(rawTemplate);
   await Promise.all(pages.map((page) => writePage(page, template)));
   await writeSitemap();
-  console.log(`Prerendered ${pages.length} SEO routes and regenerated sitemap.xml in dist/spa.`);
+  await writeLlmsTxt();
+  console.log(`Prerendered ${pages.length} SEO routes, sitemap.xml and llms.txt in dist/spa.`);
 }
 
 main().catch((error) => {

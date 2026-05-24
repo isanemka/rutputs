@@ -236,6 +236,7 @@ import { computed, defineComponent, onBeforeUnmount, onMounted, ref } from 'vue'
 import { areas } from 'src/data/areas';
 import { homeSeo } from 'src/data/seo';
 import { reviewsData } from 'src/data/reviews';
+import business from 'src/data/business';
 
 const homeFaqs = homeSeo.faq ?? [];
 
@@ -324,7 +325,7 @@ export default defineComponent({
         innerHTML: JSON.stringify({
           '@context': 'https://schema.org',
           '@type': 'LocalBusiness',
-          '@id': 'https://www.rutputs.nu/',
+          '@id': business.id,
           name: 'Rutputs',
           url: 'https://www.rutputs.nu/',
           image: 'https://www.rutputs.nu/og-image.jpg',

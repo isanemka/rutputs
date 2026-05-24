@@ -128,6 +128,7 @@
 import { defineComponent, ref, computed, onMounted, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { getAreaBySlug } from 'src/data/seo';
+import business from 'src/data/business';
 
 export default defineComponent({
   name: 'AreaComponent',
@@ -245,6 +246,7 @@ export default defineComponent({
             url: `https://www.rutputs.nu/omrade/${area.slug}`,
             provider: {
               '@type': 'LocalBusiness',
+              '@id': business.id,
               name: 'Rutputs',
               url: 'https://www.rutputs.nu/'
             },

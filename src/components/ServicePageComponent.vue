@@ -85,6 +85,7 @@
 import { defineComponent, ref, computed, onMounted, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { getServiceBySlug } from 'src/data/seo';
+import business from 'src/data/business';
 
 export default defineComponent({
   name: 'ServicePageComponent',
@@ -165,7 +166,7 @@ export default defineComponent({
             serviceType: 'Fönsterputsning',
             description: service.description,
             url,
-            provider: { '@type': 'LocalBusiness', name: 'Rutputs', url: 'https://www.rutputs.nu/' },
+            provider: { '@type': 'LocalBusiness', '@id': business.id, name: 'Rutputs', url: 'https://www.rutputs.nu/' },
             areaServed: 'Stockholm',
             offers: { '@type': 'Offer', priceCurrency: 'SEK', price: '499', description: 'Från-pris efter RUT-avdrag' }
           })

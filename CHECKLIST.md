@@ -160,13 +160,47 @@ Du behöver inte alla samtidigt – välj 1-2 att börja med.
 
 ---
 
-## 11. Framtida förbättringar (när du har tid eller vill betala för det)
+## 11. AI-synlighet (ChatGPT, Gemini, Claude – GEO)
+
+Att synas när folk frågar AI-assistenter *"vem putsar fönster i Stockholm?"*
+beror dels på sidan (klart, se nedan), dels på att du finns och nämns på
+externa källor som AI:erna läser. Det som redan är gjort i koden:
+
+- `robots.txt` välkomnar uttryckligen AI-crawlers (GPTBot, OAI-SearchBot,
+  ChatGPT-User, Google-Extended, ClaudeBot, PerplexityBot m.fl.).
+- `llms.txt` auto-genereras vid build (alla områden, tjänster, guider + FAQ).
+- LocalBusiness-schemat har `@id`, `sameAs`, `geo`, `aggregateRating` och
+  `knowsAbout` så Rutputs känns igen som en entitet.
+
+Det du behöver göra själv:
+
+- [ ] **Bing Webmaster Tools** (bing.com/webmasters) – verifiera `rutputs.nu`
+  och skicka in `sitemap.xml`. **Viktigast av allt** eftersom ChatGPT Search
+  till stor del bygger på Bings index. Kan importeras direkt från Search Console.
+- [ ] **IndexNow** – aktivera i Bing Webmaster Tools (ett klick) så nya sidor
+  indexeras snabbare i Bing/ChatGPT.
+- [ ] **Uppdatera `sameAs`-länkarna** i `src/data/business.js` med dina
+  faktiska Facebook- och Instagram-URL:er (Google Business-länken är redan
+  ifylld). Be mig gärna göra det om du klistrar in URL:erna.
+- [ ] **Google Business Profile** – håll den komplett och aktiv (driver Gemini
+  direkt). Se sektion 6.
+- [ ] **Bli omnämnd på betrodda sajter** – AI:er syntetiserar från många källor.
+  Katalogerna i sektion 10 + lokala bloggar/Facebook-grupper hjälper.
+- [ ] **Fler recensioner** – fler källor som beskriver Rutputs positivt ökar
+  sannolikheten att bli citerad. Uppdatera även `aggregateRating` i
+  `business.js` när antalet ändras (UI + schema läser samma siffra).
+- [ ] **Testa baslinjen** – fråga ChatGPT/Gemini/Claude *"vad kostar fönsterputs
+  i Solna?"* idag och igen om någon månad för att se utvecklingen.
+
+---
+
+## 12. Framtida förbättringar (när du har tid eller vill betala för det)
 
 Saker som inte är gjorda än men ger ytterligare lyft:
 
 - **Förenklad steg 1 i prisformuläret** – minska antalet fält i första steget till 1-2 så att fler börjar
 - **Exit-intent-popup** – när användaren rör musen mot fliken på desktop: "Vänta! Få 10 % rabatt om du lämnar e-post"
-- **Bloggsektion** – guideartiklar som "När är bäst att putsa fönstren?" och "Så fungerar RUT-avdraget för fönsterputs" → fångar long-tail-trafik
+- **Fler guider** – ni har redan en guide-sektion (`/guide`); fler artiklar fångar mer long-tail- och AI-trafik
 - **Recensionsautomatik** – SMS-länk till kunden 2 dagar efter avslutat jobb med direktlänk till Google-recension
 
 ---
