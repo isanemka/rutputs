@@ -11,6 +11,8 @@
     "test": "echo \"No test specified\" && exit 0",
     "dev": "concurrently \"quasar dev\" \"node server/server.js\"",
     "build": "npx quasar build && node scripts/prerender-routes.mjs",
+    "guide:new": "node scripts/generate-guide-draft.mjs",
+    "guide:publish": "node scripts/publish-guide-draft.mjs",
     "gsc-report": "node scripts/gsc-report.mjs"
   },
   "dependencies": {
