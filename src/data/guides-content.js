@@ -207,7 +207,7 @@ const guides = [
       'Lär dig hur du tvättar inglasade balkonger på bästa sätt med tips från Rutputs, din lokala fönsterputsfirma i Stockholm.',
     h1: 'Så tvättar du inglasade balkonger i Stockholm',
     intro:
-      '<p>Att ha en inglasad balkong är en fantastisk tillgång, särskilt i Stockholm där man kan njuta av utsikten året runt. Men för att hålla den i toppskick krävs regelbunden rengöring. Här går vi igenom hur du på bästa sätt tvättar din inglasade balkong, oavsett om du bor i Järfälla, Lidingö eller inne i stan.</p>',
+      'Att ha en inglasad balkong är en fantastisk tillgång, särskilt i Stockholm där man kan njuta av utsikten året runt. Men för att hålla den i toppskick krävs regelbunden rengöring. Här går vi igenom hur du på bästa sätt tvättar din inglasade balkong, oavsett om du bor i Järfälla, Lidingö eller inne i stan.',
     publishedAt: '2026-05-24',
     readingTimeMin: 5,
     author: 'Rutputs',
