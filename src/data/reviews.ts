@@ -1,3 +1,5 @@
+import business from './business.js';
+
 export interface Review {
   author: string;
   rating: number;
@@ -14,10 +16,9 @@ export interface ReviewsData {
 }
 
 export const reviewsData: ReviewsData = {
-  aggregateRating: 5.0,
-  reviewCount: 2,
-  googleBusinessUrl:
-    'https://www.google.com/search?q=Rutputs&stick=H4sIAAAAAAAAAONgU1I1qDAxM7U0SDNONDQ1SDUxSkqzMqgwNzExMzdITDa1NLRMNTQyWsTKHlRaUlBaUgwAQ7U7RjMAAAA&mat=CajQ30ohy9Xe',
+  aggregateRating: business.aggregateRating.ratingValue,
+  reviewCount: business.aggregateRating.reviewCount,
+  googleBusinessUrl: business.googleBusinessUrl,
   reviews: [
     {
       author: 'Ulla S.',
