@@ -13,8 +13,8 @@
  * VIKTIGT:
  *   - Granska ALLTID utkastet (fakta, RUT-belopp, ton, interna länkar) innan du
  *     publicerar. Detta script gör ingen kvalitetskontroll.
- *   - Kör `npm run format` efteråt så normaliserar prettier citattecken/indrag,
- *     följt av `npm run build` för att prerendra /guide/<slug>.
+ *   - Scriptet kör Prettier på enbart src/data/guides-content.js automatiskt.
+ *     Kör därefter `npm run build` för att prerendra /guide/<slug>.
  */
 
 import { readFile, writeFile, rm } from 'node:fs/promises';
@@ -37,8 +37,24 @@ if (!slug) {
   process.exit(1);
 }
 
-const draftPath = path.resolve('src/data/_drafts', `${slug}.ts`);
+// Säker slug: små bokstäver, siffror och bindestreck. Skyddar mot path
+// traversal (t.ex. "../") eftersom slug används för att bygga en filväg.
+if (!/^[a-z0-9-]+$/.test(slug)) {
+  console.error(
+    `Ogiltig slug "${slug}". Endast a–z, 0–9 och bindestreck är tillåtna.`
+  );
+  process.exit(1);
+}
+
+const draftDir = path.resolve('src/data/_drafts');
+const draftPath = path.join(draftDir, `${slug}.ts`);
 const contentPath = path.resolve('src/data/guides-content.js');
+
+// Extra försvar: säkerställ att den uppbyggda vägen verkligen ligger i draftDir.
+if (path.dirname(draftPath) !== draftDir) {
+  console.error('Otillåten utkast-sökväg. Avbryter.');
+  process.exit(1);
+}
 
 if (!existsSync(draftPath)) {
   console.error(`Hittar inget utkast: ${draftPath}`);
@@ -72,29 +88,59 @@ function extractDraftObject(source) {
   }
 }
 
-const REQUIRED_FIELDS = [
+// Måste spegla non-optional fält i Guide-interfacet (src/data/guides.ts).
+const REQUIRED_STRING_FIELDS = [
   'slug',
   'title',
   'description',
   'h1',
   'intro',
-  'sections',
-  'faq',
+  'publishedAt',
+  'author',
 ];
+const REQUIRED_ARRAY_FIELDS = ['tags', 'sections', 'faq'];
+
+// Letar rekursivt efter "TODO" i alla strängvärden i objektet.
+function hasTodo(value) {
+  if (typeof value === 'string') return value.includes('TODO');
+  if (Array.isArray(value)) return value.some(hasTodo);
+  if (value && typeof value === 'object') return Object.values(value).some(hasTodo);
+  return false;
+}
 
 function validate(guide) {
-  const missing = REQUIRED_FIELDS.filter((f) => {
-    const v = guide[f];
-    if (Array.isArray(v)) return v.length === 0;
-    return v === undefined || v === null || v === '';
-  });
-  if (missing.length) {
-    throw new Error(`Utkastet saknar obligatoriska fält: ${missing.join(', ')}`);
+  const missing = [];
+
+  for (const f of REQUIRED_STRING_FIELDS) {
+    if (typeof guide[f] !== 'string' || guide[f].trim() === '') missing.push(f);
   }
-  if (
-    String(guide.title).includes('TODO') ||
-    String(guide.intro).includes('TODO')
-  ) {
+  for (const f of REQUIRED_ARRAY_FIELDS) {
+    if (!Array.isArray(guide[f]) || guide[f].length === 0) missing.push(f);
+  }
+  if (typeof guide.readingTimeMin !== 'number' || guide.readingTimeMin <= 0) {
+    missing.push('readingTimeMin');
+  }
+  if (missing.length) {
+    throw new Error(
+      `Utkastet saknar/har ogiltiga obligatoriska fält: ${missing.join(', ')}`
+    );
+  }
+
+  // Grundläggande formkontroll av sektioner och FAQ.
+  const badSection = guide.sections.find(
+    (s) => !s || typeof s.heading !== 'string' || typeof s.html !== 'string'
+  );
+  if (badSection) {
+    throw new Error('Varje section måste ha strängarna `heading` och `html`.');
+  }
+  const badFaq = guide.faq.find(
+    (q) => !q || typeof q.question !== 'string' || typeof q.answer !== 'string'
+  );
+  if (badFaq) {
+    throw new Error('Varje FAQ-post måste ha strängarna `question` och `answer`.');
+  }
+
+  if (hasTodo(guide)) {
     throw new Error(
       'Utkastet innehåller fortfarande TODO-platshållare. Fyll i och granska först.'
     );
@@ -105,9 +151,16 @@ async function main() {
   const draftSource = await readFile(draftPath, 'utf8');
   const guide = extractDraftObject(draftSource);
 
-  // Säkerställ att slug i objektet matchar filnamnet.
+  // Avbryt vid mismatch i stället för att tyst skriva över – annars kan
+  // innehåll publiceras under fel URL utan att man märker det.
   if (guide.slug !== slug) {
-    guide.slug = slug;
+    console.error(
+      `Slug-mismatch: utkastets slug är "${guide.slug}" men du angav "${slug}".`
+    );
+    console.error(
+      'Rätta slug i utkastet eller döp om filen så de matchar, och kör igen.'
+    );
+    process.exit(1);
   }
 
   validate(guide);
