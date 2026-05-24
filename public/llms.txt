@@ -12,18 +12,31 @@ Rutputs erbjuder professionell fönsterputsning för privatpersoner och företag
 
 ## Serviceområden
 - Järfälla (basort)
+- Viksjö
+- Kallhäll
 - Bromma
+- Bromsten
 - Kista
 - Solna
+- Bergshamra
 - Sundbyberg
 - Spånga
+- Vällingby
+- Hässelby
 - Sollentuna
 - Täby
+- Danderyd
+- Lidingö
+- Nacka
+- Östermalm
+- Kungsholmen
+- Norrmalm
+- Upplands Väsby
 
 ## Priser
 - Från 499 SEK efter RUT-avdrag (50% skattereduktion)
 - Priset beror på antal fönster och bostadstyp
-- Se exakt pris via priskalkylator: https://www.rutputs.nu/pris
+- Få exakt pris via formuläret: https://www.rutputs.nu/pris
 
 ## Kontakt
 - Telefon: 0734-64 46 04
@@ -39,12 +52,37 @@ Måndag–fredag 08:00–18:00
 - Företag: https://www.rutputs.nu/foretag
 - Integritetspolicy: https://www.rutputs.nu/integritetspolicy
 
+## Tjänstesidor
+- https://www.rutputs.nu/tjanst/villa-fonsterputs
+- https://www.rutputs.nu/tjanst/lagenhet-fonsterputs
+- https://www.rutputs.nu/tjanst/varputs
+- https://www.rutputs.nu/tjanst/hostputs
+- https://www.rutputs.nu/tjanst/abonnemang-fonsterputs
+
+## Guider
+- https://www.rutputs.nu/guide
+- https://www.rutputs.nu/guide/hur-ofta-ska-man-putsa-fonster
+- https://www.rutputs.nu/guide/rut-avdrag-fonsterputs-2026
+
 ## Områdessidor
 - https://www.rutputs.nu/omrade/jarfalla
+- https://www.rutputs.nu/omrade/viksjo
+- https://www.rutputs.nu/omrade/kallhall
 - https://www.rutputs.nu/omrade/bromma
+- https://www.rutputs.nu/omrade/bromsten
 - https://www.rutputs.nu/omrade/kista
 - https://www.rutputs.nu/omrade/solna
+- https://www.rutputs.nu/omrade/bergshamra
 - https://www.rutputs.nu/omrade/sundbyberg
 - https://www.rutputs.nu/omrade/spanga
+- https://www.rutputs.nu/omrade/vallingby
+- https://www.rutputs.nu/omrade/hasselby
 - https://www.rutputs.nu/omrade/sollentuna
 - https://www.rutputs.nu/omrade/taby
+- https://www.rutputs.nu/omrade/danderyd
+- https://www.rutputs.nu/omrade/lidingo
+- https://www.rutputs.nu/omrade/nacka
+- https://www.rutputs.nu/omrade/ostermalm
+- https://www.rutputs.nu/omrade/kungsholmen
+- https://www.rutputs.nu/omrade/norrmalm
+- https://www.rutputs.nu/omrade/upplands-vasby
