@@ -39,7 +39,7 @@ const guides = [
       },
       {
         heading: 'När du kan putsa mer sällan',
-        html: `<p>Bor du i en lägenhet på övre våningarna med inglasad balkong eller med fönster som vetter mot innergård är belastningen ofta låg. Då kan en gång om året räcka, gärna på våren när vinterns rester ska bort.</p>`,
+        html: '<p>Bor du i en lägenhet på övre våningarna med inglasad balkong eller med fönster som vetter mot innergård är belastningen ofta låg. Då kan en gång om året räcka, gärna på våren när vinterns rester ska bort.</p>',
       },
       {
         heading: 'Säsongsguide för Stockholm',
@@ -115,7 +115,7 @@ const guides = [
     sections: [
       {
         heading: 'Vad är RUT-avdrag?',
-        html: `<p>RUT står för <strong>Rengöring, Underhåll och Tvätt</strong> och är en skattereduktion för hushållsnära tjänster i hemmet. Fönsterputsning är en av de tjänster som omfattas. Du får tillbaka 50 % av arbetskostnaden direkt på fakturan — du behöver alltså inte ansöka själv eller vänta på återbetalning.</p>`,
+        html: '<p>RUT står för <strong>Rengöring, Underhåll och Tvätt</strong> och är en skattereduktion för hushållsnära tjänster i hemmet. Fönsterputsning är en av de tjänster som omfattas. Du får tillbaka 50 % av arbetskostnaden direkt på fakturan — du behöver alltså inte ansöka själv eller vänta på återbetalning.</p>',
       },
       {
         heading: 'Hur mycket kan du dra av 2026?',
@@ -199,6 +199,104 @@ const guides = [
       },
     ],
     relatedServiceSlugs: ['villa-fonsterputs', 'lagenhet-fonsterputs', 'abonnemang-fonsterputs'],
+  },
+  {
+    slug: 'hur-tvattar-man-inglasade-balkonger',
+    title: 'Hur tvättar man inglasade balkonger? | Rutputs',
+    description:
+      'Lär dig hur du tvättar inglasade balkonger på bästa sätt med tips från Rutputs, din lokala fönsterputsfirma i Stockholm.',
+    h1: 'Så tvättar du inglasade balkonger i Stockholm',
+    intro:
+      '<p>Att ha en inglasad balkong är en fantastisk tillgång, särskilt i Stockholm där man kan njuta av utsikten året runt. Men för att hålla den i toppskick krävs regelbunden rengöring. Här går vi igenom hur du på bästa sätt tvättar din inglasade balkong, oavsett om du bor i Järfälla, Lidingö eller inne i stan.</p>',
+    publishedAt: '2026-05-24',
+    readingTimeMin: 5,
+    author: 'Rutputs',
+    tags: ['fönsterputs', 'inglasade balkonger', 'Stockholm', 'RUT-avdrag'],
+    category: 'guide',
+    sections: [
+      {
+        heading: 'Förberedelse för rengöring',
+        html: '<p>Innan du börjar tvätta din inglasade balkong är det viktigt att förbereda området. Här är stegen du kan följa:</p><ul><li>Ta bort möbler och dekorationer från balkongen.</li><li>Skydda golvet med en plastmatta eller gamla tidningar för att fånga upp smuts och vatten.</li><li>Samla dina rengöringsverktyg: en hink, svamp, fönsterskrapa, och eventuellt en stege om balkongen är hög.</li></ul>',
+      },
+      {
+        heading: 'Val av rengöringsmedel',
+        html: '<p>Det är viktigt att välja rätt rengöringsmedel för att inte skada glaset eller ramarna. Här är några alternativ:</p><ul><li>En blandning av varmt vatten och milt diskmedel fungerar oftast bra.</li><li>Använd ett specialmedel för fönsterputs om det behövs.</li><li>Undvik starka kemikalier som kan skada ytorna.</li></ul>',
+      },
+      {
+        heading: 'Steg-för-steg guide till rengöring',
+        html: '<p>Följ dessa steg för att effektivt rengöra din inglasade balkong:</p><ol><li>Börja med att blöta glaset med rengöringslösningen.</li><li>Använd svampen eller en mjuk trasa för att skrubba bort smuts och fläckar.</li><li>Använd fönsterskrapan för att ta bort lösningen, börja uppifrån och arbeta dig neråt.</li><li>Torka av kanterna med en ren trasa för att undvika ränder.</li></ol>',
+      },
+      {
+        heading: 'Rengöring av ramar och golv',
+        html: '<p>Glöm inte att även ramarna och golvet behöver rengöras:</p><ul><li>Använd en fuktig trasa för att torka av ramarna.</li><li>För golvet kan du använda en mopp med ett lämpligt rengöringsmedel.</li></ul>',
+      },
+      {
+        heading: 'När är det bäst att tvätta balkongen?',
+        html: '<p>Det bästa tillfället att tvätta din inglasade balkong är under vår och höst, när smuts och pollen samlas. Om du bor i områden som Nacka eller Täby, tänk på att det kan vara extra viktigt att vara noggrann med rengöringen efter pollenperioden.</p>',
+      },
+      {
+        heading: 'Använda RUT-avdrag för fönsterputs',
+        html: '<p>Visste du att du kan använda RUT-avdraget för att få 50 % rabatt på arbetskostnaden vid fönsterputs? Det gäller upp till 75 000 kr per person och år. Detta kan vara en smart lösning om du vill ha hjälp av professionella, särskilt om du bor i Stockholm.</p>',
+      },
+    ],
+    faq: [
+      {
+        question: 'Kan jag använda vanlig rengöring för inglasade balkonger?',
+        answer:
+          'Det rekommenderas att använda milt diskmedel eller specialmedel för fönsterputs för att undvika skador på glaset.',
+        linkLabel: 'Läs mer om fönsterputsning.',
+        linkTo: '/tjanst/villa-fonsterputs',
+      },
+      {
+        question: 'Hur ofta ska jag tvätta min inglasade balkong?',
+        answer:
+          'En gång per säsong är en bra riktlinje, men om du bor i områden med mycket pollen, som Nacka, kan det vara bra att tvätta oftare.',
+        linkLabel: 'Se våra abonnemang för fönsterputs.',
+        linkTo: '/tjanst/abonnemang-fonsterputs',
+      },
+      {
+        question: 'Kan jag få hjälp med rengöring av balkongen?',
+        answer:
+          'Ja, Rutputs erbjuder professionell fönsterputsning och balkongrengöring i hela Stockholm.',
+        linkLabel: 'Ta kontakt för mer information.',
+        linkTo: '/pris',
+      },
+      {
+        question: 'Vad kostar det att anlita fönsterputsning?',
+        answer:
+          'Priserna varierar beroende på storlek och typ av fönster. Du kan läsa mer om våra priser på vår hemsida.',
+        linkLabel: 'Kolla in våra priser.',
+        linkTo: '/pris',
+      },
+    ],
+    relatedAreaSlugs: [
+      'jarfalla',
+      'viksjo',
+      'kallhall',
+      'bromma',
+      'bromsten',
+      'kista',
+      'solna',
+      'bergshamra',
+      'sundbyberg',
+      'spanga',
+      'sollentuna',
+      'taby',
+      'lidingo',
+      'ostermalm',
+      'vallingby',
+      'hasselby',
+      'danderyd',
+      'kungsholmen',
+      'norrmalm',
+      'nacka',
+      'upplands-vasby',
+    ],
+    relatedServiceSlugs: [
+      'villa-fonsterputs',
+      'lagenhet-fonsterputs',
+      'abonnemang-fonsterputs',
+    ],
   },
 ];
 
