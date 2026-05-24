@@ -159,7 +159,7 @@ const guides = [
     'title': 'Hur tvättar man inglasade balkonger? | Rutputs',
     'description': 'Lär dig hur du tvättar inglasade balkonger på bästa sätt med tips från Rutputs, din lokala fönsterputsfirma i Stockholm.',
     'h1': 'Så tvättar du inglasade balkonger i Stockholm',
-    'intro': 'Att ha en inglasad balkong är en fantastisk tillgång, de blir som ett extra rum, särskilt i Stockholm där man kan njuta av utsikten året runt. Men för att hålla den i toppskick krävs regelbunden rengöring. Här går vi igenom hur du på bästa sätt tvättar din inglasade balkong, oavsett om du bor i Järfälla, Lidingö eller inne i stan.',
+    'intro': 'Att ha en inglasad balkong är en fantastisk tillgång, det blir som ett extra rum, särskilt i Stockholm där man kan njuta av utsikten året runt. Men för att hålla den i toppskick krävs regelbunden rengöring. Här går vi igenom hur du på bästa sätt tvättar din inglasade balkong, oavsett om du bor i Järfälla, Lidingö eller inne i stan.',
     'publishedAt': '2026-05-24',
     'readingTimeMin': 5,
     'author': 'Rutputs',
@@ -193,7 +193,7 @@ const guides = [
       },
       {
         'heading': 'Använda RUT-avdrag för fönsterputs',
-        'html': '<p>Om du vill få ett fläckfritt resultat och få tid över till att njuta av en ren och fräsch balkong så kan du alltid ta hjälp av en professionell fönsterputsare, till exempel Rutputs, särskilt om du bor i Stockholm. Med RUT-avdraget blir dessutom väldigt prisvärt att ta in experthjälp</p>'
+        'html': '<p>Om du vill få ett fläckfritt resultat och få tid över till att njuta av en ren och fräsch balkong så kan du alltid ta hjälp av en professionell fönsterputsare, till exempel Rutputs, särskilt om du bor i Stockholm. Med RUT-avdraget blir det dessutom väldigt prisvärt att ta in experthjälp.</p>'
       }
     ],
     'faq': [

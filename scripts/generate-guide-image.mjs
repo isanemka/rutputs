@@ -21,8 +21,25 @@
 import { writeFile, mkdir } from 'node:fs/promises';
 import path from 'node:path';
 import { existsSync, readFileSync } from 'node:fs';
+import vm from 'node:vm';
 import sharp from 'sharp';
 import guides from '../src/data/guides-content.js';
+
+const CONTENT_PATH = path.resolve('src/data/guides-content.js');
+
+async function setOgImageFlag(slug) {
+  const src = readFileSync(CONTENT_PATH, 'utf8');
+  const code = src.replace(/export\s+default\s+\w+;?/g, '') + '\nguides';
+  const ctx = {};
+  vm.createContext(ctx);
+  const all = vm.runInContext(code, ctx);
+  if (!Array.isArray(all)) return;
+  const idx = all.findIndex((g) => g.slug === slug);
+  if (idx === -1 || all[idx].ogImage === true) return;
+  all[idx] = { ...all[idx], ogImage: true };
+  await writeFile(CONTENT_PATH, `const guides = ${JSON.stringify(all, null, 2)};\n\nexport default guides;\n`, 'utf8');
+  console.log(`✓ Satte ogImage: true för ${slug} i guides-content.js`);
+}
 
 const args = process.argv.slice(2);
 
@@ -210,6 +227,7 @@ async function main() {
   }
   await composeVariant(base, 1200, 630, ogPath);
   await composeVariant(base, 1080, 1080, squarePath);
+  await setOgImageFlag(slug);
   console.log('› Granska bilderna innan du commitar dem.');
 }
 

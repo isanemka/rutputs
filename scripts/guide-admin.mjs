@@ -250,7 +250,8 @@ http
   )
   .listen(PORT, '127.0.0.1', () => {
     console.log(`\n✓ Guide Admin → http://localhost:${PORT}\n`);
-    exec(`open "http://localhost:${PORT}"`);
+    const openCmd = process.platform === 'win32' ? 'start' : process.platform === 'darwin' ? 'open' : 'xdg-open';
+    exec(`${openCmd} "http://localhost:${PORT}"`, () => {});
   });
 
 // ─── HTML (inlined) ───────────────────────────────────────────────────────────
