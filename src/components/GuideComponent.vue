@@ -11,6 +11,13 @@
 
       <article class="guide-article">
         <header class="hero-shell guide-article__header">
+          <picture v-if="guide.ogImage" class="hero-shell__media">
+            <img
+              class="hero-shell__image"
+              :src="`/og/guide-${guide.slug}.jpg`"
+              :alt="guide.h1"
+            >
+          </picture>
           <div class="hero-shell__content">
             <span class="hero-kicker">{{ guideCategoryLabel }}</span>
             <h1 class="hero-title">{{ guide.h1 }}</h1>
