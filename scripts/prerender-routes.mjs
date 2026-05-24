@@ -149,7 +149,7 @@ const pages = [
     bodyIntro: home.bodyIntro,
     sections: [
       {
-        heading: 'Områden vi täcker',
+        heading: 'Områden jag täcker',
         html: buildLinkListHtml(areas),
       },
       {
@@ -233,7 +233,7 @@ const pages = [
     bodyIntro: page.content,
     sections: [
       {
-        heading: `Områden vi täcker i ${page.name}`,
+        heading: `Områden jag täcker i ${page.name}`,
         html: buildDistrictsHtml(page.districts),
       },
       {
@@ -345,6 +345,7 @@ const pages = [
     route: `/guide/${guide.slug}`,
     title: `${guide.title} | Rutputs`,
     description: guide.description,
+    image: guide.ogImage ? `${baseUrl}/og/guide-${guide.slug}.jpg` : `${baseUrl}/og-image.jpg`,
     bodyTitle: guide.h1,
     bodyIntro: guide.intro,
     sections: [
@@ -372,6 +373,7 @@ const pages = [
         datePublished: guide.publishedAt,
         dateModified: guide.updatedAt || guide.publishedAt,
         mainEntityOfPage: `${baseUrl}/guide/${guide.slug}`,
+        image: guide.ogImage ? `${baseUrl}/og/guide-${guide.slug}.jpg` : `${baseUrl}/og-image.jpg`,
         inLanguage: 'sv-SE',
       },
       buildFaqSchema(guide.faq),
@@ -472,6 +474,19 @@ function applyPageSeo(template, page) {
     /<meta\s+name=(?:"twitter:description"|twitter:description)\s+content=(?:"[^"]*"|[^\s>]+)\s*\/?>/,
     `<meta name="twitter:description" content="${escapedDescription}" />`,
   );
+  if (page.image) {
+    const escapedImage = escapeHtml(page.image);
+    html = setMetaTag(
+      html,
+      /<meta\s+property=(?:"og:image"|og:image)\s+content=(?:"[^"]*"|[^\s>]+)\s*\/?>/,
+      `<meta property="og:image" content="${escapedImage}" />`,
+    );
+    html = setMetaTag(
+      html,
+      /<meta\s+name=(?:"twitter:image"|twitter:image)\s+content=(?:"[^"]*"|[^\s>]+)\s*\/?>/,
+      `<meta name="twitter:image" content="${escapedImage}" />`,
+    );
+  }
   html = replaceContent(html, /<noscript>[\s\S]*?<\/noscript>/, buildNoscript(page));
   html = replaceContent(
     html,

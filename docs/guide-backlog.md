@@ -10,7 +10,9 @@ har en föreslagen slug och målssökfras. Bocka av när guiden är publicerad.
    ton, interna länkar.
 3. `npm run guide:publish -- <slug>` flyttar in det i `guides-content.js`
    (formaterar filen automatiskt).
-4. `npm run build`, granska `/guide/<slug>`, committa.
+4. `npm run guide:image -- <slug>` genererar delningsbild (OG + IG-kvadrat) via
+   OpenAI till `public/og/`. Kräver `OPENAI_API_KEY`. Granska bilden.
+5. `npm run build`, granska `/guide/<slug>`, committa (inkl. bilderna).
 
 ---
 

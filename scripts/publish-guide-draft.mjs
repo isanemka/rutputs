@@ -22,6 +22,8 @@ import path from 'node:path';
 import { existsSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 
+const BASE_URL = 'https://www.rutputs.nu';
+
 const args = process.argv.slice(2);
 
 function getArg(flag) {
@@ -210,12 +212,62 @@ async function main() {
     { stdio: 'inherit', shell: process.platform === 'win32' }
   );
 
+  // --- sitemap.xml ---
+  const sitemapPath = path.resolve('public/sitemap.xml');
+  const guideUrl = `${BASE_URL}/guide/${slug}`;
+  const sitemapEntry = [
+    '  <url>',
+    `    <loc>${guideUrl}</loc>`,
+    `    <lastmod>${guide.publishedAt}</lastmod>`,
+    '    <changefreq>monthly</changefreq>',
+    '    <priority>0.7</priority>',
+    '  </url>',
+  ].join('\n');
+
+  let sitemapContent = await readFile(sitemapPath, 'utf8');
+  if (sitemapContent.includes(`<loc>${guideUrl}</loc>`)) {
+    console.log(`› sitemap.xml: URL finns redan, hoppade över.`);
+  } else {
+    sitemapContent = sitemapContent.replace('</urlset>', `${sitemapEntry}\n</urlset>`);
+    await writeFile(sitemapPath, sitemapContent, 'utf8');
+    console.log(`✓ Lade till ${guideUrl} i sitemap.xml`);
+  }
+
+  // --- llms.txt ---
+  const llmsPath = path.resolve('public/llms.txt');
+  let llmsContent = await readFile(llmsPath, 'utf8');
+  if (llmsContent.includes(guideUrl)) {
+    console.log(`› llms.txt: URL finns redan, hoppade över.`);
+  } else {
+    // Infoga direkt efter "## Guider"-sektionens sista rad (före nästa ##-sektion).
+    const guidesHeader = '## Guider';
+    const headerIdx = llmsContent.indexOf(guidesHeader);
+    if (headerIdx === -1) {
+      console.log('⚠ Hittade inte "## Guider" i llms.txt – lägg till URL manuellt.');
+    } else {
+      const nextSectionIdx = llmsContent.indexOf('\n##', headerIdx + guidesHeader.length);
+      const insertAt = nextSectionIdx === -1 ? llmsContent.length : nextSectionIdx;
+      const before = llmsContent.slice(0, insertAt).replace(/\n+$/, '');
+      const after = llmsContent.slice(insertAt);
+      llmsContent = `${before}\n- ${guideUrl}${after}`;
+      await writeFile(llmsPath, llmsContent, 'utf8');
+      console.log(`✓ Lade till ${guideUrl} i llms.txt`);
+    }
+  }
+
   console.log(`✓ Publicerade guiden "${slug}" till src/data/guides-content.js`);
   console.log(`✓ Raderade utkastet ${path.relative(process.cwd(), draftPath)}`);
   if (fmt.status !== 0) {
     console.log('⚠ Kunde inte köra prettier automatiskt – kör `npm run format` manuellt.');
   }
-  console.log('› Kör nu: npm run build och granska /guide/' + slug);
+
+  const ogImagePath = path.resolve('public/og', `guide-${slug}.jpg`);
+  if (!existsSync(ogImagePath)) {
+    console.log(
+      `› Saknar delningsbild – kör: npm run guide:image -- ${slug} (kräver OPENAI_API_KEY)`
+    );
+  }
+  console.log('› Kör sedan: npm run build och granska /guide/' + slug);
 }
 
 main().catch((err) => {

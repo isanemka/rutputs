@@ -29,6 +29,8 @@ export interface Guide {
   relatedServiceSlugs?: string[];
   /** Optional Q&A primary entity for schema (defaults to article + faq). */
   category?: 'guide' | 'jämförelse' | 'tips';
+  /** True when a guide-specific OG image has been generated in public/og/. */
+  ogImage?: boolean;
 }
 
 export const guides: Guide[] = guidesData as Guide[];

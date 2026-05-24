@@ -168,7 +168,7 @@ Optimera startsidan (/) för bättre ranking och CTR. Den ligger idag på positi
    - BreadcrumbList
 
 5. Förbättra intern länkning:
-   - Skapa en "Områden vi täcker"-sektion med länkar till alla områdessidor
+   - Skapa en "Områden jag täcker"-sektion med länkar till alla områdessidor
    - Länka till prissidan med ankartexten "Se våra priser"
    - Lägg till en "Senaste recensioner"-sektion
 
