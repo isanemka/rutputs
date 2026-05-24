@@ -1,3 +1,4 @@
+import { existsSync } from 'node:fs';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import siteSeoContent from '../src/data/seo-content.js';
@@ -149,7 +150,7 @@ const pages = [
     bodyIntro: home.bodyIntro,
     sections: [
       {
-        heading: 'Områden vi täcker',
+        heading: 'Områden jag täcker',
         html: buildLinkListHtml(areas),
       },
       {
@@ -233,7 +234,7 @@ const pages = [
     bodyIntro: page.content,
     sections: [
       {
-        heading: `Områden vi täcker i ${page.name}`,
+        heading: `Områden jag täcker i ${page.name}`,
         html: buildDistrictsHtml(page.districts),
       },
       {
@@ -345,7 +346,9 @@ const pages = [
     route: `/guide/${guide.slug}`,
     title: `${guide.title} | Rutputs`,
     description: guide.description,
-    image: `${baseUrl}/og/guide-${guide.slug}.jpg`,
+    image: existsSync(path.resolve('public/og', `guide-${guide.slug}.jpg`))
+      ? `${baseUrl}/og/guide-${guide.slug}.jpg`
+      : `${baseUrl}/og-image.jpg`,
     bodyTitle: guide.h1,
     bodyIntro: guide.intro,
     sections: [
@@ -373,7 +376,9 @@ const pages = [
         datePublished: guide.publishedAt,
         dateModified: guide.updatedAt || guide.publishedAt,
         mainEntityOfPage: `${baseUrl}/guide/${guide.slug}`,
-        image: `${baseUrl}/og/guide-${guide.slug}.jpg`,
+        image: existsSync(path.resolve('public/og', `guide-${guide.slug}.jpg`))
+          ? `${baseUrl}/og/guide-${guide.slug}.jpg`
+          : `${baseUrl}/og-image.jpg`,
         inLanguage: 'sv-SE',
       },
       buildFaqSchema(guide.faq),

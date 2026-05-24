@@ -79,7 +79,7 @@
             </ul>
           </div>
           <div v-if="relatedAreas.length" class="guide-article__links">
-            <p class="guide-article__links-label">Områden vi täcker:</p>
+            <p class="guide-article__links-label">Områden jag täcker:</p>
             <ul>
               <li v-for="area in relatedAreas" :key="area.slug">
                 <router-link :to="'/omrade/' + area.slug">Fönsterputs i {{ area.name }}</router-link>
@@ -163,6 +163,9 @@ export default defineComponent({
       };
     }
     const url = `${SITE_URL}/guide/${guide.slug}`;
+    const ogImageUrl = guide.ogImage
+      ? `${SITE_URL}/og/guide-${guide.slug}.jpg`
+      : `${SITE_URL}/og-image.jpg`;
     return {
       title: `${guide.title} | Rutputs`,
       meta: {
@@ -171,13 +174,13 @@ export default defineComponent({
         ogDescription: { property: 'og:description', content: guide.description },
         ogType: { property: 'og:type', content: 'article' },
         ogUrl: { property: 'og:url', content: url },
-        ogImage: { property: 'og:image', content: `${SITE_URL}/og/guide-${guide.slug}.jpg` },
+        ogImage: { property: 'og:image', content: ogImageUrl },
         articlePublished: { property: 'article:published_time', content: guide.publishedAt },
         articleModified: { property: 'article:modified_time', content: guide.updatedAt || guide.publishedAt },
         twitterCard: { name: 'twitter:card', content: 'summary_large_image' },
         twitterTitle: { name: 'twitter:title', content: guide.title },
         twitterDescription: { name: 'twitter:description', content: guide.description },
-        twitterImage: { name: 'twitter:image', content: `${SITE_URL}/og/guide-${guide.slug}.jpg` },
+        twitterImage: { name: 'twitter:image', content: ogImageUrl },
       },
       link: {
         canonical: { rel: 'canonical', href: url },
@@ -190,7 +193,7 @@ export default defineComponent({
             '@type': 'Article',
             headline: guide.h1,
             description: guide.description,
-            image: `${SITE_URL}/og/guide-${guide.slug}.jpg`,
+            image: ogImageUrl,
             datePublished: guide.publishedAt,
             dateModified: guide.updatedAt || guide.publishedAt,
             author: { '@type': 'Organization', name: guide.author, url: `${SITE_URL}/` },

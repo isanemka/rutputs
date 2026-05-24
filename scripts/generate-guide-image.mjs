@@ -35,6 +35,7 @@ function getArg(flag) {
 const slug = getArg('--slug') || args.find((a) => !a.startsWith('--'));
 const regenerate = args.includes('--regenerate');
 const promptOverride = getArg('--prompt');
+const referenceFile = getArg('--reference');
 
 if (!slug) {
   console.error('Ange en slug. Exempel:');
@@ -50,6 +51,7 @@ if (!/^[a-z0-9-]+$/.test(slug)) {
 }
 
 const ogDir = path.resolve('public/og');
+const imgDir = path.resolve('public/img');
 const ogPath = path.join(ogDir, `guide-${slug}.jpg`);
 const squarePath = path.join(ogDir, `guide-${slug}-square.jpg`);
 const logoPath = path.resolve('public/icons/main_logo.png');
@@ -94,7 +96,7 @@ if (!regenerate && existsSync(ogPath) && existsSync(squarePath)) {
 }
 
 const apiKey = process.env.OPENAI_API_KEY;
-if (!apiKey) {
+if (!apiKey && !referenceFile) {
   console.error(
     'OPENAI_API_KEY saknas i miljön. Sätt nyckeln och kör igen, t.ex.:'
   );
@@ -110,10 +112,16 @@ function buildPrompt() {
     'Sammanhang: fönsterputsning och rena fönster i ett hem i Stockholm.',
     tags ? `Nyckelord: ${tags}.` : '',
     'Naturligt dagsljus, ren och modern skandinavisk miljö, inbjudande och äkta.',
+    'Inga människor, inga personer, inga händer, inga verktyg.',
     'Ingen text, inga logotyper, inga vattenstämplar, inga ramar.',
   ]
     .filter(Boolean)
     .join(' ');
+}
+
+async function loadReferenceImage(refPath) {
+  console.log(`› Använder referensbild direkt: ${path.basename(refPath)}`);
+  return sharp(refPath).toBuffer();
 }
 
 async function generateBaseImage() {
@@ -189,7 +197,17 @@ async function composeVariant(baseBuffer, width, height, outPath) {
 
 async function main() {
   await mkdir(ogDir, { recursive: true });
-  const base = await generateBaseImage();
+  let base;
+  if (referenceFile) {
+    const refPath = path.join(imgDir, path.basename(referenceFile));
+    if (!existsSync(refPath)) {
+      console.error(`Referensbild hittades inte: ${refPath}`);
+      process.exit(1);
+    }
+    base = await loadReferenceImage(refPath);
+  } else {
+    base = await generateBaseImage();
+  }
   await composeVariant(base, 1200, 630, ogPath);
   await composeVariant(base, 1080, 1080, squarePath);
   console.log('› Granska bilderna innan du commitar dem.');

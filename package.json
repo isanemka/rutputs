@@ -14,6 +14,7 @@
     "guide:new": "node scripts/generate-guide-draft.mjs",
     "guide:image": "node scripts/generate-guide-image.mjs",
     "guide:publish": "node scripts/publish-guide-draft.mjs",
+    "guide:admin": "node scripts/guide-admin.mjs",
     "gsc-report": "node scripts/gsc-report.mjs"
   },
   "dependencies": {
