@@ -37,8 +37,8 @@ const business = {
     'https://www.google.com/search?q=Rutputs&stick=H4sIAAAAAAAAAONgU1I1qDAxM7U0SDNONDQ1SDUxSkqzMqgwNzExMzdITDa1NLRMNTQyWsTKHlRaUlBaUgwAQ7U7RjMAAAA&mat=CajQ30ohy9Xe',
   sameAs: [
     'https://www.google.com/search?q=Rutputs&stick=H4sIAAAAAAAAAONgU1I1qDAxM7U0SDNONDQ1SDUxSkqzMqgwNzExMzdITDa1NLRMNTQyWsTKHlRaUlBaUgwAQ7U7RjMAAAA&mat=CajQ30ohy9Xe',
-    'https://www.facebook.com/rutputs',
-    'https://www.instagram.com/rutputs',
+    'https://www.facebook.com/rutputspunktnu',
+    'https://www.instagram.com/rutputs.nu/',
   ],
   knowsAbout: [
     'Fönsterputsning',
