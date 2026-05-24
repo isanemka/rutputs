@@ -9,6 +9,8 @@ const business = {
   logo: 'https://www.rutputs.nu/icons/main_logo.png',
   image: 'https://www.rutputs.nu/og-image.jpg',
   telephone: '+46734644604',
+  // Formaterat telefonnummer för visning/llms.txt – härleds från telephone.
+  phoneDisplay: '0734-64 46 04',
   email: 'kontakt@rutputs.nu',
   priceRange: 'från 499 SEK',
   openingHours: 'Mo-Fr 08:00-18:00',
@@ -31,8 +33,6 @@ const business = {
     reviewCount: 2,
   },
   // Profiler som binder ihop Rutputs som en igenkänd entitet (sameAs).
-  // Google Business-länken är verifierad; uppdatera Facebook/Instagram med
-  // dina faktiska profil-URL:er.
   googleBusinessUrl:
     'https://www.google.com/search?q=Rutputs&stick=H4sIAAAAAAAAAONgU1I1qDAxM7U0SDNONDQ1SDUxSkqzMqgwNzExMzdITDa1NLRMNTQyWsTKHlRaUlBaUgwAQ7U7RjMAAAA&mat=CajQ30ohy9Xe',
   sameAs: [

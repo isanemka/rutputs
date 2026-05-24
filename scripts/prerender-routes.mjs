@@ -6,6 +6,7 @@ import business from '../src/data/business.js';
 
 const baseUrl = 'https://www.rutputs.nu';
 const distDir = path.resolve('dist/spa');
+const publicDir = path.resolve('public');
 const templatePath = path.join(distDir, 'index.html');
 
 const { home, company, price, privacy, areas, services = [] } = siteSeoContent;
@@ -569,7 +570,7 @@ ${areas.map((a) => `- ${a.name}`).join('\n')}
 - Få exakt pris via formuläret: ${baseUrl}/pris
 
 ## Kontakt
-- Telefon: 0734-64 46 04
+- Telefon: ${business.phoneDisplay}
 - E-post: ${business.email}
 - Webb: ${business.url}
 
@@ -599,8 +600,11 @@ ${homeFaq.map((f) => `### ${f.question}\n${f.answer}`).join('\n\n')}
 }
 
 async function writeLlmsTxt() {
-  const llmsPath = path.join(distDir, 'llms.txt');
-  await writeFile(llmsPath, buildLlmsTxt(), 'utf8');
+  const content = buildLlmsTxt();
+  // Write the production output and keep the public source copy in sync so the
+  // two can never drift apart.
+  await writeFile(path.join(distDir, 'llms.txt'), content, 'utf8');
+  await writeFile(path.join(publicDir, 'llms.txt'), content, 'utf8');
 }
 
 async function main() {
