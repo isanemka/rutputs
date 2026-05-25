@@ -159,6 +159,22 @@ function initializeGoogleTagManager() {
   }
 
   window.dataLayer = window.dataLayer || [];
+
+  // Define gtag as a dataLayer wrapper so gtag-based calls (e.g. trackConversion)
+  // work when GTM manages the container instead of a standalone gtag.js script.
+  if (typeof window.gtag !== 'function') {
+    window.gtag = function gtag(...args: unknown[]) {
+      window.dataLayer!.push(args);
+    };
+    window.gtag('js', new Date());
+    if (GOOGLE_ADS_ID) {
+      window.gtag('config', GOOGLE_ADS_ID);
+    }
+    if (GA_MEASUREMENT_ID) {
+      window.gtag('config', GA_MEASUREMENT_ID);
+    }
+  }
+
   window.dataLayer.push({
     'gtm.start': Date.now(),
     event: 'gtm.js',
