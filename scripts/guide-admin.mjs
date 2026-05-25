@@ -6,11 +6,11 @@
  * Öppnas på:  http://localhost:3737
  *
  * Flöde:
- *   1. Skriv ämne → klicka "Generera utkast" (kör guide:new)
- *   2. Klicka "Redigera" på utkastet → redigera alla fält i panelen
- *   3. "Spara" för att spara ändringar till _drafts/<slug>.ts
- *   4. "Publicera" för att köra guide:publish automatiskt
- *   5. Grön prick = OG-bild finns, klicka "Bild" för att generera
+ *   1. Nya guider skapas i pp-cc och publiceras via webhook → /api/guide-webhook.
+ *   2. Lokala utkast (kvar från äldre workflow) kan redigeras och publiceras här.
+ *   3. "Redigera" på utkastet → redigera fält → "Spara" till _drafts/<slug>.ts.
+ *   4. "Publicera" kör guide:publish automatiskt.
+ *   5. Grön prick = OG-bild finns, klicka "Bild" för att generera.
  */
 
 import http from 'node:http';
@@ -213,14 +213,6 @@ async function router(req, res) {
     return jsonOk(res, { deleted: true });
   }
 
-  if (method === 'POST' && p === '/api/drafts/new') {
-    return jsonErr(
-      res,
-      'Utkastgeneratorn är borttagen. Skapa nya guider i pp-cc – de skickas hit via webhook.',
-      410
-    );
-  }
-
   const publishSlug = p.match(/^\/api\/drafts\/([a-z0-9-]+)\/publish$/)?.[1];
   if (method === 'POST' && publishSlug)
     return jsonOk(res, await runScript(['scripts/publish-guide-draft.mjs', publishSlug]));
@@ -353,11 +345,11 @@ button:not(:disabled):hover{opacity:.85}
 
 <div class="main">
   <div class="new-form">
-    <div class="field">
-      <label>Ange ämne för ny guide</label>
-      <input id="new-topic" type="text" placeholder='T.ex. "Hur rengör man solceller?"' onkeydown="if(event.key==='Enter')createDraft()">
-    </div>
-    <button class="btn-primary" id="create-btn" onclick="createDraft()">+ Generera utkast</button>
+    <p style="margin:0;color:#a1a1aa;font-size:.85rem">
+      Nya guider skapas numera i <strong>pp-cc</strong> och skickas till sajten via webhooken
+      <code>/api/guide-webhook</code>. Den här vyn används enbart för att granska/redigera redan
+      publicerade guider och lokala utkast.
+    </p>
   </div>
 
   <div class="columns">
@@ -466,18 +458,6 @@ async function loadGuides() {
       + (!g.hasOgImage ? '<button class="btn-secondary btn-sm" onclick="openRefPicker(\\'' + esc(g.slug) + '\\')">Bild</button>' : '')
       + '</div>';
   }).join('');
-}
-
-async function createDraft() {
-  var topic = document.getElementById('new-topic').value.trim();
-  if (!topic) { document.getElementById('new-topic').focus(); return; }
-  var btn = document.getElementById('create-btn');
-  btn.disabled = true; btn.textContent = 'Genererar...';
-  log('> Genererar utkast: ' + topic);
-  var r = await api('POST', '/api/drafts/new', { topic: topic });
-  log(r.stdout); log(r.stderr);
-  btn.disabled = false; btn.textContent = '+ Generera utkast';
-  if (r.code === 0) { document.getElementById('new-topic').value = ''; await loadDrafts(); }
 }
 
 async function openEditor(slug) {

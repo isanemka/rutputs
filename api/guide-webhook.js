@@ -11,19 +11,32 @@
  *   GITHUB_REPO          – default "isanemka/rutputs"
  *   GITHUB_BRANCH        – default "main"
  *   SITE_URL             – default "https://rutputs.nu" (used for response permalink)
+ *   PPCC_ASSET_HOST_ALLOWLIST – comma-separated extra hostnames that are allowed
+ *                          to serve OG/square assets (https only). pp-cc's own
+ *                          public host must be added here.
  */
 
 import { createHmac, timingSafeEqual } from 'node:crypto';
 import { marked } from 'marked';
+import sanitizeHtml from 'sanitize-html';
 
 const SECRET = process.env.PPCC_WEBHOOK_SECRET;
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const GITHUB_REPO = process.env.GITHUB_REPO || 'isanemka/rutputs';
 const GITHUB_BRANCH = process.env.GITHUB_BRANCH || 'main';
 const SITE_URL = (process.env.SITE_URL || 'https://rutputs.nu').replace(/\/$/, '');
+const ASSET_HOST_ALLOWLIST = (process.env.PPCC_ASSET_HOST_ALLOWLIST || '')
+  .split(',')
+  .map((h) => h.trim().toLowerCase())
+  .filter(Boolean);
 
 const MAX_TIMESTAMP_SKEW_SEC = 5 * 60;
+const MAX_BODY_BYTES = 2 * 1024 * 1024; // 2 MB – guide payloads are tiny.
+const MAX_ASSET_BYTES = 8 * 1024 * 1024; // 8 MB per image.
+const ASSET_TIMEOUT_MS = 15_000;
+const COMMIT_MAX_ATTEMPTS = 5;
 const GUIDES_FILE_PATH = 'src/data/guides-content.js';
+const SLUG_RE = /^[a-z0-9](?:[a-z0-9-]{0,80}[a-z0-9])?$/;
 
 // Disable Vercel's automatic body parsing so we can compute HMAC over the raw bytes.
 export const config = {
@@ -36,7 +49,18 @@ marked.setOptions({ gfm: true, breaks: false });
 function readRawBody(req) {
   return new Promise((resolve, reject) => {
     const chunks = [];
-    req.on('data', (chunk) => chunks.push(chunk));
+    let size = 0;
+    req.on('data', (chunk) => {
+      size += chunk.length;
+      if (size > MAX_BODY_BYTES) {
+        const err = new Error('Request body too large');
+        err.status = 413;
+        req.destroy(err);
+        reject(err);
+        return;
+      }
+      chunks.push(chunk);
+    });
     req.on('end', () => resolve(Buffer.concat(chunks).toString('utf8')));
     req.on('error', reject);
   });
@@ -52,9 +76,41 @@ function verifySignature(rawBody, timestamp, signature) {
   return a.length === b.length && timingSafeEqual(a, b);
 }
 
+// Allowlist used for the HTML rendered from each section body. Kept tight on
+// purpose – the published guides are styled via the surrounding component.
+const SANITIZE_OPTIONS = {
+  allowedTags: [
+    'p', 'br', 'hr',
+    'h2', 'h3', 'h4',
+    'strong', 'em', 'b', 'i', 'u', 's', 'code',
+    'ul', 'ol', 'li',
+    'blockquote', 'pre',
+    'a', 'img',
+    'table', 'thead', 'tbody', 'tr', 'th', 'td',
+  ],
+  allowedAttributes: {
+    a: ['href', 'title', 'rel', 'target'],
+    img: ['src', 'alt', 'title', 'width', 'height', 'loading'],
+    th: ['scope'],
+  },
+  allowedSchemes: ['http', 'https', 'mailto', 'tel'],
+  allowedSchemesAppliedToAttributes: ['href', 'src'],
+  allowProtocolRelative: false,
+  transformTags: {
+    a: (tagName, attribs) => ({
+      tagName: 'a',
+      attribs: {
+        ...attribs,
+        rel: attribs.rel || 'noopener noreferrer',
+      },
+    }),
+  },
+};
+
 function mdToHtml(md) {
   if (!md) return '';
-  return String(marked.parse(md)).trim();
+  const rendered = String(marked.parse(md));
+  return sanitizeHtml(rendered, SANITIZE_OPTIONS).trim();
 }
 
 function transformGuide(guide, hasOgImage) {
@@ -120,7 +176,9 @@ async function gh(path, init = {}) {
   });
   if (!res.ok) {
     const text = await res.text().catch(() => '');
-    throw new Error(`GitHub ${init.method || 'GET'} ${path} -> ${res.status}: ${text}`);
+    const err = new Error(`GitHub ${init.method || 'GET'} ${path} -> ${res.status}: ${text}`);
+    err.status = res.status;
+    throw err;
   }
   return res.json();
 }
@@ -148,19 +206,71 @@ function serializeGuidesFile(arr) {
   return `const guides = ${JSON.stringify(arr, null, 2)};\n\nexport default guides;\n`;
 }
 
-async function downloadAsset(url) {
-  const res = await fetch(url);
-  if (!res.ok) throw new Error(`Failed to download asset ${url}: ${res.status}`);
-  return Buffer.from(await res.arrayBuffer());
+function assertAssetUrlAllowed(rawUrl) {
+  let parsed;
+  try {
+    parsed = new URL(rawUrl);
+  } catch {
+    throw new Error(`Invalid asset URL: ${rawUrl}`);
+  }
+  if (parsed.protocol !== 'https:') {
+    throw new Error(`Asset URL must use https: ${rawUrl}`);
+  }
+  const host = parsed.hostname.toLowerCase();
+  if (ASSET_HOST_ALLOWLIST.length && !ASSET_HOST_ALLOWLIST.includes(host)) {
+    throw new Error(`Asset host not allowlisted: ${host}`);
+  }
+  return parsed;
 }
 
-async function commitChanges(files, message) {
+async function downloadAsset(url) {
+  assertAssetUrlAllowed(url);
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), ASSET_TIMEOUT_MS);
+  try {
+    const res = await fetch(url, { signal: controller.signal, redirect: 'follow' });
+    if (!res.ok) throw new Error(`Failed to download asset ${url}: ${res.status}`);
+    const len = Number(res.headers.get('content-length') || '0');
+    if (len > MAX_ASSET_BYTES) {
+      throw new Error(`Asset ${url} too large (${len} bytes > ${MAX_ASSET_BYTES})`);
+    }
+    const buf = Buffer.from(await res.arrayBuffer());
+    if (buf.byteLength > MAX_ASSET_BYTES) {
+      throw new Error(`Asset ${url} too large (${buf.byteLength} bytes)`);
+    }
+    return buf;
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+async function buildAndCommit({ assetSpecs, assetBuffers, guide, message }) {
+  const hasOg = assetSpecs.some((s) => s.type === 'og');
+  const assetFiles = assetSpecs.map((spec, i) => ({
+    path: spec.path,
+    contentBase64: assetBuffers[i].toString('base64'),
+  }));
+
+  // Refetched on every attempt so concurrent webhooks merge cleanly.
+  const { text: existingText } = await getCurrentGuidesFile();
+  const existing = parseGuidesArray(existingText);
+  const newEntry = transformGuide(guide, hasOg);
+  const idx = existing.findIndex((g) => g.slug === newEntry.slug);
+  const action = idx >= 0 ? 'update' : 'add';
+  if (idx >= 0) existing[idx] = newEntry;
+  else existing.push(newEntry);
+
+  const guidesFile = {
+    path: GUIDES_FILE_PATH,
+    contentBase64: Buffer.from(serializeGuidesFile(existing), 'utf8').toString('base64'),
+  };
+
   const ref = await gh(`/repos/${GITHUB_REPO}/git/ref/heads/${GITHUB_BRANCH}`);
   const latestCommitSha = ref.object.sha;
-
   const latestCommit = await gh(`/repos/${GITHUB_REPO}/git/commits/${latestCommitSha}`);
   const baseTreeSha = latestCommit.tree.sha;
 
+  const files = [guidesFile, ...assetFiles];
   const blobs = await Promise.all(
     files.map((file) =>
       gh(`/repos/${GITHUB_REPO}/git/blobs`, {
@@ -186,7 +296,7 @@ async function commitChanges(files, message) {
   const commit = await gh(`/repos/${GITHUB_REPO}/git/commits`, {
     method: 'POST',
     body: JSON.stringify({
-      message,
+      message: typeof message === 'function' ? message(action, newEntry) : message,
       tree: tree.sha,
       parents: [latestCommitSha],
     }),
@@ -197,7 +307,23 @@ async function commitChanges(files, message) {
     body: JSON.stringify({ sha: commit.sha }),
   });
 
-  return commit.sha;
+  return { action, entry: newEntry };
+}
+
+async function commitWithRetry(args) {
+  let lastErr;
+  for (let attempt = 1; attempt <= COMMIT_MAX_ATTEMPTS; attempt++) {
+    try {
+      return await buildAndCommit(args);
+    } catch (err) {
+      lastErr = err;
+      // GitHub returns 409/422 when the ref moved underneath us.
+      if (err?.status !== 409 && err?.status !== 422) throw err;
+      const backoff = 100 * 2 ** (attempt - 1) + Math.floor(Math.random() * 100);
+      await new Promise((r) => setTimeout(r, backoff));
+    }
+  }
+  throw lastErr;
 }
 
 export default async function handler(req, res) {
@@ -214,8 +340,9 @@ export default async function handler(req, res) {
   let rawBody;
   try {
     rawBody = await readRawBody(req);
-  } catch {
-    return res.status(400).json({ error: 'Failed to read request body.' });
+  } catch (err) {
+    const status = err?.status === 413 ? 413 : 400;
+    return res.status(status).json({ error: err?.message || 'Failed to read request body.' });
   }
 
   const timestamp = Number(req.headers['x-ppcc-timestamp']);
@@ -247,57 +374,50 @@ export default async function handler(req, res) {
   if (!guide?.slug || !guide?.title) {
     return res.status(400).json({ error: 'Invalid guide payload: missing slug or title.' });
   }
+  if (!SLUG_RE.test(String(guide.slug))) {
+    return res.status(400).json({ error: 'Invalid guide.slug (must match /^[a-z0-9-]+$/).' });
+  }
 
   try {
-    // Resolve asset target paths and download in parallel.
+    // Resolve asset target paths and download in parallel. We force `.jpg` to
+    // match the existing site convention (`/og/guide-<slug>.jpg`).
     const assetSpecs = [];
     for (const asset of payload.assets || []) {
       if (!asset?.url) continue;
-      const extMatch = asset.url.match(/\.([a-z0-9]+)(?:\?|#|$)/i);
-      const ext = (extMatch?.[1] || 'jpg').toLowerCase();
+      assertAssetUrlAllowed(asset.url); // fail fast before downloading
       if (asset.type === 'og') {
-        assetSpecs.push({ url: asset.url, path: `public/og/${guide.slug}-1200x630.${ext}`, type: 'og' });
+        assetSpecs.push({
+          url: asset.url,
+          path: `public/og/guide-${guide.slug}.jpg`,
+          type: 'og',
+        });
       } else if (asset.type === 'square') {
-        assetSpecs.push({ url: asset.url, path: `public/og/${guide.slug}-1080x1080.${ext}`, type: 'square' });
+        assetSpecs.push({
+          url: asset.url,
+          path: `public/og/guide-${guide.slug}-square.jpg`,
+          type: 'square',
+        });
       }
     }
 
     const assetBuffers = await Promise.all(assetSpecs.map((s) => downloadAsset(s.url)));
-    const assetFiles = assetSpecs.map((spec, i) => ({
-      path: spec.path,
-      contentBase64: assetBuffers[i].toString('base64'),
-    }));
-    const hasOg = assetSpecs.some((s) => s.type === 'og');
 
-    // Upsert the guide into the existing array.
-    const { text: existingText } = await getCurrentGuidesFile();
-    const existing = parseGuidesArray(existingText);
-    const newEntry = transformGuide(guide, hasOg);
-    const idx = existing.findIndex((g) => g.slug === newEntry.slug);
-    if (idx >= 0) {
-      existing[idx] = newEntry;
-    } else {
-      existing.push(newEntry);
-    }
-
-    const newText = serializeGuidesFile(existing);
-    const guidesFile = {
-      path: GUIDES_FILE_PATH,
-      contentBase64: Buffer.from(newText, 'utf8').toString('base64'),
-    };
-
-    const action = idx >= 0 ? 'update' : 'add';
-    const commitMessage = `${action === 'update' ? 'chore(guides): update' : 'feat(guides): add'} ${newEntry.slug} via pp-cc`;
-
-    await commitChanges([guidesFile, ...assetFiles], commitMessage);
+    const { action, entry } = await commitWithRetry({
+      assetSpecs,
+      assetBuffers,
+      guide,
+      message: (act, e) =>
+        `${act === 'update' ? 'chore(guides): update' : 'feat(guides): add'} ${e.slug} via pp-cc`,
+    });
 
     return res.status(200).json({
       ok: true,
       action,
-      url: `${SITE_URL}/guide/${newEntry.slug}`,
+      url: `${SITE_URL}/guide/${entry.slug}`,
     });
   } catch (err) {
     console.error('[guide-webhook]', err);
-    return res.status(500).json({ error: err?.message || 'Internal error' });
+    const status = err?.status && err.status >= 400 && err.status < 500 ? err.status : 500;
+    return res.status(status).json({ error: err?.message || 'Internal error' });
   }
 }
