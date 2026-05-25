@@ -214,12 +214,11 @@ async function router(req, res) {
   }
 
   if (method === 'POST' && p === '/api/drafts/new') {
-    let data;
-    try { data = JSON.parse(await readBody(req)); } catch { return jsonErr(res, 'Ogiltig JSON'); }
-    if (!data.topic) return jsonErr(res, 'topic krävs');
-    const args = ['scripts/generate-guide-draft.mjs', data.topic];
-    if (data.slug) args.push('--slug', data.slug);
-    return jsonOk(res, await runScript(args));
+    return jsonErr(
+      res,
+      'Utkastgeneratorn är borttagen. Skapa nya guider i pp-cc – de skickas hit via webhook.',
+      410
+    );
   }
 
   const publishSlug = p.match(/^\/api\/drafts\/([a-z0-9-]+)\/publish$/)?.[1];
