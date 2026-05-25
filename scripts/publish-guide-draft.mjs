@@ -64,7 +64,9 @@ if (!existsSync(draftPath)) {
   process.exit(1);
 }
 
-// Utkasten skrivs av generate-guide-draft.mjs som `const draft = <JSON>;`.
+// Utkasten skrevs tidigare av det numera borttagna generate-guide-draft.mjs
+// som `const draft = <JSON>;`. Bevarat så att ev. kvarvarande lokala utkast
+// kan flyttas in i guides-content.js även efter migrationen till pp-cc.
 // Vi extraherar JSON-blocket som text och parsar det – robustare än att
 // försöka importera en .ts-fil i Node.
 function extractDraftObject(source) {
