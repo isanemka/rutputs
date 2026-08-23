@@ -196,7 +196,7 @@ const siteSeoContent = {
         'Allt material ingår – vi tar med stege, skrapor och miljövänligt rengöringsmedel.',
         'Spröjsade, kupolfönster och takfönster – inga problem.',
         'Säkert utfört – F-skatt, försäkrad och godkänd för RUT.',
-        'Samma person varje gång om du tecknar abonnemang.',
+        'Jämn kvalitet vid varje besök om du tecknar abonnemang.',
       ],
       faq: [
         {
@@ -360,7 +360,7 @@ const siteSeoContent = {
         'Spara tid – vi bokar in nästa tillfälle automatiskt.',
         'Lägre pris per tillfälle jämfört med engångsbokning.',
         'Välj intervall: 2, 3 eller 4 gånger per år.',
-        'Samma person varje gång, som lär sig hur du vill ha det.',
+        'Jämn kvalitet varje gång – vi lär oss hur du vill ha det.',
         'RUT-avdrag dras på varje besök för privatpersoner.',
       ],
       faq: [
