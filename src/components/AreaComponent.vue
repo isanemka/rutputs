@@ -29,10 +29,10 @@
           <h2 class="section-title">En smidigare bokning när arbetet redan sker i området</h2>
           <p class="section-text">
             Fönsterputsning i {{ area.name }} passar villor, radhus, lägenheter och mindre fastigheter där rena fönster
-            gör stor skillnad för ljusinsläpp och helhetsintryck. När du bokar hos Rutputs är det jag som kommer och putsar, och jag arbetar redan i området.
+            gör stor skillnad för ljusinsläpp och helhetsintryck. Vi arbetar redan i området, vilket gör det enkelt att hitta en tid som passar.
           </p>
           <p class="section-text">
-            Jag hjälper kunder i {{ districtSummary }} och närliggande delar av området. Med RUT-avdraget börjar priset
+            Vi hjälper kunder i {{ districtSummary }} och närliggande delar av området. Med RUT-avdraget börjar priset
             från 499 kronor och du skickar enkelt en offertförfrågan när det passar dig.
           </p>
         </div>
@@ -42,7 +42,7 @@
           <h2 class="section-title">Från offertförfrågan till färdigt resultat</h2>
           <ul class="feature-list">
             <li>Fyll i uppgifterna i offertformuläret.</li>
-            <li>Skicka in förfrågan när upplägget känns rätt, så återkommer jag med en offert.</li>
+            <li>Skicka in förfrågan när upplägget känns rätt, så återkommer vi med en offert.</li>
             <li>Få återkoppling om bokning, tid och eventuella detaljer.</li>
             <li>Få arbetet utfört av någon som redan är verksam i {{ area.name }}.</li>
           </ul>
@@ -51,9 +51,9 @@
 
       <section class="editorial-panel">
         <span class="section-kicker">Delområden</span>
-        <h2 class="section-title">Områden jag täcker i {{ area.name }}</h2>
+        <h2 class="section-title">Områden vi täcker i {{ area.name }}</h2>
         <p class="section-text">
-          Jag arbetar återkommande i flera delar av {{ area.name }}, vilket gör det enkelt att boka både enstaka putsningar och återkommande hjälp.
+          Vi arbetar återkommande i flera delar av {{ area.name }}, vilket gör det enkelt att boka både enstaka putsningar och återkommande hjälp.
         </p>
         <div class="mini-card-grid q-mt-lg area-districts">
           <article v-for="district in area.districts" :key="district" class="mini-card">
@@ -81,7 +81,7 @@
       <section class="cta-band">
         <div class="cta-band__text">
           <h2 class="cta-band__title">Vill du ha en offert för {{ area.name }}?</h2>
-          <p class="cta-band__lead">Fyll i offertformuläret så återkommer jag med ett tydligt pris efter RUT-avdrag.</p>
+          <p class="cta-band__lead">Fyll i offertformuläret så återkommer vi med ett tydligt pris efter RUT-avdrag.</p>
         </div>
         <q-btn unelevated color="accent" text-color="black" label="Begär offert" to="/pris" />
       </section>

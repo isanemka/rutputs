@@ -14,15 +14,15 @@
         </picture>
 
         <div class="hero-shell__content">
-          <span class="hero-kicker">Lokal fönsterputsare</span>
+          <span class="hero-kicker">Lokala fönsterputsare</span>
           <h1 class="hero-title">Professionell fönsterputs i Stockholm</h1>
           <p class="hero-lead">
-            Jag hjälper hushåll och företag i Stockholm med fönsterputsning. Berätta lite om dina fönster i formuläret så återkommer jag med en personlig offert.
-            När du bokar hos Rutputs är det också jag som kommer och putsar, oavsett om du vill ha en enstaka puts eller ett återkommande upplägg.
+            Vi hjälper hushåll och företag i Stockholm med fönsterputsning. Berätta lite om dina fönster i formuläret så återkommer vi med en personlig offert.
+            Vi tar hand om både enstaka putsningar och återkommande upplägg, med erfarna fönsterputsare som redan arbetar i ditt område.
           </p>
           <div class="hero-actions">
             <q-btn class="text-black" label="Begär offert" color="accent" unelevated @click="goToPriceList" />
-            <q-btn outline color="white" label="Se områden jag täcker" :to="{ hash: '#areas' }" />
+            <q-btn outline color="white" label="Se områden vi täcker" :to="{ hash: '#areas' }" />
           </div>
           <div class="hero-metrics">
             <div class="hero-metric">
@@ -42,12 +42,12 @@
           <span class="section-kicker">Tydligt upplägg</span>
           <h2 class="section-title">Fönsterputs i Stockholm utan onödigt krångel</h2>
           <p class="section-text">
-            Jag erbjuder professionell fönsterputsning för dig som vill ha rena fönster utan att jaga priser,
-            ringa runt eller vänta på otydliga offerter. Du skickar in en enkel förfrågan och får en personlig offert och snabb återkoppling direkt från mig.
+            Vi erbjuder professionell fönsterputsning för dig som vill ha rena fönster utan att jaga priser,
+            ringa runt eller vänta på otydliga offerter. Du skickar in en enkel förfrågan och får en personlig offert och snabb återkoppling direkt från oss.
           </p>
           <p class="section-text">
-            Putsningar utförs i större delen av Stockholm och jag kan erbjuda snabbare bokning och mer flexibla upplägg än större aktörer, samtidigt som jag
-            håller kvaliteten jämn och ger dig ett mer personligt upplägg. För dig som vill slippa tänka på när det är dags igen kan jag också lägga upp abonnemang för återkommande puts.
+            Putsningar utförs i större delen av Stockholm och vi kan erbjuda snabbare bokning och mer flexibla upplägg än större aktörer, samtidigt som vi
+            håller kvaliteten jämn och ger dig ett mer personligt upplägg. För dig som vill slippa tänka på när det är dags igen kan vi också lägga upp abonnemang för återkommande puts.
           </p>
         </div>
 
@@ -57,7 +57,7 @@
           <ul class="feature-list">
             <li>Personlig offert utifrån dina fönster.</li>
             <li>Passar villor, radhus, lägenheter och andra fastigheter.</li>
-            <li>Direkt kontakt med personen som också kommer och putsar.</li>
+            <li>Direkt kontakt med oss som utför arbetet.</li>
             <li>Möjlighet till abonnemang för dig som vill ha återkommande puts.</li>
             <li>Smidig väg från första klick till bekräftad tid.</li>
           </ul>
@@ -78,11 +78,11 @@
           </article>
           <article class="mini-card">
             <h3 class="mini-card__title">3. Skicka förfrågan</h3>
-            <p class="mini-card__text">Skicka in uppgifterna så återkommer jag med en offert och bekräftar tid och detaljer.</p>
+            <p class="mini-card__text">Skicka in uppgifterna så återkommer vi med en offert och bekräftar tid och detaljer.</p>
           </article>
           <article class="mini-card">
             <h3 class="mini-card__title">4. Få jobbet gjort</h3>
-            <p class="mini-card__text">Jag kommer själv och putsar med fokus på resultat, ljusinsläpp och ett rent helhetsintryck.</p>
+            <p class="mini-card__text">Vi kommer och putsar med fokus på resultat, ljusinsläpp och ett rent helhetsintryck.</p>
           </article>
         </div>
       </section>
@@ -92,11 +92,11 @@
           <span class="section-kicker">Abonnemang</span>
           <h2 class="section-title">Återkommande fönsterputs för dig som vill slippa boka om varje gång</h2>
           <p class="section-text">
-            För många hushåll passar abonnemang bättre än enstaka bokningar. Då får du ett löpande upplägg av mig
+            För många hushåll passar abonnemang bättre än enstaka bokningar. Då får du ett löpande upplägg av oss
             som anpassas efter bostad, säsong och hur ofta du vill ha putsat, utan att du behöver hålla reda på när det är dags igen.
           </p>
           <p class="section-text">
-            Det fungerar bra för dig som vill ha rena fönster året om, jämn kvalitet över tid och samma person som lär sig hur du vill ha det.
+            Det fungerar bra för dig som vill ha rena fönster året om, jämn kvalitet över tid och ett upplägg som är anpassat efter hur du vill ha det.
           </p>
           <div class="hero-actions q-pt-sm">
             <q-btn outline color="primary" label="Läs mer om abonnemang" to="/tjanst/abonnemang-fonsterputs" />
@@ -109,7 +109,7 @@
           <ul class="feature-list">
             <li>Du vill ha fasta eller flexibla intervaller utan att boka om varje gång.</li>
             <li>Du vill ha ett upplägg som passar bostad, ljusinsläpp och säsong.</li>
-            <li>Du föredrar att boka direkt med mig och få samma person på plats varje gång.</li>
+            <li>Du föredrar att boka direkt med oss och få samma noggranna upplägg varje gång.</li>
             <li>Du vill kunna börja med en vanlig puts och sedan gå över till abonnemang.</li>
           </ul>
           <div class="hero-actions q-pt-sm">
@@ -149,13 +149,13 @@
           <h2 class="section-title">Boka med din granne – båda får rabatt</h2>
           <p class="section-text">
             Bor du nära någon som också vill ha rena fönster? När ni bokar samma dag i samma område får ni båda
-            rabatt på er bokning. Ni delar på resvägen, jag kan jobba mer effektivt och rabatten landar direkt på era priser.
+            rabatt på er bokning. Ni delar på resvägen, vi kan jobba mer effektivt och rabatten landar direkt på era priser.
           </p>
           <ul class="feature-list">
             <li>Båda hushållen får rabatt på sin bokning.</li>
-            <li>Jag planerar samma dag i samma område, så det blir smidigt för alla.</li>
+            <li>Vi planerar samma dag i samma område, så det blir smidigt för alla.</li>
             <li>Funkar för villor, radhus, lägenheter och andra fastigheter.</li>
-            <li>Skriv bara i förfrågan att ni vill boka tillsammans, så ordnar jag resten.</li>
+            <li>Skriv bara i förfrågan att ni vill boka tillsammans, så ordnar vi resten.</li>
           </ul>
           <div class="hero-actions q-pt-sm">
             <q-btn unelevated color="accent" text-color="black" label="Begär offert med granne" @click="goToPriceList" />
@@ -165,9 +165,9 @@
 
       <section id="areas" class="editorial-panel">
         <span class="section-kicker">Områden</span>
-        <h2 class="section-title">Jag täcker områden där närhet faktiskt gör skillnad</h2>
+        <h2 class="section-title">Vi täcker områden där närhet faktiskt gör skillnad</h2>
         <p class="section-text">
-          Jag arbetar i stora delar av Stockholm med extra stark närvaro i norra Stockholm, där jag kan erbjuda kortare restider,
+          Vi arbetar i stora delar av Stockholm med extra stark närvaro i norra Stockholm, där vi kan erbjuda kortare restider,
           snabbare bokning och ett smidigare upplägg för återkommande kunder. Välj din ort för att läsa mer om hur tjänsten passar där du bor.
         </p>
         <div class="area-link-grid q-mt-lg">
@@ -181,14 +181,14 @@
           </router-link>
         </div>
         <p class="section-text" style="margin-top: 2rem">
-          Bor du i ett annat område? Skicka in en förfrågan ändå så ser jag om jag kan hjälpa dig.
+          Bor du i ett annat område? Skicka in en förfrågan ändå så ser vi om vi kan hjälpa dig.
         </p>
       </section>
 
       <section class="cta-band">
         <div class="cta-band__text">
           <h2 class="cta-band__title">Vill du ha en offert eller anmäla intresse för abonnemang?</h2>
-          <p class="cta-band__lead">Offertformuläret är byggt för att vara snabbt, begripligt och enkelt att fylla i oavsett om du sitter på mobil eller dator. Om du är intresserad av återkommande fönsterputs kan du skriva det i din förfrågan så återkommer jag med ett passande upplägg.</p>
+          <p class="cta-band__lead">Offertformuläret är byggt för att vara snabbt, begripligt och enkelt att fylla i oavsett om du sitter på mobil eller dator. Om du är intresserad av återkommande fönsterputs kan du skriva det i din förfrågan så återkommer vi med ett passande upplägg.</p>
         </div>
         <q-btn unelevated color="accent" text-color="black" label="Begär offert" @click="goToPriceList" />
       </section>

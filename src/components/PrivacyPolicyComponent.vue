@@ -5,7 +5,7 @@
         <span class="section-kicker">Integritet & cookies</span>
         <h1 class="section-title text-center">Integritetspolicy</h1>
         <p class="section-text text-center q-mx-auto privacy-page__lead">
-          Här beskriver jag hur personuppgifter, cookies och webbanalys hanteras när du använder webbplatsen.
+          Här beskriver vi hur personuppgifter, cookies och webbanalys hanteras när du använder webbplatsen.
         </p>
       </section>
 
@@ -15,8 +15,8 @@
             Om denna integritetspolicy
           </h2>
           <p class="text-body1">
-                Denna policy beskriver hur jag på Rutputs samlar in och hanterar
-                information när du besöker webbplatsen. Jag värnar om din
+                Denna policy beskriver hur vi på Rutputs samlar in och hanterar
+                information när du besöker webbplatsen. Vi värnar om din
                 integritet och följer GDPR (Dataskyddsförordningen).
           </p>
         </section>
@@ -25,12 +25,12 @@
 
         <section class="privacy-page__section">
           <h2 class="text-h6 text-accent q-mb-sm">
-            Vilken information samlar jag in?
+            Vilken information samlar vi in?
           </h2>
 
           <h3 class="text-subtitle1 text-primary q-mt-md q-mb-sm">1. Kontaktformulär</h3>
           <p class="text-body1 q-mb-sm">
-            När du fyller i mitt offertformulär samlar jag in:
+            När du fyller i vårt offertformulär samlar vi in:
           </p>
           <ul class="text-body1 privacy-page__list">
             <li>Namn</li>
@@ -40,7 +40,7 @@
             <li>Typ av bostad och valda tjänster</li>
           </ul>
           <p class="text-body1 q-mt-sm">
-            <strong>Syfte:</strong> För att jag ska kunna kontakta dig och ge dig en offert på fönsterputsning.
+            <strong>Syfte:</strong> För att vi ska kunna kontakta dig och ge dig en offert på fönsterputsning.
             <br>
             <strong>Lagring:</strong> Dina uppgifter sparas så länge det behövs för att hantera din förfrågan, därefter raderas de.
             <br>
@@ -49,7 +49,7 @@
 
           <h3 class="text-subtitle1 text-primary q-mt-md q-mb-sm">2. Webbanalys (cookies)</h3>
           <p class="text-body1 q-mb-sm">
-            Om du accepterar cookies använder jag analysverktyg från Vercel, Google (Analytics), Meta (Facebook Pixel) och Microsoft (Clarity) för att förstå hur webbplatsen används. Microsoft Clarity kan även spela in anonyma sessioner och generera värmekartor över sidan. Då kan följande anonyma eller aggregerade uppgifter samlas in:
+            Om du accepterar cookies använder vi analysverktyg från Vercel, Google (Analytics), Meta (Facebook Pixel) och Microsoft (Clarity) för att förstå hur webbplatsen används. Microsoft Clarity kan även spela in anonyma sessioner och generera värmekartor över sidan. Då kan följande anonyma eller aggregerade uppgifter samlas in:
           </p>
           <ul class="text-body1 privacy-page__list">
             <li>Vilka sidor du besöker på webbplatsen</li>
@@ -64,7 +64,7 @@
 
           <h3 class="text-subtitle1 text-primary q-mt-md q-mb-sm">3. Marknadsföring</h3>
           <p class="text-body1">
-            Om du accepterar cookies kan jag använda annonseringsverktyg från Google (Google Ads) och Meta (Facebook Pixel) för att mäta vilka kampanjer som leder till kontakt,
+            Om du accepterar cookies kan vi använda annonseringsverktyg från Google (Google Ads) och Meta (Facebook Pixel) för att mäta vilka kampanjer som leder till kontakt,
             till exempel formulärskick eller klick på telefonnummer. Dessa verktyg kan också användas för att visa mer relevanta annonser i Google- respektive Meta-nätverken.
           </p>
           <p class="text-body1 q-mt-sm">
@@ -76,10 +76,10 @@
 
         <section class="privacy-page__section">
           <h2 class="text-h6 text-accent q-mb-sm">
-            Varför samlar jag in denna information?
+            Varför samlar vi in denna information?
           </h2>
           <p class="text-body1">
-            Jag använder den insamlade informationen för att:
+            Vi använder den insamlade informationen för att:
           </p>
           <ul class="text-body1 privacy-page__list">
             <li>Förstå hur besökare använder webbplatsen</li>
@@ -94,7 +94,7 @@
           <h2 class="text-h6 text-accent q-mb-sm">Hur länge sparas data?</h2>
           <ul class="text-body1 privacy-page__list">
             <li><strong>Kontaktformulär:</strong> Dina uppgifter raderas när din förfrågan är hanterad, eller senast efter 12 månader.</li>
-            <li><strong>Analysdata:</strong> Uppgifter från analysverktyg sparas under en begränsad period enligt mina inställningar, normalt upp till 14 månader.</li>
+            <li><strong>Analysdata:</strong> Uppgifter från analysverktyg sparas under en begränsad period enligt våra inställningar, normalt upp till 14 månader.</li>
             <li><strong>Cookies:</strong> Ditt samtycke sparas tills du raderar cookies eller lokal lagring i din webbläsare.</li>
           </ul>
         </section>
@@ -109,10 +109,10 @@
             Dina personuppgifter från kontaktformuläret delas inte med externa parter.
           </p>
           <p class="text-body1">
-            För drift, webbanalys och marknadsföring använder jag externa leverantörer – bland annat Vercel (drift och analys), Google (Analytics och Ads), Meta (Facebook Pixel) och Microsoft (Clarity för värmekartor och anonyma sessionsinspelningar) – som kan behandla begränsad teknisk data och cookieinformation för min räkning.
+            För drift, webbanalys och marknadsföring använder vi externa leverantörer – bland annat Vercel (drift och analys), Google (Analytics och Ads), Meta (Facebook Pixel) och Microsoft (Clarity för värmekartor och anonyma sessionsinspelningar) – som kan behandla begränsad teknisk data och cookieinformation för vår räkning.
           </p>
           <p class="text-body1 q-mt-sm">
-            Om någon behandling sker utanför EU/EES använder jag lämpliga skyddsåtgärder, till exempel standardavtalsklausuler.
+            Om någon behandling sker utanför EU/EES använder vi lämpliga skyddsåtgärder, till exempel standardavtalsklausuler.
           </p>
           <p class="text-body1 q-mt-sm">
             Din data säljs aldrig vidare till tredje part.
@@ -134,7 +134,7 @@
               dina cookieinställningar via länken i sidfoten
             </li>
             <li>
-              <strong>Begära information:</strong> Du kan kontakta mig för
+              <strong>Begära information:</strong> Du kan kontakta oss för
               att få information om vilken data som har samlats in
             </li>
             <li>
@@ -149,7 +149,7 @@
         <section class="privacy-page__section">
           <h2 class="text-h6 text-accent q-mb-sm">Kontakt</h2>
           <p class="text-body1">
-            Har du frågor om hur jag hanterar din data? Kontakta mig:
+            Har du frågor om hur vi hanterar din data? Kontakta oss:
           </p>
           <ul class="text-body1 privacy-page__list">
             <li>E-post: kontakt@rutputs.nu</li>

@@ -67,7 +67,7 @@
         <section class="cta-band">
           <div class="cta-band__text">
             <h2 class="cta-band__title">Vill du ha en offert?</h2>
-            <p class="cta-band__lead">Fyll i offertformuläret så återkommer jag med ett pris efter RUT-avdrag.</p>
+            <p class="cta-band__lead">Fyll i offertformuläret så återkommer vi med ett pris efter RUT-avdrag.</p>
           </div>
           <q-btn unelevated color="accent" text-color="black" label="Begär offert" to="/pris" />
         </section>
@@ -86,7 +86,7 @@
             </ul>
           </div>
           <div v-if="relatedAreas.length" class="guide-article__links">
-            <p class="guide-article__links-label">Områden jag täcker:</p>
+            <p class="guide-article__links-label">Områden vi täcker:</p>
             <ul>
               <li v-for="area in relatedAreas" :key="area.slug">
                 <router-link :to="'/omrade/' + area.slug">Fönsterputs i {{ area.name }}</router-link>

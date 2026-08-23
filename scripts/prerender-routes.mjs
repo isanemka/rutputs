@@ -149,7 +149,7 @@ const pages = [
     bodyIntro: home.bodyIntro,
     sections: [
       {
-        heading: 'Områden jag täcker',
+        heading: 'Områden vi täcker',
         html: buildLinkListHtml(areas),
       },
       {
@@ -233,7 +233,7 @@ const pages = [
     bodyIntro: page.content,
     sections: [
       {
-        heading: `Områden jag täcker i ${page.name}`,
+        heading: `Områden vi täcker i ${page.name}`,
         html: buildDistrictsHtml(page.districts),
       },
       {
@@ -571,7 +571,7 @@ function buildLlmsTxt() {
 > ${business.description}
 
 ## Om Rutputs
-Rutputs erbjuder professionell fönsterputsning för privatpersoner och företag i Stockholm. Med RUT-avdrag (50% skattereduktion) börjar priset från 499 kr. När du bokar hos Rutputs är det också jag som kommer och putsar.
+Rutputs erbjuder professionell fönsterputsning för privatpersoner och företag i Stockholm. Med RUT-avdrag (50% skattereduktion) börjar priset från 499 kr. När du bokar hos Rutputs får du erfarna fönsterputsare som arbetar i ditt område.
 
 ## Tjänster
 ${services.map((s) => `- ${s.bodyTitle || s.name}`).join('\n')}

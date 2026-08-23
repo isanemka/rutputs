@@ -7,7 +7,7 @@
           Pris på fönsterputs i Stockholm
         </h1>
         <p class="section-text text-center q-mx-auto price-intro-panel__text">
-          Berätta lite om dina fönster så återkommer jag med en personlig offert.
+          Berätta lite om dina fönster så återkommer vi med en personlig offert.
           Fyll i formuläret nedan – det tar bara någon minut.
         </p>
         <p class="section-text text-center q-mx-auto price-intro-panel__text">
@@ -30,7 +30,7 @@
           <h2 class="section-title">Offert utan förpliktelser</h2>
         <p class="section-text">
             Det är kostnadsfritt och inte bindande att skicka in din förfrågan.
-            Jag återkommer med ett tydligt pris efter RUT-avdrag utifrån dina uppgifter.
+            Vi återkommer med ett tydligt pris efter RUT-avdrag utifrån dina uppgifter.
         </p>
         <p class="section-text">
             Eventuella tillägg vid exempelvis spröjsade fönster, hård nedsmutsning eller svår åtkomst
@@ -43,7 +43,7 @@
         <h2 class="section-title">Tjänster och vad som ingår</h2>
         <p class="section-text">
           Priset börjar från 499 kr efter RUT-avdrag och beräknas utifrån dina fönster.
-          Fyll i formuläret nedan så räknar jag fram ett exakt pris för just din bostad.
+          Fyll i formuläret nedan så räknar vi fram ett exakt pris för just din bostad.
         </p>
         <div class="price-callout">
           Från 499 kr efter RUT-avdrag
@@ -185,7 +185,7 @@
                     <dd>{{ form.hasSprojs ? 'Ja' : 'Nej' }}</dd>
                   </div>
                 </dl>
-                <p class="order-summary__footnote">Jag återkommer med en offert efter RUT-avdrag utifrån dessa uppgifter.</p>
+                <p class="order-summary__footnote">Vi återkommer med en offert efter RUT-avdrag utifrån dessa uppgifter.</p>
               </div>
 
               <div class="q-pa-md flex items-center justify-center">
@@ -309,12 +309,12 @@
                       <q-card-section>
                         <h3 id="terms-dialog-title" class="text-center">Personuppgifter</h3>
                         <p id="terms-dialog-description">
-                          När du fyller i mitt kontaktformulär på denna webbplats samlar jag
+                          När du fyller i vårt kontaktformulär på denna webbplats samlar vi
                           in dina personuppgifter, inklusive namn, adress, telefonnummer och
-                          e-postadress. Dessa uppgifter används endast för att jag ska kunna kontakta dig
+                          e-postadress. Dessa uppgifter används endast för att vi ska kunna kontakta dig
                           angående dina förfrågningar eller för att tillhandahålla tjänster som du begär.
                           <br>
-                          Jag behandlar dina personuppgifter med största respekt för din integritet och
+                          Vi behandlar dina personuppgifter med största respekt för din integritet och
                           följer de lagar och regler som gäller för dataskydd, inklusive EU:s
                           allmänna dataskyddsförordning (GDPR).
                         </p>
@@ -343,10 +343,10 @@
       </div>
 
       <section class="editorial-panel areas-panel">
-        <span class="section-kicker">Var arbetar jag?</span>
+        <span class="section-kicker">Var arbetar vi?</span>
         <h2 class="section-title">Fönsterputs i Stockholmsområdet</h2>
         <p class="section-text">
-          Jag utför fönsterputs i följande stadsdelar och kommuner runt Stockholm.
+          Vi utför fönsterputs i följande stadsdelar och kommuner runt Stockholm.
           Klicka på din stadsdel för mer information.
         </p>
         <div class="areas-link-grid">

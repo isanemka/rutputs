@@ -44,7 +44,7 @@
       <section class="cta-band">
         <div class="cta-band__text">
           <h2 class="cta-band__title">{{ service.contactOnly ? 'Intresserad av abonnemang?' : 'Vill du ha en offert?' }}</h2>
-          <p class="cta-band__lead">{{ service.contactOnly ? 'Ring eller mejla så tar vi fram ett upplägg som passar dig.' : 'Fyll i offertformuläret så återkommer jag med ett pris efter RUT-avdrag.' }}</p>
+          <p class="cta-band__lead">{{ service.contactOnly ? 'Ring eller mejla så tar vi fram ett upplägg som passar dig.' : 'Fyll i offertformuläret så återkommer vi med ett pris efter RUT-avdrag.' }}</p>
         </div>
         <div v-if="service.contactOnly" class="hero-actions">
           <q-btn unelevated color="accent" text-color="black" label="Ring direkt" type="a" href="tel:+46734644604" />

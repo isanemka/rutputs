@@ -8,7 +8,7 @@
           Något gick fel med din offertförfrågan. Testa gärna att fylla i formuläret igen.
         </p>
         <p class="section-text text-center q-mx-auto status-page__lead">
-          Om det fortfarande strular går det bra att kontakta mig direkt via telefon eller e-post. Kontaktuppgifterna finns längst ner på sidan.
+          Om det fortfarande strular går det bra att kontakta oss direkt via telefon eller e-post. Kontaktuppgifterna finns längst ner på sidan.
         </p>
         <q-btn
           @click="goToLanding"
