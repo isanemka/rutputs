@@ -17,6 +17,8 @@ const schema = z.object({
   email: z.string().trim().email().max(200),
   tel: z.string().trim().min(6).max(60),
   address: z.string().trim().max(200).optional().or(z.literal('')),
+  postalCode: z.string().trim().max(20).optional().or(z.literal('')),
+  city: z.string().trim().max(100).optional().or(z.literal('')),
   propertyType: z.enum(['house', 'apartment']),
   windowCount: z.number().int().positive(),
   cleaningSides: cleaningSidesSchema,
@@ -35,6 +37,12 @@ function formatCleaningSides(sides) {
   }
 
   return 'Utsida + Insida + Mellan';
+}
+
+function formatPostalAddress({ address, postalCode, city }) {
+  const postalLine = [postalCode, city].filter(Boolean).join(' ').trim();
+
+  return [address, postalLine].filter(Boolean).join(', ');
 }
 
 function getSesErrorDetails(error) {
@@ -84,6 +92,7 @@ export default async function handleKontaktRequest(req, res) {
   const propertyTypeLabel =
     parsed.data.propertyType === 'house' ? 'Villa/Radhus' : 'Lägenhet';
   const cleaningSidesLabel = formatCleaningSides(parsed.data.cleaningSides);
+  const postalAddress = formatPostalAddress(parsed.data);
 
   const requestLabel = `[kontakt:${randomUUID()}]`;
   const detailedMessage = [
@@ -92,7 +101,7 @@ export default async function handleKontaktRequest(req, res) {
     `Namn: ${parsed.data.name}`,
     `E-post: ${parsed.data.email}`,
     `Telefon: ${parsed.data.tel}`,
-    `Adress: ${parsed.data.address || '-'}`,
+    `Adress: ${postalAddress || '-'}`,
     `Bostadstyp: ${propertyTypeLabel}`,
     `Antal fönster: ${parsed.data.windowCount}`,
     `Sidor: ${cleaningSidesLabel}`,
@@ -127,6 +136,9 @@ export default async function handleKontaktRequest(req, res) {
           page: typeof req.headers.referer === 'string' ? req.headers.referer : null,
           submitted_at: new Date().toISOString(),
           address: parsed.data.address || null,
+          postal_code: parsed.data.postalCode || null,
+          city: parsed.data.city || null,
+          postal_address: postalAddress || null,
           property_type: parsed.data.propertyType,
           window_count: parsed.data.windowCount,
           cleaning_sides: parsed.data.cleaningSides,

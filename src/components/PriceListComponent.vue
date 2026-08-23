@@ -218,9 +218,47 @@
                     v-model="form.address"
                     filled
                     type="text"
-                    hint="Adress"
-                    label="Adress"
+                    label="Gatuadress *"
+                    hint="T.ex. Storgatan 12"
+                    autocomplete="street-address"
+                    lazy-rules
+                    :rules="[
+                      val => val !== null && val !== '' || 'Vänligen fyll i din gatuadress',
+                      val => val && val.trim().length > 2 || 'Vänligen fyll i en korrekt gatuadress']"
                   />
+                  <div class="address-row">
+                    <div class="address-row__col address-row__col--postal">
+                      <q-input
+                        v-model="form.postalCode"
+                        filled
+                        type="text"
+                        inputmode="numeric"
+                        label="Postnummer *"
+                        hint="T.ex. 177 31"
+                        mask="### ##"
+                        unmasked-value
+                        autocomplete="postal-code"
+                        lazy-rules
+                        :rules="[
+                          val => val !== null && val !== '' || 'Vänligen fyll i ditt postnummer',
+                          val => /^\d{5}$/.test((val || '').replace(/\s/g, '')) || 'Postnumret ska bestå av 5 siffror']"
+                      />
+                    </div>
+                    <div class="address-row__col">
+                      <q-input
+                        v-model="form.city"
+                        filled
+                        type="text"
+                        label="Postort *"
+                        hint="T.ex. Järfälla"
+                        autocomplete="address-level2"
+                        lazy-rules
+                        :rules="[
+                          val => val !== null && val !== '' || 'Vänligen fyll i din postort',
+                          val => val && val.trim().length > 1 || 'Vänligen fyll i en korrekt postort']"
+                      />
+                    </div>
+                  </div>
                   <q-input
                     v-model="form.email"
                     filled
@@ -447,6 +485,8 @@ export default defineComponent({
         name: '',
         tel: '',
         address: '',
+        postalCode: '',
+        city: '',
         email: '',
         message: '',
         website: '',
@@ -464,6 +504,13 @@ export default defineComponent({
       step: ref(1),
       areas,
     }
+  },
+  computed: {
+    // Postnummer sparas utan mellanslag, men skickas i formatet "123 45"
+    formattedPostalCode(): string {
+      const digits = (this.form.postalCode || '').replace(/\D/g, '');
+      return digits.length === 5 ? `${digits.slice(0, 3)} ${digits.slice(3)}` : digits;
+    },
   },
   methods: {
     getCleaningSidesLabel(sides: CleaningSides): string {
@@ -567,6 +614,8 @@ export default defineComponent({
         email: this.form.email,
         tel: this.form.tel,
         address: this.form.address,
+        postalCode: this.formattedPostalCode,
+        city: this.form.city,
         message: this.form.message,
         website: this.form.website,
         propertyType: this.form.propertyType,
@@ -603,6 +652,8 @@ export default defineComponent({
       this.form.name = '';
       this.form.tel = '';
       this.form.address = '';
+      this.form.postalCode = '';
+      this.form.city = '';
       this.form.email = '';
       this.form.message = '';
       this.form.website = '';
@@ -641,6 +692,27 @@ export default defineComponent({
 .property-type-group legend {
   margin-bottom: 0.6rem;
   font-weight: 600;
+}
+
+.address-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.address-row__col {
+  flex: 1 1 100%;
+  min-width: 0;
+}
+
+@media (min-width: 600px) {
+  .address-row__col {
+    flex: 1 1 0;
+  }
+
+  .address-row__col--postal {
+    flex: 0 0 40%;
+  }
 }
 
 .honeypot-field {
