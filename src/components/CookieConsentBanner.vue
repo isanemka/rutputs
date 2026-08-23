@@ -14,8 +14,8 @@
       <q-card-section>
         <div id="cookie-consent-title" class="text-h6 text-primary">Cookies</div>
         <p id="cookie-consent-description" class="q-mt-sm text-body2">
-          Jag använder cookies för att förbättra din upplevelse på webbplatsen.
-          Läs mer i min
+          Vi använder cookies för att förbättra din upplevelse på webbplatsen.
+          Läs mer i vår
           <router-link to="/integritetspolicy" class="text-accent">
             integritetspolicy</router-link
           >.
