@@ -12,13 +12,30 @@ const ses =
 
 const cleaningSidesSchema = z.enum(['outside', 'both', 'all']);
 
+// Svenskt postnummer, med eller utan mellanslag: "17731" eller "177 31"
+const postalCodeSchema = z
+  .string()
+  .trim()
+  .regex(/^\d{3}\s?\d{2}$/)
+  .optional()
+  .or(z.literal(''));
+
+// Postort: bokstäver, mellanslag, bindestreck och apostrof
+const citySchema = z
+  .string()
+  .trim()
+  .max(100)
+  .regex(/^\p{L}[\p{L}\s'’-]*$/u)
+  .optional()
+  .or(z.literal(''));
+
 const schema = z.object({
   name: z.string().trim().min(1).max(200),
   email: z.string().trim().email().max(200),
   tel: z.string().trim().min(6).max(60),
   address: z.string().trim().max(200).optional().or(z.literal('')),
-  postalCode: z.string().trim().max(20).optional().or(z.literal('')),
-  city: z.string().trim().max(100).optional().or(z.literal('')),
+  postalCode: postalCodeSchema,
+  city: citySchema,
   propertyType: z.enum(['house', 'apartment']),
   windowCount: z.number().int().positive(),
   cleaningSides: cleaningSidesSchema,
@@ -37,6 +54,13 @@ function formatCleaningSides(sides) {
   }
 
   return 'Utsida + Insida + Mellan';
+}
+
+// Skriv alltid postnumret som "123 45", oavsett hur det skickades in
+function normalizePostalCode(postalCode) {
+  const digits = (postalCode || '').replace(/\D/g, '');
+
+  return digits.length === 5 ? `${digits.slice(0, 3)} ${digits.slice(3)}` : '';
 }
 
 function formatPostalAddress({ address, postalCode, city }) {
@@ -92,7 +116,8 @@ export default async function handleKontaktRequest(req, res) {
   const propertyTypeLabel =
     parsed.data.propertyType === 'house' ? 'Villa/Radhus' : 'Lägenhet';
   const cleaningSidesLabel = formatCleaningSides(parsed.data.cleaningSides);
-  const postalAddress = formatPostalAddress(parsed.data);
+  const postalCode = normalizePostalCode(parsed.data.postalCode);
+  const postalAddress = formatPostalAddress({ ...parsed.data, postalCode });
 
   const requestLabel = `[kontakt:${randomUUID()}]`;
   const detailedMessage = [
@@ -136,7 +161,7 @@ export default async function handleKontaktRequest(req, res) {
           page: typeof req.headers.referer === 'string' ? req.headers.referer : null,
           submitted_at: new Date().toISOString(),
           address: parsed.data.address || null,
-          postal_code: parsed.data.postalCode || null,
+          postal_code: postalCode || null,
           city: parsed.data.city || null,
           postal_address: postalAddress || null,
           property_type: parsed.data.propertyType,

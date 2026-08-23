@@ -255,7 +255,8 @@
                         lazy-rules
                         :rules="[
                           val => val !== null && val !== '' || 'Vänligen fyll i din postort',
-                          val => val && val.trim().length > 1 || 'Vänligen fyll i en korrekt postort']"
+                          val => val && val.trim().length > 1 || 'Vänligen fyll i en korrekt postort',
+                          val => /^\p{L}[\p{L}\s'’-]*$/u.test((val || '').trim()) || 'Postorten får bara innehålla bokstäver']"
                       />
                     </div>
                   </div>
