@@ -28,9 +28,11 @@ const business = {
     longitude: 17.8357,
   },
   // Aggregerat betyg – enda källa, läses av både UI (reviews.ts) och schema.
+  // reviewCount måste matcha antalet omdömen i reviews-content.js, annars
+  // stämmer inte den strukturerade datan med det som visas på sidan.
   aggregateRating: {
     ratingValue: 5.0,
-    reviewCount: 2,
+    reviewCount: 5,
   },
   // Profiler som binder ihop Rutputs som en igenkänd entitet (sameAs).
   googleBusinessUrl:

@@ -124,17 +124,57 @@
         <p class="section-text">
           Riktiga omdömen från kunder som bokat fönsterputs i Stockholm. Vill du läsa fler eller lämna ett eget omdöme hittar du Rutputs på Google.
         </p>
-        <div class="review-grid q-mt-lg">
-          <article v-for="review in reviewsData.reviews" :key="review.author + review.date" class="review-card">
-            <div class="review-card__stars" role="img" :aria-label="review.rating + ' av 5 stjärnor'">
-              <span v-for="n in review.rating" :key="n" aria-hidden="true">★</span>
+        <div class="review-carousel q-mt-lg" role="group" aria-roledescription="karusell" aria-label="Kundomdömen">
+          <div
+            ref="reviewTrack"
+            class="review-carousel__track"
+            tabindex="0"
+            @scroll.passive="measureReviews"
+          >
+            <article v-for="review in reviewsData.reviews" :key="review.author + review.date" class="review-card">
+              <div class="review-card__stars" role="img" :aria-label="review.rating + ' av 5 stjärnor'">
+                <span v-for="n in review.rating" :key="n" aria-hidden="true">★</span>
+              </div>
+              <p class="review-card__text">&ldquo;{{ review.text }}&rdquo;</p>
+              <p class="review-card__meta">
+                <strong>{{ review.author }}</strong>
+                <span v-if="review.area"> &middot; {{ review.area }}</span>
+              </p>
+            </article>
+          </div>
+
+          <div v-show="reviewsOverflow" class="review-carousel__controls">
+            <button
+              type="button"
+              class="review-carousel__arrow"
+              :disabled="!canScrollReviewsPrev"
+              aria-label="Visa föregående omdöme"
+              @click="scrollReviews(-1)"
+            >
+              &#8249;
+            </button>
+            <div class="review-carousel__dots">
+              <button
+                v-for="index in reviewPageCount"
+                :key="'dot-' + index"
+                type="button"
+                class="review-carousel__dot"
+                :class="{ 'review-carousel__dot--active': index - 1 === activeReviewIndex }"
+                :aria-label="'Gå till position ' + index + ' av ' + reviewPageCount"
+                :aria-current="index - 1 === activeReviewIndex ? 'true' : undefined"
+                @click="goToReview(index - 1)"
+              />
             </div>
-            <p class="review-card__text">&ldquo;{{ review.text }}&rdquo;</p>
-            <p class="review-card__meta">
-              <strong>{{ review.author }}</strong>
-              <span v-if="review.area"> &middot; {{ review.area }}</span>
-            </p>
-          </article>
+            <button
+              type="button"
+              class="review-carousel__arrow"
+              :disabled="!canScrollReviewsNext"
+              aria-label="Visa nästa omdöme"
+              @click="scrollReviews(1)"
+            >
+              &#8250;
+            </button>
+          </div>
         </div>
         <div class="hero-actions q-pt-md">
           <a :href="reviewsData.googleBusinessUrl" target="_blank" rel="noopener" class="text-accent text-weight-bold">
@@ -338,7 +378,7 @@ export default defineComponent({
           },
           review: reviewsData.reviews.map((r) => ({
             '@type': 'Review',
-            author: { '@type': 'Person', name: r.author },
+            author: { '@type': r.authorType ?? 'Person', name: r.author },
             datePublished: r.date,
             reviewBody: r.text,
             reviewRating: {
@@ -386,6 +426,68 @@ export default defineComponent({
 
     const pickRandomImage = (images: string[]) => images[Math.floor(Math.random() * images.length)];
 
+    // Omdömeskarusellen är en native scroll-container med scroll-snap, så
+    // korten går att svepa mellan även utan JS. Pilarna och punkterna nedan
+    // är bara ett tillgängligt komplement som döljs när allt redan får plats.
+    const reviewTrack = ref<HTMLElement | null>(null);
+    const reviewsOverflow = ref(false);
+    const activeReviewIndex = ref(0);
+    const reviewPageCount = ref(0);
+    const canScrollReviewsPrev = ref(false);
+    const canScrollReviewsNext = ref(false);
+
+    // Ett "steg" är ett kort plus mellanrummet till nästa kort.
+    const reviewStep = (track: HTMLElement) => {
+      const card = track.querySelector<HTMLElement>('.review-card');
+      if (!card) {
+        return 0;
+      }
+      const gap = parseFloat(window.getComputedStyle(track).columnGap) || 0;
+      return card.offsetWidth + gap;
+    };
+
+    const measureReviews = () => {
+      const track = reviewTrack.value;
+      if (!track) {
+        return;
+      }
+
+      // Tolerans på 8px så att avrundning i webbläsarens scrollbredd inte
+      // lämnar en pil aktiv i änden av listan.
+      const maxScroll = track.scrollWidth - track.clientWidth;
+      reviewsOverflow.value = maxScroll > 8;
+      canScrollReviewsPrev.value = track.scrollLeft > 8;
+      canScrollReviewsNext.value = track.scrollLeft < maxScroll - 8;
+
+      // Punkterna motsvarar nåbara scrollpositioner, inte antalet kort. Visas
+      // tre kort samtidigt finns bara tre positioner att gå till, och då ska
+      // det vara tre punkter – annars pekar de sista punkterna på samma läge.
+      const step = reviewStep(track);
+      reviewPageCount.value = step > 0 ? Math.round(maxScroll / step) + 1 : 0;
+      activeReviewIndex.value = step > 0 ? Math.round(track.scrollLeft / step) : 0;
+    };
+
+    const scrollBehavior = (): ScrollBehavior =>
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+
+    const scrollReviews = (direction: number) => {
+      const track = reviewTrack.value;
+      if (!track) {
+        return;
+      }
+      track.scrollBy({ left: direction * reviewStep(track), behavior: scrollBehavior() });
+    };
+
+    const goToReview = (index: number) => {
+      const track = reviewTrack.value;
+      if (!track) {
+        return;
+      }
+      const maxScroll = track.scrollWidth - track.clientWidth;
+      const left = Math.min(index * reviewStep(track), maxScroll);
+      track.scrollTo({ left, behavior: scrollBehavior() });
+    };
+
     const updateParallax = () => {
       if (typeof window === 'undefined' || !heroSection.value) {
         return;
@@ -413,6 +515,13 @@ export default defineComponent({
       });
     };
 
+    // Kortbredden ändras med brytpunkterna, så karusellen måste mätas om
+    // vid resize för att pilarna ska stämma.
+    const onResize = () => {
+      scheduleParallaxUpdate();
+      measureReviews();
+    };
+
     onMounted(() => {
       randomLandscapeImage.value = pickRandomImage(landscapeImages);
       // Defer portrait randomization until the browser is idle (after initial
@@ -428,15 +537,16 @@ export default defineComponent({
         portraitTimerId = setTimeout(randomizePortrait, 3000);
       }
       updateParallax();
+      measureReviews();
 
       window.addEventListener('scroll', scheduleParallaxUpdate, { passive: true });
-      window.addEventListener('resize', scheduleParallaxUpdate, { passive: true });
+      window.addEventListener('resize', onResize, { passive: true });
     });
 
     onBeforeUnmount(() => {
       if (typeof window !== 'undefined') {
         window.removeEventListener('scroll', scheduleParallaxUpdate);
-        window.removeEventListener('resize', scheduleParallaxUpdate);
+        window.removeEventListener('resize', onResize);
       }
 
       if (animationFrameId) {
@@ -464,7 +574,16 @@ export default defineComponent({
       heroMediaStyle,
       heroSection,
       randomLandscapeImage,
-      randomPortraitImage
+      randomPortraitImage,
+      reviewTrack,
+      reviewsOverflow,
+      activeReviewIndex,
+      reviewPageCount,
+      canScrollReviewsPrev,
+      canScrollReviewsNext,
+      measureReviews,
+      scrollReviews,
+      goToReview
     };
   },
   methods: {
@@ -480,22 +599,33 @@ export default defineComponent({
   will-change: transform;
 }
 
-.review-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+/* Sektionen är ett grid-item och karusellspåret ett flex-item. Utan min-width: 0
+   ärver de min-width: auto, och då kan de inte krympa under spårets max-content
+   (summan av alla kort). Sidan får då horisontell scroll på mobil. */
+.reviews-shell,
+.review-carousel {
+  min-width: 0;
+}
+
+.review-carousel__track {
+  display: flex;
   gap: 1rem;
+  min-width: 0;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
 }
 
-@media (max-width: 1023px) {
-  .review-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+.review-carousel__track::-webkit-scrollbar {
+  display: none;
 }
 
-@media (max-width: 599px) {
-  .review-grid {
-    grid-template-columns: 1fr;
-  }
+/* Inåtvänd fokusring – overflow-containern skulle klippa en utåtvänd. */
+.review-carousel__track:focus-visible {
+  outline: 2px solid #C04D00;
+  outline-offset: -2px;
+  border-radius: 0.75rem;
 }
 
 .review-card {
@@ -506,6 +636,103 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  /* Tre kort i bredd på desktop, minus de två mellanrummen. */
+  flex: 0 0 calc((100% - 2rem) / 3);
+  scroll-snap-align: start;
+}
+
+@media (max-width: 1023px) {
+  .review-card {
+    flex-basis: calc((100% - 1rem) / 2);
+  }
+}
+
+@media (max-width: 599px) {
+  /* Nästa kort tittar fram i kanten så att det syns att listan går att svepa. */
+  .review-card {
+    flex-basis: 85%;
+  }
+}
+
+.review-carousel__controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.review-carousel__arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: inherit;
+  background: transparent;
+  border: 1px solid rgba(69, 90, 100, 0.28);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.review-carousel__arrow:hover:not(:disabled) {
+  background: rgba(69, 90, 100, 0.08);
+  border-color: rgba(69, 90, 100, 0.45);
+}
+
+.review-carousel__arrow:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.review-carousel__dots {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.review-carousel__dot {
+  /* 24px träffyta runt en 8px prick, så den går att träffa på mobil. */
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.review-carousel__dot::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.3;
+  transition: background-color 0.2s ease, opacity 0.2s ease, transform 0.2s ease;
+}
+
+.review-carousel__dot:hover::before {
+  opacity: 0.55;
+}
+
+.review-carousel__dot--active::before {
+  background: #C04D00;
+  opacity: 1;
+  transform: scale(1.25);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .review-carousel__arrow,
+  .review-carousel__dot::before {
+    transition: none;
+  }
 }
 
 .review-card__stars {
