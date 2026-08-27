@@ -28,7 +28,7 @@ const guides = [
       },
       {
         'heading': 'Säsongsguide för Stockholm',
-        'html': '<ul>\n<li><strong>Vår (april–maj):</strong> Den viktigaste puts-perioden. Få bort vinterns saltspray, sand och stadens grus innan pollenet kommer.</li>\n<li><strong>Sommar (juni–augusti):</strong> Punktinsatser om något specifikt händer, men generellt en lugn period.</li>\n<li><strong>Höst (september–oktober):</strong> Puts inför mörkrets ankomst — rena fönster släpper in maximalt med dagsljus när vi behöver det som mest.</li>\n<li><strong>Vinter (november–mars):</strong> Undvik puts vid temperaturer under +5 °C. Vattnet fryser och putsmedel fungerar dåligt. Vi tar gärna inomhusputs under vintern.</li>\n</ul>'
+        'html': '<ul>\n<li><strong>Vår (april–maj):</strong> Den viktigaste puts-perioden. Få bort vinterns saltspray, sand och stadens grus innan pollenet kommer.</li>\n<li><strong>Sommar (juni–augusti):</strong> Punktinsatser om något specifikt händer, men generellt en lugn period.</li>\n<li><strong>Höst (september–oktober):</strong> Puts inför mörkrets ankomst — rena fönster släpper in maximalt med dagsljus när vi behöver det som mest.</li>\n<li><strong>Vinter (november–mars):</strong> Puts fungerar även i kyla — vid minusgrader använder vi ett putsmedel framtaget för vinterklimat. Inomhusputs går förstås bra hela vintern.</li>\n</ul>'
       },
       {
         'heading': 'Varför det lönar sig att putsa regelbundet',

@@ -14,7 +14,6 @@
         </picture>
 
         <div class="hero-shell__content">
-          <span class="hero-kicker">Lokala fönsterputsare</span>
           <h1 class="hero-title">Professionell fönsterputs i Stockholm</h1>
           <p class="hero-lead">
             Vi hjälper hushåll och företag i Stockholm med fönsterputsning. Berätta lite om dina fönster i formuläret så återkommer vi med en personlig offert.
