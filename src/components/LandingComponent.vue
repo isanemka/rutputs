@@ -147,7 +147,6 @@
             <button
               type="button"
               class="review-carousel__arrow"
-              :disabled="!canScrollReviewsPrev"
               aria-label="Visa föregående omdöme"
               @click="scrollReviews(-1)"
             >
@@ -168,7 +167,6 @@
             <button
               type="button"
               class="review-carousel__arrow"
-              :disabled="!canScrollReviewsNext"
               aria-label="Visa nästa omdöme"
               @click="scrollReviews(1)"
             >
@@ -434,8 +432,6 @@ export default defineComponent({
     const reviewsOverflow = ref(false);
     const activeReviewIndex = ref(0);
     const reviewPageCount = ref(0);
-    const canScrollReviewsPrev = ref(false);
-    const canScrollReviewsNext = ref(false);
 
     // Ett "steg" är ett kort plus mellanrummet till nästa kort. Kortbredden är
     // procentuell och ändras bara när spåret gör det, så värdet cachas i
@@ -462,11 +458,9 @@ export default defineComponent({
       }
 
       // Tolerans på 8px så att avrundning i webbläsarens scrollbredd inte
-      // lämnar en pil aktiv i änden av listan.
+      // visar kontroller för ett spår som egentligen får plats.
       const maxScroll = track.scrollWidth - track.clientWidth;
       reviewsOverflow.value = maxScroll > 8;
-      canScrollReviewsPrev.value = track.scrollLeft > 8;
-      canScrollReviewsNext.value = track.scrollLeft < maxScroll - 8;
 
       // Punkterna motsvarar nåbara scrollpositioner, inte antalet kort. Visas
       // tre kort samtidigt finns bara tre positioner att gå till, och då ska
@@ -497,7 +491,28 @@ export default defineComponent({
       if (!track) {
         return;
       }
-      track.scrollBy({ left: direction * reviewStep(track), behavior: scrollBehavior() });
+
+      const step = reviewStep(track);
+      if (step <= 0) {
+        return;
+      }
+
+      // Vid ändarna går karusellen runt i stället för att ta stopp. Hoppet
+      // tillbaka görs utan mjuk scroll: en mjuk scroll hela vägen vore en lång
+      // åktur förbi varje kort, och läsaren tappar bort var hen hamnade.
+      const maxScroll = track.scrollWidth - track.clientWidth;
+
+      if (direction > 0 && track.scrollLeft >= maxScroll - 8) {
+        track.scrollTo({ left: 0, behavior: 'auto' });
+        return;
+      }
+
+      if (direction < 0 && track.scrollLeft <= 8) {
+        track.scrollTo({ left: maxScroll, behavior: 'auto' });
+        return;
+      }
+
+      track.scrollBy({ left: direction * step, behavior: scrollBehavior() });
     };
 
     const goToReview = (index: number) => {
@@ -606,8 +621,6 @@ export default defineComponent({
       reviewsOverflow,
       activeReviewIndex,
       reviewPageCount,
-      canScrollReviewsPrev,
-      canScrollReviewsNext,
       scheduleReviewMeasure,
       scrollReviews,
       goToReview
@@ -706,15 +719,11 @@ export default defineComponent({
   transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
-.review-carousel__arrow:hover:not(:disabled) {
+.review-carousel__arrow:hover {
   background: rgba(69, 90, 100, 0.08);
   border-color: rgba(69, 90, 100, 0.45);
 }
 
-.review-carousel__arrow:disabled {
-  opacity: 0.35;
-  cursor: default;
-}
 
 .review-carousel__dots {
   display: flex;
