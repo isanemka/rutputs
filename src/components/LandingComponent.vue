@@ -129,7 +129,7 @@
             ref="reviewTrack"
             class="review-carousel__track"
             tabindex="0"
-            @scroll.passive="measureReviews"
+            @scroll.passive="scheduleReviewMeasure"
           >
             <article v-for="review in reviewsData.reviews" :key="review.author + review.date" class="review-card">
               <div class="review-card__stars" role="img" :aria-label="review.rating + ' av 5 stjärnor'">
@@ -430,20 +430,29 @@ export default defineComponent({
     // korten går att svepa mellan även utan JS. Pilarna och punkterna nedan
     // är bara ett tillgängligt komplement som döljs när allt redan får plats.
     const reviewTrack = ref<HTMLElement | null>(null);
+    let reviewFrameId = 0;
     const reviewsOverflow = ref(false);
     const activeReviewIndex = ref(0);
     const reviewPageCount = ref(0);
     const canScrollReviewsPrev = ref(false);
     const canScrollReviewsNext = ref(false);
 
-    // Ett "steg" är ett kort plus mellanrummet till nästa kort.
+    // Ett "steg" är ett kort plus mellanrummet till nästa kort. Kortbredden är
+    // procentuell och ändras bara när spåret gör det, så värdet cachas i
+    // stället för att läsas ur layouten vid varje scroll. Nollställs vid resize.
+    let cachedReviewStep = 0;
+
     const reviewStep = (track: HTMLElement) => {
+      if (cachedReviewStep > 0) {
+        return cachedReviewStep;
+      }
       const card = track.querySelector<HTMLElement>('.review-card');
       if (!card) {
         return 0;
       }
       const gap = parseFloat(window.getComputedStyle(track).columnGap) || 0;
-      return card.offsetWidth + gap;
+      cachedReviewStep = card.offsetWidth + gap;
+      return cachedReviewStep;
     };
 
     const measureReviews = () => {
@@ -465,6 +474,19 @@ export default defineComponent({
       const step = reviewStep(track);
       reviewPageCount.value = step > 0 ? Math.round(maxScroll / step) + 1 : 0;
       activeReviewIndex.value = step > 0 ? Math.round(track.scrollLeft / step) : 0;
+    };
+
+    // Scroll-eventet kan komma flera gånger per bildruta. Mätningen läser
+    // layout, så den samlas ihop till en gång per ruta – samma mönster som
+    // parallaxen ovan.
+    const scheduleReviewMeasure = () => {
+      if (reviewFrameId) {
+        return;
+      }
+      reviewFrameId = window.requestAnimationFrame(() => {
+        reviewFrameId = 0;
+        measureReviews();
+      });
     };
 
     const scrollBehavior = (): ScrollBehavior =>
@@ -519,6 +541,7 @@ export default defineComponent({
     // vid resize för att pilarna ska stämma.
     const onResize = () => {
       scheduleParallaxUpdate();
+      cachedReviewStep = 0;
       measureReviews();
     };
 
@@ -553,6 +576,10 @@ export default defineComponent({
         window.cancelAnimationFrame(animationFrameId);
       }
 
+      if (reviewFrameId) {
+        window.cancelAnimationFrame(reviewFrameId);
+      }
+
       if (portraitTimerId) {
         if ('cancelIdleCallback' in window) {
           window.cancelIdleCallback(portraitTimerId as number);
@@ -581,7 +608,7 @@ export default defineComponent({
       reviewPageCount,
       canScrollReviewsPrev,
       canScrollReviewsNext,
-      measureReviews,
+      scheduleReviewMeasure,
       scrollReviews,
       goToReview
     };

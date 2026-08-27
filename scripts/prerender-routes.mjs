@@ -45,7 +45,7 @@ function buildLocalBusinessSchema() {
     },
     review: reviews.map((r) => ({
       '@type': 'Review',
-      author: { '@type': r.authorType || 'Person', name: r.author },
+      author: { '@type': r.authorType ?? 'Person', name: r.author },
       datePublished: r.date,
       reviewBody: r.text,
       reviewRating: {
