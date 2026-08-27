@@ -1,7 +1,10 @@
 import business from './business.js';
+import reviewsList, { ratingValue, reviewCount } from './reviews-content.js';
 
 export interface Review {
   author: string;
+  /** Schema.org-typ för recensenten. Företagskunder ska vara 'Organization'. */
+  authorType?: 'Person' | 'Organization';
   rating: number;
   text: string;
   date: string;
@@ -16,21 +19,8 @@ export interface ReviewsData {
 }
 
 export const reviewsData: ReviewsData = {
-  aggregateRating: business.aggregateRating.ratingValue,
-  reviewCount: business.aggregateRating.reviewCount,
+  aggregateRating: ratingValue,
+  reviewCount,
   googleBusinessUrl: business.googleBusinessUrl,
-  reviews: [
-    {
-      author: 'Ulla S.',
-      rating: 5,
-      text: 'Aldrig haft så fina fönster tidigare.',
-      date: '2026-04-25',
-    },
-    {
-      author: 'Delina Le Nguyen',
-      rating: 5,
-      text: 'Jättenoga putsade. Det blev mycket rent och snyggt. Tack för det!',
-      date: '2026-04-25',
-    },
-  ],
+  reviews: reviewsList as Review[],
 };

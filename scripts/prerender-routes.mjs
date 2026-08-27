@@ -3,6 +3,7 @@ import path from 'node:path';
 import siteSeoContent from '../src/data/seo-content.js';
 import guides from '../src/data/guides-content.js';
 import business from '../src/data/business.js';
+import reviews, { ratingValue, reviewCount } from '../src/data/reviews-content.js';
 
 const baseUrl = 'https://www.rutputs.nu';
 const distDir = path.resolve('dist/spa');
@@ -37,11 +38,23 @@ function buildLocalBusinessSchema() {
     areaServed: areas.map((a) => ({ '@type': 'City', name: a.name })),
     aggregateRating: {
       '@type': 'AggregateRating',
-      ratingValue: String(business.aggregateRating.ratingValue),
-      reviewCount: String(business.aggregateRating.reviewCount),
+      ratingValue: ratingValue.toFixed(1),
+      reviewCount: String(reviewCount),
       bestRating: '5',
       worstRating: '1',
     },
+    review: reviews.map((r) => ({
+      '@type': 'Review',
+      author: { '@type': r.authorType ?? 'Person', name: r.author },
+      datePublished: r.date,
+      reviewBody: r.text,
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: String(r.rating),
+        bestRating: '5',
+        worstRating: '1',
+      },
+    })),
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
       name: 'Fönsterputsningstjänster',
@@ -125,6 +138,16 @@ const buildLinkListHtml = (items = []) =>
 const buildTextListHtml = (items = [], tagName = 'ul') =>
   `<${tagName}>${items.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</${tagName}>`;
 
+// Omdömena renderas klientsida av Vue, men aggregateRating i den strukturerade
+// datan kräver att recensionsinnehållet också syns i den prerenderade HTML:en.
+const buildReviewsHtml = (items = []) =>
+  `<ul>${items
+    .map(
+      (item) =>
+        `<li>${escapeHtml(item.rating)} av 5 stjärnor: &ldquo;${escapeHtml(item.text)}&rdquo; – ${escapeHtml(item.author)}</li>`
+    )
+    .join('')}</ul>`;
+
 const buildDistrictsHtml = (districts = []) => `<p>${districts.map((district) => escapeHtml(district)).join(', ')}</p>`;
 
 const buildFaqSchema = (faq = []) => ({
@@ -151,6 +174,10 @@ const pages = [
       {
         heading: 'Områden vi täcker',
         html: buildLinkListHtml(areas),
+      },
+      {
+        heading: 'Kundomdömen',
+        html: buildReviewsHtml(reviews),
       },
       {
         heading: 'Vanliga frågor',
