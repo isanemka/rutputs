@@ -465,9 +465,24 @@ export default defineComponent({
       // Punkterna motsvarar nåbara scrollpositioner, inte antalet kort. Visas
       // tre kort samtidigt finns bara tre positioner att gå till, och då ska
       // det vara tre punkter – annars pekar de sista punkterna på samma läge.
+      //
+      // Ceil, inte round: går maxScroll inte jämnt upp i steglängden krävs en
+      // punkt till för den sista biten, annars går ändläget inte att nå. Den
+      // lilla marginalen fångar flyttalsfel, så att ett spår som går jämnt upp
+      // inte får en extra punkt som pekar på samma läge som den föregående.
       const step = reviewStep(track);
-      reviewPageCount.value = step > 0 ? Math.round(maxScroll / step) + 1 : 0;
-      activeReviewIndex.value = step > 0 ? Math.round(track.scrollLeft / step) : 0;
+      const steps = step > 0 ? maxScroll / step : 0;
+      const pageCount = step > 0 ? Math.ceil(steps - 0.02) + 1 : 0;
+      reviewPageCount.value = pageCount;
+
+      // Sista punkten motsvarar maxScroll, som kan ligga närmare föregående
+      // steg än ett helt steg bort. Därför klampas ändläget explicit.
+      activeReviewIndex.value =
+        step <= 0
+          ? 0
+          : track.scrollLeft >= maxScroll - 8
+            ? pageCount - 1
+            : Math.min(Math.round(track.scrollLeft / step), pageCount - 1);
     };
 
     // Scroll-eventet kan komma flera gånger per bildruta. Mätningen läser
