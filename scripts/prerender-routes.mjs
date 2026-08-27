@@ -3,7 +3,7 @@ import path from 'node:path';
 import siteSeoContent from '../src/data/seo-content.js';
 import guides from '../src/data/guides-content.js';
 import business from '../src/data/business.js';
-import reviews from '../src/data/reviews-content.js';
+import reviews, { ratingValue, reviewCount } from '../src/data/reviews-content.js';
 
 const baseUrl = 'https://www.rutputs.nu';
 const distDir = path.resolve('dist/spa');
@@ -38,8 +38,8 @@ function buildLocalBusinessSchema() {
     areaServed: areas.map((a) => ({ '@type': 'City', name: a.name })),
     aggregateRating: {
       '@type': 'AggregateRating',
-      ratingValue: String(business.aggregateRating.ratingValue),
-      reviewCount: String(business.aggregateRating.reviewCount),
+      ratingValue: ratingValue.toFixed(1),
+      reviewCount: String(reviewCount),
       bestRating: '5',
       worstRating: '1',
     },

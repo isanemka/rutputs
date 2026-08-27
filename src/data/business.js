@@ -27,13 +27,9 @@ const business = {
     latitude: 59.4233,
     longitude: 17.8357,
   },
-  // Aggregerat betyg – enda källa, läses av både UI (reviews.ts) och schema.
-  // reviewCount måste matcha antalet omdömen i reviews-content.js, annars
-  // stämmer inte den strukturerade datan med det som visas på sidan.
-  aggregateRating: {
-    ratingValue: 5.0,
-    reviewCount: 5,
-  },
+  // Aggregerat betyg härleds från omdömeslistan i reviews-content.js och bor
+  // därför inte här – se ratingValue och reviewCount i den filen.
+
   // Profiler som binder ihop Rutputs som en igenkänd entitet (sameAs).
   googleBusinessUrl:
     'https://www.google.com/search?q=Rutputs&stick=H4sIAAAAAAAAAONgU1I1qDAxM7U0SDNONDQ1SDUxSkqzMqgwNzExMzdITDa1NLRMNTQyWsTKHlRaUlBaUgwAQ7U7RjMAAAA&mat=CajQ30ohy9Xe',

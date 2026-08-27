@@ -1,5 +1,5 @@
 import business from './business.js';
-import reviewsList from './reviews-content.js';
+import reviewsList, { ratingValue, reviewCount } from './reviews-content.js';
 
 export interface Review {
   author: string;
@@ -19,8 +19,8 @@ export interface ReviewsData {
 }
 
 export const reviewsData: ReviewsData = {
-  aggregateRating: business.aggregateRating.ratingValue,
-  reviewCount: business.aggregateRating.reviewCount,
+  aggregateRating: ratingValue,
+  reviewCount,
   googleBusinessUrl: business.googleBusinessUrl,
   reviews: reviewsList as Review[],
 };

@@ -40,4 +40,18 @@ const reviews = [
   },
 ];
 
+// Det aggregerade betyget härleds från listan ovan i stället för att skrivas
+// in för hand. Annars kan reviewCount hamna ur synk med antalet Review-noder
+// i den strukturerade datan, och då motsäger markupen sig själv.
+//
+// Vill du någon gång låta aggregatet spegla alla omdömen på Google i stället
+// för de som listas här, sätt värdena manuellt – men lägg då till omdömena i
+// listan också, annars är det just den motsägelsen som uppstår.
+export const reviewCount = reviews.length;
+
+export const ratingValue =
+  reviews.length > 0
+    ? Number((reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length).toFixed(1))
+    : 0;
+
 export default reviews;
