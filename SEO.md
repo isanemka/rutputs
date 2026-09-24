@@ -5,7 +5,7 @@
 ### Förutsättningar
 
 - [ ] **gcloud CLI** installerat — https://cloud.google.com/sdk/docs/install
-- [ ] **Node.js ≥ 18** (redan installerat)
+- [ ] **Node.js 24** (redan installerat)
 - [ ] Du är inloggad på det Google-konto som är kopplat till GSC för rutputs.nu
 
 ### Engångsinställning
