@@ -4,7 +4,8 @@
 //
 // Errors (exit 1): missing file, duplicate title or description, canonical or
 // og:url not equal to the page's own URL, not exactly one <h1>, noindex on a
-// sitemap URL, or a 404.html that is missing or indexable.
+// sitemap URL, <html lang> other than "sv", or a 404.html that is missing or
+// indexable.
 // Warnings: title > 60 or description > 155 characters, thin content.
 
 import { readFile } from 'node:fs/promises';
@@ -63,9 +64,11 @@ function analyse(html) {
   const ogUrl = findTags(head, 'meta', (t) => attr(t, 'property') === 'og:url').map((t) => attr(t, 'content'));
   const robots = findTags(head, 'meta', (t) => attr(t, 'name') === 'robots').map((t) => attr(t, 'content'));
   const h1Count = (html.match(/<h1\b/gi) || []).length;
+  const htmlTag = (html.match(/<html\b[^>]*>/i) || [''])[0];
   const mainMatch = html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/i);
 
   return {
+    lang: attr(htmlTag, 'lang'),
     titles: (head.match(/<title\b/gi) || []).length,
     title: titleMatch ? decodeEntities(titleMatch[1]).trim() : '',
     description,
@@ -120,6 +123,7 @@ async function main() {
     }
     if (page.h1Count !== 1) errors.push(`${urlPath}: ${page.h1Count} <h1> elements (expected 1)`);
     if (/noindex/i.test(page.robots)) errors.push(`${urlPath}: in sitemap but robots is "${page.robots}"`);
+    if (page.lang !== 'sv') errors.push(`${urlPath}: <html lang="${page.lang}"> should be "sv"`);
 
     if (page.title.length > TITLE_MAX) warnings.push(`${urlPath}: title is ${page.title.length} characters (max ${TITLE_MAX})`);
     const descriptionLength = (page.description[0] || '').length;
