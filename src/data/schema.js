@@ -105,7 +105,7 @@ export function areaBusinessSchema(area) {
     '@context': CONTEXT,
     ...businessCore(),
     description: area.description,
-    areaServed: [area.name, ...area.districts.filter((d) => d !== area.name)].map(place),
+    areaServed: [area.name, ...area.districts.map((d) => d.name).filter((name) => name !== area.name)].map(place),
   };
 }
 

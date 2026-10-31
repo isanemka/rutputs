@@ -23,6 +23,11 @@ export interface SeoPage {
   steps?: string[];
 }
 
+export interface AreaDistrict {
+  name: string;
+  text: string;
+}
+
 export interface AreaSeo {
   slug: string;
   name: string;
@@ -32,10 +37,20 @@ export interface AreaSeo {
   updatedAt: string;
   /** The page title is generated from a template in site-pages.js. */
   description: string;
+  /** Hero lead. */
   content: string;
-  districts: string[];
+  housing: string[];
+  districts: AreaDistrict[];
+  tips: string[];
+  /** Row ids from prices.js, most relevant first. */
+  priceRows: Array<'apartmentSmall' | 'apartmentLarge' | 'house'>;
+  priceNote: string;
+  services: string[];
+  /** Adds a link to /foretag. */
+  company?: boolean;
+  guides: string[];
   faq: SeoFaq[];
-  nearbyAreas?: Array<{ name: string; slug: string }>;
+  nearbyAreas: Array<{ name: string; slug: string }>;
 }
 
 export interface ServiceSeo {
@@ -50,6 +65,12 @@ export interface ServiceSeo {
   benefits: string[];
   faq: SeoFaq[];
   contactOnly?: boolean;
+}>;
+  /** Adds a link to /foretag. */
+  company?: boolean;
+  guides?: string[];
+  /** Area slugs to link. */
+  areas?: string[];
 }
 
 interface SiteSeoContent {
