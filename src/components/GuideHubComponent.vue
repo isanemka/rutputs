@@ -45,8 +45,6 @@
 import { defineComponent, computed } from 'vue';
 import { getGuidesSortedByDate } from 'src/data/guides';
 
-const SITE_URL = 'https://www.rutputs.nu';
-
 function formatDate(iso: string): string {
   return new Date(iso + 'T00:00:00').toLocaleDateString('sv-SE', { year: 'numeric', month: 'long', day: 'numeric' });
 }
@@ -56,52 +54,6 @@ export default defineComponent({
   setup() {
     const sortedGuides = computed(() => getGuidesSortedByDate());
     return { sortedGuides, formatDate };
-  },
-  meta() {
-    const url = `${SITE_URL}/guide`;
-    const title = 'Guider om fönsterputs i Stockholm | Rutputs';
-    const description = 'Råd, prisinfo och guider om fönsterputs i Stockholm — RUT-avdrag, intervall, säsongstips och mer.';
-    return {
-      title,
-      meta: {
-        description: { name: 'description', content: description },
-        ogTitle: { property: 'og:title', content: title },
-        ogDescription: { property: 'og:description', content: description },
-        ogUrl: { property: 'og:url', content: url },
-        twitterCard: { name: 'twitter:card', content: 'summary_large_image' },
-        twitterTitle: { name: 'twitter:title', content: title },
-        twitterDescription: { name: 'twitter:description', content: description },
-      },
-      link: {
-        canonical: { rel: 'canonical', href: url },
-      },
-      script: {
-        breadcrumbSchema: {
-          type: 'application/ld+json',
-          innerHTML: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'BreadcrumbList',
-            itemListElement: [
-              { '@type': 'ListItem', position: 1, name: 'Start', item: `${SITE_URL}/` },
-              { '@type': 'ListItem', position: 2, name: 'Guider', item: url },
-            ],
-          }),
-        },
-        itemListSchema: {
-          type: 'application/ld+json',
-          innerHTML: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'ItemList',
-            itemListElement: getGuidesSortedByDate().map((guide, index) => ({
-              '@type': 'ListItem',
-              position: index + 1,
-              url: `${SITE_URL}/guide/${guide.slug}`,
-              name: guide.h1,
-            })),
-          }),
-        },
-      },
-    };
   },
 });
 </script>

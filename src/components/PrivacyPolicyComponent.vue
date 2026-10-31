@@ -190,57 +190,9 @@
 <script lang="ts">
 import { defineComponent, computed } from 'vue';
 import { useConsent } from 'src/composables/useConsent';
-import { privacySeo } from 'src/data/seo';
 
 export default defineComponent({
   name: 'PrivacyPolicyComponent',
-  meta: {
-    title: privacySeo.title,
-    meta: {
-      description: {
-        name: 'description',
-        content: privacySeo.description
-      },
-      ogTitle: {
-        property: 'og:title',
-        content: privacySeo.title
-      },
-      ogDescription: {
-        property: 'og:description',
-        content: privacySeo.description
-      },
-      ogImage: {
-        property: 'og:image',
-        content: 'https://www.rutputs.nu/og-image.jpg'
-      },
-      ogUrl: {
-        property: 'og:url',
-        content: 'https://www.rutputs.nu/integritetspolicy'
-      },
-      twitterCard: {
-        name: 'twitter:card',
-        content: 'summary_large_image'
-      },
-      twitterTitle: {
-        name: 'twitter:title',
-        content: privacySeo.title
-      },
-      twitterDescription: {
-        name: 'twitter:description',
-        content: privacySeo.description
-      },
-      twitterImage: {
-        name: 'twitter:image',
-        content: 'https://www.rutputs.nu/og-image.jpg'
-      }
-    },
-    link: {
-      canonical: {
-        rel: 'canonical',
-        href: 'https://www.rutputs.nu/integritetspolicy'
-      }
-    }
-  },
   setup() {
     const {
       consentStatus,

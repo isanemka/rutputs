@@ -28,15 +28,6 @@ import { trackConversion, trackEvent } from 'src/boot/analytics';
 
 export default defineComponent({
   name: 'ConfirmationComponent',
-  meta: {
-    title: 'Bekräftelse – Rutputs',
-    meta: {
-      robots: {
-        name: 'robots',
-        content: 'noindex, nofollow'
-      }
-    }
-  },
   setup() {
     onMounted(() => {
       if (typeof window === 'undefined') return;

@@ -274,7 +274,6 @@ import { computed, defineComponent, onBeforeUnmount, onMounted, ref } from 'vue'
 import { areas } from 'src/data/areas';
 import { homeSeo } from 'src/data/seo';
 import { reviewsData } from 'src/data/reviews';
-import business from 'src/data/business';
 
 const homeFaqs = homeSeo.faq ?? [];
 
@@ -296,124 +295,6 @@ const portraitImages = [
 
 export default defineComponent({
   name: 'LandingComponent',
-  meta: {
-    title: homeSeo.title,
-    meta: {
-      description: {
-        name: 'description',
-        content: homeSeo.description
-      },
-      ogTitle: {
-        property: 'og:title',
-        content: homeSeo.title
-      },
-      ogDescription: {
-        property: 'og:description',
-        content: homeSeo.description
-      },
-      ogImage: {
-        property: 'og:image',
-        content: 'https://www.rutputs.nu/og-image.jpg'
-      },
-      ogUrl: {
-        property: 'og:url',
-        content: 'https://www.rutputs.nu/'
-      },
-      twitterCard: {
-        name: 'twitter:card',
-        content: 'summary_large_image'
-      },
-      twitterTitle: {
-        name: 'twitter:title',
-        content: homeSeo.title
-      },
-      twitterDescription: {
-        name: 'twitter:description',
-        content: homeSeo.description
-      },
-      twitterImage: {
-        name: 'twitter:image',
-        content: 'https://www.rutputs.nu/og-image.jpg'
-      }
-    },
-    link: {
-      canonical: {
-        rel: 'canonical',
-        href: 'https://www.rutputs.nu/'
-      }
-    },
-    script: {
-      faqSchema: {
-        type: 'application/ld+json',
-        innerHTML: JSON.stringify({
-          '@context': 'https://schema.org',
-          '@type': 'FAQPage',
-          'mainEntity': homeFaqs.map((item) => ({
-            '@type': 'Question',
-            'name': item.question,
-            'acceptedAnswer': {
-              '@type': 'Answer',
-              'text': item.answer
-            }
-          }))
-        })
-      },
-      reviewSchema: {
-        type: 'application/ld+json',
-        innerHTML: JSON.stringify({
-          '@context': 'https://schema.org',
-          '@type': 'LocalBusiness',
-          '@id': business.id,
-          name: 'Rutputs',
-          url: 'https://www.rutputs.nu/',
-          image: 'https://www.rutputs.nu/og-image.jpg',
-          aggregateRating: {
-            '@type': 'AggregateRating',
-            ratingValue: reviewsData.aggregateRating.toFixed(1),
-            reviewCount: reviewsData.reviewCount,
-            bestRating: '5',
-            worstRating: '1'
-          },
-          review: reviewsData.reviews.map((r) => ({
-            '@type': 'Review',
-            author: { '@type': r.authorType ?? 'Person', name: r.author },
-            datePublished: r.date,
-            reviewBody: r.text,
-            reviewRating: {
-              '@type': 'Rating',
-              ratingValue: String(r.rating),
-              bestRating: '5',
-              worstRating: '1'
-            }
-          }))
-        })
-      },
-      organizationSchema: {
-        type: 'application/ld+json',
-        innerHTML: JSON.stringify({
-          '@context': 'https://schema.org',
-          '@type': 'Organization',
-          name: 'Rutputs',
-          url: 'https://www.rutputs.nu/',
-          logo: 'https://www.rutputs.nu/icons/main_logo.png',
-          telephone: '+46734644604'
-        })
-      },
-      breadcrumbSchema: {
-        type: 'application/ld+json',
-        innerHTML: JSON.stringify({
-          '@context': 'https://schema.org',
-          '@type': 'BreadcrumbList',
-          itemListElement: [{
-            '@type': 'ListItem',
-            position: 1,
-            name: 'Start',
-            item: 'https://www.rutputs.nu/'
-          }]
-        })
-      }
-    }
-  },
   setup() {
     const heroSection = ref<HTMLElement | null>(null);
     const parallaxOffset = ref(0);

@@ -12,6 +12,8 @@ export interface SeoFaq {
 }
 
 export interface SeoPage {
+  /** ISO date of the last meaningful content change; becomes <lastmod> in sitemap.xml. */
+  updatedAt: string;
   title: string;
   description: string;
   bodyTitle: string;
@@ -24,7 +26,11 @@ export interface SeoPage {
 export interface AreaSeo {
   slug: string;
   name: string;
-  title: string;
+  /** Preposition used with the name: "i" (default) or "på" (på Östermalm). */
+  prep?: 'i' | 'på';
+  /** ISO date of the last meaningful content change; becomes <lastmod> in sitemap.xml. */
+  updatedAt: string;
+  /** The page title is generated from a template in site-pages.js. */
   description: string;
   content: string;
   districts: string[];
@@ -34,6 +40,8 @@ export interface AreaSeo {
 
 export interface ServiceSeo {
   slug: string;
+  /** ISO date of the last meaningful content change; becomes <lastmod> in sitemap.xml. */
+  updatedAt: string;
   name: string;
   title: string;
   description: string;

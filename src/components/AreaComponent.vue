@@ -8,12 +8,12 @@
       </nav>
       <section class="hero-shell area-hero">
         <picture class="hero-shell__media area-hero__media">
-          <source media="(min-width: 600px)" :srcset="randomLandscapeImage" type="image/webp">
-          <img class="hero-shell__image" :src="randomPortraitImage" :alt="'Fönsterputsning i ' + area.name">
+          <source media="(min-width: 600px)" :srcset="hero.landscape" type="image/webp">
+          <img class="hero-shell__image" :src="hero.portrait" :alt="'Fönsterputsning ' + inArea" fetchpriority="high">
         </picture>
         <div class="hero-shell__content">
           <span class="hero-kicker">{{ area.name }}</span>
-          <h1 class="hero-title area-hero__title">Fönsterputsning i {{ area.name }}</h1>
+          <h1 class="hero-title area-hero__title">Fönsterputsning {{ inArea }}</h1>
           <p class="hero-lead">
             {{ area.content }}
           </p>
@@ -28,7 +28,7 @@
           <span class="section-kicker">Lokalt upplägg</span>
           <h2 class="section-title">En smidigare bokning när arbetet redan sker i området</h2>
           <p class="section-text">
-            Fönsterputsning i {{ area.name }} passar villor, radhus, lägenheter och mindre fastigheter där rena fönster
+            Fönsterputsning {{ inArea }} passar villor, radhus, lägenheter och mindre fastigheter där rena fönster
             gör stor skillnad för ljusinsläpp och helhetsintryck. Vi arbetar redan i området, vilket gör det enkelt att hitta en tid som passar.
           </p>
           <p class="section-text">
@@ -44,14 +44,14 @@
             <li>Fyll i uppgifterna i offertformuläret.</li>
             <li>Skicka in förfrågan när upplägget känns rätt, så återkommer vi med en offert.</li>
             <li>Få återkoppling om bokning, tid och eventuella detaljer.</li>
-            <li>Få arbetet utfört av någon som redan är verksam i {{ area.name }}.</li>
+            <li>Få arbetet utfört av någon som redan är verksam {{ inArea }}.</li>
           </ul>
         </div>
       </section>
 
       <section class="editorial-panel">
         <span class="section-kicker">Delområden</span>
-        <h2 class="section-title">Områden vi täcker i {{ area.name }}</h2>
+        <h2 class="section-title">Områden vi täcker {{ inArea }}</h2>
         <p class="section-text">
           Vi arbetar återkommande i flera delar av {{ area.name }}, vilket gör det enkelt att boka både enstaka putsningar och återkommande hjälp.
         </p>
@@ -88,7 +88,7 @@
 
       <section class="editorial-panel faq-shell">
         <span class="section-kicker">Vanliga frågor</span>
-        <h2 class="section-title">Det här undrar kunder i {{ area.name }} oftast</h2>
+        <h2 class="section-title">Det här undrar kunder {{ inArea }} oftast</h2>
         <q-list bordered separator role="none">
           <q-expansion-item
             v-for="item in area.faq"
@@ -125,178 +125,34 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed, onMounted, watch } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
+import { defineComponent, computed } from 'vue';
+import { useRoute } from 'vue-router';
 import { getAreaBySlug } from 'src/data/seo';
-import business from 'src/data/business';
+import { areaLocative, heroImagesFor } from 'src/data/site-pages';
 
 export default defineComponent({
   name: 'AreaComponent',
   setup() {
     const route = useRoute();
-    const router = useRouter();
 
-    const area = computed(() => {
-      const slug = route.params.area as string;
-      return getAreaBySlug(slug);
-    });
+    // Unknown slugs never reach this component: the route guard renders the
+    // 404 page instead (see src/router/routes.ts).
+    const area = computed(() => getAreaBySlug(route.params.area as string));
 
-    const districtSummary = computed(() => {
-      if (!area.value) {
-        return '';
-      }
+    // "i Kista" / "på Östermalm"
+    const inArea = computed(() => (area.value ? areaLocative(area.value) : ''));
 
-      return area.value.districts.join(', ');
-    });
+    const districtSummary = computed(() => area.value?.districts.join(', ') ?? '');
 
-    watch(area, (val) => {
-      if (!val) {
-        router.replace('/404');
-      }
-    }, { immediate: true });
-
-    const landscapeImages = [
-      '/img/25050.webp',
-      '/img/25051.webp',
-      '/img/25052.webp',
-      '/img/25053.webp',
-      '/img/25054.webp',
-      '/img/25055.webp'
-    ];
-    const portraitImages = [
-      '/img/15050.webp',
-      '/img/15051.webp',
-      '/img/15052.webp',
-      '/img/15053.webp'
-    ];
-    const randomLandscapeImage = ref('');
-    const randomPortraitImage = ref('');
-    onMounted(() => {
-      randomLandscapeImage.value = landscapeImages[Math.floor(Math.random() * landscapeImages.length)];
-      randomPortraitImage.value = portraitImages[Math.floor(Math.random() * portraitImages.length)];
-    });
+    const hero = computed(() => heroImagesFor(route.path));
 
     return {
       area,
+      inArea,
       districtSummary,
-      randomLandscapeImage,
-      randomPortraitImage,
+      hero,
     };
   },
-  meta() {
-    const slug = this.$route.params.area as string;
-    const area = getAreaBySlug(slug);
-    if (!area) {
-      return {
-        title: 'Sidan hittades inte – Rutputs',
-        meta: {
-          robots: { name: 'robots', content: 'noindex' }
-        }
-      };
-    }
-    return {
-      title: area.title,
-      meta: {
-        description: {
-          name: 'description',
-          content: area.description
-        },
-        ogTitle: {
-          property: 'og:title',
-          content: area.title
-        },
-        ogDescription: {
-          property: 'og:description',
-          content: area.description
-        },
-        ogImage: {
-          property: 'og:image',
-          content: 'https://www.rutputs.nu/og-image.jpg'
-        },
-        ogUrl: {
-          property: 'og:url',
-          content: `https://www.rutputs.nu/omrade/${area.slug}`
-        },
-        twitterCard: {
-          name: 'twitter:card',
-          content: 'summary_large_image'
-        },
-        twitterTitle: {
-          name: 'twitter:title',
-          content: area.title
-        },
-        twitterDescription: {
-          name: 'twitter:description',
-          content: area.description
-        },
-        twitterImage: {
-          name: 'twitter:image',
-          content: 'https://www.rutputs.nu/og-image.jpg'
-        }
-      },
-      script: {
-        serviceSchema: {
-          type: 'application/ld+json',
-          innerHTML: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'Service',
-            name: `Fönsterputs i ${area.name}`,
-            serviceType: 'Fönsterputsning',
-            description: area.description,
-            url: `https://www.rutputs.nu/omrade/${area.slug}`,
-            provider: {
-              '@type': 'LocalBusiness',
-              '@id': business.id,
-              name: 'Rutputs',
-              url: 'https://www.rutputs.nu/'
-            },
-            areaServed: {
-              '@type': 'City',
-              name: area.name
-            },
-            offers: {
-              '@type': 'Offer',
-              priceCurrency: 'SEK',
-              price: '499',
-              description: 'Från-pris efter RUT-avdrag'
-            }
-          })
-        },
-        faqSchema: {
-          type: 'application/ld+json',
-          innerHTML: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'FAQPage',
-            mainEntity: area.faq.map((item) => ({
-              '@type': 'Question',
-              name: item.question,
-              acceptedAnswer: {
-                '@type': 'Answer',
-                text: item.answer
-              }
-            }))
-          })
-        },
-        breadcrumbSchema: {
-          type: 'application/ld+json',
-          innerHTML: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'BreadcrumbList',
-            itemListElement: [
-              { '@type': 'ListItem', position: 1, name: 'Start', item: 'https://www.rutputs.nu/' },
-              { '@type': 'ListItem', position: 2, name: area.name, item: `https://www.rutputs.nu/omrade/${area.slug}` }
-            ]
-          })
-        }
-      },
-      link: {
-        canonical: {
-          rel: 'canonical',
-          href: `https://www.rutputs.nu/omrade/${area.slug}`
-        }
-      }
-    };
-  }
 });
 </script>
 

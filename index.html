@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="sv">
   <head>
+    <meta charset="utf-8" />
     <!-- Google Tag Manager -->
     <script>
       (function (w, d, s, l, i) {
@@ -29,45 +30,8 @@
         href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
       />
     </noscript>
-    <!-- Preload default hero portrait image (mobile LCP element).
-         No fetchpriority here — the <img fetchpriority="high"> in the component
-         already boosts priority once discovered; adding it on the preload link
-         too would compete with the CSS download and delay FCP. -->
-    <link
-      rel="preload"
-      as="image"
-      href="/img/15050.webp"
-      media="(max-width: 599px)"
-    />
-    <title>Fönsterputs i Stockholm – Från 499 kr med RUT | Rutputs</title>
-    <meta
-      name="description"
-      content="Vi erbjuder professionell fönsterputsning i Stockholm med RUT-avdrag. Från 499 kr. Vi täcker Järfälla, Sundbyberg, Solna, Spånga med flera områden."
-    />
-    <link rel="canonical" href="https://www.rutputs.nu/" />
-    <meta name="robots" content="index, follow" />
-    <meta
-      property="og:title"
-      content="Fönsterputs i Stockholm – Från 499 kr med RUT | Rutputs"
-    />
-    <meta
-      property="og:description"
-      content="Vi erbjuder professionell fönsterputsning i Stockholm med RUT-avdrag. Från 499 kr. Ta kontakt för en offert."
-    />
-    <meta property="og:url" content="https://www.rutputs.nu/" />
-    <meta property="og:image" content="https://www.rutputs.nu/og-image.jpg" />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta
-      name="twitter:title"
-      content="Fönsterputs i Stockholm – Från 499 kr med RUT | Rutputs"
-    />
-    <meta
-      name="twitter:description"
-      content="Vi erbjuder professionell fönsterputsning i Stockholm med RUT-avdrag. Från 499 kr. Ta kontakt för en offert."
-    />
-    <meta name="twitter:image" content="https://www.rutputs.nu/og-image.jpg" />
-    <meta charset="utf-8" />
+    <!-- Title, description, canonical, Open Graph and JSON-LD are set per
+         route by usePageSeo() (src/composables/usePageSeo.ts). -->
     <meta name="format-detection" content="telephone=no" />
     <meta name="msapplication-tap-highlight" content="no" />
     <meta
@@ -75,198 +39,10 @@
       content="initial-scale=1, width=device-width<% if (ctx.mode.cordova || ctx.mode.capacitor) { %>, viewport-fit=cover<% } %>"
     />
 
-    <link rel="icon" type="image/png" href="icons/favicon.png" />
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "@id": "https://www.rutputs.nu/#business",
-        "name": "Rutputs",
-        "slogan": "Rena fönster. Tydligt pris. Snabb bokning.",
-        "url": "https://www.rutputs.nu",
-        "logo": "https://www.rutputs.nu/icons/main_logo.png",
-        "image": "https://www.rutputs.nu/og-image.jpg",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Järfälla",
-          "addressRegion": "Stockholm",
-          "addressCountry": "SE"
-        },
-        "geo": {
-          "@type": "GeoCoordinates",
-          "latitude": 59.4233,
-          "longitude": 17.8357
-        },
-        "hasMap": "https://www.google.com/search?q=Rutputs&stick=H4sIAAAAAAAAAONgU1I1qDAxM7U0SDNONDQ1SDUxSkqzMqgwNzExMzdITDa1NLRMNTQyWsTKHlRaUlBaUgwAQ7U7RjMAAAA&mat=CajQ30ohy9Xe",
-        "sameAs": [
-          "https://www.google.com/search?q=Rutputs&stick=H4sIAAAAAAAAAONgU1I1qDAxM7U0SDNONDQ1SDUxSkqzMqgwNzExMzdITDa1NLRMNTQyWsTKHlRaUlBaUgwAQ7U7RjMAAAA&mat=CajQ30ohy9Xe",
-          "https://www.facebook.com/rutputspunktnu",
-          "https://www.instagram.com/rutputs.nu/"
-        ],
-        "knowsAbout": [
-          "Fönsterputsning",
-          "RUT-avdrag",
-          "Fönsterputs för villa",
-          "Fönsterputs för lägenhet",
-          "Fönsterputs för företag",
-          "Återkommande fönsterputs"
-        ],
-        "description": "Professionell fönsterputsning i Stockholm. Från 499 kr med RUT-avdrag. Järfälla, Bromma, Kista, Solna, Sundbyberg, Sollentuna, Täby.",
-        "telephone": "+46734644604",
-        "email": "kontakt@rutputs.nu",
-        "priceRange": "från 499 SEK",
-        "openingHours": "Mo-Fr 08:00-18:00",
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "5.0",
-          "reviewCount": "5",
-          "bestRating": "5",
-          "worstRating": "1"
-        },
-        "areaServed": [
-          { "@type": "City", "name": "Järfälla" },
-          { "@type": "City", "name": "Viksjö" },
-          { "@type": "City", "name": "Kallhäll" },
-          { "@type": "City", "name": "Bromma" },
-          { "@type": "City", "name": "Kista" },
-          { "@type": "City", "name": "Solna" },
-          { "@type": "City", "name": "Sundbyberg" },
-          { "@type": "City", "name": "Spånga" },
-          { "@type": "City", "name": "Sollentuna" },
-          { "@type": "City", "name": "Täby" },
-          { "@type": "City", "name": "Lidingö" },
-          { "@type": "City", "name": "Östermalm" },
-          { "@type": "City", "name": "Vällingby" },
-          { "@type": "City", "name": "Hässelby" },
-          { "@type": "City", "name": "Danderyd" },
-          { "@type": "City", "name": "Kungsholmen" },
-          { "@type": "City", "name": "Norrmalm" },
-          { "@type": "City", "name": "Bromsten" },
-          { "@type": "City", "name": "Nacka" },
-          { "@type": "City", "name": "Upplands Väsby" }
-        ],
-        "hasOfferCatalog": {
-          "@type": "OfferCatalog",
-          "name": "Fönsterputsningstjänster",
-          "itemListElement": [
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Fönsterputsning för privatpersoner",
-                "description": "Professionell fönsterputsning för villor och lägenheter med RUT-avdrag"
-              },
-              "priceCurrency": "SEK",
-              "price": "499",
-              "priceSpecification": {
-                "@type": "PriceSpecification",
-                "priceCurrency": "SEK",
-                "price": "499",
-                "description": "Från-pris efter RUT-avdrag"
-              }
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Fönsterputsning för företag",
-                "description": "Professionell fönsterputsning för kontor och företagslokaler i Stockholm"
-              }
-            }
-          ]
-        }
-      }
-    </script>
+    <link rel="icon" type="image/png" href="/icons/favicon.png" />
   </head>
   <body>
     <!-- quasar:entry-point -->
-    <noscript>
-      <div
-        style="
-          max-width: 800px;
-          margin: 0 auto;
-          padding: 2rem;
-          font-family: sans-serif;
-        "
-      >
-        <h1>Rutputs – Fönsterputsning i Stockholm</h1>
-        <p>
-          Professionell fönsterputsning med RUT-avdrag från 499 kr. Vi täcker
-          Järfälla, Bromma, Kista, Solna, Sundbyberg, Spånga, Sollentuna och
-          Täby.
-        </p>
-        <h2>Tjänster</h2>
-        <ul>
-          <li><a href="/pris">Prislista – Se ditt pris direkt</a></li>
-          <li><a href="/foretag">Fönsterputsning för företag</a></li>
-          <li>
-            <a href="/tjanst/villa-fonsterputs">Fönsterputsning för villa</a>
-          </li>
-          <li>
-            <a href="/tjanst/lagenhet-fonsterputs"
-              >Fönsterputsning för lägenhet</a
-            >
-          </li>
-          <li><a href="/tjanst/varputs">Vårputs av fönster</a></li>
-          <li><a href="/tjanst/hostputs">Höstputs av fönster</a></li>
-          <li>
-            <a href="/tjanst/abonnemang-fonsterputs"
-              >Abonnemang fönsterputsning</a
-            >
-          </li>
-        </ul>
-        <h2>Guider</h2>
-        <ul>
-          <li><a href="/guide">Alla guider</a></li>
-          <li>
-            <a href="/guide/hur-ofta-ska-man-putsa-fonster"
-              >Hur ofta ska man putsa fönster?</a
-            >
-          </li>
-          <li>
-            <a href="/guide/rut-avdrag-fonsterputs-2026"
-              >RUT-avdrag för fönsterputsning 2026</a
-            >
-          </li>
-        </ul>
-        <h2>Områden vi täcker</h2>
-        <ul>
-          <li><a href="/omrade/jarfalla">Fönsterputsning i Järfälla</a></li>
-          <li><a href="/omrade/viksjo">Fönsterputsning i Viksjö</a></li>
-          <li><a href="/omrade/kallhall">Fönsterputsning i Kallhäll</a></li>
-          <li><a href="/omrade/bromma">Fönsterputsning i Bromma</a></li>
-          <li><a href="/omrade/bromsten">Fönsterputsning i Bromsten</a></li>
-          <li><a href="/omrade/kista">Fönsterputsning i Kista</a></li>
-          <li><a href="/omrade/solna">Fönsterputsning i Solna</a></li>
-          <li><a href="/omrade/bergshamra">Fönsterputsning i Bergshamra</a></li>
-          <li><a href="/omrade/sundbyberg">Fönsterputsning i Sundbyberg</a></li>
-          <li><a href="/omrade/spanga">Fönsterputsning i Spånga</a></li>
-          <li><a href="/omrade/vallingby">Fönsterputsning i Vällingby</a></li>
-          <li><a href="/omrade/hasselby">Fönsterputsning i Hässelby</a></li>
-          <li><a href="/omrade/sollentuna">Fönsterputsning i Sollentuna</a></li>
-          <li><a href="/omrade/taby">Fönsterputsning i Täby</a></li>
-          <li><a href="/omrade/danderyd">Fönsterputsning i Danderyd</a></li>
-          <li><a href="/omrade/lidingo">Fönsterputsning i Lidingö</a></li>
-          <li><a href="/omrade/nacka">Fönsterputsning i Nacka</a></li>
-          <li><a href="/omrade/ostermalm">Fönsterputsning i Östermalm</a></li>
-          <li>
-            <a href="/omrade/kungsholmen">Fönsterputsning i Kungsholmen</a>
-          </li>
-          <li><a href="/omrade/norrmalm">Fönsterputsning i Norrmalm</a></li>
-          <li>
-            <a href="/omrade/upplands-vasby"
-              >Fönsterputsning i Upplands Väsby</a
-            >
-          </li>
-        </ul>
-        <h2>Kontakt</h2>
-        <p>Telefon: <a href="tel:+46734644604">0734-64 46 04</a></p>
-        <p>
-          E-post: <a href="mailto:kontakt@rutputs.nu">kontakt@rutputs.nu</a>
-        </p>
-        <p><a href="/integritetspolicy">Integritetspolicy</a></p>
-      </div>
-    </noscript>
     <!-- Google Tag Manager (noscript) -->
     <noscript
       ><iframe

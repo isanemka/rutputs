@@ -1,6 +1,6 @@
 // Kundomdömen hämtade från Google Business-profilen för Rutputs.
 // Plain JS så att listan kan läsas både av Vue-appen (reviews.ts) och av
-// Node-prerenderskriptet (scripts/prerender-routes.mjs).
+// sidregistret som byggskripten läser (src/data/site-pages.js, src/data/schema.js).
 //
 // Texterna är ordagranna citat och ska inte redigeras – hämta nya omdömen
 // från Google i stället. Listan ligger nyast först; nya omdömen läggs överst.

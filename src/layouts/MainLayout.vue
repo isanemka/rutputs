@@ -113,6 +113,7 @@ import { defineComponent, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import CookieConsentBanner from 'src/components/CookieConsentBanner.vue';
 import { useConsent } from 'src/composables/useConsent';
+import { usePageSeo } from 'src/composables/usePageSeo';
 import { areas } from 'src/data/areas';
 import { getGuidesSortedByDate } from 'src/data/guides';
 
@@ -124,6 +125,7 @@ export default defineComponent({
   setup() {
     const router = useRouter();
     const { triggerShowBanner } = useConsent();
+    usePageSeo();
 
     const currentYear = computed(() => new Date().getFullYear());
 
