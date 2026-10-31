@@ -73,15 +73,17 @@ function buildLocalBusinessSchema() {
 // Replace the static LocalBusiness JSON-LD in the template with one generated
 // from the single source of truth (business.js + areas + services), so the
 // prerendered markup never drifts from the data.
+// The built template is minified, so attribute quotes may be stripped
+// (<script type=application/ld+json>). Match both forms so the static schema
+// is replaced instead of duplicated.
+const staticLdJsonPattern = /<script type="?application\/ld\+json"?>[\s\S]*?<\/script>/;
+
 function injectLocalBusinessSchema(template) {
   const generated = `<script type="application/ld+json">${escapeJsonForScript(
     buildLocalBusinessSchema(),
   )}</script>`;
-  if (/<script type="application\/ld\+json">[\s\S]*?<\/script>/.test(template)) {
-    return template.replace(
-      /<script type="application\/ld\+json">[\s\S]*?<\/script>/,
-      generated,
-    );
+  if (staticLdJsonPattern.test(template)) {
+    return template.replace(staticLdJsonPattern, generated);
   }
   return template.replace(/<\/head>/, `    ${generated}\n  </head>`);
 }
@@ -421,6 +423,18 @@ function replaceContent(source, pattern, replacement) {
   return source.replace(pattern, replacement);
 }
 
+// The <head> also contains a <noscript> (font stylesheet fallback), so only
+// replace the first <noscript> inside <body>: the page content fallback.
+function replaceBodyNoscript(html, replacement) {
+  const bodyStart = html.search(/<body[\s>]/);
+  if (bodyStart === -1) {
+    return html;
+  }
+  const head = html.slice(0, bodyStart);
+  const body = html.slice(bodyStart);
+  return head + replaceContent(body, /<noscript>[\s\S]*?<\/noscript>/, replacement);
+}
+
 function setMetaTag(html, matcher, replacement) {
   return replaceContent(html, matcher, replacement);
 }
@@ -514,7 +528,7 @@ function applyPageSeo(template, page) {
       `<meta name="twitter:image" content="${escapedImage}" />`,
     );
   }
-  html = replaceContent(html, /<noscript>[\s\S]*?<\/noscript>/, buildNoscript(page));
+  html = replaceBodyNoscript(html, buildNoscript(page));
   html = replaceContent(
     html,
     /<script type="application\/ld\+json" data-prerender-schema="[^"]*">[\s\S]*?<\/script>\s*/g,
