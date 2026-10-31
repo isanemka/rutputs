@@ -65,7 +65,12 @@ export interface ServiceSeo {
   benefits: string[];
   faq: SeoFaq[];
   contactOnly?: boolean;
-}>;
+  /** Heading of the price section (shown when priceRows is set). */
+  priceHeading?: string;
+  /** Row ids from prices.js to show in the price table. */
+  priceRows?: Array<'apartmentSmall' | 'apartmentLarge' | 'house'>;
+  priceNote?: string;
+  sections?: Array<{ heading: string; paragraphs: string[] }>;
   /** Adds a link to /foretag. */
   company?: boolean;
   guides?: string[];

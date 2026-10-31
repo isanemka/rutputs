@@ -1,7 +1,7 @@
 const guides = [
   {
     'slug': 'hur-ofta-ska-man-putsa-fonster',
-    'title': 'Hur ofta ska man putsa fönster? Komplett guide 2026',
+    'title': 'Hur ofta ska man putsa fönster? Guide för 2026',
     'description': 'Hur ofta bör du putsa fönster i Stockholm? Här går vi igenom rekommenderat intervall baserat på säsong, boendetyp och läge — med konkreta tips.',
     'h1': 'Hur ofta ska man putsa fönster?',
     'intro': 'Det korta svaret: två gånger per år för de flesta hem. Det långa svaret beror på var du bor, vilken typ av bostad du har och hur mycket pollen, trafik och regn dina fönster utsätts för.',
@@ -79,12 +79,13 @@ const guides = [
   },
   {
     'slug': 'rut-avdrag-fonsterputs-2026',
-    'title': 'RUT-avdrag för fönsterputs 2026 — så fungerar det',
-    'description': 'Allt du behöver veta om RUT-avdrag för fönsterputs 2026: belopp, regler, hur det dras automatiskt och vad som gäller för villa, lägenhet och brf.',
-    'h1': 'RUT-avdrag för fönsterputs 2026',
-    'intro': 'Fönsterputsning är en av tjänsterna som omfattas av RUT-avdraget. Det betyder att du som privatperson får 50 % rabatt direkt på fakturan — vi sköter all administration mot Skatteverket.',
+    'title': 'Rutavdrag för fönsterputs 2026 – så fungerar det',
+    'description': 'Så fungerar rutavdraget för fönsterputs och fönsterputsning 2026: du betalar halva priset, taket är 75 000 kr per år och avdraget dras på fakturan.',
+    'h1': 'RUT-avdrag för fönsterputs och fönsterputsning 2026',
+    'intro': 'Fönsterputsning är en av tjänsterna som omfattas av RUT-avdraget – eller rutavdraget, som det också skrivs. Du som privatperson betalar halva priset direkt på fakturan, och vi sköter all administration mot Skatteverket.',
     'publishedAt': '2026-05-21',
-    'readingTimeMin': 5,
+    'updatedAt': '2026-10-31',
+    'readingTimeMin': 6,
     'author': 'Rutputs',
     'tags': [
       'ekonomi',
@@ -97,12 +98,16 @@ const guides = [
         'html': '<p>RUT står för <strong>Rengöring, Underhåll och Tvätt</strong> och är en skattereduktion för hushållsnära tjänster i hemmet. Fönsterputsning är en av de tjänster som omfattas. Du får tillbaka 50 % av arbetskostnaden direkt på fakturan — du behöver alltså inte ansöka själv eller vänta på återbetalning.</p>'
       },
       {
+        'heading': 'Så mycket sparar du med rutavdrag på fönsterputsning',
+        'html': '<p>Med rutavdrag betalar du halva priset för fönsterputsningen. Så här ser det ut med våra priser för 2026, inklusive moms:</p>\n<ul>\n<li><strong>Lägenhet 1–2 rok:</strong> 499–799 kr med rutavdrag, 998–1 598 kr utan.</li>\n<li><strong>Lägenhet 3–4 rok:</strong> 699–1 199 kr med rutavdrag, 1 398–2 398 kr utan.</li>\n<li><strong>Normalstor villa:</strong> 800–2 000 kr med rutavdrag, 1 600–4 000 kr utan.</li>\n</ul>\n<p>Putsar du två gånger om året sparar du alltså mellan 1 000 och 4 000 kr för en villa. Se hela <a href="/pris">prislistan för fönsterputs</a> för vad som påverkar priset.</p>'
+      },
+      {
         'heading': 'Hur mycket kan du dra av 2026?',
-        'html': '<ul>\n<li><strong>Tak per person och år:</strong> 75 000 kr i sammanlagd skattereduktion för RUT- och ROT-avdrag.</li>\n<li><strong>Av detta får RUT vara:</strong> max 75 000 kr (taket höjdes 2024 och gäller fortsatt 2026).</li>\n<li><strong>Rabatt på fönsterputsning:</strong> 50 % av arbetskostnaden, direkt på fakturan.</li>\n<li><strong>Materialkostnader och resor:</strong> omfattas <em>inte</em> av RUT — bara den faktiska arbetsinsatsen.</li>\n</ul>\n<p>För de flesta hushåll är taket inte ett problem — en årlig fönsterputs kostar långt under det. Men har du många RUT-tjänster (städning, trädgård, flytt) kan det vara värt att hålla koll.</p>'
+        'html': '<ul>\n<li><strong>Tak per person och år:</strong> 75 000 kr i sammanlagd skattereduktion för RUT- och ROT-avdrag.</li>\n<li><strong>Av detta får RUT vara:</strong> max 75 000 kr (taket höjdes 2021 och gäller fortsatt 2026).</li>\n<li><strong>Rabatt på fönsterputsning:</strong> 50 % av arbetskostnaden, direkt på fakturan.</li>\n<li><strong>Materialkostnader och resor:</strong> omfattas <em>inte</em> av RUT — bara den faktiska arbetsinsatsen. Hos Rutputs ingår material i priset och hela priset är arbete, så du betalar alltid hälften.</li>\n</ul>\n<p>För de flesta hushåll är taket inte ett problem — en årlig fönsterputs kostar långt under det. Men har du många RUT-tjänster (städning, trädgård, flytt) kan det vara värt att hålla koll.</p>'
       },
       {
         'heading': 'Vem får använda RUT-avdraget?',
-        'html': '<ul>\n<li>Du måste vara <strong>minst 18 år</strong> och ha fyllt 18 vid årets ingång.</li>\n<li>Du måste vara <strong>obegränsat skattskyldig i Sverige</strong> (i praktiken: bosatt i Sverige).</li>\n<li>Du måste ha <strong>tillräckligt med skatt att kvitta avdraget mot</strong>. Har du för lite skatt under året får du återbetala mellanskillnaden.</li>\n<li>Tjänsten måste utföras i ditt eget eller en förälders <strong>hushåll</strong> — det inkluderar din permanentbostad, fritidshus och andelsfastighet.</li>\n</ul>'
+        'html': '<ul>\n<li>Du måste ha <strong>fyllt 18 år</strong> senast vid utgången av det år då du köper tjänsten.</li>\n<li>Du måste vara <strong>obegränsat skattskyldig i Sverige</strong> (i praktiken: bosatt i Sverige).</li>\n<li>Du måste ha <strong>tillräckligt med skatt att kvitta avdraget mot</strong>. Har du för lite skatt under året får du återbetala mellanskillnaden.</li>\n<li>Tjänsten måste utföras i ditt eget eller en förälders <strong>hushåll</strong> — det inkluderar din permanentbostad, fritidshus och andelsfastighet.</li>\n</ul>'
       },
       {
         'heading': 'Så går det till hos oss',
@@ -144,7 +149,15 @@ const guides = [
       },
       {
         'question': 'Räknas resor och material in i RUT-avdraget?',
-        'answer': 'Nej, bara arbetskostnaden omfattas av RUT. Eventuella materialkostnader och reseersättning ligger utanför.'
+        'answer': 'Nej, bara arbetskostnaden omfattas av RUT. Hos Rutputs ingår material i priset och hela beloppet är arbete, så du betalar alltid halva priset.'
+      },
+      {
+        'question': 'Är rutavdrag och RUT-avdrag samma sak?',
+        'answer': 'Ja, det är samma skattereduktion. RUT står för rengöring, underhåll och tvätt, och både rutavdrag och RUT-avdrag används för fönsterputs och fönsterputsning.'
+      },
+      {
+        'question': 'Gäller rutavdraget för fönsterputs i fritidshus?',
+        'answer': 'Ja, rutavdraget gäller fönsterputsning i ditt fritidshus på samma sätt som i din permanentbostad.'
       }
     ],
     'relatedServiceSlugs': [

@@ -73,6 +73,17 @@
           </section>
 
           <section class="site-footer__panel site-footer__panel--wide">
+            <p class="site-footer__kicker">Tjänster och priser</p>
+            <div class="site-footer__area-list">
+              <router-link to="/pris" class="site-footer__pill">Pris på fönsterputs</router-link>
+              <router-link v-for="s in serviceLinks" :key="s.slug" :to="'/tjanst/' + s.slug" class="site-footer__pill">
+                {{ s.label }}
+              </router-link>
+              <router-link to="/foretag" class="site-footer__pill">Fönsterputs för företag</router-link>
+            </div>
+          </section>
+
+          <section class="site-footer__panel site-footer__panel--wide">
             <p class="site-footer__kicker">Guider</p>
             <div class="site-footer__area-list">
               <router-link to="/guide" class="site-footer__pill">Alla guider</router-link>
@@ -116,6 +127,7 @@ import { useConsent } from 'src/composables/useConsent';
 import { usePageSeo } from 'src/composables/usePageSeo';
 import { areas } from 'src/data/areas';
 import { getGuidesSortedByDate } from 'src/data/guides';
+import { servicePages } from 'src/data/seo';
 
 export default defineComponent({
   name: 'App',
@@ -147,6 +159,7 @@ export default defineComponent({
     };
 
     const areaLinks = areas;
+    const serviceLinks = servicePages.map((s) => ({ slug: s.slug, label: s.bodyTitle }));
     const guideLinks = getGuidesSortedByDate().map((g) => ({
       slug: g.slug,
       shortTitle: g.h1,
@@ -155,6 +168,7 @@ export default defineComponent({
     return {
       currentYear,
       areaLinks,
+      serviceLinks,
       guideLinks,
       goToLanding,
       goToConfirmation,

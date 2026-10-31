@@ -231,6 +231,28 @@
         <q-btn unelevated color="accent" text-color="black" label="Begär offert" @click="goToPriceList" />
       </section>
 
+      <section class="editorial-panel">
+        <span class="section-kicker">Guider</span>
+        <h2 class="section-title">Guider om fönsterputs</h2>
+        <p class="section-text">
+          Vad kostar det, hur fungerar RUT-avdraget och hur ofta behöver fönstren putsas? Här har vi samlat svaren.
+        </p>
+        <div class="mini-card-grid q-mt-lg landing-guides">
+          <article v-for="guide in guides" :key="guide.slug" class="mini-card">
+            <h3 class="mini-card__title">
+              <router-link :to="'/guide/' + guide.slug">{{ guide.h1 }}</router-link>
+            </h3>
+            <p class="mini-card__text">{{ guide.description }}</p>
+          </article>
+          <article class="mini-card">
+            <h3 class="mini-card__title">
+              <router-link to="/pris">Vad kostar fönsterputs i Stockholm?</router-link>
+            </h3>
+            <p class="mini-card__text">Priser för lägenhet och villa med och utan RUT-avdrag.</p>
+          </article>
+        </div>
+      </section>
+
       <section class="editorial-panel faq-shell">
         <span class="section-kicker">Vanliga frågor</span>
         <h2 class="section-title">Det här brukar kunder vilja veta först</h2>
@@ -274,8 +296,10 @@ import { computed, defineComponent, onBeforeUnmount, onMounted, ref } from 'vue'
 import { areas } from 'src/data/areas';
 import { homeSeo } from 'src/data/seo';
 import { reviewsData } from 'src/data/reviews';
+import { getGuidesSortedByDate } from 'src/data/guides';
 
 const homeFaqs = homeSeo.faq ?? [];
+const guides = getGuidesSortedByDate();
 
 const landscapeImages = [
   '/img/25050.webp',
@@ -507,6 +531,7 @@ export default defineComponent({
     const areaLinks = areas;
     return {
       areaLinks,
+      guides,
       homeFaqs,
       reviewsData,
       heroMediaStyle,

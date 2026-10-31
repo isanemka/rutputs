@@ -30,6 +30,34 @@
         </ul>
       </section>
 
+      <section class="section-grid section-grid--two">
+        <div class="editorial-panel">
+          <span class="section-kicker">Om guiderna</span>
+          <h2 class="section-title">Råd från fönsterputsare i Stockholm</h2>
+          <p class="section-text">
+            Guiderna bygger på de frågor vi oftast får när vi putsar fönster i lägenheter, radhus och villor runt
+            Stockholm: hur ofta fönstren behöver putsas, vad RUT-avdraget innebär för priset och hur man tar hand om
+            inglasade balkonger, spröjsade fönster och stora glaspartier.
+          </p>
+          <p class="section-text">
+            Vill du hellre slippa göra jobbet själv kan du alltid begära en offert. Du får ett fast pris efter
+            RUT-avdrag, utan timdebitering. Saknar du svar på en fråga om dina fönster? Ring eller mejla oss, så
+            hjälper vi dig.
+          </p>
+        </div>
+        <div class="editorial-panel">
+          <span class="section-kicker">Mer om fönsterputs</span>
+          <h2 class="section-title">Pris och tjänster</h2>
+          <ul class="guide-hub-links">
+            <li><router-link to="/pris" class="text-accent text-weight-bold">Vad kostar fönsterputs i Stockholm?</router-link></li>
+            <li><router-link to="/tjanst/villa-fonsterputs" class="text-accent text-weight-bold">Fönsterputs för villa och hus</router-link></li>
+            <li><router-link to="/tjanst/lagenhet-fonsterputs" class="text-accent text-weight-bold">Fönsterputs för lägenhet</router-link></li>
+            <li><router-link to="/tjanst/abonnemang-fonsterputs" class="text-accent text-weight-bold">Abonnemang på fönsterputs</router-link></li>
+            <li><router-link to="/foretag" class="text-accent text-weight-bold">Fönsterputs för företag</router-link></li>
+          </ul>
+        </div>
+      </section>
+
       <section class="cta-band">
         <div class="cta-band__text">
           <h2 class="cta-band__title">Vill du ha en offert?</h2>
@@ -105,5 +133,12 @@ export default defineComponent({
   margin: 0;
   font-size: 0.8rem;
   opacity: 0.7;
+}
+
+.guide-hub-links {
+  display: grid;
+  gap: 0.6rem;
+  margin: 1rem 0 0;
+  padding-left: 1.1rem;
 }
 </style>

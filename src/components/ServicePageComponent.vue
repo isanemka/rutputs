@@ -41,6 +41,26 @@
         </div>
       </section>
 
+      <section v-if="service.priceRows?.length" id="pris" class="editorial-panel">
+        <span class="section-kicker">Pris</span>
+        <h2 class="section-title">{{ service.priceHeading || 'Vad kostar det?' }}</h2>
+        <p v-if="service.priceNote" class="section-text">{{ service.priceNote }}</p>
+        <PriceTable :rows="service.priceRows" :caption="service.bodyTitle + ' – pris med och utan RUT-avdrag'" />
+        <p class="section-text q-mt-md">
+          <router-link to="/pris" class="text-accent text-weight-bold">Se hela prislistan och vad som påverkar priset</router-link>
+        </p>
+      </section>
+
+      <section
+        v-for="(section, index) in service.sections ?? []"
+        :key="section.heading"
+        class="editorial-panel"
+        :class="{ 'editorial-panel--solid': index % 2 === 1 }"
+      >
+        <h2 class="section-title">{{ section.heading }}</h2>
+        <p v-for="paragraph in section.paragraphs" :key="paragraph" class="section-text">{{ paragraph }}</p>
+      </section>
+
       <section class="cta-band">
         <div class="cta-band__text">
           <h2 class="cta-band__title">{{ service.contactOnly ? 'Intresserad av abonnemang?' : 'Vill du ha en offert?' }}</h2>
@@ -77,6 +97,35 @@
           </q-expansion-item>
         </q-list>
       </section>
+
+      <section v-if="relatedGuides.length || relatedAreas.length" class="section-grid section-grid--two">
+        <div v-if="relatedGuides.length" class="editorial-panel">
+          <span class="section-kicker">Guider</span>
+          <h2 class="section-title">Läs mer</h2>
+          <ul class="service-link-list">
+            <li v-for="guide in relatedGuides" :key="guide.slug">
+              <router-link :to="'/guide/' + guide.slug" class="text-accent text-weight-bold">{{ guide.h1 }}</router-link>
+            </li>
+            <li v-if="service.company">
+              <router-link to="/foretag" class="text-accent text-weight-bold">Fönsterputs för företag</router-link>
+            </li>
+          </ul>
+        </div>
+        <div v-if="relatedAreas.length" class="editorial-panel">
+          <span class="section-kicker">Områden</span>
+          <h2 class="section-title">Här putsar vi bland annat</h2>
+          <div class="nearby-areas-grid">
+            <router-link
+              v-for="area in relatedAreas"
+              :key="area.slug"
+              :to="'/omrade/' + area.slug"
+              class="area-chip"
+            >
+              {{ area.name }}
+            </router-link>
+          </div>
+        </div>
+      </section>
     </div>
   </q-page>
 </template>
@@ -84,11 +133,14 @@
 <script lang="ts">
 import { defineComponent, computed } from 'vue';
 import { useRoute } from 'vue-router';
-import { getServiceBySlug } from 'src/data/seo';
+import PriceTable from 'src/components/PriceTable.vue';
+import { getAreaBySlug, getServiceBySlug } from 'src/data/seo';
+import { getGuideBySlug } from 'src/data/guides';
 import { heroImagesFor } from 'src/data/site-pages';
 
 export default defineComponent({
   name: 'ServicePageComponent',
+  components: { PriceTable },
   setup() {
     const route = useRoute();
 
@@ -98,9 +150,23 @@ export default defineComponent({
 
     const hero = computed(() => heroImagesFor(route.path));
 
+    const relatedGuides = computed(() =>
+      (service.value?.guides ?? [])
+        .map((slug) => getGuideBySlug(slug))
+        .filter((guide): guide is NonNullable<typeof guide> => !!guide),
+    );
+
+    const relatedAreas = computed(() =>
+      (service.value?.areas ?? [])
+        .map((slug) => getAreaBySlug(slug))
+        .filter((area): area is NonNullable<typeof area> => !!area),
+    );
+
     return {
       service,
       hero,
+      relatedGuides,
+      relatedAreas,
     };
   },
 });
@@ -124,5 +190,38 @@ export default defineComponent({
 .area-hero__media {
   position: absolute;
   inset: 0;
+}
+
+.service-link-list {
+  display: grid;
+  gap: 0.6rem;
+  margin: 1rem 0 0;
+  padding-left: 1.1rem;
+}
+
+.nearby-areas-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.area-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid var(--q-accent, #f4c542);
+  border-radius: 9999px;
+  color: var(--q-primary, #1a1a2e);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.area-chip:hover,
+.area-chip:focus-visible {
+  background-color: var(--q-accent, #f4c542);
+  outline: 2px solid var(--q-accent, #f4c542);
+  outline-offset: 2px;
 }
 </style>

@@ -195,11 +195,40 @@ const siteSeoContent = {
       title: 'Fönsterputs villa & hus i Stockholm – pris med RUT | Rutputs',
       description:
         'Fönsterputs för villa och hus i Stockholm från 499 kr efter RUT-avdrag. Spröjs, uterum och takfönster tas med i offerten. Begär ett fast pris.',
-      bodyTitle: 'Fönsterputs för villor i Stockholm',
+      bodyTitle:
+        'Fönsterputs för villa och hus i Stockholm',
       bodyIntro:
-        'Villor har ofta många fönster, spröjs och fönsterpartier mot trädgården – och rena fönster gör enorm skillnad för både ljusinsläpp och helhetsintryck. Vi arbetar med villor i hela norra Stockholm och anpassar upplägget efter hur ditt hus ser ut, från enstaka putsningar till återkommande abonnemang vår och höst.',
+        'Villor och hus har fler fönster än lägenheter, ofta med spröjs, altandörrar, uterum och fönster på övervåningen. Vi putsar fönster i villor, radhus och parhus i stora delar av Stockholm, med fast pris efter RUT-avdrag och allt material inräknat.',
+      priceHeading: 'Vad kostar fönsterputs för en villa?',
+      priceRows: ['house'],
+      priceNote: 'En normalstor villa kostar oftast 800–2 000 kr efter RUT-avdrag. Ett radhus eller parhus med färre fönster hamnar i den lägre delen, en stor villa med många spröjsade fönster och flera plan i den övre. Du får alltid ett fast pris innan vi kommer – vi tar inte betalt per timme.',
+      sections: [
+        {
+          heading: 'Fönster vi putsar i villor och hus',
+          paragraphs: [
+            'Vi putsar alla vanliga fönstertyper i hus: spröjsade fönster, kopplade fönster med innerbågar där vi putsar alla fyra glassidorna, moderna treglasfönster, takfönster och takkupor, altandörrar och skjutpartier, glasverandor, uterum och källarfönster.',
+            'Fönster på övervåningen som inte går att vända inåt putsar vi från stege. Har huset fönster som är svåra att nå, till exempel över en altan eller i en slänt, berätta det i förfrågan så tar vi med rätt utrustning.',
+          ],
+        },
+        {
+          heading: 'Så går fönsterputs av ett hus till',
+          paragraphs: [
+            'Du fyller i bostadstyp, antal fönster och vad som ska putsas i formuläret och får en offert med fast pris. Vi bokar en tid som passar och tar med stege, skrapor och miljövänligt rengöringsmedel.',
+            'Utsidan kan vi putsa även om du inte är hemma. Ska vi putsa insidan och mellan glasen behöver vi komma in, och det underlättar om fönsterbänkarna är tomma. RUT-avdraget dras direkt på fakturan.',
+          ],
+        },
+        {
+          heading: 'Hur ofta ska man putsa fönster på en villa?',
+          paragraphs: [
+            'För de flesta hus räcker två gånger om året: på våren när pollen och vinterns smuts syns som mest, och på hösten innan det mörka halvåret. Ligger huset nära vatten, en större väg eller mycket träd kan fönstren på den sidan behöva putsas oftare.',
+            'Vill du slippa boka varje gång kan du ha ett abonnemang med två, tre eller fyra putsningar om året och lägre pris per tillfälle.',
+          ],
+        },
+      ],
+      guides: ['hur-ofta-ska-man-putsa-fonster', 'rut-avdrag-fonsterputs-2026'],
+      areas: ['bromma', 'danderyd', 'djursholm', 'taby', 'sollentuna', 'lidingo', 'viksjo', 'enebyberg', 'hasselby', 'nacka'],
       benefits: [
-        'Tydligt pris per fönster med RUT-avdrag – från 499 kr.',
+        'Fast pris efter antal fönster – en normalstor villa kostar oftast 800–2 000 kr efter RUT-avdrag.',
         'Allt material ingår – vi tar med stege, skrapor och miljövänligt rengöringsmedel.',
         'Spröjsade, kupolfönster och takfönster – inga problem.',
         'Säkert utfört – F-skatt, försäkrad och godkänd för RUT.',
@@ -208,8 +237,7 @@ const siteSeoContent = {
       faq: [
         {
           question: 'Vad kostar fönsterputs på en villa?',
-          answer:
-            'Priset utgår från antal fönster och eventuella extra tjänster. För en normalstor villa ligger priset oftast mellan 800 och 2 000 kr efter RUT-avdrag. Begär offert för exakt pris.',
+          answer: 'En normalstor villa kostar oftast 800–2 000 kr efter RUT-avdrag och 1 600–4 000 kr utan avdrag. Priset beror på antal fönster, spröjs och om du vill ha putsat mellan glasen. Begär offert för exakt pris.',
           linkLabel: 'Begär offert',
           linkTo: '/pris',
         },
@@ -228,6 +256,14 @@ const siteSeoContent = {
           answer:
             'Ja, vi kan komma överens om att vi putsar utsidan medan du är på jobbet. Många villakunder väljer det upplägget.',
         },
+        {
+          question: 'Vad kostar fönsterputs för ett radhus?',
+          answer: 'Ett radhus har oftast färre fönster än en villa och hamnar därför i den lägre delen av spannet 800–2 000 kr efter RUT-avdrag. Du får ett fast pris i offerten.',
+        },
+        {
+          question: 'Putsar ni takfönster och uterum?',
+          answer: 'Ja, takfönster som går att öppna inifrån och uterum och glasverandor putsar vi på både in- och utsida. Ta med dem i förfrågan så blir priset rätt.',
+        },
       ],
     },
     {
@@ -240,6 +276,20 @@ const siteSeoContent = {
       bodyTitle: 'Fönsterputs för lägenhet i Stockholm',
       bodyIntro:
         'För lägenheter går putsningen ofta snabbt och smidigt, men det är ändå viktigt att den görs noggrant – särskilt i innerstaden där sot och avgaser sätter sig på rutorna. Vi putsar lägenhetsfönster i stora delar av Stockholm – från Kungsholmen, Norrmalm och Östermalm till Solna, Bromma och övriga områden vi täcker – med RUT-avdrag och kan ofta erbjuda tid samma vecka.',
+      priceHeading: 'Vad kostar fönsterputs för en lägenhet?',
+      priceRows: ['apartmentSmall', 'apartmentLarge'],
+      priceNote: 'En lägenhet på 1–2 rok kostar oftast 499–799 kr efter RUT-avdrag och en på 3–4 rok 699–1 199 kr. Inglasad balkong, spröjs och putsning mellan glasen tas med i offerten.',
+      sections: [
+        {
+          heading: 'Fönster vi putsar i lägenheter',
+          paragraphs: [
+            'Vi putsar vanliga fönster, balkongdörrar, franska balkonger och fönster från golv till tak, och inglasade balkonger på både in- och utsida så långt partierna går att öppna.',
+            'I äldre hus med kopplade fönster putsar vi gärna mellan glasen. Fönster högt upp som inte går att vända inåt putsar vi från balkongen eller med teleskopskaft där det går säkert.',
+          ],
+        },
+      ],
+      guides: ['hur-tvattar-man-inglasade-balkonger', 'rut-avdrag-fonsterputs-2026', 'hur-ofta-ska-man-putsa-fonster'],
+      areas: ['kungsholmen', 'ostermalm', 'norrmalm', 'solna', 'sundbyberg', 'kista', 'djurgarden'],
       benefits: [
         'Från 499 kr efter RUT-avdrag.',
         'Inomhus, utomhus och mellan glaspartier – välj själv.',
@@ -250,8 +300,7 @@ const siteSeoContent = {
       faq: [
         {
           question: 'Vad kostar fönsterputs i en lägenhet?',
-          answer:
-            'För en normalstor lägenhet ligger priset från 499 kr och uppåt efter RUT-avdrag. Det beror på antalet fönster och om även mellan glaspartier ska putsas.',
+          answer: 'En lägenhet på 1–2 rok kostar oftast 499–799 kr och en på 3–4 rok 699–1 199 kr efter RUT-avdrag. Inglasad balkong och putsning mellan glasen läggs till i offerten.',
           linkLabel: 'Begär offert',
           linkTo: '/pris',
         },
@@ -282,6 +331,11 @@ const siteSeoContent = {
       bodyTitle: 'Vårputs av fönster i Stockholm',
       bodyIntro:
         'Vintern lämnar tydliga spår på fönstren: saltdamm, regnränder och pollen som lagrats sedan första marsdagarna. En vårputs är det snabbaste sättet att få hem och kontor att kännas ljusare när solen börjar visa sig på riktigt. Boka in din vårputsning nu så hinner du få en bra tid innan högsäsongen i maj.',
+      priceHeading: 'Vad kostar vårputs av fönster?',
+      priceRows: ['apartmentSmall', 'apartmentLarge', 'house'],
+      priceNote: 'Vårputs kostar lika mycket som vanlig fönsterputs: en lägenhet från 499 kr och en normalstor villa 800–2 000 kr efter RUT-avdrag. Bokar du med en granne samma dag får ni båda rabatt.',
+      guides: ['hur-ofta-ska-man-putsa-fonster', 'rut-avdrag-fonsterputs-2026'],
+      areas: ['jarfalla', 'bromma', 'sollentuna', 'taby', 'solna', 'lidingo'],
       benefits: [
         'Få bort pollen, saltskador och vintersmuts på en gång.',
         'Fönstren släpper in upp till 30 % mer ljus efter en grundlig vårputs.',
@@ -324,6 +378,11 @@ const siteSeoContent = {
       bodyTitle: 'Höstputs av fönster i Stockholm',
       bodyIntro:
         'När mörkret kryper in tidigare på dagen blir varje smutsig fönsterruta extra tydlig. Med en höstputs får du bort sommarens damm, regnränder och insektsspår innan vintern slår till. Det ger ljusare rum, bättre utsikt och en känsla av att hemmet är förberett för den mörkare halvan av året.',
+      priceHeading: 'Vad kostar höstputs av fönster?',
+      priceRows: ['apartmentSmall', 'apartmentLarge', 'house'],
+      priceNote: 'Höstputs kostar lika mycket som vanlig fönsterputs: en lägenhet från 499 kr och en normalstor villa 800–2 000 kr efter RUT-avdrag. Bokar du med en granne samma dag får ni båda rabatt.',
+      guides: ['hur-ofta-ska-man-putsa-fonster', 'rut-avdrag-fonsterputs-2026'],
+      areas: ['jarfalla', 'bromma', 'sollentuna', 'taby', 'solna', 'lidingo'],
       benefits: [
         'Maximera ljusinsläppet under den mörka årstiden.',
         'Bli av med damm, regnränder och insektsspår från sommaren.',
@@ -364,9 +423,40 @@ const siteSeoContent = {
       title: 'Fönsterputs abonnemang Stockholm – privatpersoner | Rutputs',
       description:
         'Abonnemang på fönsterputs i Stockholm för privatpersoner. Fasta intervall, lägre pris per besök och RUT-avdrag varje gång. Ingen bindningstid.',
-      bodyTitle: 'Abonnemang för återkommande fönsterputs',
+      bodyTitle:
+        'Abonnemang på fönsterputs i Stockholm för privatpersoner',
       bodyIntro:
-        'Vill du slippa hålla reda på när det är dags att putsa fönstren igen? Med ett abonnemang sköter vi det åt dig – vi återkommer på de intervall vi kommit överens om, anpassat efter bostad, säsong och budget. Du får rabatt jämfört med engångsbokning och samma noggranna upplägg varje gång.',
+        'Med ett abonnemang på fönsterputsning slipper du hålla reda på när det är dags igen. Du väljer hur många gånger om året du vill ha putsat, vi bokar in varje tillfälle och du får lägre pris per gång än vid enstaka bokningar – med RUT-avdrag varje gång och utan bindningstid.',
+      priceHeading: 'Vad kostar ett abonnemang på fönsterputs?',
+      priceRows: ['apartmentSmall', 'apartmentLarge', 'house'],
+      priceNote: 'Priset per tillfälle utgår från samma prislista som vid enstaka bokningar, med rabatt för abonnemang. Hur stor rabatten blir beror på intervall och bostad, och du får priset i offerten. RUT-avdraget dras vid varje besök.',
+      sections: [
+        {
+          heading: 'Så fungerar abonnemanget',
+          paragraphs: [
+            'Ring, mejla eller skriv i offertformuläret att du vill ha abonnemang. Vi tar fram ett förslag med intervall och pris per tillfälle utifrån din bostad.',
+            'När upplägget är klart bokar vi in varje putsning åt dig, så du slipper komma ihåg när det är dags. Vill du pausa, ändra intervall eller avsluta säger du bara till innan nästa besök – det finns ingen bindningstid.',
+          ],
+        },
+        {
+          heading: 'Vilket intervall passar dig?',
+          paragraphs: [
+            'Två gånger om året – vår och höst – räcker för de flesta lägenheter och villor.',
+            'Tre gånger om året passar hus nära vatten eller större vägar, där fönstren blir smutsiga snabbare, och dig som vill ha rena fönster även på sommaren.',
+            'Fyra gånger om året ger rena fönster varje säsong och passar till exempel stora villor med mycket glas eller hem där utsikten är viktig.',
+          ],
+        },
+        {
+          heading: 'Abonnemang för lägenhet, villa och radhus',
+          paragraphs: [
+            'Abonnemanget fungerar i alla boendeformer och i alla områden vi täcker. Bor ni flera grannar i samma hus eller radhuslänga kan ni ha putsning samma dag och få rabatt allihop.',
+            'För företag finns motsvarande återkommande upplägg för kontor, butiker och skyltfönster.',
+          ],
+        },
+      ],
+      company: true,
+      guides: ['hur-ofta-ska-man-putsa-fonster', 'rut-avdrag-fonsterputs-2026'],
+      areas: ['jarfalla', 'bromma', 'sollentuna', 'taby', 'danderyd', 'lidingo', 'solna', 'ostermalm'],
       benefits: [
         'Spara tid – vi bokar in nästa tillfälle automatiskt.',
         'Lägre pris per tillfälle jämfört med engångsbokning.',
@@ -398,6 +488,16 @@ const siteSeoContent = {
           question: 'Vilka områden gäller abonnemanget?',
           answer:
             'Abonnemang erbjuds i alla områden vi täcker – från Järfälla och Sollentuna till Östermalm och Nacka.',
+        },
+        {
+          question: 'Hur många gånger om året kan jag välja?',
+          answer: 'Du väljer två, tre eller fyra gånger om året. Vår och höst räcker för de flesta, och fler gånger passar om fönstren blir smutsiga snabbt.',
+        },
+        {
+          question: 'Får jag RUT-avdrag vid varje besök?',
+          answer: 'Ja, RUT-avdraget dras på fakturan för varje putsning, så du betalar halva priset varje gång.',
+          linkLabel: 'Så fungerar RUT-avdraget',
+          linkTo: '/guide/rut-avdrag-fonsterputs-2026',
         },
       ],
     },
