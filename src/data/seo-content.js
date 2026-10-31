@@ -137,10 +137,10 @@ const siteSeoContent = {
     updatedAt: '2026-10-31',
     title: 'Fönsterputs pris Stockholm 2026 – vad kostar det? | Rutputs',
     description:
-      'Vad kostar fönsterputs i Stockholm? Från 499 kr efter RUT-avdrag. Fast pris efter antal fönster och bostadstyp – ingen timdebitering. Begär gratis offert.',
-    bodyTitle: 'Pris på fönsterputs i Stockholm',
+      'Vad kostar fönsterputs i Stockholm? Lägenhet från 499 kr och villa från 800 kr efter RUT-avdrag. Fast pris inkl. moms – se pristabellen och begär offert.',
+    bodyTitle: 'Vad kostar fönsterputs i Stockholm?',
     bodyIntro:
-      'Fyll i offertformuläret med din bostad, antal fönster och vad du vill ha putsat så återkommer vi med en personlig offert. Priset börjar från 499 kr efter RUT-avdrag.',
+      'Fönsterputs kostar från 499 kr efter RUT-avdrag. En lägenhet på 1–2 rok kostar oftast 499–799 kr, en trea eller fyra 699–1 199 kr och en normalstor villa 800–2 000 kr.',
     steps: [
       'Välj bostadstyp.',
       'Ange antal fönster, sidor och eventuell spröjs.',
@@ -150,17 +150,43 @@ const siteSeoContent = {
       {
         question: 'Vad kostar fönsterputs i Stockholm?',
         answer:
-          'Fönsterputs i Stockholm börjar från 499 kr efter RUT-avdrag. Exakt pris beror på antal fönster, bostadstyp och om du vill ha utsida, insida eller mellanruta putsat. Fyll i formuläret så får du ett personligt pris.',
+          'Fönsterputs kostar från 499 kr efter RUT-avdrag. En lägenhet på 1–2 rok kostar oftast 499–799 kr, en lägenhet på 3–4 rok 699–1 199 kr och en normalstor villa 800–2 000 kr. Det exakta priset beror på antal fönster, vilka sidor som ska putsas och om fönstren har spröjs.',
+      },
+      {
+        question: 'Vad kostar fönsterputs för en lägenhet?',
+        answer:
+          'En etta eller tvåa kostar oftast 499–799 kr efter RUT-avdrag och en trea eller fyra 699–1 199 kr. Inglasad balkong och spröjsade fönster läggs till i offerten.',
+        linkLabel: 'Fönsterputs för lägenhet',
+        linkTo: '/tjanst/lagenhet-fonsterputs',
+      },
+      {
+        question: 'Vad kostar fönsterputs för en villa?',
+        answer:
+          'En normalstor villa kostar oftast 800–2 000 kr efter RUT-avdrag. Radhus med färre fönster hamnar lägre, stora villor med många spröjsade fönster högre.',
+        linkLabel: 'Fönsterputs för villa',
+        linkTo: '/tjanst/villa-fonsterputs',
       },
       {
         question: 'Hur mycket kostar fönsterputs per timme?',
         answer:
-          'Vi prissätter per fönster och uppdrag, inte per timme. Det ger dig ett tydligt fast pris i förväg utan obehagliga överraskningar. Grundpriset börjar från 499 kr per tillfälle efter RUT-avdrag.',
+          'Vi tar inte betalt per timme. Du får ett fast pris per uppdrag i offerten, räknat på antal fönster och vad som ska putsas, och det ändras inte om jobbet tar längre tid.',
       },
       {
-        question: 'Vad kostar fönsterputs med RUT-avdrag?',
+        question: 'Vad kostar fönsterputs med och utan RUT-avdrag?',
         answer:
-          'Med RUT-avdrag betalar du hälften av arbetskostnaden – resten dras direkt av på fakturan. Det innebär att fönsterputs börjar från 499 kr i din kostnad. Avdraget gäller för privatpersoner och dras automatiskt.',
+          'Med RUT-avdrag betalar du halva priset. Priset utan RUT-avdrag är alltså det dubbla: en lägenhet på 1–2 rok kostar 998–1 598 kr utan avdrag och 499–799 kr med avdrag. Avdraget dras direkt på fakturan.',
+        linkLabel: 'Så fungerar RUT-avdraget',
+        linkTo: '/guide/rut-avdrag-fonsterputs-2026',
+      },
+      {
+        question: 'Ingår moms i priserna?',
+        answer:
+          'Ja, alla priser är inklusive moms. Allt material ingår också, så priset i offerten är det du betalar.',
+      },
+      {
+        question: 'Finns det ett lägsta pris?',
+        answer:
+          'Ja, det lägsta priset är 499 kr efter RUT-avdrag per tillfälle. Bokar du tillsammans med en granne samma dag får ni båda rabatt.',
       },
       {
         question: 'Hur snabbt får jag en offert?',
@@ -168,14 +194,11 @@ const siteSeoContent = {
           'När du har skickat in din förfrågan tittar vi på dina uppgifter och återkommer med en personlig offert så snart som möjligt, oftast inom ett par dagar.',
       },
       {
-        question: 'Vad behöver jag fylla i för att få en offert?',
-        answer:
-          'Du anger bostadstyp, antal fönster, vilka sidor du vill ha putsade och om fönstren har spröjs, samt dina kontaktuppgifter. Sedan återkommer vi med ett pris.',
-      },
-      {
         question: 'Kan jag få återkommande fönsterputs via abonnemang?',
         answer:
           'Ja, om du vill ha återkommande fönsterputs kan vi hjälpa dig med ett abonnemang eller ett löpande upplägg. Skicka in din förfrågan så återkommer vi med ett förslag som passar dig.',
+        linkLabel: 'Läs mer om abonnemang',
+        linkTo: '/tjanst/abonnemang-fonsterputs',
       },
       {
         question: 'Är det bindande att skicka in formuläret?',

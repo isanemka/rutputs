@@ -3,6 +3,7 @@
 
 import business from './business.js';
 import reviews, { ratingValue, reviewCount } from './reviews-content.js';
+import { MIN_PRICE, priceRows } from './prices.js';
 
 export const SITE_URL = 'https://www.rutputs.nu';
 
@@ -12,7 +13,7 @@ export const absoluteUrl = (path) => (path === '/' ? `${SITE_URL}/` : `${SITE_UR
 const CONTEXT = 'https://schema.org';
 const BUSINESS_TYPE = 'HomeAndConstructionBusiness';
 const STOCKHOLM_COUNTY = { '@type': 'AdministrativeArea', name: 'Stockholms län' };
-export const FROM_PRICE_SEK = 499;
+export const FROM_PRICE_SEK = MIN_PRICE;
 
 const place = (name) => ({ '@type': 'Place', name, containedInPlace: STOCKHOLM_COUNTY });
 
@@ -132,6 +133,33 @@ export function serviceSchema({ name, description, path, serviceType = 'Fönster
     areaServed: STOCKHOLM_COUNTY,
     ...(audience ? { audience: { '@type': 'Audience', audienceType: audience } } : {}),
     offers: fromPriceOffer(),
+  };
+}
+
+/** Service with one Offer per row of the price table (prices after RUT). */
+export function priceListSchema({ name, description, path }) {
+  return {
+    '@context': CONTEXT,
+    '@type': 'Service',
+    name,
+    serviceType: 'Fönsterputsning',
+    description,
+    url: absoluteUrl(path),
+    provider: { '@id': business.id },
+    areaServed: STOCKHOLM_COUNTY,
+    offers: priceRows.map((row) => ({
+      '@type': 'Offer',
+      name: `Fönsterputs ${row.label.toLowerCase()}`,
+      description: 'Pris efter RUT-avdrag, inklusive moms',
+      priceCurrency: 'SEK',
+      priceSpecification: {
+        '@type': 'PriceSpecification',
+        priceCurrency: 'SEK',
+        minPrice: String(row.min),
+        maxPrice: String(row.max),
+        valueAddedTaxIncluded: true,
+      },
+    })),
   };
 }
 

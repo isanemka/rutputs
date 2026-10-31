@@ -17,6 +17,7 @@ import {
   faqSchema,
   fullBusinessSchema,
   guideListSchema,
+  priceListSchema,
   serviceSchema,
   SITE_URL,
   websiteSchema,
@@ -123,7 +124,7 @@ function buildPages() {
     breadcrumbs: [START, { name: 'Pris', path: '/pris' }],
     schemas: () => [
       businessSchema(),
-      serviceSchema({ name: 'Fönsterputs i Stockholm', description: price.description, path: '/pris' }),
+      priceListSchema({ name: 'Fönsterputs i Stockholm', description: price.description, path: '/pris' }),
       faqSchema(price.faq),
     ],
   });
