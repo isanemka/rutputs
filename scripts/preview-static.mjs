@@ -28,7 +28,9 @@ const isFile = (file) => existsSync(file) && statSync(file).isFile();
 
 function resolveFile(urlPath) {
   const target = path.join(root, urlPath);
-  if (!target.startsWith(root)) return null;
+  // Require a separator after the root so siblings like dist/static-private
+  // cannot be reached with "/../static-private/...".
+  if (target !== root && !target.startsWith(root + path.sep)) return null;
   if (isFile(target)) return target;
   if (isFile(`${target}.html`)) return `${target}.html`;
   if (isFile(path.join(target, 'index.html'))) return path.join(target, 'index.html');
@@ -46,8 +48,17 @@ if (!existsSync(root)) {
 }
 
 createServer((req, res) => {
-  const { pathname, search } = new URL(req.url, 'http://localhost');
-  const urlPath = decodeURIComponent(pathname);
+  let pathname;
+  let search;
+  let urlPath;
+  try {
+    ({ pathname, search } = new URL(req.url, 'http://localhost'));
+    urlPath = decodeURIComponent(pathname);
+  } catch {
+    res.writeHead(400, { 'Content-Type': 'text/plain; charset=utf-8' });
+    res.end('Bad request');
+    return;
+  }
 
   if (urlPath.length > 1 && urlPath.endsWith('/')) {
     res.writeHead(308, { Location: urlPath.replace(/\/+$/, '') + search });

@@ -1,4 +1,4 @@
-import { RouteLocationNormalized, RouteRecordRaw } from 'vue-router';
+import { NavigationGuard, RouteLocationNormalized, RouteRecordRaw } from 'vue-router';
 import { getAreaBySlug, getServiceBySlug } from 'src/data/seo';
 import { getGuideBySlug } from 'src/data/guides';
 
@@ -10,6 +10,19 @@ const notFound = (to: RouteLocationNormalized) => ({
   query: to.query,
   hash: to.hash,
 });
+
+type SlugExists = (to: RouteLocationNormalized) => boolean;
+
+/**
+ * Global guard (registered in router/index.ts). Routes with a slug declare
+ * meta.slugExists; an unknown slug renders the 404 page. A per-route
+ * beforeEnter would not run when only the slug changes, e.g. client-side
+ * navigation from /omrade/kista to /omrade/okand.
+ */
+export const guardUnknownSlugs: NavigationGuard = (to) => {
+  const slugExists = to.meta.slugExists as SlugExists | undefined;
+  return !slugExists || slugExists(to) ? true : notFound(to);
+};
 
 const routes: RouteRecordRaw[] = [
   {
@@ -43,12 +56,12 @@ const routes: RouteRecordRaw[] = [
       {
         path: 'omrade/:area',
         component: () => import('src/components/AreaComponent.vue'),
-        beforeEnter: (to) => (getAreaBySlug(to.params.area as string) ? true : notFound(to)),
+        meta: { slugExists: ((to) => !!getAreaBySlug(to.params.area as string)) as SlugExists },
       },
       {
         path: 'tjanst/:service',
         component: () => import('src/components/ServicePageComponent.vue'),
-        beforeEnter: (to) => (getServiceBySlug(to.params.service as string) ? true : notFound(to)),
+        meta: { slugExists: ((to) => !!getServiceBySlug(to.params.service as string)) as SlugExists },
       },
       {
         path: 'guide',
@@ -57,7 +70,7 @@ const routes: RouteRecordRaw[] = [
       {
         path: 'guide/:slug',
         component: () => import('src/components/GuideComponent.vue'),
-        beforeEnter: (to) => (getGuideBySlug(to.params.slug as string) ? true : notFound(to)),
+        meta: { slugExists: ((to) => !!getGuideBySlug(to.params.slug as string)) as SlugExists },
       },
       // Always leave this as the last one. Rendered inside the layout so the
       // 404 page keeps navigation and footer links.

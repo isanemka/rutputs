@@ -121,7 +121,12 @@ export function websiteSchema() {
   };
 }
 
-export function serviceSchema({ name, description, path, serviceType = 'Fönsterputsning', audience }) {
+/**
+ * @param {object} options
+ * @param {boolean} [options.rutOffer=true] the from-price after RUT; only for
+ *   private customers (RUT does not apply to companies)
+ */
+export function serviceSchema({ name, description, path, serviceType = 'Fönsterputsning', audience, rutOffer = true }) {
   return {
     '@context': CONTEXT,
     '@type': 'Service',
@@ -132,7 +137,7 @@ export function serviceSchema({ name, description, path, serviceType = 'Fönster
     provider: { '@id': business.id },
     areaServed: STOCKHOLM_COUNTY,
     ...(audience ? { audience: { '@type': 'Audience', audienceType: audience } } : {}),
-    offers: fromPriceOffer(),
+    ...(rutOffer ? { offers: fromPriceOffer() } : {}),
   };
 }
 

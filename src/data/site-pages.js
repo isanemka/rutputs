@@ -146,6 +146,7 @@ function buildPages() {
         path: '/foretag',
         serviceType: 'Fönsterputsning för företag',
         audience: 'Företag',
+        rutOffer: false,
       }),
       faqSchema(company.faq),
     ],
