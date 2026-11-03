@@ -264,6 +264,81 @@ const guides = [
       'abonnemang-fonsterputs'
     ],
     'ogImage': true
+  },
+  {
+    'slug': 'fonsterputs-infor-jul-och-vinter',
+    'title': 'Fönsterputs inför jul och nyår – tips för vintern',
+    'description': 'Rena fönster inför advent, jul och nyår: när du ska boka, vad som går att putsa vid minusgrader och hur du slipper ränder i det låga vinterljuset.',
+    'h1': 'Fönsterputs inför jul, nyår och andra vinterhelger',
+    'intro': 'Vintern är den tid på året då smutsiga fönster syns mest. Solen står lågt, adventsljusstakarna tänds i fönstren och gästerna kommer. Här är en plan för när du ska putsa inför advent, jul och nyår 2026, vad som fungerar när det är kallt och hur du får ett bra resultat även i december.',
+    'publishedAt': '2026-11-03',
+    'readingTimeMin': 6,
+    'author': 'Rutputs',
+    'tags': [
+      'säsong',
+      'vinter',
+      'jul',
+      'tips'
+    ],
+    'category': 'tips',
+    'sections': [
+      {
+        'heading': 'Därför syns smutsen mer på vintern',
+        'html': '<p>I december har Stockholm bara runt sex timmar dagsljus, och solen står så lågt att den lyser rakt in genom fönstren. Det låga ljuset avslöjar varje rand, fingeravtryck och hinna av pollen och damm från sommaren och hösten.</p>\n<p>På kvällen blir det tvärtom: när det är mörkt ute och ljust inne speglar sig smutsen på insidan av glaset, och adventsljusstakar och stjärnor gör fönstren till det första man ser från gatan. Vägsalt och slask från vintervägarna lägger dessutom en grå film på fönster som vetter mot gatan.</p>'
+      },
+      {
+        'heading': 'Så planerar du fönsterputsen inför helgerna 2026',
+        'html': '<ul>\n<li><strong>Början av november – boka och putsa utsidan.</strong> Det är ofta fortfarande plusgrader, och många vill ha rena fönster till jul, så boka i god tid. Har du inte gjort <a href="/tjanst/hostputs">höstputsen</a> än är det nu den passar bäst.</li>\n<li><strong>Före första advent (29 november) – putsa insidan.</strong> Gör det innan adventsljusstakar, stjärnor och ljusslingor kommer upp, så slipper du plocka ner dem igen.</li>\n<li><strong>Före Lucia (13 december) och julafton (24 december).</strong> Sista chansen att få rena fönster till julbord och gäster. Insidan går att putsa oavsett väder, utsidan beror på temperaturen.</li>\n<li><strong>Mellandagarna och nyårsafton (31 december).</strong> Bra tillfälle att torka av insidan och fönsterbänkarna efter julens stearin och damm, särskilt om du ska ha nyårsfest.</li>\n<li><strong>Trettondagen (6 januari) – när julpyntet åker ner.</strong> Då är fönsterbänkarna tomma och det är enkelt att putsa insidan igen – och att boka vårputsen.</li>\n</ul>'
+      },
+      {
+        'heading': 'Kan man putsa fönster när det är minusgrader?',
+        'html': '<p>Insidan och mellan glasen går att putsa hela vintern, oavsett väder. Utsidan är svårare: när det är några minusgrader fryser vattnet på rutan innan det hinner dras av, och det blir ränder eller en tunn isfilm. Är det dessutom halt på marken är det inte säkert att stå på en stege.</p>\n<p>Planera därför utsidan till en mildare dag, gärna i november eller under en period med plusgrader. Vill du ha rent till helgerna ändå kan du dela upp det: insidan och mellan glasen före jul, utsidan nästa milda dag eller i samband med vårputsen.</p>'
+      },
+      {
+        'heading': 'Imma och kondens på vinterfönster',
+        'html': '<ul>\n<li><strong>Imma på insidan</strong> kommer av fukt inomhus, till exempel från matlagning, dusch och många gäster. Vädra kort och ordentligt, och låt inte tjocka gardiner eller möbler stänga in fönstret.</li>\n<li><strong>Imma mellan glasen</strong> i äldre kopplade fönster betyder oftast att varm, fuktig luft tränger förbi innerbågen. Kontrollera att tätningslisten är hel. I moderna isolerglas betyder imma mellan glasen att förseglingen har släppt – den går inte att putsa bort.</li>\n<li><strong>Imma på utsidan</strong> på morgonen är vanligt på nya, välisolerade fönster. Den är ett tecken på att fönstret isolerar bra och försvinner när det blir varmare ute.</li>\n</ul>\n<p>Fukt gör att smuts fastnar lättare på glaset, så det är ännu en anledning att putsa insidan innan du tänder adventsljusen.</p>'
+      },
+      {
+        'heading': 'Tips om du putsar själv i vinter',
+        'html': '<ul>\n<li>Putsa insidan med ljummet vatten och en droppe diskmedel, och dra av med en gummiskrapa. Torka kanterna med en luddfri trasa.</li>\n<li>Putsa när det är ljust ute, så ser du ränderna medan du jobbar.</li>\n<li>Flytta undan ljusstakar, sladdar och växter innan du börjar, så slipper du droppar på pyntet.</li>\n<li>Ställ aldrig en stege på is eller snö. Fönster som du inte når säkert från insidan kan vänta till en mildare dag.</li>\n<li>Har du inglasad balkong: öppna inte partierna om skenorna är frusna, och läs <a href="/guide/hur-tvattar-man-inglasade-balkonger">vår guide om inglasade balkonger</a>.</li>\n</ul>'
+      },
+      {
+        'heading': 'Boka fönsterputs inför helgerna',
+        'html': '<p>Vill du slippa jobbet själv kan vi putsa åt dig. Priset är fast och beror på antal fönster: en lägenhet på 1–2 rok kostar oftast 499–799 kr efter RUT-avdrag och en villa 799–2 199 kr. Se <a href="/pris">hela prislistan</a>.</p>\n<p>RUT-avdraget gäller även i december, och du kan använda det för fönsterputs i dina föräldrars bostad – ett praktiskt sätt att ge bort rena fönster till jul. Läs mer i <a href="/guide/rut-avdrag-fonsterputs-2026">guiden om rutavdrag</a>.</p>\n<p>Vill du ha rena fönster varje säsong utan att boka om passar ett <a href="/tjanst/abonnemang-fonsterputs">abonnemang</a>, till exempel med putsning inför jul och på våren.</p>'
+      }
+    ],
+    'faq': [
+      {
+        'question': 'När ska man putsa fönster inför jul?',
+        'answer': 'Helst i november, innan du sätter upp adventsljusstakar och stjärnor inför första advent. Då hinner du också putsa utsidan medan det ofta fortfarande är plusgrader.',
+        'linkLabel': 'Begär offert',
+        'linkTo': '/pris'
+      },
+      {
+        'question': 'Kan man putsa fönster på vintern?',
+        'answer': 'Ja. Insidan och mellan glasen går att putsa hela vintern. Utsidan bör vänta till en dag med plusgrader, eftersom vattnet annars fryser på rutan och stegen kan stå på is.'
+      },
+      {
+        'question': 'Varför syns ränder mer på fönstren i december?',
+        'answer': 'Solen står lågt och lyser rakt in genom fönstren, och på kvällen speglar sig smutsen mot mörkret ute. Ränder och damm som inte syns på sommaren blir tydliga.'
+      },
+      {
+        'question': 'Kan jag få RUT-avdrag om jag bokar fönsterputs åt mina föräldrar?',
+        'answer': 'Ja, RUT-avdraget gäller även tjänster i din förälders bostad. Det är du som betalar och får avdraget.',
+        'linkLabel': 'Så fungerar RUT-avdraget',
+        'linkTo': '/guide/rut-avdrag-fonsterputs-2026'
+      },
+      {
+        'question': 'Varför blir det imma mellan glasen på vintern?',
+        'answer': 'I äldre kopplade fönster tränger varm, fuktig luft förbi innerbågen – kontrollera tätningslisten. I isolerglas betyder imma mellan glasen att förseglingen har släppt, och då behöver rutan bytas.'
+      }
+    ],
+    'relatedServiceSlugs': [
+      'hostputs',
+      'lagenhet-fonsterputs',
+      'villa-fonsterputs',
+      'abonnemang-fonsterputs'
+    ]
   }
 ];
 

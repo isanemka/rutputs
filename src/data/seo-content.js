@@ -288,7 +288,7 @@ const siteSeoContent = {
           ],
         },
       ],
-      guides: ['hur-tvattar-man-inglasade-balkonger', 'rut-avdrag-fonsterputs-2026', 'hur-ofta-ska-man-putsa-fonster'],
+      guides: ['fonsterputs-infor-jul-och-vinter', 'hur-tvattar-man-inglasade-balkonger', 'rut-avdrag-fonsterputs-2026', 'hur-ofta-ska-man-putsa-fonster'],
       areas: ['kungsholmen', 'ostermalm', 'norrmalm', 'solna', 'sundbyberg', 'kista', 'djurgarden'],
       benefits: [
         'Från 499 kr efter RUT-avdrag.',
@@ -381,7 +381,7 @@ const siteSeoContent = {
       priceHeading: 'Vad kostar höstputs av fönster?',
       priceRows: ['apartmentSmall', 'apartmentLarge', 'house'],
       priceNote: 'Höstputs kostar lika mycket som vanlig fönsterputs: en lägenhet från 499 kr och en normalstor villa 799–2 199 kr efter RUT-avdrag. Bokar du med en granne samma dag får ni båda rabatt.',
-      guides: ['hur-ofta-ska-man-putsa-fonster', 'rut-avdrag-fonsterputs-2026'],
+      guides: ['fonsterputs-infor-jul-och-vinter', 'hur-ofta-ska-man-putsa-fonster', 'rut-avdrag-fonsterputs-2026'],
       areas: ['jarfalla', 'bromma', 'sollentuna', 'taby', 'solna', 'lidingo'],
       benefits: [
         'Maximera ljusinsläppet under den mörka årstiden.',
