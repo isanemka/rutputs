@@ -33,6 +33,7 @@ har en föreslagen slug och målssökfras. Bocka av när guiden är publicerad.
 ## Säsong
 
 - [ ] **Fönsterputs inför vintern – höstcheck** — `fonsterputs-infor-vintern` — _"fönsterputs inför vintern"_
+- [x] **Fönsterputs inför jul och nyår – tips för vintern** — `fonsterputs-infor-jul-och-vinter` — _"fönsterputs inför jul"_ (publicerad 2026-11-03)
 
 ## Jämförelser
 
@@ -50,3 +51,5 @@ har en föreslagen slug och målssökfras. Bocka av när guiden är publicerad.
 
 - `hur-ofta-ska-man-putsa-fonster`
 - `rut-avdrag-fonsterputs-2026`
+- `hur-tvattar-man-inglasade-balkonger`
+- `fonsterputs-infor-jul-och-vinter`
