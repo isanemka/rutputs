@@ -9,8 +9,8 @@
 
       <section class="hero-shell area-hero">
         <picture class="hero-shell__media area-hero__media">
-          <source media="(min-width: 600px)" :srcset="randomLandscapeImage" type="image/webp">
-          <img class="hero-shell__image" :src="randomPortraitImage" :alt="service.bodyTitle">
+          <source media="(min-width: 600px)" :srcset="hero.landscape" type="image/webp">
+          <img class="hero-shell__image" :src="hero.portrait" :alt="service.bodyTitle" fetchpriority="high">
         </picture>
         <div class="hero-shell__content">
           <span class="hero-kicker">Tjänst</span>
@@ -39,6 +39,26 @@
           <q-btn v-if="!service.contactOnly" unelevated color="accent" text-color="black" label="Begär offert" to="/pris" />
           <q-btn v-else unelevated color="accent" text-color="black" label="Ring direkt" type="a" href="tel:+46734644604" />
         </div>
+      </section>
+
+      <section v-if="service.priceRows?.length" id="pris" class="editorial-panel">
+        <span class="section-kicker">Pris</span>
+        <h2 class="section-title">{{ service.priceHeading || 'Vad kostar det?' }}</h2>
+        <p v-if="service.priceNote" class="section-text">{{ service.priceNote }}</p>
+        <PriceTable :rows="service.priceRows" :caption="service.bodyTitle + ' – pris med och utan RUT-avdrag'" />
+        <p class="section-text q-mt-md">
+          <router-link to="/pris" class="text-accent text-weight-bold">Se hela prislistan och vad som påverkar priset</router-link>
+        </p>
+      </section>
+
+      <section
+        v-for="(section, index) in service.sections ?? []"
+        :key="section.heading"
+        class="editorial-panel"
+        :class="{ 'editorial-panel--solid': index % 2 === 1 }"
+      >
+        <h2 class="section-title">{{ section.heading }}</h2>
+        <p v-for="paragraph in section.paragraphs" :key="paragraph" class="section-text">{{ paragraph }}</p>
       </section>
 
       <section class="cta-band">
@@ -77,129 +97,78 @@
           </q-expansion-item>
         </q-list>
       </section>
+
+      <section v-if="relatedGuides.length || relatedAreas.length" class="section-grid section-grid--two">
+        <div v-if="relatedGuides.length" class="editorial-panel">
+          <span class="section-kicker">Guider</span>
+          <h2 class="section-title">Läs mer</h2>
+          <ul class="service-link-list">
+            <li v-for="guide in relatedGuides" :key="guide.slug">
+              <router-link :to="'/guide/' + guide.slug" class="text-accent text-weight-bold">{{ guide.h1 }}</router-link>
+            </li>
+            <li v-if="service.company">
+              <router-link to="/foretag" class="text-accent text-weight-bold">Fönsterputs för företag</router-link>
+            </li>
+          </ul>
+        </div>
+        <div v-if="relatedAreas.length" class="editorial-panel">
+          <span class="section-kicker">Områden</span>
+          <h2 class="section-title">Här putsar vi bland annat</h2>
+          <div class="nearby-areas-grid">
+            <router-link
+              v-for="area in relatedAreas"
+              :key="area.slug"
+              :to="'/omrade/' + area.slug"
+              class="area-chip"
+            >
+              {{ area.name }}
+            </router-link>
+          </div>
+        </div>
+      </section>
     </div>
   </q-page>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed, onMounted, watch } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
-import { getServiceBySlug } from 'src/data/seo';
-import business from 'src/data/business';
+import { defineComponent, computed } from 'vue';
+import { useRoute } from 'vue-router';
+import PriceTable from 'src/components/PriceTable.vue';
+import { getAreaBySlug, getServiceBySlug } from 'src/data/seo';
+import { getGuideBySlug } from 'src/data/guides';
+import { heroImagesFor } from 'src/data/site-pages';
 
 export default defineComponent({
   name: 'ServicePageComponent',
+  components: { PriceTable },
   setup() {
     const route = useRoute();
-    const router = useRouter();
 
-    const service = computed(() => {
-      const slug = route.params.service as string;
-      return getServiceBySlug(slug);
-    });
+    // Unknown slugs never reach this component: the route guard renders the
+    // 404 page instead (see src/router/routes.ts).
+    const service = computed(() => getServiceBySlug(route.params.service as string));
 
-    watch(service, (val) => {
-      if (!val) {
-        router.replace('/404');
-      }
-    }, { immediate: true });
+    const hero = computed(() => heroImagesFor(route.path));
 
-    const landscapeImages = [
-      '/img/25050.webp',
-      '/img/25051.webp',
-      '/img/25052.webp',
-      '/img/25053.webp',
-      '/img/25054.webp',
-      '/img/25055.webp'
-    ];
-    const portraitImages = [
-      '/img/15050.webp',
-      '/img/15051.webp',
-      '/img/15052.webp',
-      '/img/15053.webp'
-    ];
-    const randomLandscapeImage = ref('');
-    const randomPortraitImage = ref('');
-    onMounted(() => {
-      randomLandscapeImage.value = landscapeImages[Math.floor(Math.random() * landscapeImages.length)];
-      randomPortraitImage.value = portraitImages[Math.floor(Math.random() * portraitImages.length)];
-    });
+    const relatedGuides = computed(() =>
+      (service.value?.guides ?? [])
+        .map((slug) => getGuideBySlug(slug))
+        .filter((guide): guide is NonNullable<typeof guide> => !!guide),
+    );
+
+    const relatedAreas = computed(() =>
+      (service.value?.areas ?? [])
+        .map((slug) => getAreaBySlug(slug))
+        .filter((area): area is NonNullable<typeof area> => !!area),
+    );
 
     return {
       service,
-      randomLandscapeImage,
-      randomPortraitImage,
+      hero,
+      relatedGuides,
+      relatedAreas,
     };
   },
-  meta() {
-    const slug = this.$route.params.service as string;
-    const service = getServiceBySlug(slug);
-    if (!service) {
-      return {
-        title: 'Sidan hittades inte – Rutputs',
-        meta: {
-          robots: { name: 'robots', content: 'noindex' }
-        }
-      };
-    }
-    const url = `https://www.rutputs.nu/tjanst/${service.slug}`;
-    return {
-      title: service.title,
-      meta: {
-        description: { name: 'description', content: service.description },
-        ogTitle: { property: 'og:title', content: service.title },
-        ogDescription: { property: 'og:description', content: service.description },
-        ogImage: { property: 'og:image', content: 'https://www.rutputs.nu/og-image.jpg' },
-        ogUrl: { property: 'og:url', content: url },
-        twitterCard: { name: 'twitter:card', content: 'summary_large_image' },
-        twitterTitle: { name: 'twitter:title', content: service.title },
-        twitterDescription: { name: 'twitter:description', content: service.description },
-        twitterImage: { name: 'twitter:image', content: 'https://www.rutputs.nu/og-image.jpg' }
-      },
-      script: {
-        serviceSchema: {
-          type: 'application/ld+json',
-          innerHTML: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'Service',
-            name: service.bodyTitle,
-            serviceType: 'Fönsterputsning',
-            description: service.description,
-            url,
-            provider: { '@type': 'LocalBusiness', '@id': business.id, name: 'Rutputs', url: 'https://www.rutputs.nu/' },
-            areaServed: 'Stockholm',
-            offers: { '@type': 'Offer', priceCurrency: 'SEK', price: '499', description: 'Från-pris efter RUT-avdrag' }
-          })
-        },
-        faqSchema: {
-          type: 'application/ld+json',
-          innerHTML: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'FAQPage',
-            mainEntity: service.faq.map((item) => ({
-              '@type': 'Question',
-              name: item.question,
-              acceptedAnswer: { '@type': 'Answer', text: item.answer }
-            }))
-          })
-        },
-        breadcrumbSchema: {
-          type: 'application/ld+json',
-          innerHTML: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'BreadcrumbList',
-            itemListElement: [
-              { '@type': 'ListItem', position: 1, name: 'Start', item: 'https://www.rutputs.nu/' },
-              { '@type': 'ListItem', position: 2, name: service.name, item: url }
-            ]
-          })
-        }
-      },
-      link: {
-        canonical: { rel: 'canonical', href: url }
-      }
-    };
-  }
 });
 </script>
 
@@ -221,5 +190,38 @@ export default defineComponent({
 .area-hero__media {
   position: absolute;
   inset: 0;
+}
+
+.service-link-list {
+  display: grid;
+  gap: 0.6rem;
+  margin: 1rem 0 0;
+  padding-left: 1.1rem;
+}
+
+.nearby-areas-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.area-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid var(--q-accent, #f4c542);
+  border-radius: 9999px;
+  color: var(--q-primary, #1a1a2e);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.area-chip:hover,
+.area-chip:focus-visible {
+  background-color: var(--q-accent, #f4c542);
+  outline: 2px solid var(--q-accent, #f4c542);
+  outline-offset: 2px;
 }
 </style>

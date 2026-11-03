@@ -1,6 +1,6 @@
 // Single source of truth for Rutputs business facts.
 // Plain JS so it can be imported both by the Vue app (TS) and by the
-// Node prerender script (scripts/prerender-routes.mjs).
+// Node build scripts (via src/data/schema.js).
 
 const business = {
   id: 'https://www.rutputs.nu/#business',

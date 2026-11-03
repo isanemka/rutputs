@@ -188,67 +188,28 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue';
+import { defineComponent, computed, onMounted, ref } from 'vue';
 import { useConsent } from 'src/composables/useConsent';
-import { privacySeo } from 'src/data/seo';
 
 export default defineComponent({
   name: 'PrivacyPolicyComponent',
-  meta: {
-    title: privacySeo.title,
-    meta: {
-      description: {
-        name: 'description',
-        content: privacySeo.description
-      },
-      ogTitle: {
-        property: 'og:title',
-        content: privacySeo.title
-      },
-      ogDescription: {
-        property: 'og:description',
-        content: privacySeo.description
-      },
-      ogImage: {
-        property: 'og:image',
-        content: 'https://www.rutputs.nu/og-image.jpg'
-      },
-      ogUrl: {
-        property: 'og:url',
-        content: 'https://www.rutputs.nu/integritetspolicy'
-      },
-      twitterCard: {
-        name: 'twitter:card',
-        content: 'summary_large_image'
-      },
-      twitterTitle: {
-        name: 'twitter:title',
-        content: privacySeo.title
-      },
-      twitterDescription: {
-        name: 'twitter:description',
-        content: privacySeo.description
-      },
-      twitterImage: {
-        name: 'twitter:image',
-        content: 'https://www.rutputs.nu/og-image.jpg'
-      }
-    },
-    link: {
-      canonical: {
-        rel: 'canonical',
-        href: 'https://www.rutputs.nu/integritetspolicy'
-      }
-    }
-  },
   setup() {
     const {
       consentStatus,
       triggerShowBanner,
     } = useConsent();
 
+    // The prerendered HTML cannot know the visitor's stored choice, so show
+    // "pending" until mounted; the first client render then matches the
+    // server markup and the real status appears right after hydration.
+    const isMounted = ref(false);
+    onMounted(() => {
+      isMounted.value = true;
+    });
+    const shownStatus = computed(() => (isMounted.value ? consentStatus.value : 'pending'));
+
     const statusColor = computed(() => {
-      switch (consentStatus.value) {
+      switch (shownStatus.value) {
         case 'accepted':
           return 'positive';
         case 'rejected':
@@ -259,7 +220,7 @@ export default defineComponent({
     });
 
     const statusLabel = computed(() => {
-      switch (consentStatus.value) {
+      switch (shownStatus.value) {
         case 'accepted':
           return 'Accepterat';
         case 'rejected':
@@ -270,7 +231,7 @@ export default defineComponent({
     });
 
     const changeConsentLabel = computed(() => {
-      if (consentStatus.value === 'pending') {
+      if (shownStatus.value === 'pending') {
         return 'Öppna cookieinställningar';
       }
       return 'Ändra mitt val';

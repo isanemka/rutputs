@@ -12,6 +12,8 @@ export interface SeoFaq {
 }
 
 export interface SeoPage {
+  /** ISO date of the last meaningful content change; becomes <lastmod> in sitemap.xml. */
+  updatedAt: string;
   title: string;
   description: string;
   bodyTitle: string;
@@ -21,19 +23,40 @@ export interface SeoPage {
   steps?: string[];
 }
 
+export interface AreaDistrict {
+  name: string;
+  text: string;
+}
+
 export interface AreaSeo {
   slug: string;
   name: string;
-  title: string;
+  /** Preposition used with the name: "i" (default) or "på" (på Östermalm). */
+  prep?: 'i' | 'på';
+  /** ISO date of the last meaningful content change; becomes <lastmod> in sitemap.xml. */
+  updatedAt: string;
+  /** The page title is generated from a template in site-pages.js. */
   description: string;
+  /** Hero lead. */
   content: string;
-  districts: string[];
+  housing: string[];
+  districts: AreaDistrict[];
+  tips: string[];
+  /** Row ids from prices.js, most relevant first. */
+  priceRows: Array<'apartmentSmall' | 'apartmentLarge' | 'house'>;
+  priceNote: string;
+  services: string[];
+  /** Adds a link to /foretag. */
+  company?: boolean;
+  guides: string[];
   faq: SeoFaq[];
-  nearbyAreas?: Array<{ name: string; slug: string }>;
+  nearbyAreas: Array<{ name: string; slug: string }>;
 }
 
 export interface ServiceSeo {
   slug: string;
+  /** ISO date of the last meaningful content change; becomes <lastmod> in sitemap.xml. */
+  updatedAt: string;
   name: string;
   title: string;
   description: string;
@@ -42,6 +65,17 @@ export interface ServiceSeo {
   benefits: string[];
   faq: SeoFaq[];
   contactOnly?: boolean;
+  /** Heading of the price section (shown when priceRows is set). */
+  priceHeading?: string;
+  /** Row ids from prices.js to show in the price table. */
+  priceRows?: Array<'apartmentSmall' | 'apartmentLarge' | 'house'>;
+  priceNote?: string;
+  sections?: Array<{ heading: string; paragraphs: string[] }>;
+  /** Adds a link to /foretag. */
+  company?: boolean;
+  guides?: string[];
+  /** Area slugs to link. */
+  areas?: string[];
 }
 
 interface SiteSeoContent {

@@ -8,58 +8,86 @@
       </nav>
       <section class="hero-shell area-hero">
         <picture class="hero-shell__media area-hero__media">
-          <source media="(min-width: 600px)" :srcset="randomLandscapeImage" type="image/webp">
-          <img class="hero-shell__image" :src="randomPortraitImage" :alt="'Fönsterputsning i ' + area.name">
+          <source media="(min-width: 600px)" :srcset="hero.landscape" type="image/webp">
+          <img class="hero-shell__image" :src="hero.portrait" :alt="'Fönsterputs ' + inArea" fetchpriority="high">
         </picture>
         <div class="hero-shell__content">
           <span class="hero-kicker">{{ area.name }}</span>
-          <h1 class="hero-title area-hero__title">Fönsterputsning i {{ area.name }}</h1>
+          <h1 class="hero-title area-hero__title">Fönsterputs {{ inArea }}</h1>
           <p class="hero-lead">
             {{ area.content }}
           </p>
           <div class="hero-actions">
             <q-btn unelevated color="accent" text-color="black" label="Begär offert" to="/pris" />
+            <q-btn outline color="white" label="Se priser" :to="{ hash: '#pris' }" />
           </div>
         </div>
       </section>
 
       <section class="section-grid section-grid--two">
         <div class="editorial-panel editorial-panel--solid">
-          <span class="section-kicker">Lokalt upplägg</span>
-          <h2 class="section-title">En smidigare bokning när arbetet redan sker i området</h2>
-          <p class="section-text">
-            Fönsterputsning i {{ area.name }} passar villor, radhus, lägenheter och mindre fastigheter där rena fönster
-            gör stor skillnad för ljusinsläpp och helhetsintryck. Vi arbetar redan i området, vilket gör det enkelt att hitta en tid som passar.
-          </p>
-          <p class="section-text">
-            Vi hjälper kunder i {{ districtSummary }} och närliggande delar av området. Med RUT-avdraget börjar priset
-            från 499 kronor och du skickar enkelt en offertförfrågan när det passar dig.
-          </p>
+          <span class="section-kicker">Bostäder</span>
+          <h2 class="section-title">Fönster och bostäder {{ inArea }}</h2>
+          <p v-for="paragraph in area.housing" :key="paragraph" class="section-text">{{ paragraph }}</p>
         </div>
 
         <div class="editorial-panel">
           <span class="section-kicker">Så går det till</span>
-          <h2 class="section-title">Från offertförfrågan till färdigt resultat</h2>
+          <h2 class="section-title">Från förfrågan till rena fönster</h2>
           <ul class="feature-list">
-            <li>Fyll i uppgifterna i offertformuläret.</li>
-            <li>Skicka in förfrågan när upplägget känns rätt, så återkommer vi med en offert.</li>
-            <li>Få återkoppling om bokning, tid och eventuella detaljer.</li>
-            <li>Få arbetet utfört av någon som redan är verksam i {{ area.name }}.</li>
+            <li>Fyll i bostadstyp, antal fönster och vad som ska putsas i offertformuläret.</li>
+            <li>Du får en offert med fast pris efter RUT-avdrag – inget timpris.</li>
+            <li>Vi bokar en tid som passar och tar med stege och allt material.</li>
+            <li>RUT-avdraget dras direkt på fakturan, vi sköter kontakten med Skatteverket.</li>
           </ul>
         </div>
       </section>
 
-      <section class="editorial-panel">
-        <span class="section-kicker">Delområden</span>
-        <h2 class="section-title">Områden vi täcker i {{ area.name }}</h2>
-        <p class="section-text">
-          Vi arbetar återkommande i flera delar av {{ area.name }}, vilket gör det enkelt att boka både enstaka putsningar och återkommande hjälp.
+      <section id="pris" class="editorial-panel area-price">
+        <span class="section-kicker">Pris</span>
+        <h2 class="section-title">Vad kostar fönsterputs {{ inArea }}?</h2>
+        <p class="section-text">{{ area.priceNote }}</p>
+        <PriceTable :rows="area.priceRows" :caption="'Pris för fönsterputs ' + inArea + ' med och utan RUT-avdrag'" />
+        <p class="section-text q-mt-md">
+          <router-link to="/pris" class="text-accent text-weight-bold">Se hela prislistan och vad som påverkar priset</router-link>
         </p>
+      </section>
+
+      <section v-if="area.districts.length > 1" class="editorial-panel">
+        <span class="section-kicker">Delområden</span>
+        <h2 class="section-title">Här putsar vi fönster {{ inArea }}</h2>
         <div class="mini-card-grid q-mt-lg area-districts">
-          <article v-for="district in area.districts" :key="district" class="mini-card">
-            <h3 class="mini-card__title">{{ district }}</h3>
-            <p class="mini-card__text">Fönsterputsning för bostäder och mindre fastigheter i {{ district }} med tydlig prissättning och smidig bokning.</p>
+          <article v-for="district in area.districts" :key="district.name" class="mini-card">
+            <h3 class="mini-card__title">{{ district.name }}</h3>
+            <p class="mini-card__text">{{ district.text }}</p>
           </article>
+        </div>
+      </section>
+
+      <section class="editorial-panel editorial-panel--solid">
+        <span class="section-kicker">Bra att veta</span>
+        <h2 class="section-title">Att tänka på inför fönsterputs {{ inArea }}</h2>
+        <p v-for="paragraph in area.tips" :key="paragraph" class="section-text">{{ paragraph }}</p>
+      </section>
+
+      <section class="section-grid section-grid--two">
+        <div class="editorial-panel">
+          <span class="section-kicker">Tjänster</span>
+          <h2 class="section-title">Tjänster {{ inArea }}</h2>
+          <ul class="area-link-list">
+            <li v-for="service in relatedServices" :key="service.to">
+              <router-link :to="service.to" class="text-accent text-weight-bold">{{ service.label }}</router-link>
+            </li>
+          </ul>
+        </div>
+        <div v-if="relatedGuides.length" class="editorial-panel">
+          <span class="section-kicker">Guider</span>
+          <h2 class="section-title">Läs mer innan du bokar</h2>
+          <ul class="area-link-list">
+            <li v-for="guide in relatedGuides" :key="guide.slug">
+              <router-link :to="'/guide/' + guide.slug" class="text-accent text-weight-bold">{{ guide.h1 }}</router-link>
+            </li>
+          </ul>
         </div>
       </section>
 
@@ -81,14 +109,14 @@
       <section class="cta-band">
         <div class="cta-band__text">
           <h2 class="cta-band__title">Vill du ha en offert för {{ area.name }}?</h2>
-          <p class="cta-band__lead">Fyll i offertformuläret så återkommer vi med ett tydligt pris efter RUT-avdrag.</p>
+          <p class="cta-band__lead">Fyll i offertformuläret så återkommer vi med ett fast pris efter RUT-avdrag.</p>
         </div>
         <q-btn unelevated color="accent" text-color="black" label="Begär offert" to="/pris" />
       </section>
 
       <section class="editorial-panel faq-shell">
         <span class="section-kicker">Vanliga frågor</span>
-        <h2 class="section-title">Det här undrar kunder i {{ area.name }} oftast</h2>
+        <h2 class="section-title">Vanliga frågor om fönsterputs {{ inArea }}</h2>
         <q-list bordered separator role="none">
           <q-expansion-item
             v-for="item in area.faq"
@@ -125,178 +153,53 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed, onMounted, watch } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
-import { getAreaBySlug } from 'src/data/seo';
-import business from 'src/data/business';
+import { defineComponent, computed } from 'vue';
+import { useRoute } from 'vue-router';
+import PriceTable from 'src/components/PriceTable.vue';
+import { getAreaBySlug, getServiceBySlug } from 'src/data/seo';
+import { getGuideBySlug } from 'src/data/guides';
+import { areaLocative, heroImagesFor } from 'src/data/site-pages';
 
 export default defineComponent({
   name: 'AreaComponent',
+  components: { PriceTable },
   setup() {
     const route = useRoute();
-    const router = useRouter();
 
-    const area = computed(() => {
-      const slug = route.params.area as string;
-      return getAreaBySlug(slug);
-    });
+    // Unknown slugs never reach this component: the route guard renders the
+    // 404 page instead (see src/router/routes.ts).
+    const area = computed(() => getAreaBySlug(route.params.area as string));
 
-    const districtSummary = computed(() => {
-      if (!area.value) {
-        return '';
+    // "i Kista" / "på Östermalm"
+    const inArea = computed(() => (area.value ? areaLocative(area.value) : ''));
+
+    const hero = computed(() => heroImagesFor(route.path));
+
+    const relatedServices = computed(() => {
+      const links = (area.value?.services ?? [])
+        .map((slug) => getServiceBySlug(slug))
+        .filter((service): service is NonNullable<typeof service> => !!service)
+        .map((service) => ({ to: `/tjanst/${service.slug}`, label: service.bodyTitle }));
+      if (area.value?.company) {
+        links.push({ to: '/foretag', label: 'Fönsterputs för företag' });
       }
-
-      return area.value.districts.join(', ');
+      return links;
     });
 
-    watch(area, (val) => {
-      if (!val) {
-        router.replace('/404');
-      }
-    }, { immediate: true });
-
-    const landscapeImages = [
-      '/img/25050.webp',
-      '/img/25051.webp',
-      '/img/25052.webp',
-      '/img/25053.webp',
-      '/img/25054.webp',
-      '/img/25055.webp'
-    ];
-    const portraitImages = [
-      '/img/15050.webp',
-      '/img/15051.webp',
-      '/img/15052.webp',
-      '/img/15053.webp'
-    ];
-    const randomLandscapeImage = ref('');
-    const randomPortraitImage = ref('');
-    onMounted(() => {
-      randomLandscapeImage.value = landscapeImages[Math.floor(Math.random() * landscapeImages.length)];
-      randomPortraitImage.value = portraitImages[Math.floor(Math.random() * portraitImages.length)];
-    });
+    const relatedGuides = computed(() =>
+      (area.value?.guides ?? [])
+        .map((slug) => getGuideBySlug(slug))
+        .filter((guide): guide is NonNullable<typeof guide> => !!guide),
+    );
 
     return {
       area,
-      districtSummary,
-      randomLandscapeImage,
-      randomPortraitImage,
+      inArea,
+      hero,
+      relatedServices,
+      relatedGuides,
     };
   },
-  meta() {
-    const slug = this.$route.params.area as string;
-    const area = getAreaBySlug(slug);
-    if (!area) {
-      return {
-        title: 'Sidan hittades inte – Rutputs',
-        meta: {
-          robots: { name: 'robots', content: 'noindex' }
-        }
-      };
-    }
-    return {
-      title: area.title,
-      meta: {
-        description: {
-          name: 'description',
-          content: area.description
-        },
-        ogTitle: {
-          property: 'og:title',
-          content: area.title
-        },
-        ogDescription: {
-          property: 'og:description',
-          content: area.description
-        },
-        ogImage: {
-          property: 'og:image',
-          content: 'https://www.rutputs.nu/og-image.jpg'
-        },
-        ogUrl: {
-          property: 'og:url',
-          content: `https://www.rutputs.nu/omrade/${area.slug}`
-        },
-        twitterCard: {
-          name: 'twitter:card',
-          content: 'summary_large_image'
-        },
-        twitterTitle: {
-          name: 'twitter:title',
-          content: area.title
-        },
-        twitterDescription: {
-          name: 'twitter:description',
-          content: area.description
-        },
-        twitterImage: {
-          name: 'twitter:image',
-          content: 'https://www.rutputs.nu/og-image.jpg'
-        }
-      },
-      script: {
-        serviceSchema: {
-          type: 'application/ld+json',
-          innerHTML: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'Service',
-            name: `Fönsterputs i ${area.name}`,
-            serviceType: 'Fönsterputsning',
-            description: area.description,
-            url: `https://www.rutputs.nu/omrade/${area.slug}`,
-            provider: {
-              '@type': 'LocalBusiness',
-              '@id': business.id,
-              name: 'Rutputs',
-              url: 'https://www.rutputs.nu/'
-            },
-            areaServed: {
-              '@type': 'City',
-              name: area.name
-            },
-            offers: {
-              '@type': 'Offer',
-              priceCurrency: 'SEK',
-              price: '499',
-              description: 'Från-pris efter RUT-avdrag'
-            }
-          })
-        },
-        faqSchema: {
-          type: 'application/ld+json',
-          innerHTML: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'FAQPage',
-            mainEntity: area.faq.map((item) => ({
-              '@type': 'Question',
-              name: item.question,
-              acceptedAnswer: {
-                '@type': 'Answer',
-                text: item.answer
-              }
-            }))
-          })
-        },
-        breadcrumbSchema: {
-          type: 'application/ld+json',
-          innerHTML: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'BreadcrumbList',
-            itemListElement: [
-              { '@type': 'ListItem', position: 1, name: 'Start', item: 'https://www.rutputs.nu/' },
-              { '@type': 'ListItem', position: 2, name: area.name, item: `https://www.rutputs.nu/omrade/${area.slug}` }
-            ]
-          })
-        }
-      },
-      link: {
-        canonical: {
-          rel: 'canonical',
-          href: `https://www.rutputs.nu/omrade/${area.slug}`
-        }
-      }
-    };
-  }
 });
 </script>
 
@@ -363,6 +266,13 @@ export default defineComponent({
   .area-districts {
     grid-template-columns: 1fr;
   }
+}
+
+.area-link-list {
+  display: grid;
+  gap: 0.6rem;
+  margin: 1rem 0 0;
+  padding-left: 1.1rem;
 }
 
 .nearby-areas-grid {

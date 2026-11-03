@@ -50,15 +50,29 @@ npm run format
 ### Build the app for production
 
 ```bash
-quasar build
+npm run build
 ```
 
-Production build now also generates prerendered HTML files for the key SEO routes in `dist/spa`, including the home page, company page, pricing page and all area pages.
+The build has three steps:
+
+1. `quasar build -m ssr` builds the app in SSR mode (`dist/ssr`).
+2. `scripts/prerender.mjs` starts that SSR bundle locally and renders every route in the page registry (`src/data/site-pages.js`) to static HTML in `dist/static` (`/omrade/kista` → `omrade/kista/index.html`). It also writes `404.html`, `sitemap.xml` and `llms.txt`. Each page hydrates in the browser as a normal Quasar app.
+3. `scripts/verify-seo.mjs` checks the built HTML for every URL in `sitemap.xml` and prints a table. The build fails on duplicate titles or descriptions, a canonical that is not the page's own URL, or a page without exactly one `<h1>`.
+
+To check the output locally the way Vercel serves it (clean URLs, `404.html` with HTTP 404):
+
+```bash
+npm run preview
+```
+
+`npm run dev` still runs the app in SPA mode with hot reload; `npm run dev:ssr` runs it in SSR mode.
 
 ### SEO and deploy notes
 
-- The build command generates route-specific static HTML files with page-specific `title`, `description`, `canonical`, Open Graph tags and structured data.
-- Vercel should serve `dist/spa` as the output directory.
+- Title, description, canonical, Open Graph, robots and JSON-LD for every page come from the page registry `src/data/site-pages.js` (schemas in `src/data/schema.js`) and are applied by `usePageSeo()` in `MainLayout`. Do not hardcode head tags in `index.html` or in page components.
+- To add a page: add the route in `src/router/routes.ts` and an entry in the registry (area and service pages are added through `src/data/seo-content.js`, guides through `src/data/guides-content.js`). Pages missing from the registry are not prerendered and get a 404 on Vercel.
+- `updatedAt` on each page in `src/data/seo-content.js` (and `updatedAt`/`publishedAt` on guides) becomes `<lastmod>` in `sitemap.xml`. Bump it when a page's content changes meaningfully.
+- Vercel serves `dist/static` (`vercel.json` sets `buildCommand` and `outputDirectory`, which override the dashboard settings). There is no SPA fallback rewrite, so unknown URLs get `404.html` with HTTP 404.
 - Keep `www.rutputs.nu` as the canonical domain.
 - Configure the apex domain `rutputs.nu` to redirect permanently to `www.rutputs.nu` in the Vercel Domains dashboard, since domain-level redirects are managed there.
 

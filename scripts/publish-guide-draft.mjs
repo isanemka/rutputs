@@ -214,26 +214,9 @@ async function main() {
     { stdio: 'inherit', shell: process.platform === 'win32' }
   );
 
-  // --- sitemap.xml ---
-  const sitemapPath = path.resolve('public/sitemap.xml');
+  // sitemap.xml genereras vid build från sidregistret (src/data/site-pages.js),
+  // så guiden kommer med automatiskt.
   const guideUrl = `${BASE_URL}/guide/${slug}`;
-  const sitemapEntry = [
-    '  <url>',
-    `    <loc>${guideUrl}</loc>`,
-    `    <lastmod>${guide.publishedAt}</lastmod>`,
-    '    <changefreq>monthly</changefreq>',
-    '    <priority>0.7</priority>',
-    '  </url>',
-  ].join('\n');
-
-  let sitemapContent = await readFile(sitemapPath, 'utf8');
-  if (sitemapContent.includes(`<loc>${guideUrl}</loc>`)) {
-    console.log(`› sitemap.xml: URL finns redan, hoppade över.`);
-  } else {
-    sitemapContent = sitemapContent.replace('</urlset>', `${sitemapEntry}\n</urlset>`);
-    await writeFile(sitemapPath, sitemapContent, 'utf8');
-    console.log(`✓ Lade till ${guideUrl} i sitemap.xml`);
-  }
 
   // --- llms.txt ---
   const llmsPath = path.resolve('public/llms.txt');

@@ -27,7 +27,9 @@ export default configure(function (/* ctx */) {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     // https://v2.quasar.dev/quasar-cli-vite/boot-files
-    boot: ['analytics'],
+    // Analytics touches window/document, so it only runs in the browser
+    // (the SSR build is used to prerender pages at build time).
+    boot: [{ path: 'analytics', server: false }],
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#css
     css: ['app.sass'],
@@ -93,7 +95,8 @@ export default configure(function (/* ctx */) {
       config: {},
 
       // iconSet: 'material-icons', // Quasar icon set
-      // lang: 'en-US', // Quasar language pack
+      // Swedish language pack: also sets <html lang="sv"> in the server-rendered pages
+      lang: 'sv',
 
       // For special cases outside of where the auto-import strategy can have an impact
       // (like functional components as one of the examples),
@@ -123,6 +126,8 @@ export default configure(function (/* ctx */) {
     // },
 
     // https://v2.quasar.dev/quasar-cli-vite/developing-ssr/configuring-ssr
+    // SSR mode is only used at build time: scripts/prerender.mjs renders every
+    // route to static HTML in dist/static, which is what Vercel serves.
     ssr: {
       // ssrPwaHtmlFilename: 'offline.html', // do NOT use index.html as name!
       // will mess up SSR

@@ -4,15 +4,16 @@
       <section class="editorial-panel editorial-panel--solid price-intro-panel">
         <span class="section-kicker price-intro-panel__kicker">Priser &amp; offert</span>
         <h1 class="section-title text-center">
-          Pris på fönsterputs i Stockholm
+          Vad kostar fönsterputs i Stockholm?
         </h1>
         <p class="section-text text-center q-mx-auto price-intro-panel__text">
-          Berätta lite om dina fönster så återkommer vi med en personlig offert.
-          Fyll i formuläret nedan – det tar bara någon minut.
+          Fönsterputs hos Rutputs kostar från 499 kr efter RUT-avdrag. En lägenhet på 1–2 rum och kök kostar
+          oftast 499–799 kr, en trea eller fyra 699–1 199 kr och en normalstor villa 799–2 199 kr.
         </p>
         <p class="section-text text-center q-mx-auto price-intro-panel__text">
-          Priset börjar från 499 kr efter RUT-avdrag och beräknas utifrån antal fönster,
-          bostadstyp och vad du vill ha putsat.
+          Priset är fast och bestäms av hur många fönster du har, vilka sidor som ska putsas och om fönstren har
+          spröjs – inte av hur lång tid jobbet tar. Fyll i formuläret så får du en personlig offert med exakt pris.
+          Det är gratis och inte bindande.
         </p>
         <div class="price-intro-panel__actions">
           <q-btn
@@ -25,29 +26,98 @@
         </div>
       </section>
 
-      <section class="editorial-panel price-list-note">
-        <span class="section-kicker">Bra att veta</span>
-          <h2 class="section-title">Offert utan förpliktelser</h2>
+      <section class="editorial-panel price-table-panel">
+        <span class="section-kicker">Prislista</span>
+        <h2 class="section-title">Priser för fönsterputs i Stockholm 2026</h2>
         <p class="section-text">
-            Det är kostnadsfritt och inte bindande att skicka in din förfrågan.
-            Vi återkommer med ett tydligt pris efter RUT-avdrag utifrån dina uppgifter.
+          Tabellen visar vad fönsterputs brukar kosta för olika bostäder, med och utan RUT-avdrag. Det exakta
+          priset för just ditt hem får du i offerten, när vi vet hur många fönster det gäller och vad som ska putsas.
         </p>
-        <p class="section-text">
-            Eventuella tillägg vid exempelvis spröjsade fönster, hård nedsmutsning eller svår åtkomst
-            framgår alltid innan arbetet startar.
-        </p>
+        <PriceTable />
       </section>
 
-      <section class="editorial-panel price-table-panel">
-        <span class="section-kicker">Vad kostar det?</span>
-        <h2 class="section-title">Tjänster och vad som ingår</h2>
-        <p class="section-text">
-          Priset börjar från 499 kr efter RUT-avdrag och beräknas utifrån dina fönster.
-          Fyll i formuläret nedan så räknar vi fram ett exakt pris för just din bostad.
-        </p>
-        <div class="price-callout">
-          Från 499 kr efter RUT-avdrag
+      <section class="section-grid section-grid--two">
+        <div class="editorial-panel editorial-panel--solid">
+          <span class="section-kicker">Lägenhet</span>
+          <h2 class="section-title">Pris för lägenhet</h2>
+          <p class="section-text">
+            För de flesta lägenheter hamnar priset mellan 499 och 1 199 kr efter RUT-avdrag. En etta eller tvåa
+            ligger oftast i den lägre delen av spannet, medan en trea eller fyra med fler fönster, balkongdörr och
+            kanske ett burspråk hamnar högre upp.
+          </p>
+          <p class="section-text">
+            Inglasad balkong, spröjsade fönster och fönster som inte går att vända inåt tar längre tid och syns i
+            offerten. Har du kopplade fönster i ett äldre hus putsar vi även mellan glasen om du vill.
+          </p>
+          <div class="hero-actions q-pt-md">
+            <q-btn outline color="primary" label="Fönsterputs för lägenhet" to="/tjanst/lagenhet-fonsterputs" />
+          </div>
         </div>
+
+        <div class="editorial-panel editorial-panel--solid">
+          <span class="section-kicker">Villa och radhus</span>
+          <h2 class="section-title">Pris för villa/radhus</h2>
+          <p class="section-text">
+            En normalstor villa kostar oftast 799–2 199 kr efter RUT-avdrag. Hus har fler fönster än lägenheter
+            och ofta spröjs, altandörrar, uterum och fönster på övervåningen som kräver stege, så spannet blir större.
+          </p>
+          <p class="section-text">
+            Ett radhus med färre fönster hamnar i den lägre delen av spannet, en stor villa med många spröjsade
+            fönster i den högre. Vill du ha putsat både vår och höst kan ett abonnemang bli billigare per gång.
+          </p>
+          <div class="hero-actions q-pt-md">
+            <q-btn outline color="primary" label="Fönsterputs för villa" to="/tjanst/villa-fonsterputs" />
+          </div>
+        </div>
+      </section>
+
+      <section class="section-grid section-grid--two">
+        <div class="editorial-panel">
+          <span class="section-kicker">RUT-avdrag</span>
+          <h2 class="section-title">Pris med och utan RUT-avdrag</h2>
+          <p class="section-text">
+            Som privatperson betalar du halva priset. RUT-avdraget är 50 procent av arbetskostnaden, och hos oss är
+            hela priset arbete – allt material ingår. Avdraget dras direkt på fakturan och vi sköter ansökan hos
+            Skatteverket.
+          </p>
+          <p class="section-text">
+            Exempel: kostar putsningen 1 400 kr inklusive moms betalar du 700 kr. Har du redan använt hela ditt
+            RUT-utrymme för året betalar du det fulla priset, alltså det dubbla mot priset efter avdrag.
+            RUT-avdraget räcker till 75 000 kr per person och år, så länge du har betalat tillräckligt med skatt.
+          </p>
+          <p class="section-text">
+            <router-link to="/guide/rut-avdrag-fonsterputs-2026" class="text-accent text-weight-bold">
+              Så fungerar rutavdraget för fönsterputs
+            </router-link>
+          </p>
+        </div>
+
+        <div class="editorial-panel">
+          <span class="section-kicker">Fast pris</span>
+          <h2 class="section-title">Pris per timme vs fast pris</h2>
+          <p class="section-text">
+            Vi tar inte betalt per timme. Du får ett fast pris i offerten innan vi kommer, och det ändras inte om
+            jobbet tar längre tid än väntat. Det gör det enkelt att jämföra offerter och du vet exakt vad du betalar.
+          </p>
+          <p class="section-text">
+            Med timpris beror slutsumman på hur lång tid jobbet tar, och det är svårt att veta i förväg vad det blir.
+            Därför räknar vi på antal fönster och vad som ska putsas – samma fönster kostar lika mycket varje gång.
+          </p>
+        </div>
+      </section>
+
+      <section class="editorial-panel">
+        <span class="section-kicker">Vad kostar det?</span>
+        <h2 class="section-title">Vad påverkar priset på fönsterputs?</h2>
+        <ul class="feature-list">
+          <li>Antal fönster och fönsterbågar.</li>
+          <li>Vilka sidor som ska putsas: utsida, insida och mellan glasen.</li>
+          <li>Spröjs, som tar längre tid att putsa runt.</li>
+          <li>Åtkomst: höga fönster, takfönster och fönster som inte går att öppna.</li>
+          <li>Inglasade balkonger och uterum.</li>
+          <li>Hård nedsmutsning, till exempel efter en renovering.</li>
+        </ul>
+        <h3 class="price-subtitle">Vad ingår i putsningen?</h3>
         <div class="price-table-wrap">
           <table class="price-table">
             <caption class="price-table__caption">Tjänstealternativ för fönsterputs – vad ingår i varje val</caption>
@@ -78,14 +148,28 @@
           </table>
         </div>
         <p class="section-text q-mt-md">
-          <strong>RUT-avdrag:</strong> Som privatperson betalar du hälften av arbetskostnaden –
-          resten dras direkt av på fakturan. Avdraget är redan inräknat i priset ovan.
+          <strong>Boka med din granne:</strong> när du och en granne bokar samma dag i samma område får ni båda
+          rabatt. Skriv det i din förfrågan så lägger vi upp ett gemensamt besök.
+        </p>
+      </section>
+
+      <section class="editorial-panel price-list-note">
+        <span class="section-kicker">Bra att veta</span>
+        <h2 class="section-title">Offert utan förpliktelser</h2>
+        <p class="section-text">
+          Det är kostnadsfritt och inte bindande att skicka in din förfrågan.
+          Vi återkommer med ett tydligt pris efter RUT-avdrag utifrån dina uppgifter.
+        </p>
+        <p class="section-text">
+          Eventuella tillägg vid exempelvis spröjsade fönster, hård nedsmutsning eller svår åtkomst
+          framgår alltid innan arbetet startar.
         </p>
       </section>
 
       <div class="row q-flex justify-center mb-2">
         <div class="col-12">
           <div id="pris-formular" class="editorial-panel price-stepper-shell">
+          <h2 class="section-title price-form-title">Begär offert och få ditt exakta pris</h2>
           <!-- Stepper component for multiple steps -->
           <q-stepper
             :vertical="$q.screen.gt.sm"
@@ -363,7 +447,7 @@
 
       <section class="editorial-panel faq-shell q-pb-xl">
         <span class="section-kicker">Vanliga frågor</span>
-        <h2 class="section-title">Offert och bokning</h2>
+        <h2 class="section-title">Vanliga frågor om pris på fönsterputs</h2>
         <q-list bordered separator role="none">
           <q-expansion-item
             v-for="item in priceFaqs"
@@ -405,6 +489,7 @@ import { useQuasar } from 'quasar';
 import axios from 'axios';
 import { priceSeo } from 'src/data/seo';
 import { trackEvent } from 'src/boot/analytics';
+import PriceTable from 'src/components/PriceTable.vue';
 import { areas } from 'src/data/areas';
 
 const priceFaqs = priceSeo.faq ?? [];
@@ -413,70 +498,7 @@ type CleaningSides = 'outside' | 'both' | 'all';
 
 export default defineComponent({
   name: 'PriceListComponent',
-  meta: {
-    title: priceSeo.title,
-    meta: {
-      description: {
-        name: 'description',
-        content: priceSeo.description
-      },
-      ogTitle: {
-        property: 'og:title',
-        content: priceSeo.title
-      },
-      ogDescription: {
-        property: 'og:description',
-        content: priceSeo.description
-      },
-      ogImage: {
-        property: 'og:image',
-        content: 'https://www.rutputs.nu/og-image.jpg'
-      },
-      ogUrl: {
-        property: 'og:url',
-        content: 'https://www.rutputs.nu/pris'
-      },
-      twitterCard: {
-        name: 'twitter:card',
-        content: 'summary_large_image'
-      },
-      twitterTitle: {
-        name: 'twitter:title',
-        content: priceSeo.title
-      },
-      twitterDescription: {
-        name: 'twitter:description',
-        content: priceSeo.description
-      },
-      twitterImage: {
-        name: 'twitter:image',
-        content: 'https://www.rutputs.nu/og-image.jpg'
-      }
-    },
-    link: {
-      canonical: {
-        rel: 'canonical',
-        href: 'https://www.rutputs.nu/pris'
-      }
-    },
-    script: {
-      faqSchema: {
-        type: 'application/ld+json',
-        innerHTML: JSON.stringify({
-          '@context': 'https://schema.org',
-          '@type': 'FAQPage',
-          mainEntity: priceFaqs.map((item) => ({
-            '@type': 'Question',
-            name: item.question,
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: item.answer
-            }
-          }))
-        })
-      }
-    }
-  },
+  components: { PriceTable },
   data() {
     return {
       showTermsDialog: false,
@@ -867,6 +889,18 @@ export default defineComponent({
   }
 }
 
+.price-subtitle {
+  margin: 1.75rem 0 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.price-form-title {
+  margin: 0.5rem 0 0.25rem;
+  padding: 0 1rem;
+  font-size: clamp(1.3rem, 2.4vw, 1.8rem);
+}
+
 .price-callout {
   display: inline-block;
   margin-top: 1rem;
@@ -904,12 +938,12 @@ export default defineComponent({
 .price-table td {
   padding: 0.65rem 1rem;
   text-align: left;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(69, 90, 100, 0.16);
 }
 
 .price-table thead th {
   font-weight: 600;
-  border-bottom-color: rgba(255, 255, 255, 0.2);
+  border-bottom-color: rgba(69, 90, 100, 0.32);
   white-space: nowrap;
 }
 
@@ -918,7 +952,7 @@ export default defineComponent({
 }
 
 .price-table tbody tr:nth-child(even) td {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(69, 90, 100, 0.04);
 }
 
 .areas-link-grid {

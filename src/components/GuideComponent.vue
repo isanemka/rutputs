@@ -100,12 +100,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, watch } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
+import { defineComponent, computed } from 'vue';
+import { useRoute } from 'vue-router';
 import { getGuideBySlug } from 'src/data/guides';
 import { getAreaBySlug, getServiceBySlug } from 'src/data/seo';
-
-const SITE_URL = 'https://www.rutputs.nu';
 
 function formatDate(iso?: string): string {
   if (!iso) return '';
@@ -117,18 +115,10 @@ export default defineComponent({
   name: 'GuideComponent',
   setup() {
     const route = useRoute();
-    const router = useRouter();
 
-    const guide = computed(() => {
-      const slug = route.params.slug as string;
-      return getGuideBySlug(slug);
-    });
-
-    watch(guide, (val) => {
-      if (!val) {
-        router.replace('/404');
-      }
-    }, { immediate: true });
+    // Unknown slugs never reach this component: the route guard renders the
+    // 404 page instead (see src/router/routes.ts).
+    const guide = computed(() => getGuideBySlug(route.params.slug as string));
 
     const formattedPublishedAt = computed(() => formatDate(guide.value?.publishedAt));
     const formattedUpdatedAt = computed(() => formatDate(guide.value?.updatedAt));
@@ -158,85 +148,6 @@ export default defineComponent({
       guideCategoryLabel,
       relatedAreas,
       relatedServices,
-    };
-  },
-  meta() {
-    const slug = this.$route.params.slug as string;
-    const guide = getGuideBySlug(slug);
-    if (!guide) {
-      return {
-        title: 'Sidan hittades inte – Rutputs',
-        meta: { robots: { name: 'robots', content: 'noindex' } },
-      };
-    }
-    const url = `${SITE_URL}/guide/${guide.slug}`;
-    const ogImageUrl = guide.ogImage
-      ? `${SITE_URL}/og/guide-${guide.slug}.jpg`
-      : `${SITE_URL}/og-image.jpg`;
-    return {
-      title: `${guide.title} | Rutputs`,
-      meta: {
-        description: { name: 'description', content: guide.description },
-        ogTitle: { property: 'og:title', content: guide.title },
-        ogDescription: { property: 'og:description', content: guide.description },
-        ogType: { property: 'og:type', content: 'article' },
-        ogUrl: { property: 'og:url', content: url },
-        ogImage: { property: 'og:image', content: ogImageUrl },
-        articlePublished: { property: 'article:published_time', content: guide.publishedAt },
-        articleModified: { property: 'article:modified_time', content: guide.updatedAt || guide.publishedAt },
-        twitterCard: { name: 'twitter:card', content: 'summary_large_image' },
-        twitterTitle: { name: 'twitter:title', content: guide.title },
-        twitterDescription: { name: 'twitter:description', content: guide.description },
-        twitterImage: { name: 'twitter:image', content: ogImageUrl },
-      },
-      link: {
-        canonical: { rel: 'canonical', href: url },
-      },
-      script: {
-        articleSchema: {
-          type: 'application/ld+json',
-          innerHTML: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'Article',
-            headline: guide.h1,
-            description: guide.description,
-            image: ogImageUrl,
-            datePublished: guide.publishedAt,
-            dateModified: guide.updatedAt || guide.publishedAt,
-            author: { '@type': 'Organization', name: guide.author, url: `${SITE_URL}/` },
-            publisher: {
-              '@type': 'Organization',
-              name: 'Rutputs',
-              logo: { '@type': 'ImageObject', url: `${SITE_URL}/icons/main_logo.png` },
-            },
-            mainEntityOfPage: { '@type': 'WebPage', '@id': url },
-          }),
-        },
-        faqSchema: {
-          type: 'application/ld+json',
-          innerHTML: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'FAQPage',
-            mainEntity: guide.faq.map((item) => ({
-              '@type': 'Question',
-              name: item.question,
-              acceptedAnswer: { '@type': 'Answer', text: item.answer },
-            })),
-          }),
-        },
-        breadcrumbSchema: {
-          type: 'application/ld+json',
-          innerHTML: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'BreadcrumbList',
-            itemListElement: [
-              { '@type': 'ListItem', position: 1, name: 'Start', item: `${SITE_URL}/` },
-              { '@type': 'ListItem', position: 2, name: 'Guider', item: `${SITE_URL}/guide` },
-              { '@type': 'ListItem', position: 3, name: guide.h1, item: url },
-            ],
-          }),
-        },
-      },
     };
   },
 });
