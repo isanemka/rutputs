@@ -8,7 +8,7 @@
         </h1>
         <p class="section-text text-center q-mx-auto price-intro-panel__text">
           Fönsterputs hos Rutputs kostar från 499 kr efter RUT-avdrag. En lägenhet på 1–2 rum och kök kostar
-          oftast 499–799 kr, en trea eller fyra 699–1 199 kr och en normalstor villa 800–2 000 kr.
+          oftast 499–799 kr, en trea eller fyra 699–1 199 kr och en normalstor villa 799–2 199 kr.
         </p>
         <p class="section-text text-center q-mx-auto price-intro-panel__text">
           Priset är fast och bestäms av hur många fönster du har, vilka sidor som ska putsas och om fönstren har
@@ -58,7 +58,7 @@
           <span class="section-kicker">Villa och radhus</span>
           <h2 class="section-title">Pris för villa/radhus</h2>
           <p class="section-text">
-            En normalstor villa kostar oftast 800–2 000 kr efter RUT-avdrag. Hus har fler fönster än lägenheter
+            En normalstor villa kostar oftast 799–2 199 kr efter RUT-avdrag. Hus har fler fönster än lägenheter
             och ofta spröjs, altandörrar, uterum och fönster på övervåningen som kräver stege, så spannet blir större.
           </p>
           <p class="section-text">

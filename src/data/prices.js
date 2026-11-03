@@ -20,11 +20,10 @@ export const priceRows = [
     max: 1199,
   },
   {
-    // Same range as the villa FAQ on /tjanst/villa-fonsterputs.
     id: 'house',
     label: 'Villa eller radhus',
-    min: 800,
-    max: 2000,
+    min: 799,
+    max: 2199,
   },
 ];
 

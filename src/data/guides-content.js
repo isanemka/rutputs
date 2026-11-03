@@ -99,7 +99,7 @@ const guides = [
       },
       {
         'heading': 'Så mycket sparar du med rutavdrag på fönsterputsning',
-        'html': '<p>Med rutavdrag betalar du halva priset för fönsterputsningen. Så här ser det ut med våra priser för 2026, inklusive moms:</p>\n<ul>\n<li><strong>Lägenhet 1–2 rok:</strong> 499–799 kr med rutavdrag, 998–1 598 kr utan.</li>\n<li><strong>Lägenhet 3–4 rok:</strong> 699–1 199 kr med rutavdrag, 1 398–2 398 kr utan.</li>\n<li><strong>Normalstor villa:</strong> 800–2 000 kr med rutavdrag, 1 600–4 000 kr utan.</li>\n</ul>\n<p>Putsar du två gånger om året sparar du alltså mellan 1 600 och 4 000 kr för en villa. Se hela <a href="/pris">prislistan för fönsterputs</a> för vad som påverkar priset.</p>'
+        'html': '<p>Med rutavdrag betalar du halva priset för fönsterputsningen. Så här ser det ut med våra priser för 2026, inklusive moms:</p>\n<ul>\n<li><strong>Lägenhet 1–2 rok:</strong> 499–799 kr med rutavdrag, 998–1 598 kr utan.</li>\n<li><strong>Lägenhet 3–4 rok:</strong> 699–1 199 kr med rutavdrag, 1 398–2 398 kr utan.</li>\n<li><strong>Normalstor villa:</strong> 799–2 199 kr med rutavdrag, 1 598–4 398 kr utan.</li>\n</ul>\n<p>Putsar du två gånger om året sparar du alltså mellan 1 598 och 4 398 kr för en villa. Se hela <a href="/pris">prislistan för fönsterputs</a> för vad som påverkar priset.</p>'
       },
       {
         'heading': 'Hur mycket kan du dra av 2026?',

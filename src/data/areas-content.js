@@ -43,7 +43,7 @@ const areas = [
     ],
     priceRows: ['apartmentSmall', 'apartmentLarge', 'house'],
     priceNote:
-      'I Järfälla putsar vi både lägenheter och hus. En tvåa i Jakobsberg kostar oftast 499–799 kr efter RUT-avdrag, medan en villa i Skälby eller Viksjö brukar hamna på 800–2 000 kr beroende på antal fönster och spröjs.',
+      'I Järfälla putsar vi både lägenheter och hus. En tvåa i Jakobsberg kostar oftast 499–799 kr efter RUT-avdrag, medan en villa i Skälby eller Viksjö brukar hamna på 799–2 199 kr beroende på antal fönster och spröjs.',
     services: ['lagenhet-fonsterputs', 'villa-fonsterputs', 'abonnemang-fonsterputs'],
     company: true,
     guides: ['hur-ofta-ska-man-putsa-fonster', 'hur-tvattar-man-inglasade-balkonger', 'rut-avdrag-fonsterputs-2026'],
@@ -58,7 +58,7 @@ const areas = [
       {
         question: 'Vad kostar fönsterputs i Järfälla?',
         answer:
-          'En lägenhet på 1–2 rok kostar oftast 499–799 kr efter RUT-avdrag och en villa 800–2 000 kr. Du får ett fast pris i offerten utifrån antal fönster och vad som ska putsas.',
+          'En lägenhet på 1–2 rok kostar oftast 499–799 kr efter RUT-avdrag och en villa 799–2 199 kr. Du får ett fast pris i offerten utifrån antal fönster och vad som ska putsas.',
         linkLabel: 'Se prislistan',
         linkTo: '/pris',
       },
@@ -107,7 +107,7 @@ const areas = [
     ],
     priceRows: ['house', 'apartmentLarge', 'apartmentSmall'],
     priceNote:
-      'De flesta hem i Viksjö är radhus eller villor, och där landar priset oftast på 800–2 000 kr efter RUT-avdrag. Ett mindre radhus med få fönster hamnar i den lägre delen av spannet.',
+      'De flesta hem i Viksjö är radhus eller villor, och där landar priset oftast på 799–2 199 kr efter RUT-avdrag. Ett mindre radhus med få fönster hamnar i den lägre delen av spannet.',
     services: ['villa-fonsterputs', 'abonnemang-fonsterputs', 'varputs'],
     guides: ['hur-ofta-ska-man-putsa-fonster', 'rut-avdrag-fonsterputs-2026'],
     nearbyAreas: [
@@ -120,7 +120,7 @@ const areas = [
       {
         question: 'Vad kostar fönsterputs för ett radhus i Viksjö?',
         answer:
-          'Ett radhus eller en villa kostar oftast 800–2 000 kr efter RUT-avdrag, beroende på hur många fönster och hur mycket spröjs huset har. En lägenhet kostar från 499 kr.',
+          'Ett radhus eller en villa kostar oftast 799–2 199 kr efter RUT-avdrag, beroende på hur många fönster och hur mycket spröjs huset har. En lägenhet kostar från 499 kr.',
         linkLabel: 'Se prislistan',
         linkTo: '/pris',
       },
@@ -166,7 +166,7 @@ const areas = [
     ],
     priceRows: ['house', 'apartmentSmall', 'apartmentLarge'],
     priceNote:
-      'I Kallhäll putsar vi både villor och lägenheter. En villa nära Mälaren kostar oftast 800–2 000 kr efter RUT-avdrag och en lägenhet nära stationen från 499 kr.',
+      'I Kallhäll putsar vi både villor och lägenheter. En villa nära Mälaren kostar oftast 799–2 199 kr efter RUT-avdrag och en lägenhet nära stationen från 499 kr.',
     services: ['villa-fonsterputs', 'lagenhet-fonsterputs', 'hostputs'],
     guides: ['hur-ofta-ska-man-putsa-fonster', 'hur-tvattar-man-inglasade-balkonger'],
     nearbyAreas: [
@@ -179,7 +179,7 @@ const areas = [
       {
         question: 'Vad kostar fönsterputs i Kallhäll?',
         answer:
-          'En lägenhet kostar oftast 499–799 kr för 1–2 rok och 699–1 199 kr för 3–4 rok efter RUT-avdrag. En villa kostar oftast 800–2 000 kr.',
+          'En lägenhet kostar oftast 499–799 kr för 1–2 rok och 699–1 199 kr för 3–4 rok efter RUT-avdrag. En villa kostar oftast 799–2 199 kr.',
         linkLabel: 'Se prislistan',
         linkTo: '/pris',
       },
@@ -287,7 +287,7 @@ const areas = [
     ],
     priceRows: ['house', 'apartmentLarge', 'apartmentSmall'],
     priceNote:
-      'En villa i Bromma kostar oftast 800–2 000 kr efter RUT-avdrag. Äldre villor med många spröjsade fönster och innerbågar hamnar i den övre delen av spannet. En lägenhet i Abrahamsberg eller Traneberg kostar från 499 kr.',
+      'En villa i Bromma kostar oftast 799–2 199 kr efter RUT-avdrag. Äldre villor med många spröjsade fönster och innerbågar hamnar i den övre delen av spannet. En lägenhet i Abrahamsberg eller Traneberg kostar från 499 kr.',
     services: ['villa-fonsterputs', 'abonnemang-fonsterputs', 'lagenhet-fonsterputs'],
     guides: ['hur-ofta-ska-man-putsa-fonster', 'rut-avdrag-fonsterputs-2026', 'hur-tvattar-man-inglasade-balkonger'],
     nearbyAreas: [
@@ -301,7 +301,7 @@ const areas = [
       {
         question: 'Vad kostar fönsterputs för en villa i Bromma?',
         answer:
-          'En normalstor villa kostar oftast 800–2 000 kr efter RUT-avdrag. Antal fönster, spröjs och om du vill ha putsat mellan glasen avgör var i spannet du hamnar.',
+          'En normalstor villa kostar oftast 799–2 199 kr efter RUT-avdrag. Antal fönster, spröjs och om du vill ha putsat mellan glasen avgör var i spannet du hamnar.',
         linkLabel: 'Fönsterputs för villa',
         linkTo: '/tjanst/villa-fonsterputs',
       },
@@ -349,7 +349,7 @@ const areas = [
     ],
     priceRows: ['house', 'apartmentLarge'],
     priceNote:
-      'Bromsten består nästan bara av villor och radhus, och där hamnar priset oftast på 800–2 000 kr efter RUT-avdrag. En äldre villa med många spröjsade rutor ligger i den övre delen av spannet.',
+      'Bromsten består nästan bara av villor och radhus, och där hamnar priset oftast på 799–2 199 kr efter RUT-avdrag. En äldre villa med många spröjsade rutor ligger i den övre delen av spannet.',
     services: ['villa-fonsterputs', 'abonnemang-fonsterputs', 'varputs'],
     guides: ['hur-ofta-ska-man-putsa-fonster', 'rut-avdrag-fonsterputs-2026'],
     nearbyAreas: [
@@ -362,7 +362,7 @@ const areas = [
       {
         question: 'Vad kostar fönsterputs för en villa i Bromsten?',
         answer:
-          'En villa eller ett radhus kostar oftast 800–2 000 kr efter RUT-avdrag. Spröjs, glasveranda och fönster på vinden påverkar var i spannet du hamnar.',
+          'En villa eller ett radhus kostar oftast 799–2 199 kr efter RUT-avdrag. Spröjs, glasveranda och fönster på vinden påverkar var i spannet du hamnar.',
         linkLabel: 'Se prislistan',
         linkTo: '/pris',
       },
@@ -473,7 +473,7 @@ const areas = [
     ],
     priceRows: ['apartmentSmall', 'apartmentLarge', 'house'],
     priceNote:
-      'En tvåa i Råsunda eller Huvudsta kostar oftast 499–799 kr efter RUT-avdrag och en trea eller fyra 699–1 199 kr. Radhus och villor mot Ulriksdal kostar oftast 800–2 000 kr.',
+      'En tvåa i Råsunda eller Huvudsta kostar oftast 499–799 kr efter RUT-avdrag och en trea eller fyra 699–1 199 kr. Radhus och villor mot Ulriksdal kostar oftast 799–2 199 kr.',
     services: ['lagenhet-fonsterputs', 'abonnemang-fonsterputs', 'villa-fonsterputs'],
     company: true,
     guides: ['hur-tvattar-man-inglasade-balkonger', 'hur-ofta-ska-man-putsa-fonster', 'rut-avdrag-fonsterputs-2026'],
@@ -488,7 +488,7 @@ const areas = [
       {
         question: 'Vad kostar fönsterputs i Solna?',
         answer:
-          'En lägenhet på 1–2 rok kostar oftast 499–799 kr efter RUT-avdrag, en på 3–4 rok 699–1 199 kr och ett radhus eller en villa 800–2 000 kr.',
+          'En lägenhet på 1–2 rok kostar oftast 499–799 kr efter RUT-avdrag, en på 3–4 rok 699–1 199 kr och ett radhus eller en villa 799–2 199 kr.',
         linkLabel: 'Se prislistan',
         linkTo: '/pris',
       },
@@ -535,7 +535,7 @@ const areas = [
     ],
     priceRows: ['apartmentSmall', 'apartmentLarge', 'house'],
     priceNote:
-      'En lägenhet i Bergshamra kostar oftast 499–799 kr för 1–2 rok och 699–1 199 kr för 3–4 rok efter RUT-avdrag. Radhus och villor i de norra delarna brukar landa på 800–2 000 kr.',
+      'En lägenhet i Bergshamra kostar oftast 499–799 kr för 1–2 rok och 699–1 199 kr för 3–4 rok efter RUT-avdrag. Radhus och villor i de norra delarna brukar landa på 799–2 199 kr.',
     services: ['lagenhet-fonsterputs', 'villa-fonsterputs', 'abonnemang-fonsterputs'],
     guides: ['hur-tvattar-man-inglasade-balkonger', 'hur-ofta-ska-man-putsa-fonster'],
     nearbyAreas: [
@@ -548,7 +548,7 @@ const areas = [
       {
         question: 'Vad kostar fönsterputs i Bergshamra?',
         answer:
-          'En lägenhet kostar oftast 499–799 kr för 1–2 rok och 699–1 199 kr för 3–4 rok efter RUT-avdrag. Radhus och villor kostar oftast 800–2 000 kr.',
+          'En lägenhet kostar oftast 499–799 kr för 1–2 rok och 699–1 199 kr för 3–4 rok efter RUT-avdrag. Radhus och villor kostar oftast 799–2 199 kr.',
         linkLabel: 'Se prislistan',
         linkTo: '/pris',
       },
@@ -596,7 +596,7 @@ const areas = [
     ],
     priceRows: ['apartmentSmall', 'apartmentLarge', 'house'],
     priceNote:
-      'De flesta i Sundbyberg bor i lägenhet. En lägenhet på 1–2 rok kostar oftast 499–799 kr efter RUT-avdrag och 3–4 rok 699–1 199 kr. En villa i Duvbo eller Lilla Alby kostar oftast 800–2 000 kr.',
+      'De flesta i Sundbyberg bor i lägenhet. En lägenhet på 1–2 rok kostar oftast 499–799 kr efter RUT-avdrag och 3–4 rok 699–1 199 kr. En villa i Duvbo eller Lilla Alby kostar oftast 799–2 199 kr.',
     services: ['lagenhet-fonsterputs', 'villa-fonsterputs', 'abonnemang-fonsterputs'],
     guides: ['hur-tvattar-man-inglasade-balkonger', 'rut-avdrag-fonsterputs-2026'],
     nearbyAreas: [
@@ -609,7 +609,7 @@ const areas = [
       {
         question: 'Vad kostar fönsterputs i Sundbyberg?',
         answer:
-          'En lägenhet på 1–2 rok kostar oftast 499–799 kr efter RUT-avdrag och en på 3–4 rok 699–1 199 kr. En villa kostar oftast 800–2 000 kr.',
+          'En lägenhet på 1–2 rok kostar oftast 499–799 kr efter RUT-avdrag och en på 3–4 rok 699–1 199 kr. En villa kostar oftast 799–2 199 kr.',
         linkLabel: 'Se prislistan',
         linkTo: '/pris',
       },
@@ -657,7 +657,7 @@ const areas = [
     ],
     priceRows: ['house', 'apartmentSmall', 'apartmentLarge'],
     priceNote:
-      'En villa i Solhem eller Flysta kostar oftast 800–2 000 kr efter RUT-avdrag. En lägenhet i Tensta eller Hjulsta kostar 499–799 kr för 1–2 rok och 699–1 199 kr för 3–4 rok.',
+      'En villa i Solhem eller Flysta kostar oftast 799–2 199 kr efter RUT-avdrag. En lägenhet i Tensta eller Hjulsta kostar 499–799 kr för 1–2 rok och 699–1 199 kr för 3–4 rok.',
     services: ['villa-fonsterputs', 'lagenhet-fonsterputs', 'abonnemang-fonsterputs'],
     guides: ['hur-ofta-ska-man-putsa-fonster', 'hur-tvattar-man-inglasade-balkonger', 'rut-avdrag-fonsterputs-2026'],
     nearbyAreas: [
@@ -671,7 +671,7 @@ const areas = [
       {
         question: 'Vad kostar fönsterputs i Spånga?',
         answer:
-          'En villa kostar oftast 800–2 000 kr efter RUT-avdrag och en lägenhet 499–1 199 kr beroende på storlek. Du får ett fast pris i offerten.',
+          'En villa kostar oftast 799–2 199 kr efter RUT-avdrag och en lägenhet 499–1 199 kr beroende på storlek. Du får ett fast pris i offerten.',
         linkLabel: 'Se prislistan',
         linkTo: '/pris',
       },
@@ -719,7 +719,7 @@ const areas = [
     ],
     priceRows: ['apartmentSmall', 'apartmentLarge', 'house'],
     priceNote:
-      'En lägenhet i Vällingby kostar oftast 499–799 kr för 1–2 rok och 699–1 199 kr för 3–4 rok efter RUT-avdrag. Ett radhus eller en villa i Nälsta eller Kälvesta kostar oftast 800–2 000 kr.',
+      'En lägenhet i Vällingby kostar oftast 499–799 kr för 1–2 rok och 699–1 199 kr för 3–4 rok efter RUT-avdrag. Ett radhus eller en villa i Nälsta eller Kälvesta kostar oftast 799–2 199 kr.',
     services: ['lagenhet-fonsterputs', 'villa-fonsterputs', 'abonnemang-fonsterputs'],
     guides: ['hur-ofta-ska-man-putsa-fonster', 'rut-avdrag-fonsterputs-2026'],
     nearbyAreas: [
@@ -732,7 +732,7 @@ const areas = [
       {
         question: 'Vad kostar fönsterputs i Vällingby?',
         answer:
-          'En lägenhet kostar oftast 499–799 kr för 1–2 rok och 699–1 199 kr för 3–4 rok efter RUT-avdrag. Radhus och villor kostar oftast 800–2 000 kr.',
+          'En lägenhet kostar oftast 499–799 kr för 1–2 rok och 699–1 199 kr för 3–4 rok efter RUT-avdrag. Radhus och villor kostar oftast 799–2 199 kr.',
         linkLabel: 'Se prislistan',
         linkTo: '/pris',
       },
@@ -779,7 +779,7 @@ const areas = [
     ],
     priceRows: ['house', 'apartmentSmall', 'apartmentLarge'],
     priceNote:
-      'En villa i Hässelby villastad kostar oftast 800–2 000 kr efter RUT-avdrag. En lägenhet i Hässelby gård eller Hässelby strand kostar 499–799 kr för 1–2 rok och 699–1 199 kr för 3–4 rok.',
+      'En villa i Hässelby villastad kostar oftast 799–2 199 kr efter RUT-avdrag. En lägenhet i Hässelby gård eller Hässelby strand kostar 499–799 kr för 1–2 rok och 699–1 199 kr för 3–4 rok.',
     services: ['villa-fonsterputs', 'lagenhet-fonsterputs', 'hostputs'],
     guides: ['hur-ofta-ska-man-putsa-fonster', 'rut-avdrag-fonsterputs-2026'],
     nearbyAreas: [
@@ -792,7 +792,7 @@ const areas = [
       {
         question: 'Vad kostar fönsterputs i Hässelby?',
         answer:
-          'En villa kostar oftast 800–2 000 kr efter RUT-avdrag. En lägenhet kostar 499–799 kr för 1–2 rok och 699–1 199 kr för 3–4 rok.',
+          'En villa kostar oftast 799–2 199 kr efter RUT-avdrag. En lägenhet kostar 499–799 kr för 1–2 rok och 699–1 199 kr för 3–4 rok.',
         linkLabel: 'Se prislistan',
         linkTo: '/pris',
       },
@@ -842,7 +842,7 @@ const areas = [
     ],
     priceRows: ['house', 'apartmentLarge', 'apartmentSmall'],
     priceNote:
-      'En villa i Sollentuna kostar oftast 800–2 000 kr efter RUT-avdrag, och större hus vid vattnet med många fönster hamnar i den övre delen. En lägenhet i Tureberg eller Häggvik kostar från 499 kr.',
+      'En villa i Sollentuna kostar oftast 799–2 199 kr efter RUT-avdrag, och större hus vid vattnet med många fönster hamnar i den övre delen. En lägenhet i Tureberg eller Häggvik kostar från 499 kr.',
     services: ['villa-fonsterputs', 'abonnemang-fonsterputs', 'lagenhet-fonsterputs'],
     guides: ['hur-ofta-ska-man-putsa-fonster', 'rut-avdrag-fonsterputs-2026'],
     nearbyAreas: [
@@ -855,7 +855,7 @@ const areas = [
       {
         question: 'Vad kostar fönsterputs för en villa i Sollentuna?',
         answer:
-          'En normalstor villa kostar oftast 800–2 000 kr efter RUT-avdrag. Antal fönster, spröjs och om vi ska putsa mellan glasen avgör var i spannet du hamnar.',
+          'En normalstor villa kostar oftast 799–2 199 kr efter RUT-avdrag. Antal fönster, spröjs och om vi ska putsa mellan glasen avgör var i spannet du hamnar.',
         linkLabel: 'Fönsterputs för villa',
         linkTo: '/tjanst/villa-fonsterputs',
       },
@@ -905,7 +905,7 @@ const areas = [
     ],
     priceRows: ['house', 'apartmentSmall', 'apartmentLarge'],
     priceNote:
-      'Ett radhus eller en villa i Upplands Väsby kostar oftast 800–2 000 kr efter RUT-avdrag. En lägenhet nära centrum kostar 499–799 kr för 1–2 rok och 699–1 199 kr för 3–4 rok.',
+      'Ett radhus eller en villa i Upplands Väsby kostar oftast 799–2 199 kr efter RUT-avdrag. En lägenhet nära centrum kostar 499–799 kr för 1–2 rok och 699–1 199 kr för 3–4 rok.',
     services: ['villa-fonsterputs', 'abonnemang-fonsterputs', 'lagenhet-fonsterputs'],
     guides: ['hur-ofta-ska-man-putsa-fonster', 'hur-tvattar-man-inglasade-balkonger'],
     nearbyAreas: [
@@ -918,7 +918,7 @@ const areas = [
       {
         question: 'Vad kostar fönsterputs i Upplands Väsby?',
         answer:
-          'Ett radhus eller en villa kostar oftast 800–2 000 kr efter RUT-avdrag och en lägenhet 499–1 199 kr beroende på storlek.',
+          'Ett radhus eller en villa kostar oftast 799–2 199 kr efter RUT-avdrag och en lägenhet 499–1 199 kr beroende på storlek.',
         linkLabel: 'Se prislistan',
         linkTo: '/pris',
       },
@@ -968,7 +968,7 @@ const areas = [
     ],
     priceRows: ['house', 'apartmentLarge', 'apartmentSmall'],
     priceNote:
-      'En villa i Täby kostar oftast 800–2 000 kr efter RUT-avdrag, och äldre villor med många spröjsade fönster ligger i den övre delen. En lägenhet i Täby centrum eller Näsbypark kostar från 499 kr.',
+      'En villa i Täby kostar oftast 799–2 199 kr efter RUT-avdrag, och äldre villor med många spröjsade fönster ligger i den övre delen. En lägenhet i Täby centrum eller Näsbypark kostar från 499 kr.',
     services: ['villa-fonsterputs', 'abonnemang-fonsterputs', 'lagenhet-fonsterputs'],
     company: true,
     guides: ['hur-ofta-ska-man-putsa-fonster', 'rut-avdrag-fonsterputs-2026'],
@@ -983,7 +983,7 @@ const areas = [
       {
         question: 'Vad kostar fönsterputs för en villa i Täby?',
         answer:
-          'En normalstor villa kostar oftast 800–2 000 kr efter RUT-avdrag. Ett radhus med färre fönster hamnar lägre, en stor villa med mycket spröjs högre.',
+          'En normalstor villa kostar oftast 799–2 199 kr efter RUT-avdrag. Ett radhus med färre fönster hamnar lägre, en stor villa med mycket spröjs högre.',
         linkLabel: 'Fönsterputs för villa',
         linkTo: '/tjanst/villa-fonsterputs',
       },
@@ -1031,7 +1031,7 @@ const areas = [
     ],
     priceRows: ['house', 'apartmentLarge', 'apartmentSmall'],
     priceNote:
-      'En normalstor villa i Danderyd kostar oftast 800–2 000 kr efter RUT-avdrag. Större villor med många spröjsade fönster kan kosta mer – du får alltid ett fast pris i offerten. En lägenhet i Mörby kostar från 499 kr.',
+      'En normalstor villa i Danderyd kostar oftast 799–2 199 kr efter RUT-avdrag. Större villor med många spröjsade fönster kan kosta mer – du får alltid ett fast pris i offerten. En lägenhet i Mörby kostar från 499 kr.',
     services: ['villa-fonsterputs', 'abonnemang-fonsterputs', 'varputs'],
     guides: ['hur-ofta-ska-man-putsa-fonster', 'rut-avdrag-fonsterputs-2026'],
     nearbyAreas: [
@@ -1044,7 +1044,7 @@ const areas = [
       {
         question: 'Vad kostar fönsterputs för en stor villa i Danderyd?',
         answer:
-          'En normalstor villa kostar oftast 800–2 000 kr efter RUT-avdrag. Har huset många spröjsade fönster, flera plan eller glasverandor kan priset bli högre. Du får alltid ett fast pris innan vi kommer.',
+          'En normalstor villa kostar oftast 799–2 199 kr efter RUT-avdrag. Har huset många spröjsade fönster, flera plan eller glasverandor kan priset bli högre. Du får alltid ett fast pris innan vi kommer.',
         linkLabel: 'Se prislistan',
         linkTo: '/pris',
       },
@@ -1093,7 +1093,7 @@ const areas = [
     ],
     priceRows: ['house'],
     priceNote:
-      'En normalstor villa kostar oftast 800–2 000 kr efter RUT-avdrag. Många villor i Djursholm är större än så, med fler fönster och mycket spröjs, och då hamnar priset högre. Du får alltid ett fast pris innan vi kommer.',
+      'En normalstor villa kostar oftast 799–2 199 kr efter RUT-avdrag. Många villor i Djursholm är större än så, med fler fönster och mycket spröjs, och då hamnar priset högre. Du får alltid ett fast pris innan vi kommer.',
     services: ['villa-fonsterputs', 'abonnemang-fonsterputs', 'varputs'],
     guides: ['hur-ofta-ska-man-putsa-fonster', 'rut-avdrag-fonsterputs-2026'],
     nearbyAreas: [
@@ -1106,7 +1106,7 @@ const areas = [
       {
         question: 'Vad kostar fönsterputs för en villa i Djursholm?',
         answer:
-          'En normalstor villa kostar oftast 800–2 000 kr efter RUT-avdrag. Större villor med många spröjsade fönster och flera plan kostar mer. Du får ett fast pris i offerten utifrån just ditt hus.',
+          'En normalstor villa kostar oftast 799–2 199 kr efter RUT-avdrag. Större villor med många spröjsade fönster och flera plan kostar mer. Du får ett fast pris i offerten utifrån just ditt hus.',
         linkLabel: 'Fönsterputs för villa',
         linkTo: '/tjanst/villa-fonsterputs',
       },
@@ -1151,7 +1151,7 @@ const areas = [
     ],
     priceRows: ['house', 'apartmentSmall'],
     priceNote:
-      'De flesta hem i Enebyberg är villor och radhus, där fönsterputs oftast kostar 800–2 000 kr efter RUT-avdrag. Ett mindre radhus hamnar i den lägre delen och en stor villa med spröjs i den övre.',
+      'De flesta hem i Enebyberg är villor och radhus, där fönsterputs oftast kostar 799–2 199 kr efter RUT-avdrag. Ett mindre radhus hamnar i den lägre delen och en stor villa med spröjs i den övre.',
     services: ['villa-fonsterputs', 'abonnemang-fonsterputs', 'hostputs'],
     guides: ['hur-ofta-ska-man-putsa-fonster', 'rut-avdrag-fonsterputs-2026'],
     nearbyAreas: [
@@ -1164,7 +1164,7 @@ const areas = [
       {
         question: 'Vad kostar fönsterputs i Enebyberg?',
         answer:
-          'En villa eller ett radhus kostar oftast 800–2 000 kr efter RUT-avdrag. En lägenhet kostar från 499 kr.',
+          'En villa eller ett radhus kostar oftast 799–2 199 kr efter RUT-avdrag. En lägenhet kostar från 499 kr.',
         linkLabel: 'Se prislistan',
         linkTo: '/pris',
       },
@@ -1213,7 +1213,7 @@ const areas = [
     ],
     priceRows: ['house', 'apartmentLarge', 'apartmentSmall'],
     priceNote:
-      'En villa på Lidingö kostar oftast 800–2 000 kr efter RUT-avdrag. Hus med stora glaspartier mot vattnet eller många spröjsade fönster hamnar i den övre delen. En lägenhet i Larsberg eller centrum kostar från 499 kr.',
+      'En villa på Lidingö kostar oftast 799–2 199 kr efter RUT-avdrag. Hus med stora glaspartier mot vattnet eller många spröjsade fönster hamnar i den övre delen. En lägenhet i Larsberg eller centrum kostar från 499 kr.',
     services: ['villa-fonsterputs', 'abonnemang-fonsterputs', 'lagenhet-fonsterputs'],
     guides: ['hur-ofta-ska-man-putsa-fonster', 'hur-tvattar-man-inglasade-balkonger', 'rut-avdrag-fonsterputs-2026'],
     nearbyAreas: [
@@ -1226,7 +1226,7 @@ const areas = [
       {
         question: 'Vad kostar fönsterputs på Lidingö?',
         answer:
-          'En villa kostar oftast 800–2 000 kr efter RUT-avdrag och en lägenhet 499–1 199 kr beroende på storlek.',
+          'En villa kostar oftast 799–2 199 kr efter RUT-avdrag och en lägenhet 499–1 199 kr beroende på storlek.',
         linkLabel: 'Se prislistan',
         linkTo: '/pris',
       },
@@ -1528,7 +1528,7 @@ const areas = [
     ],
     priceRows: ['house', 'apartmentSmall', 'apartmentLarge'],
     priceNote:
-      'En villa i Saltsjöbaden eller Saltsjö-Boo kostar oftast 800–2 000 kr efter RUT-avdrag, och stora villor med många spröjsade fönster kostar mer. En lägenhet i Sickla eller Nacka Strand kostar från 499 kr.',
+      'En villa i Saltsjöbaden eller Saltsjö-Boo kostar oftast 799–2 199 kr efter RUT-avdrag, och stora villor med många spröjsade fönster kostar mer. En lägenhet i Sickla eller Nacka Strand kostar från 499 kr.',
     services: ['villa-fonsterputs', 'lagenhet-fonsterputs', 'abonnemang-fonsterputs'],
     guides: ['hur-ofta-ska-man-putsa-fonster', 'hur-tvattar-man-inglasade-balkonger', 'rut-avdrag-fonsterputs-2026'],
     nearbyAreas: [
@@ -1540,7 +1540,7 @@ const areas = [
       {
         question: 'Vad kostar fönsterputs i Nacka?',
         answer:
-          'En villa kostar oftast 800–2 000 kr efter RUT-avdrag och en lägenhet 499–1 199 kr beroende på storlek.',
+          'En villa kostar oftast 799–2 199 kr efter RUT-avdrag och en lägenhet 499–1 199 kr beroende på storlek.',
         linkLabel: 'Se prislistan',
         linkTo: '/pris',
       },

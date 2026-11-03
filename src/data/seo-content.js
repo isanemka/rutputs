@@ -117,10 +117,10 @@ const siteSeoContent = {
     updatedAt: '2026-10-31',
     title: 'Fönsterputs pris Stockholm 2026 – vad kostar det? | Rutputs',
     description:
-      'Vad kostar fönsterputs i Stockholm? Lägenhet från 499 kr och villa från 800 kr efter RUT-avdrag. Fast pris inkl. moms – se pristabellen och begär offert.',
+      'Vad kostar fönsterputs i Stockholm? Lägenhet från 499 kr och villa från 799 kr efter RUT-avdrag. Fast pris inkl. moms – se pristabellen och begär offert.',
     bodyTitle: 'Vad kostar fönsterputs i Stockholm?',
     bodyIntro:
-      'Fönsterputs kostar från 499 kr efter RUT-avdrag. En lägenhet på 1–2 rok kostar oftast 499–799 kr, en trea eller fyra 699–1 199 kr och en normalstor villa 800–2 000 kr.',
+      'Fönsterputs kostar från 499 kr efter RUT-avdrag. En lägenhet på 1–2 rok kostar oftast 499–799 kr, en trea eller fyra 699–1 199 kr och en normalstor villa 799–2 199 kr.',
     steps: [
       'Välj bostadstyp.',
       'Ange antal fönster, sidor och eventuell spröjs.',
@@ -130,7 +130,7 @@ const siteSeoContent = {
       {
         question: 'Vad kostar fönsterputs i Stockholm?',
         answer:
-          'Fönsterputs kostar från 499 kr efter RUT-avdrag. En lägenhet på 1–2 rok kostar oftast 499–799 kr, en lägenhet på 3–4 rok 699–1 199 kr och en normalstor villa 800–2 000 kr. Det exakta priset beror på antal fönster, vilka sidor som ska putsas och om fönstren har spröjs.',
+          'Fönsterputs kostar från 499 kr efter RUT-avdrag. En lägenhet på 1–2 rok kostar oftast 499–799 kr, en lägenhet på 3–4 rok 699–1 199 kr och en normalstor villa 799–2 199 kr. Det exakta priset beror på antal fönster, vilka sidor som ska putsas och om fönstren har spröjs.',
       },
       {
         question: 'Vad kostar fönsterputs för en lägenhet?',
@@ -142,7 +142,7 @@ const siteSeoContent = {
       {
         question: 'Vad kostar fönsterputs för en villa?',
         answer:
-          'En normalstor villa kostar oftast 800–2 000 kr efter RUT-avdrag. Radhus med färre fönster hamnar lägre, stora villor med många spröjsade fönster högre.',
+          'En normalstor villa kostar oftast 799–2 199 kr efter RUT-avdrag. Radhus med färre fönster hamnar lägre, stora villor med många spröjsade fönster högre.',
         linkLabel: 'Fönsterputs för villa',
         linkTo: '/tjanst/villa-fonsterputs',
       },
@@ -201,7 +201,7 @@ const siteSeoContent = {
         'Villor och hus har fler fönster än lägenheter, ofta med spröjs, altandörrar, uterum och fönster på övervåningen. Vi putsar fönster i villor, radhus och parhus i stora delar av Stockholm, med fast pris efter RUT-avdrag och allt material inräknat.',
       priceHeading: 'Vad kostar fönsterputs för en villa?',
       priceRows: ['house'],
-      priceNote: 'En normalstor villa kostar oftast 800–2 000 kr efter RUT-avdrag. Ett radhus eller parhus med färre fönster hamnar i den lägre delen, en stor villa med många spröjsade fönster och flera plan i den övre. Du får alltid ett fast pris innan vi kommer – vi tar inte betalt per timme.',
+      priceNote: 'En normalstor villa kostar oftast 799–2 199 kr efter RUT-avdrag. Ett radhus eller parhus med färre fönster hamnar i den lägre delen, en stor villa med många spröjsade fönster och flera plan i den övre. Du får alltid ett fast pris innan vi kommer – vi tar inte betalt per timme.',
       sections: [
         {
           heading: 'Fönster vi putsar i villor och hus',
@@ -228,7 +228,7 @@ const siteSeoContent = {
       guides: ['hur-ofta-ska-man-putsa-fonster', 'rut-avdrag-fonsterputs-2026'],
       areas: ['bromma', 'danderyd', 'djursholm', 'taby', 'sollentuna', 'lidingo', 'viksjo', 'enebyberg', 'hasselby', 'nacka'],
       benefits: [
-        'Fast pris efter antal fönster – en normalstor villa kostar oftast 800–2 000 kr efter RUT-avdrag.',
+        'Fast pris efter antal fönster – en normalstor villa kostar oftast 799–2 199 kr efter RUT-avdrag.',
         'Allt material ingår – vi tar med stege, skrapor och miljövänligt rengöringsmedel.',
         'Spröjsade, kupolfönster och takfönster – inga problem.',
         'Säkert utfört – F-skatt, försäkrad och godkänd för RUT.',
@@ -237,7 +237,7 @@ const siteSeoContent = {
       faq: [
         {
           question: 'Vad kostar fönsterputs på en villa?',
-          answer: 'En normalstor villa kostar oftast 800–2 000 kr efter RUT-avdrag och 1 600–4 000 kr utan avdrag. Priset beror på antal fönster, spröjs och om du vill ha putsat mellan glasen. Begär offert för exakt pris.',
+          answer: 'En normalstor villa kostar oftast 799–2 199 kr efter RUT-avdrag och 1 598–4 398 kr utan avdrag. Priset beror på antal fönster, spröjs och om du vill ha putsat mellan glasen. Begär offert för exakt pris.',
           linkLabel: 'Begär offert',
           linkTo: '/pris',
         },
@@ -258,7 +258,7 @@ const siteSeoContent = {
         },
         {
           question: 'Vad kostar fönsterputs för ett radhus?',
-          answer: 'Ett radhus har oftast färre fönster än en villa och hamnar därför i den lägre delen av spannet 800–2 000 kr efter RUT-avdrag. Du får ett fast pris i offerten.',
+          answer: 'Ett radhus har oftast färre fönster än en villa och hamnar därför i den lägre delen av spannet 799–2 199 kr efter RUT-avdrag. Du får ett fast pris i offerten.',
         },
         {
           question: 'Putsar ni takfönster och uterum?',
@@ -333,7 +333,7 @@ const siteSeoContent = {
         'Vintern lämnar tydliga spår på fönstren: saltdamm, regnränder och pollen som lagrats sedan första marsdagarna. En vårputs är det snabbaste sättet att få hem och kontor att kännas ljusare när solen börjar visa sig på riktigt. Boka in din vårputsning nu så hinner du få en bra tid innan högsäsongen i maj.',
       priceHeading: 'Vad kostar vårputs av fönster?',
       priceRows: ['apartmentSmall', 'apartmentLarge', 'house'],
-      priceNote: 'Vårputs kostar lika mycket som vanlig fönsterputs: en lägenhet från 499 kr och en normalstor villa 800–2 000 kr efter RUT-avdrag. Bokar du med en granne samma dag får ni båda rabatt.',
+      priceNote: 'Vårputs kostar lika mycket som vanlig fönsterputs: en lägenhet från 499 kr och en normalstor villa 799–2 199 kr efter RUT-avdrag. Bokar du med en granne samma dag får ni båda rabatt.',
       guides: ['hur-ofta-ska-man-putsa-fonster', 'rut-avdrag-fonsterputs-2026'],
       areas: ['jarfalla', 'bromma', 'sollentuna', 'taby', 'solna', 'lidingo'],
       benefits: [
@@ -380,7 +380,7 @@ const siteSeoContent = {
         'När mörkret kryper in tidigare på dagen blir varje smutsig fönsterruta extra tydlig. Med en höstputs får du bort sommarens damm, regnränder och insektsspår innan vintern slår till. Det ger ljusare rum, bättre utsikt och en känsla av att hemmet är förberett för den mörkare halvan av året.',
       priceHeading: 'Vad kostar höstputs av fönster?',
       priceRows: ['apartmentSmall', 'apartmentLarge', 'house'],
-      priceNote: 'Höstputs kostar lika mycket som vanlig fönsterputs: en lägenhet från 499 kr och en normalstor villa 800–2 000 kr efter RUT-avdrag. Bokar du med en granne samma dag får ni båda rabatt.',
+      priceNote: 'Höstputs kostar lika mycket som vanlig fönsterputs: en lägenhet från 499 kr och en normalstor villa 799–2 199 kr efter RUT-avdrag. Bokar du med en granne samma dag får ni båda rabatt.',
       guides: ['hur-ofta-ska-man-putsa-fonster', 'rut-avdrag-fonsterputs-2026'],
       areas: ['jarfalla', 'bromma', 'sollentuna', 'taby', 'solna', 'lidingo'],
       benefits: [
