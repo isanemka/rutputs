@@ -4,9 +4,19 @@ import { getGuideBySlug } from 'src/data/guides';
 
 // Render the 404 page for an unknown slug while keeping the requested URL,
 // instead of redirecting to a separate /404 address.
+const decodeSegment = (segment: string) => {
+  try {
+    return decodeURIComponent(segment);
+  } catch {
+    return segment;
+  }
+};
+
+// Named-route params are encoded by the router, so pass decoded segments;
+// otherwise /omrade/a%20b would become /omrade/a%2520b.
 const notFound = (to: RouteLocationNormalized) => ({
   name: 'not-found',
-  params: { pathMatch: to.path.substring(1).split('/') },
+  params: { pathMatch: to.path.substring(1).split('/').map(decodeSegment) },
   query: to.query,
   hash: to.hash,
 });

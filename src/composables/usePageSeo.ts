@@ -20,7 +20,9 @@ export function usePageSeo(): void {
   const route = useRoute();
 
   useMeta(() => {
-    const page = getPage(route.path) ?? NOT_FOUND_PAGE;
+    // Check the matched route first: paths like /guide/index render the 404
+    // page but would normalise to an existing registry entry.
+    const page = (route.name !== 'not-found' && getPage(route.path)) || NOT_FOUND_PAGE;
     const robots = page.noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large';
 
     const meta: Record<string, MetaTag> = {

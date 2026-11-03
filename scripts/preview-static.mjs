@@ -60,8 +60,10 @@ createServer((req, res) => {
     return;
   }
 
-  if (urlPath.length > 1 && urlPath.endsWith('/')) {
-    res.writeHead(308, { Location: urlPath.replace(/\/+$/, '') + search });
+  // Use the still-encoded pathname for the redirect: a decoded one can contain
+  // characters (e.g. a newline from %0A) that are invalid in a header.
+  if (pathname.length > 1 && pathname.endsWith('/')) {
+    res.writeHead(308, { Location: pathname.replace(/\/+$/, '') + search });
     res.end();
     return;
   }
